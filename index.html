@@ -1,5 +1,5 @@
+```html
 <!DOCTYPE html>
-
 <html lang="bg">
 <head>
 <meta charset="UTF-8">
@@ -9,346 +9,342 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f2f4f7;
+    color:#222;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f3f4f6;
-    color: #222;
+button,input,select{
+    font:inherit;
 }
 
-button,
-select,
-input,
-textarea {
-    font: inherit;
+.login-screen{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
 
-button {
-    cursor: pointer;
+.login-box{
+    width:100%;
+    max-width:400px;
+    background:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 5px 25px rgba(0,0,0,.12);
 }
 
-.header {
-    background: #111827;
-    color: white;
-    padding: 16px 22px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
+.login-box h1{
+    margin-top:0;
+    text-align:center;
 }
 
-.header h1 {
-    margin: 0;
-    font-size: 22px;
+.login-box input{
+    width:100%;
+    padding:13px;
+    margin:8px 0;
+    border:1px solid #ccc;
+    border-radius:8px;
 }
 
-.header button {
-    background: #374151;
-    color: white;
-    border: 0;
-    padding: 9px 14px;
-    border-radius: 8px;
+button{
+    border:0;
+    border-radius:8px;
+    padding:10px 15px;
+    cursor:pointer;
 }
 
-.container {
-    max-width: 1500px;
-    margin: 20px auto;
-    padding: 0 15px;
+.primary{
+    background:#1976d2;
+    color:white;
 }
 
-.card {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    box-shadow: 0 2px 10px rgba(0,0,0,.08);
-    margin-bottom: 20px;
+.danger{
+    background:#d32f2f;
+    color:white;
 }
 
-.login-box {
-    max-width: 420px;
-    margin: 80px auto;
+.success{
+    background:#2e7d32;
+    color:white;
 }
 
-.login-box h1 {
-    text-align: center;
+.secondary{
+    background:#e5e7eb;
 }
 
-input,
-select,
-textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #d1d5db;
-    border-radius: 7px;
-    margin-top: 6px;
-    margin-bottom: 12px;
-    background: white;
+.hidden{
+    display:none!important;
 }
 
-textarea {
-    min-height: 90px;
-    resize: vertical;
+.error{
+    color:#d32f2f;
+    margin-top:10px;
+    text-align:center;
 }
 
-.primary {
-    background: #2563eb;
-    color: white;
-    border: 0;
-    padding: 10px 16px;
-    border-radius: 8px;
+.app{
+    min-height:100vh;
 }
 
-.success {
-    background: #16a34a;
-    color: white;
-    border: 0;
-    padding: 9px 13px;
-    border-radius: 7px;
+.topbar{
+    background:#1976d2;
+    color:white;
+    padding:15px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap;
 }
 
-.danger {
-    background: #dc2626;
-    color: white;
-    border: 0;
-    padding: 9px 13px;
-    border-radius: 7px;
+.topbar h2{
+    margin:0;
 }
 
-.secondary {
-    background: #e5e7eb;
-    color: #111827;
-    border: 0;
-    padding: 9px 13px;
-    border-radius: 7px;
+.container{
+    max-width:1500px;
+    margin:auto;
+    padding:20px;
 }
 
-.nav {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 15px;
+.menu{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
 }
 
-.nav button {
-    border: 0;
-    background: #e5e7eb;
-    padding: 10px 14px;
-    border-radius: 8px;
+.menu button{
+    background:white;
+    border:1px solid #ddd;
 }
 
-.nav button.active {
-    background: #2563eb;
-    color: white;
+.menu button.active{
+    background:#1976d2;
+    color:white;
 }
 
-.month-buttons {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 15px;
+.months{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:15px;
 }
 
-.month-buttons button {
-    border: 0;
-    padding: 9px 13px;
-    border-radius: 7px;
-    background: #e5e7eb;
+.months button.active{
+    background:#1976d2;
+    color:white;
 }
 
-.month-buttons button.active {
-    background: #111827;
-    color: white;
+.card{
+    background:white;
+    border-radius:12px;
+    padding:18px;
+    margin-bottom:20px;
+    box-shadow:0 2px 10px rgba(0,0,0,.07);
 }
 
-.table-wrap {
-    overflow-x: auto;
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
+.table-wrap{
+    overflow:auto;
+    background:white;
+    border-radius:10px;
 }
 
-table {
-    border-collapse: collapse;
-    width: 100%;
-    min-width: 900px;
+table{
+    border-collapse:collapse;
+    width:100%;
+    min-width:900px;
 }
 
-th,
-td {
-    border: 1px solid #e5e7eb;
-    padding: 8px;
-    text-align: center;
-    vertical-align: middle;
+th,td{
+    border:1px solid #ddd;
+    padding:7px;
+    text-align:center;
+    vertical-align:middle;
 }
 
-th {
-    background: #f9fafb;
+th{
+    background:#f1f3f5;
 }
 
-.employee-name {
-    font-weight: bold;
-    text-align: left;
-    white-space: nowrap;
+.date-col{
+    min-width:110px;
 }
 
-.day-header {
-    min-width: 115px;
+.shift-cell{
+    min-width:150px;
 }
 
-.shift {
-    border-radius: 7px;
-    padding: 7px;
-    background: #f9fafb;
+.shift-main{
+    font-weight:bold;
 }
 
-.shift strong {
-    display: block;
-    margin-bottom: 4px;
+.shift-time{
+    font-size:12px;
+    color:#555;
+    margin-top:3px;
 }
 
-.small {
-    font-size: 12px;
-    color: #6b7280;
+.shift-break{
+    font-size:11px;
+    color:#777;
 }
 
-.day-actions {
-    margin-top: 7px;
+.off{
+    color:#777;
 }
 
-.day-actions button {
-    font-size: 11px;
-    padding: 5px 7px;
-    border: 0;
-    border-radius: 5px;
-    background: #dbeafe;
-    color: #1d4ed8;
+.admin-table select,
+.admin-table input{
+    width:100%;
+    padding:5px;
+    border:1px solid #ccc;
+    border-radius:5px;
 }
 
-.admin-input {
-    width: 100%;
-    min-width: 105px;
-    margin: 2px 0;
-    padding: 6px;
-    font-size: 13px;
+.admin-table{
+    min-width:1100px;
 }
 
-.admin-row-label {
-    font-weight: bold;
-    text-align: left;
-    white-space: nowrap;
+.request{
+    border:1px solid #ddd;
+    border-radius:10px;
+    padding:15px;
+    margin-bottom:12px;
 }
 
-.status {
-    padding: 10px 14px;
-    border-radius: 8px;
-    margin-bottom: 15px;
-    display: none;
+.request.pending{
+    border-left:5px solid #f9a825;
 }
 
-.status.ok {
-    display: block;
-    background: #dcfce7;
-    color: #166534;
+.request.accepted{
+    border-left:5px solid #1976d2;
 }
 
-.status.error {
-    display: block;
-    background: #fee2e2;
-    color: #991b1b;
+.request.approved{
+    border-left:5px solid #2e7d32;
 }
 
-.status.info {
-    display: block;
-    background: #dbeafe;
-    color: #1e40af;
+.request.rejected{
+    border-left:5px solid #d32f2f;
 }
 
-.request {
-    border: 1px solid #e5e7eb;
-    border-radius: 10px;
-    padding: 15px;
-    margin-bottom: 12px;
-    background: #fafafa;
+.form-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px;
 }
 
-.request.pending {
-    border-left: 5px solid #f59e0b;
+.form-grid label{
+    display:block;
+    font-weight:bold;
+    margin-bottom:5px;
 }
 
-.request.accepted {
-    border-left: 5px solid #2563eb;
+.form-grid input,
+.form-grid select{
+    width:100%;
+    padding:9px;
+    border:1px solid #ccc;
+    border-radius:7px;
 }
 
-.request.approved {
-    border-left: 5px solid #16a34a;
+.status{
+    margin:10px 0;
+    padding:10px;
+    border-radius:8px;
+    background:#eef5ff;
 }
 
-.request.rejected {
-    border-left: 5px solid #dc2626;
-}
-
-.request-title {
-    font-weight: bold;
-    margin-bottom: 7px;
-}
-
-.request-buttons {
-    display: flex;
-    gap: 7px;
-    flex-wrap: wrap;
-    margin-top: 10px;
-}
-
-.badge {
-    display: inline-block;
-    padding: 4px 8px;
-    border-radius: 6px;
-    font-size: 12px;
-    background: #e5e7eb;
-}
-
-@media (max-width: 700px) {
-    .container {
-        padding: 0 8px;
+@media(max-width:700px){
+    .container{
+        padding:10px;
     }
 
-    .card {
-        padding: 12px;
-    }
-
-    .header {
-        padding: 12px;
+    .topbar{
+        padding:12px;
     }
 }
 </style>
-
 </head>
 
 <body>
 
-<div id="app"></div>
+<div id="loginScreen" class="login-screen">
+    <div class="login-box">
+        <h1>Работен график</h1>
+
+        <input id="loginName" type="text" placeholder="Име и фамилия">
+        <input id="loginPassword" type="password" placeholder="Парола">
+
+        <button class="primary" style="width:100%;margin-top:10px"
+                onclick="login()">Вход</button>
+
+        <div id="loginError" class="error"></div>
+    </div>
+</div>
+
+<div id="app" class="app hidden">
+
+    <div class="topbar">
+        <h2>Работен график</h2>
+
+        <div>
+            <span id="currentUser"></span>
+            <button class="secondary" onclick="logout()">Изход</button>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="menu">
+            <button id="btnMy" onclick="showPage('my')">Моят график</button>
+            <button onclick="showPage('all')">Общ график</button>
+            <button onclick="showPage('requests')">Размяна на смени</button>
+            <button id="btnAdmin" class="hidden" onclick="showPage('admin')">
+                Админ
+            </button>
+        </div>
+
+        <div id="content"></div>
+
+    </div>
+</div>
 
 <script>
-const SUPABASE_URL = "https://feahxunujegspmfgicfw.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_qtFfIY15FcRdBcUzTW56Jg_bGXHiLgR";
+/* =========================
+   SUPABASE
+========================= */
 
-const supabaseClient = window.supabase.createClient(
+const SUPABASE_URL = "https://feahxunujegspmfgicfw.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY =
+    "sb_publishable_qtFfIY15FcRdBcUzTW56Jg_bGXHiLgR";
+
+const supabaseClient = supabase.createClient(
     SUPABASE_URL,
     SUPABASE_PUBLISHABLE_KEY
 );
 
-const users = {
-    "Иван Панов": "1989",
-    "Алехандро Петров": "2005",
-    "Велислав Вълов": "2008",
-    "Илион Иванов": "2004",
-    "Петя": "0502"
-};
 
+/* =========================
+   USERS
+========================= */
+
+const users = [
+    {name:"Иван Панов", password:"1989"},
+    {name:"Алехандро Петров", password:"2005"},
+    {name:"Велислав Вълов", password:"2008"},
+    {name:"Илион Иванов", password:"2004"},
+    {name:"Петя", password:"0502", admin:true}
+];
+
+/* Всички служители в графика */
 const employees = [
     "Иван Панов",
     "Алехандро Петров",
@@ -358,417 +354,655 @@ const employees = [
     "Петя"
 ];
 
-const months = [
-    { year: 2026, month: 9, name: "Септември" },
-    { year: 2026, month: 10, name: "Октомври" },
-    { year: 2026, month: 11, name: "Ноември" },
-    { year: 2026, month: 12, name: "Декември" }
-];
+
+/* =========================
+   SHIFT TYPES
+========================= */
 
 const shiftTypes = {
-    "": { label: "", start: "", end: "", break: "" },
-    "1-ва": { label: "1-ва", start: "09:00", end: "16:00", break: "30 мин" },
-    "2-ра": { label: "2-ра", start: "14:00", end: "21:00", break: "30 мин" },
-    "Р": { label: "Р", start: "09:00", end: "18:00", break: "30 мин" },
-    "Ц": { label: "Ц", start: "09:00", end: "21:00", break: "60 мин" },
-    "Почивка": { label: "Почивка", start: "", end: "", break: "" },
-    "Отпуска": { label: "Отпуска", start: "", end: "", break: "" },
-    "Самоотлъчка": { label: "Самоотлъчка", start: "", end: "", break: "" }
+    "":"Почивка",
+    "1-ва":"1-ва смяна",
+    "2-ра":"2-ра смяна",
+    "Р":"Редовна смяна",
+    "Ц":"Целодневна смяна",
+    "Отпуска":"Отпуска",
+    "Самоотлъчка":"Самоотлъчка",
+    "Персонална":"Персонална"
 };
 
+const defaultTimes = {
+    "1-ва": ["09:00","16:00"],
+    "2-ра": ["14:00","21:00"],
+    "Р": ["09:00","18:00"],
+    "Ц": ["09:00","21:00"],
+    "Отпуска":["",""],
+    "Самоотлъчка":["",""],
+    "":["",""]
+};
+
+
+/* =========================
+   MONTHS
+========================= */
+
+const months = [
+    {key:"2026-09", name:"Септември 2026"},
+    {key:"2026-10", name:"Октомври 2026"},
+    {key:"2026-11", name:"Ноември 2026"},
+    {key:"2026-12", name:"Декември 2026"}
+];
+
 let currentUser = null;
-let currentMonth = 9;
 let currentPage = "my";
+let currentMonth = "2026-09";
+
 let schedules = {};
 let requests = [];
-let loading = false;
 
-function dateKey(year, month, day) {
-    return `${String(day).padStart(2, "0")}.${String(month).padStart(2, "0")}.${year}`;
+
+/* =========================
+   HELPERS
+========================= */
+
+function pad(n){
+    return String(n).padStart(2,"0");
 }
 
-function toDbDate(date) {
-    const parts = date.split(".");
-    return `${parts[2]}-${parts[1]}-${parts[0]}`;
+function dateToKey(date){
+    return date.getFullYear()+"-"+pad(date.getMonth()+1)+"-"+pad(date.getDate());
 }
 
-function fromDbDate(date) {
-    const parts = date.split("-");
-    return `${parts[2]}.${parts[1]}.${parts[0]}`;
+function keyToDate(key){
+    const parts = key.split("-");
+    return new Date(
+        Number(parts[0]),
+        Number(parts[1])-1,
+        Number(parts[2])
+    );
 }
 
-function daysInMonth(year, month) {
-    return new Date(year, month, 0).getDate();
-}
+function getMonthDates(monthKey){
+    const [year,month] = monthKey.split("-").map(Number);
 
-function getMonthDates(year, month) {
+    const first = new Date(year,month-1,1);
+    const last = new Date(year,month,0);
+
     const result = [];
-    const days = daysInMonth(year, month);
 
-    for (let d = 1; d <= days; d++) {
-        result.push({
-            date: dateKey(year, month, d),
-            day: d,
-            weekday: new Date(year, month - 1, d)
-                .toLocaleDateString("bg-BG", { weekday: "short" })
-        });
+    for(let d=first.getDate(); d<=last.getDate(); d++){
+        result.push(
+            year+"-"+pad(month)+"-"+pad(d)
+        );
     }
 
     return result;
 }
 
-function emptyShift() {
-    return {
-        type: "",
-        start: "",
-        end: "",
-        break: ""
-    };
+function formatDate(dateKey){
+    const d = keyToDate(dateKey);
+
+    const weekdays = [
+        "Неделя",
+        "Понеделник",
+        "Вторник",
+        "Сряда",
+        "Четвъртък",
+        "Петък",
+        "Събота"
+    ];
+
+    return pad(d.getDate())+"."+pad(d.getMonth()+1)+"."+d.getFullYear()
+        +" ("+weekdays[d.getDay()]+")";
 }
 
-function ensureScheduleStructure() {
-    employees.forEach(employee => {
-        if (!schedules[employee]) schedules[employee] = {};
+function ensureSchedule(employee,date){
+    if(!schedules[employee]){
+        schedules[employee] = {};
+    }
 
-        for (const month of months) {
-            for (const item of getMonthDates(month.year, month.month)) {
-                if (!schedules[employee][item.date]) {
-                    schedules[employee][item.date] = emptyShift();
-                }
-            }
-        }
-    });
+    if(!schedules[employee][date]){
+        schedules[employee][date] = {
+            shift_type:"",
+            start_time:"",
+            end_time:"",
+            break_time:""
+        };
+    }
+
+    return schedules[employee][date];
 }
 
-const defaultSchedules = {
-    "Иван Панов": {
-        "28.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
-        "29.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
-        "30.09.2026": { type:"Почивка", start:"", end:"", break:"" },
-        "01.10.2026": { type:"Р", start:"09:00", end:"18:00", break:"30 мин" },
-        "02.10.2026": { type:"Ц", start:"09:00", end:"21:00", break:"60 мин" }
-    },
+function escapeHtml(value){
+    return String(value ?? "")
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
+}
 
-    "Алехандро Петров": {
-        "28.09.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
-        "29.09.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
-        "30.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
-        "01.10.2026": { type:"Почивка", start:"", end:"", break:"" },
-        "02.10.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" }
-    },
 
-    "Велислав Вълов": {
-        "28.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
-        "29.09.2026": { type:"Почивка", start:"", end:"", break:"" },
-        "30.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
-        "01.10.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
-        "02.10.2026": { type:"Р", start:"09:00", end:"18:00", break:"30 мин" }
-    },
+/* =========================
+   DATABASE
+========================= */
 
-    "Илион Иванов": {
-        "28.09.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
-        "29.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
-        "30.09.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
-        "01.10.2026": { type:"Р", start:"09:00", end:"18:00", break:"30 мин" },
-        "02.10.2026": { type:"Почивка", start:"", end:"", break:"" }
-    },
+async function loadSchedules(){
 
-    "Илиян Игнатов": {
-        "28.09.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
-        "29.09.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
-        "30.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
-        "01.10.2026": { type:"Почивка", start:"", end:"", break:"" },
-        "02.10.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" }
-    },
+    const {data,error} = await supabaseClient
+        .from("work_schedule")
+        .select("*")
+        .order("work_date");
 
-    "Петя": {}
-};
+    if(error){
+        throw error;
+    }
 
-function copyDefaults() {
     schedules = {};
 
-    employees.forEach(employee => {
+    employees.forEach(employee=>{
         schedules[employee] = {};
-
-        for (const month of months) {
-            for (const item of getMonthDates(month.year, month.month)) {
-                schedules[employee][item.date] = emptyShift();
-            }
-        }
     });
 
-    Object.entries(defaultSchedules).forEach(([employee, dates]) => {
-        Object.entries(dates).forEach(([date, shift]) => {
-            schedules[employee][date] = { ...shift };
-        });
+    (data || []).forEach(row=>{
+        ensureSchedule(row.employee,row.work_date);
+
+        schedules[row.employee][row.work_date] = {
+            shift_type:row.shift_type || "",
+            start_time:row.start_time || "",
+            end_time:row.end_time || "",
+            break_time:row.break_time || ""
+        };
     });
+
+    /*
+       Ако базата е празна, създаваме редове
+       за целия период 01.09 - 31.12.
+    */
+
+    if(!data || data.length === 0){
+        await createInitialSchedule();
+    }
 }
 
-async function saveAllSchedules() {
+async function createInitialSchedule(){
+
     const rows = [];
 
-    employees.forEach(employee => {
-        for (const month of months) {
-            for (const item of getMonthDates(month.year, month.month)) {
-                const shift = schedules[employee]?.[item.date] || emptyShift();
+    const start = new Date(2026,8,1);
+    const end = new Date(2026,11,31);
 
-                rows.push({
-                    employee: employee,
-                    work_date: toDbDate(item.date),
-                    shift_type: shift.type || "",
-                    start_time: shift.start || "",
-                    end_time: shift.end || "",
-                    break_time: shift.break || "",
-                    updated_at: new Date().toISOString()
-                });
+    for(
+        let d = new Date(start);
+        d <= end;
+        d.setDate(d.getDate()+1)
+    ){
+
+        const date = dateToKey(d);
+
+        employees.forEach(employee=>{
+
+            let shift = {
+                shift_type:"",
+                start_time:"",
+                end_time:"",
+                break_time:""
+            };
+
+            /* Начални примерни данни */
+
+            if(employee === "Иван Панов"){
+                if(date==="2026-09-28" || date==="2026-09-29"){
+                    shift = {
+                        shift_type:"1-ва",
+                        start_time:"09:00",
+                        end_time:"16:00",
+                        break_time:"30"
+                    };
+                }
+                if(date==="2026-09-30"){
+                    shift = {
+                        shift_type:"",
+                        start_time:"",
+                        end_time:"",
+                        break_time:""
+                    };
+                }
+                if(date==="2026-10-01"){
+                    shift = {
+                        shift_type:"Р",
+                        start_time:"09:00",
+                        end_time:"18:00",
+                        break_time:"30"
+                    };
+                }
+                if(date==="2026-10-02"){
+                    shift = {
+                        shift_type:"Ц",
+                        start_time:"09:00",
+                        end_time:"21:00",
+                        break_time:"60"
+                    };
+                }
             }
-        }
-    });
 
-    const { error } = await supabaseClient
+            if(employee === "Алехандро Петров"){
+                if(date==="2026-09-28" || date==="2026-09-29"){
+                    shift = {
+                        shift_type:"2-ра",
+                        start_time:"14:00",
+                        end_time:"21:00",
+                        break_time:"30"
+                    };
+                }
+                if(date==="2026-09-30"){
+                    shift = {
+                        shift_type:"1-ва",
+                        start_time:"09:00",
+                        end_time:"16:00",
+                        break_time:"30"
+                    };
+                }
+                if(date==="2026-10-01"){
+                    shift = {
+                        shift_type:"",
+                        start_time:"",
+                        end_time:"",
+                        break_time:""
+                    };
+                }
+                if(date==="2026-10-02"){
+                    shift = {
+                        shift_type:"2-ра",
+                        start_time:"14:00",
+                        end_time:"21:00",
+                        break_time:"30"
+                    };
+                }
+            }
+
+            if(employee === "Велислав Вълов"){
+                if(date==="2026-09-28"){
+                    shift = {
+                        shift_type:"1-ва",
+                        start_time:"09:00",
+                        end_time:"16:00",
+                        break_time:"30"
+                    };
+                }
+                if(date==="2026-09-29"){
+                    shift = {
+                        shift_type:"",
+                        start_time:"",
+                        end_time:"",
+                        break_time:""
+                    };
+                }
+                if(date==="2026-09-30"){
+                    shift = {
+                        shift_type:"1-ва",
+                        start_time:"09:00",
+                        end_time:"16:00",
+                        break_time:"30"
+                    };
+                }
+                if(date==="2026-10-01"){
+                    shift = {
+                        shift_type:"2-ра",
+                        start_time:"14:00",
+                        end_time:"21:00",
+                        break_time:"30"
+                    };
+                }
+                if(date==="2026-10-02"){
+                    shift = {
+                        shift_type:"Р",
+                        start_time:"09:00",
+                        end_time:"18:00",
+                        break_time:"30"
+                    };
+                }
+            }
+
+            if(employee === "Илион Иванов"){
+                if(date==="2026-09-28"){
+                    shift = {
+                        shift_type:"2-ра",
+                        start_time:"14:00",
+                        end_time:"21:00",
+                        break_time:"30"
+                    };
+                }
+                if(date==="2026-09-29"){
+                    shift = {
+                        shift_type:"1-ва",
+                        start_time:"09:00",
+                        end_time:"16:00",
+                        break_time:"30"
+                    };
+                }
+                if(date==="2026-09-30"){
+                    shift = {
+                        shift_type:"2-ра",
+                        start_time:"14:00",
+                        end_time:"21:00",
+                        break_time:"30"
+                    };
+                }
+                if(date==="2026-10-01"){
+                    shift = {
+                        shift_type:"Р",
+                        start_time:"09:00",
+                        end_time:"18:00",
+                        break_time:"30"
+                    };
+                }
+                if(date==="2026-10-02"){
+                    shift = {
+                        shift_type:"",
+                        start_time:"",
+                        end_time:"",
+                        break_time:""
+                    };
+                }
+            }
+
+            if(employee === "Илиян Игнатов"){
+                if(date==="2026-09-28" || date==="2026-09-29"){
+                    shift = {
+                        shift_type:"2-ра",
+                        start_time:"14:00",
+                        end_time:"21:00",
+                        break_time:"30"
+                    };
+                }
+                if(date==="2026-09-30"){
+                    shift = {
+                        shift_type:"1-ва",
+                        start_time:"09:00",
+                        end_time:"16:00",
+                        break_time:"30"
+                    };
+                }
+                if(date==="2026-10-01"){
+                    shift = {
+                        shift_type:"",
+                        start_time:"",
+                        end_time:"",
+                        break_time:""
+                    };
+                }
+                if(date==="2026-10-02"){
+                    shift = {
+                        shift_type:"2-ра",
+                        start_time:"14:00",
+                        end_time:"21:00",
+                        break_time:"30"
+                    };
+                }
+            }
+
+            ensureSchedule(employee,date);
+            schedules[employee][date] = shift;
+
+            rows.push({
+                employee:employee,
+                work_date:date,
+                shift_type:shift.shift_type,
+                start_time:shift.start_time,
+                end_time:shift.end_time,
+                break_time:shift.break_time
+            });
+        });
+    }
+
+    const {error} = await supabaseClient
         .from("work_schedule")
-        .upsert(rows, {
-            onConflict: "employee,work_date"
+        .upsert(rows,{
+            onConflict:"employee,work_date"
         });
 
-    if (error) {
+    if(error){
         throw error;
     }
 }
 
-async function loadSchedules() {
-    const { data, error } = await supabaseClient
+async function saveSchedule(employee,date){
+
+    const shift = ensureSchedule(employee,date);
+
+    const {error} = await supabaseClient
         .from("work_schedule")
-        .select("*");
+        .upsert({
+            employee:employee,
+            work_date:date,
+            shift_type:shift.shift_type || "",
+            start_time:shift.start_time || "",
+            end_time:shift.end_time || "",
+            break_time:shift.break_time || ""
+        },{
+            onConflict:"employee,work_date"
+        });
 
-    if (error) throw error;
-
-    if (!data || data.length === 0) {
-        copyDefaults();
-        await saveAllSchedules();
-        return;
+    if(error){
+        throw error;
     }
-
-    schedules = {};
-
-    employees.forEach(employee => {
-        schedules[employee] = {};
-    });
-
-    data.forEach(row => {
-        if (!schedules[row.employee]) {
-            schedules[row.employee] = {};
-        }
-
-        schedules[row.employee][fromDbDate(row.work_date)] = {
-            type: row.shift_type || "",
-            start: row.start_time || "",
-            end: row.end_time || "",
-            break: row.break_time || ""
-        };
-    });
-
-    ensureScheduleStructure();
 }
 
-async function loadRequests() {
-    const { data, error } = await supabaseClient
+async function loadRequests(){
+
+    const {data,error} = await supabaseClient
         .from("shift_requests")
         .select("*")
-        .order("created_at", { ascending: false });
+        .order("created_at",{ascending:false});
 
-    if (error) throw error;
+    if(error){
+        /*
+           Ако таблицата още не е създадена,
+           графикът пак може да се използва.
+        */
+        console.error("shift_requests:",error);
+        requests = [];
+        return;
+    }
 
     requests = data || [];
 }
 
-function showStatus(message, type = "info") {
-    const el = document.getElementById("status");
 
-    if (!el) return;
+/* =========================
+   LOGIN
+========================= */
 
-    el.textContent = message;
-    el.className = `status ${type}`;
-}
+async function login(){
 
-function clearStatus() {
-    const el = document.getElementById("status");
-
-    if (el) {
-        el.style.display = "none";
-    }
-}
-
-function loginPage() {
-    document.getElementById("app").innerHTML = `
-        <div class="container">
-            <div class="card login-box">
-                <h1>Работен график</h1>
-
-                <label>Име и фамилия</label>
-                <select id="loginName">
-                    <option value="">Избери служител</option>
-                    ${Object.keys(users).map(name =>
-                        `<option value="${name}">${name}</option>`
-                    ).join("")}
-                </select>
-
-                <label>Парола</label>
-                <input id="loginPassword" type="password" placeholder="Парола">
-
-                <button class="primary" style="width:100%" onclick="login()">
-                    Вход
-                </button>
-
-                <div id="loginError" style="color:#dc2626;margin-top:12px;"></div>
-            </div>
-        </div>
-    `;
-}
-
-async function login() {
-    const name = document.getElementById("loginName").value;
+    const name = document.getElementById("loginName").value.trim();
     const password = document.getElementById("loginPassword").value;
-    const error = document.getElementById("loginError");
 
-    if (!name || users[name] !== password) {
-        error.textContent = "Грешно име или парола.";
+    const errorBox = document.getElementById("loginError");
+
+    errorBox.textContent = "";
+
+    const user = users.find(
+        u => u.name === name && u.password === password
+    );
+
+    if(!user){
+        errorBox.textContent = "Грешно име или парола.";
         return;
     }
 
-    currentUser = name;
-
-    try {
-        error.textContent = "Зареждане...";
+    try{
 
         await loadSchedules();
         await loadRequests();
 
-        currentPage = currentUser === "Петя" ? "admin" : "my";
+        currentUser = user;
+
+        document.getElementById("loginScreen")
+            .classList.add("hidden");
+
+        document.getElementById("app")
+            .classList.remove("hidden");
+
+        document.getElementById("currentUser")
+            .textContent = user.name;
+
+        if(user.admin){
+            document.getElementById("btnAdmin")
+                .classList.remove("hidden");
+
+            currentPage = "admin";
+        }else{
+            currentPage = "my";
+        }
+
         render();
 
-    } catch (e) {
-        error.textContent = "Грешка при свързването с базата: " + e.message;
-        currentUser = null;
+    }catch(error){
+
+        console.error(error);
+
+        errorBox.textContent =
+            "Грешка при свързване с базата: " +
+            (error.message || error);
     }
 }
 
-function logout() {
+function logout(){
+
     currentUser = null;
-    schedules = {};
-    requests = [];
-    loginPage();
+
+    document.getElementById("app")
+        .classList.add("hidden");
+
+    document.getElementById("loginScreen")
+        .classList.remove("hidden");
+
+    document.getElementById("loginPassword").value = "";
 }
 
-function render() {
-    const isAdmin = currentUser === "Петя";
 
-    document.getElementById("app").innerHTML = `
-        <div class="header">
-            <h1>Моят работен график</h1>
+/* =========================
+   NAVIGATION
+========================= */
 
-            <div>
-                <span style="margin-right:10px">${currentUser}</span>
-                <button onclick="logout()">Изход</button>
-            </div>
-        </div>
+function showPage(page){
 
-        <div class="container">
-            <div id="status" class="status"></div>
+    currentPage = page;
+    render();
+}
 
-            <div class="nav">
-                <button class="${currentPage === "my" ? "active" : ""}"
-                        onclick="currentPage='my'; render()">
-                    Моят график
-                </button>
+function selectMonth(month){
 
-                <button class="${currentPage === "all" ? "active" : ""}"
-                        onclick="currentPage='all'; render()">
-                    Общ график
-                </button>
+    currentMonth = month;
+    render();
+}
 
-                <button class="${currentPage === "requests" ? "active" : ""}"
-                        onclick="currentPage='requests'; renderRequestsPage()">
-                    Размени
-                </button>
 
-                ${isAdmin ? `
-                    <button class="${currentPage === "admin" ? "active" : ""}"
-                            onclick="currentPage='admin'; render()">
-                        Админ
-                    </button>
-                ` : ""}
-            </div>
+/* =========================
+   RENDER
+========================= */
 
-            <div id="content"></div>
-        </div>
-    `;
+function render(){
 
-    if (currentPage === "my") {
-        renderMySchedule();
-    } else if (currentPage === "all") {
-        renderAllSchedule();
-    } else if (currentPage === "admin") {
-        renderAdmin();
-    } else {
-        renderRequestsPage();
+    const content = document.getElementById("content");
+
+    document.querySelectorAll(".menu button")
+        .forEach(b=>b.classList.remove("active"));
+
+    if(currentPage==="my"){
+        document.getElementById("btnMy")
+            .classList.add("active");
+        content.innerHTML = renderMySchedule();
+        return;
+    }
+
+    if(currentPage==="all"){
+        content.innerHTML = renderAllSchedule();
+        return;
+    }
+
+    if(currentPage==="requests"){
+        content.innerHTML = renderRequests();
+        return;
+    }
+
+    if(currentPage==="admin"){
+        content.innerHTML = renderAdmin();
+        return;
     }
 }
 
-function monthButtons() {
+
+/* =========================
+   MONTH BUTTONS
+========================= */
+
+function monthButtons(){
+
     return `
-        <div class="month-buttons">
-            ${months.map(m => `
+        <div class="months">
+            ${months.map(m=>`
                 <button
-                    class="${currentMonth === m.month ? "active" : ""}"
-                    onclick="currentMonth=${m.month}; render()">
-                    ${m.name} 2026
+                    class="${currentMonth===m.key ? "active" : ""}"
+                    onclick="selectMonth('${m.key}')">
+                    ${m.name}
                 </button>
             `).join("")}
         </div>
     `;
 }
 
-function renderMySchedule() {
-    const content = document.getElementById("content");
-    const dates = getMonthDates(2026, currentMonth);
 
-    content.innerHTML = `
+/* =========================
+   MY SCHEDULE
+========================= */
+
+function renderMySchedule(){
+
+    const dates = getMonthDates(currentMonth);
+
+    return `
         <div class="card">
-            <h2>${currentUser}</h2>
+            <h2>Моят график – ${escapeHtml(currentUser.name)}</h2>
+
             ${monthButtons()}
 
             <div class="table-wrap">
                 <table>
                     <thead>
                         <tr>
-                            <th>Дата</th>
-                            <th>Ден</th>
+                            <th class="date-col">Дата</th>
                             <th>Смяна</th>
-                            <th>Часове</th>
+                            <th>Начало</th>
+                            <th>Край</th>
                             <th>Почивка</th>
-                            <th>Размяна</th>
                         </tr>
                     </thead>
+
                     <tbody>
-                        ${dates.map(item => {
-                            const s = schedules[currentUser]?.[item.date] || emptyShift();
+                        ${dates.map(date=>{
+                            const s = ensureSchedule(
+                                currentUser.name,
+                                date
+                            );
 
                             return `
                                 <tr>
-                                    <td>${item.date}</td>
-                                    <td>${item.weekday}</td>
-                                    <td><strong>${s.type || "-"}</strong></td>
-                                    <td>${s.start && s.end ? `${s.start} – ${s.end}` : "-"}</td>
-                                    <td>${s.break || "-"}</td>
-                                    <td>
-                                        ${isWorkShift(s) ? `
-                                            <button class="secondary"
-                                                onclick="openSwap('${item.date}')">
-                                                Предложи размяна
-                                            </button>
-                                        ` : "-"}
+                                    <td>${formatDate(date)}</td>
+                                    <td class="shift-main">
+                                        ${escapeHtml(
+                                            shiftTypes[s.shift_type] ||
+                                            s.shift_type ||
+                                            "Почивка"
+                                        )}
                                     </td>
+                                    <td>${escapeHtml(s.start_time)}</td>
+                                    <td>${escapeHtml(s.end_time)}</td>
+                                    <td>${s.break_time ?
+                                        escapeHtml(s.break_time)+" мин." :
+                                        ""
+                                    }</td>
                                 </tr>
                             `;
                         }).join("")}
@@ -776,19 +1010,19 @@ function renderMySchedule() {
                 </table>
             </div>
         </div>
-
-        <div class="card">
-            <h3>Моите предложения</h3>
-            ${renderMyRequestList()}
-        </div>
     `;
 }
 
-function renderAllSchedule() {
-    const content = document.getElementById("content");
-    const dates = getMonthDates(2026, currentMonth);
 
-    content.innerHTML = `
+/* =========================
+   ALL SCHEDULE
+========================= */
+
+function renderAllSchedule(){
+
+    const dates = getMonthDates(currentMonth);
+
+    return `
         <div class="card">
             <h2>Общ график</h2>
 
@@ -799,29 +1033,57 @@ function renderAllSchedule() {
                     <thead>
                         <tr>
                             <th>Служител</th>
-                            ${dates.map(item => `
-                                <th class="day-header">
-                                    ${item.date}<br>
-                                    <span class="small">${item.weekday}</span>
-                                </th>
+                            ${dates.map(d=>`
+                                <th>${pad(keyToDate(d).getDate())}.${pad(
+                                    keyToDate(d).getMonth()+1
+                                )}</th>
                             `).join("")}
                         </tr>
                     </thead>
 
                     <tbody>
-                        ${employees.map(employee => `
+                        ${employees.map(employee=>`
                             <tr>
-                                <td class="employee-name">${employee}</td>
+                                <th>${escapeHtml(employee)}</th>
 
-                                ${dates.map(item => {
-                                    const s = schedules[employee]?.[item.date] || emptyShift();
+                                ${dates.map(date=>{
+                                    const s = ensureSchedule(
+                                        employee,
+                                        date
+                                    );
 
                                     return `
-                                        <td>
-                                            <strong>${s.type || "-"}</strong>
-                                            ${s.start && s.end
-                                                ? `<div class="small">${s.start}-${s.end}</div>`
-                                                : ""}
+                                        <td class="shift-cell">
+                                            <div class="shift-main">
+                                                ${escapeHtml(
+                                                    shiftTypes[s.shift_type] ||
+                                                    s.shift_type ||
+                                                    "Почивка"
+                                                )}
+                                            </div>
+
+                                            ${
+                                                s.start_time || s.end_time
+                                                ?
+                                                `<div class="shift-time">
+                                                    ${escapeHtml(s.start_time)}
+                                                    -
+                                                    ${escapeHtml(s.end_time)}
+                                                </div>`
+                                                :
+                                                ""
+                                            }
+
+                                            ${
+                                                s.break_time
+                                                ?
+                                                `<div class="shift-break">
+                                                    Почивка:
+                                                    ${escapeHtml(s.break_time)} мин.
+                                                </div>`
+                                                :
+                                                ""
+                                            }
                                         </td>
                                     `;
                                 }).join("")}
@@ -834,540 +1096,564 @@ function renderAllSchedule() {
     `;
 }
 
-function renderAdmin() {
-    const content = document.getElementById("content");
-    const dates = getMonthDates(2026, currentMonth);
 
-    content.innerHTML = `
+/* =========================
+   ADMIN
+========================= */
+
+function renderAdmin(){
+
+    const dates = getMonthDates(currentMonth);
+
+    return `
         <div class="card">
             <h2>Администрация – график</h2>
 
             ${monthButtons()}
 
-            <button class="success" onclick="saveAdminSchedule()">
-                💾 Запази графика
-            </button>
-
-            <div style="height:12px"></div>
+            <p>
+                Избираш смяната директно в таблицата.
+                Промените се записват в общата база.
+            </p>
 
             <div class="table-wrap">
-                <table>
+                <table class="admin-table">
                     <thead>
                         <tr>
                             <th>Служител</th>
 
-                            ${dates.map(item => `
-                                <th class="day-header">
-                                    ${item.date}<br>
-                                    <span class="small">${item.weekday}</span>
+                            ${dates.map(date=>`
+                                <th>
+                                    ${pad(keyToDate(date).getDate())}.
+                                    ${pad(keyToDate(date).getMonth()+1)}
                                 </th>
                             `).join("")}
                         </tr>
                     </thead>
 
                     <tbody>
-                        ${employees.map(employee => `
-                            <tr>
-                                <td class="admin-row-label">${employee}</td>
 
-                                ${dates.map(item => {
-                                    const s = schedules[employee]?.[item.date] || emptyShift();
+                    ${employees.map(employee=>`
 
-                                    return `
-                                        <td>
-                                            <select
-                                                class="admin-input"
-                                                id="type_${safeId(employee)}_${safeId(item.date)}"
-                                                onchange="changeAdminShift('${employee}','${item.date}',this.value)">
-                                                ${Object.keys(shiftTypes).map(type => `
-                                                    <option value="${type}"
-                                                        ${s.type === type ? "selected" : ""}>
-                                                        ${type || "— празно —"}
+                        <tr>
+                            <th>${escapeHtml(employee)}</th>
+
+                            ${dates.map(date=>{
+
+                                const s = ensureSchedule(
+                                    employee,
+                                    date
+                                );
+
+                                return `
+                                    <td>
+                                        <select
+                                            onchange="changeShift(
+                                                '${employee}',
+                                                '${date}',
+                                                this.value
+                                            )">
+
+                                            ${Object.entries(shiftTypes)
+                                                .map(([value,label])=>`
+                                                    <option
+                                                        value="${escapeHtml(value)}"
+                                                        ${s.shift_type===value ? "selected" : ""}>
+                                                        ${escapeHtml(label)}
                                                     </option>
                                                 `).join("")}
-                                            </select>
 
-                                            <input
-                                                class="admin-input"
-                                                placeholder="Начало"
-                                                value="${s.start || ""}"
-                                                id="start_${safeId(employee)}_${safeId(item.date)}">
+                                        </select>
 
-                                            <input
-                                                class="admin-input"
-                                                placeholder="Край"
-                                                value="${s.end || ""}"
-                                                id="end_${safeId(employee)}_${safeId(item.date)}">
+                                        <input
+                                            type="time"
+                                            value="${escapeHtml(s.start_time)}"
+                                            onchange="changeTime(
+                                                '${employee}',
+                                                '${date}',
+                                                'start_time',
+                                                this.value
+                                            )">
 
-                                            <input
-                                                class="admin-input"
-                                                placeholder="Почивка"
-                                                value="${s.break || ""}"
-                                                id="break_${safeId(employee)}_${safeId(item.date)}">
-                                        </td>
-                                    `;
-                                }).join("")}
-                            </tr>
-                        `).join("")}
+                                        <input
+                                            type="time"
+                                            value="${escapeHtml(s.end_time)}"
+                                            onchange="changeTime(
+                                                '${employee}',
+                                                '${date}',
+                                                'end_time',
+                                                this.value
+                                            )">
+
+                                        <input
+                                            type="number"
+                                            min="0"
+                                            placeholder="мин."
+                                            value="${escapeHtml(s.break_time)}"
+                                            onchange="changeTime(
+                                                '${employee}',
+                                                '${date}',
+                                                'break_time',
+                                                this.value
+                                            )">
+                                    </td>
+                                `;
+
+                            }).join("")}
+
+                        </tr>
+
+                    `).join("")}
+
                     </tbody>
                 </table>
             </div>
-
-            <div style="margin-top:12px" class="small">
-                1-ва: 09:00–16:00 · 2-ра: 14:00–21:00 · Р: 09:00–18:00 · Ц: 09:00–21:00
-            </div>
-        </div>
-
-        <div class="card">
-            <h2>Чакащи размени</h2>
-            ${renderAdminRequests()}
         </div>
     `;
 }
 
-function safeId(value) {
-    return value
-        .replaceAll(" ", "_")
-        .replaceAll(".", "_")
-        .replaceAll("-", "_");
-}
 
-function changeAdminShift(employee, date, type) {
-    if (!schedules[employee]) schedules[employee] = {};
+/* =========================
+   ADMIN CHANGES
+========================= */
 
-    const preset = shiftTypes[type] || emptyShift();
+async function changeShift(employee,date,value){
 
-    schedules[employee][date] = {
-        type: type,
-        start: preset.start,
-        end: preset.end,
-        break: preset.break
-    };
+    const s = ensureSchedule(employee,date);
 
-    const start = document.getElementById(
-        `start_${safeId(employee)}_${safeId(date)}`
-    );
+    s.shift_type = value;
 
-    const end = document.getElementById(
-        `end_${safeId(employee)}_${safeId(date)}`
-    );
+    if(defaultTimes[value]){
+        s.start_time = defaultTimes[value][0];
+        s.end_time = defaultTimes[value][1];
+    }
 
-    const breakInput = document.getElementById(
-        `break_${safeId(employee)}_${safeId(date)}`
-    );
+    if(value === ""){
+        s.start_time = "";
+        s.end_time = "";
+        s.break_time = "";
+    }
 
-    if (start) start.value = preset.start;
-    if (end) end.value = preset.end;
-    if (breakInput) breakInput.value = preset.break;
-}
+    try{
 
-async function saveAdminSchedule() {
-    try {
-        for (const employee of employees) {
-            for (const item of getMonthDates(2026, currentMonth)) {
-                const start = document.getElementById(
-                    `start_${safeId(employee)}_${safeId(item.date)}`
-                );
+        await saveSchedule(employee,date);
 
-                const end = document.getElementById(
-                    `end_${safeId(employee)}_${safeId(item.date)}`
-                );
+        render();
 
-                const breakInput = document.getElementById(
-                    `break_${safeId(employee)}_${safeId(item.date)}`
-                );
+    }catch(error){
 
-                const typeSelect = document.getElementById(
-                    `type_${safeId(employee)}_${safeId(item.date)}`
-                );
-
-                schedules[employee][item.date] = {
-                    type: typeSelect?.value || "",
-                    start: start?.value || "",
-                    end: end?.value || "",
-                    break: breakInput?.value || ""
-                };
-            }
-        }
-
-        await saveAllSchedules();
-
-        showStatus("Графикът е запазен успешно.", "ok");
-
-        setTimeout(() => render(), 700);
-
-    } catch (e) {
-        showStatus("Грешка при запис: " + e.message, "error");
+        alert(
+            "Грешка при записване: " +
+            (error.message || error)
+        );
     }
 }
 
-function isWorkShift(shift) {
-    if (!shift) return false;
+async function changeTime(employee,date,field,value){
 
-    return shift.type &&
-        !["Почивка", "Отпуска", "Самоотлъчка"].includes(shift.type);
+    const s = ensureSchedule(employee,date);
+
+    s[field] = value;
+
+    try{
+
+        await saveSchedule(employee,date);
+
+    }catch(error){
+
+        alert(
+            "Грешка при записване: " +
+            (error.message || error)
+        );
+    }
 }
 
-function openSwap(date) {
-    const content = document.getElementById("content");
 
-    const others = employees.filter(e =>
-        e !== currentUser &&
-        e !== "Петя"
-    );
+/* =========================
+   SHIFT REQUESTS
+========================= */
 
-    content.innerHTML = `
+function renderRequests(){
+
+    const visibleRequests = currentUser.admin
+        ? requests
+        : requests.filter(r =>
+            r.proposer === currentUser.name ||
+            r.receiver === currentUser.name
+        );
+
+    return `
         <div class="card">
-            <h2>Предложи размяна</h2>
+            <h2>Размяна на смени</h2>
 
             <p>
-                Твоята смяна:
-                <strong>${date}</strong>
-                —
-                ${schedules[currentUser]?.[date]?.type || ""}
-                ${schedules[currentUser]?.[date]?.start || ""}
-                ${schedules[currentUser]?.[date]?.end
-                    ? "– " + schedules[currentUser][date].end
-                    : ""}
+                Можеш да предложиш размяна на твоя смяна
+                с друга смяна на колега.
             </p>
 
-            <label>С кого искаш да размениш?</label>
-            <select id="swapReceiver">
-                ${others.map(e => `<option value="${e}">${e}</option>`).join("")}
-            </select>
+            <div class="form-grid">
 
-            <label>Неговата/нейната дата</label>
-            <select id="swapReceiverDate">
-                ${getAllDates().map(d => `
-                    <option value="${d.date}">${d.date} — ${d.weekday}</option>
-                `).join("")}
-            </select>
+                <div>
+                    <label>Твоя дата</label>
+                    <input id="swapMyDate" type="date"
+                           min="2026-09-01"
+                           max="2026-12-31">
+                </div>
 
-            <label>Съобщение</label>
-            <textarea id="swapMessage"
-                placeholder="Напиши съобщение към служителя..."></textarea>
+                <div>
+                    <label>Колега</label>
 
-```
-        <button class="primary" onclick="sendSwap('${date}')">
-            Изпрати предложение
-        </button>
+                    <select id="swapReceiver">
+                        ${employees
+                            .filter(e=>e!==currentUser.name)
+                            .map(e=>`
+                                <option value="${escapeHtml(e)}">
+                                    ${escapeHtml(e)}
+                                </option>
+                            `).join("")}
+                    </select>
+                </div>
 
-        <button class="secondary" onclick="render()">
-            Отказ
-        </button>
-    </div>
-`;
-```
+                <div>
+                    <label>Дата на колегата</label>
+                    <input id="swapReceiverDate"
+                           type="date"
+                           min="2026-09-01"
+                           max="2026-12-31">
+                </div>
 
-}
+                <div style="grid-column:1/-1">
+                    <label>Съобщение</label>
+                    <input id="swapMessage"
+                           type="text"
+                           placeholder="Например: Може ли да си разменим смените?">
+                </div>
 
-function getAllDates() {
-const result = [];
+            </div>
 
-```
-for (const month of months) {
-    result.push(...getMonthDates(month.year, month.month));
-}
+            <br>
 
-return result;
-```
+            <button class="primary" onclick="createRequest()">
+                Предложи размяна
+            </button>
+        </div>
 
-}
-
-async function sendSwap(myDate) {
-const receiver = document.getElementById("swapReceiver").value;
-const receiverDate = document.getElementById("swapReceiverDate").value;
-const message = document.getElementById("swapMessage").value.trim();
-
-```
-if (!receiver || !receiverDate) {
-    alert("Избери служител и дата.");
-    return;
-}
-
-if (receiver === currentUser) {
-    alert("Не можеш да изпратиш предложение към себе си.");
-    return;
-}
-
-if (myDate === receiverDate && receiver === currentUser) {
-    alert("Невалидна размяна.");
-    return;
-}
-
-const { error } = await supabaseClient
-    .from("shift_requests")
-    .insert({
-        proposer: currentUser,
-        receiver: receiver,
-        proposer_date: toDbDate(myDate),
-        receiver_date: toDbDate(receiverDate),
-        message: message,
-        status: "pending"
-    });
-
-if (error) {
-    alert("Грешка: " + error.message);
-    return;
-}
-
-await loadRequests();
-
-alert("Предложението е изпратено. Изчаква се отговор от служителя.");
-currentPage = "requests";
-renderRequestsPage();
-```
-
-}
-
-function renderRequestsPage() {
-const content = document.getElementById("content");
-
-```
-const received = requests.filter(r => r.receiver === currentUser);
-const sent = requests.filter(r => r.proposer === currentUser);
-
-content.innerHTML = `
-    <div class="card">
-        <h2>Размени на смени</h2>
-
-        <h3>Получени предложения</h3>
-
-        ${received.length
-            ? received.map(renderRequest).join("")
-            : "<p class='small'>Няма получени предложения.</p>"}
-
-        <hr>
-
-        <h3>Изпратени предложения</h3>
-
-        ${sent.length
-            ? sent.map(renderRequest).join("")
-            : "<p class='small'>Няма изпратени предложения.</p>"}
-    </div>
-
-    ${currentUser === "Петя" ? `
         <div class="card">
-            <h2>Одобрение от Петя</h2>
-            ${renderAdminRequests()}
-        </div>
-    ` : ""}
-`;
-```
+            <h2>Заявки</h2>
 
+            ${
+                visibleRequests.length === 0
+                ?
+                "<p>Няма заявки.</p>"
+                :
+                visibleRequests.map(renderRequest).join("")
+            }
+        </div>
+    `;
 }
 
-function renderMyRequestList() {
-const mine = requests.filter(r =>
-r.proposer === currentUser ||
-r.receiver === currentUser
-);
+function renderRequest(r){
 
-```
-if (!mine.length) {
-    return "<p class='small'>Няма предложения.</p>";
-}
+    let statusText = r.status;
 
-return mine.slice(0, 10).map(renderRequest).join("");
-```
+    if(r.status==="pending"){
+        statusText = "Очаква отговор от колегата";
+    }
 
-}
+    if(r.status==="accepted"){
+        statusText = "Колегата е приел – очаква одобрение от Петя";
+    }
 
-function renderRequest(r) {
-const myReceived = r.receiver === currentUser;
+    if(r.status==="rejected"){
+        statusText = "Отхвърлена";
+    }
 
-```
-let statusText = {
-    pending: "Чака отговор",
-    accepted: "Прието – чака Петя",
-    rejected: "Отказано",
-    approved: "Одобрено от Петя"
-}[r.status] || r.status;
+    if(r.status==="approved"){
+        statusText = "Одобрена – смените са разменени";
+    }
 
-const proposerShift = schedules[r.proposer]?.[fromDbDate(r.proposer_date)];
-const receiverShift = schedules[r.receiver]?.[fromDbDate(r.receiver_date)];
+    if(r.status==="admin_rejected"){
+        statusText = "Отхвърлена от Петя";
+    }
 
-return `
-    <div class="request ${r.status}">
-        <div class="request-title">
-            ${r.proposer} → ${r.receiver}
-        </div>
+    let buttons = "";
 
-        <div>
-            <strong>${fromDbDate(r.proposer_date)}</strong>
-            —
-            ${proposerShift?.type || "няма смена"}
-            ↔
-            <strong>${fromDbDate(r.receiver_date)}</strong>
-            —
-            ${receiverShift?.type || "няма смена"}
-        </div>
+    if(
+        r.receiver === currentUser.name &&
+        r.status === "pending"
+    ){
+        buttons = `
+            <button class="success"
+                    onclick="respondRequest(${r.id},'accepted')">
+                Приеми
+            </button>
 
-        ${r.message
-            ? `<p>💬 ${escapeHtml(r.message)}</p>`
-            : ""}
+            <button class="danger"
+                    onclick="respondRequest(${r.id},'rejected')">
+                Откажи
+            </button>
+        `;
+    }
 
-        <span class="badge">${statusText}</span>
+    if(
+        currentUser.admin &&
+        r.status === "accepted"
+    ){
+        buttons = `
+            <button class="success"
+                    onclick="adminRequest(${r.id},'approved')">
+                Одобри размяната
+            </button>
 
-        ${myReceived && r.status === "pending" ? `
-            <div class="request-buttons">
-                <button class="success"
-                    onclick="respondRequest(${r.id}, 'accepted')">
-                    Приеми
-                </button>
+            <button class="danger"
+                    onclick="adminRequest(${r.id},'admin_rejected')">
+                Откажи
+            </button>
+        `;
+    }
 
-                <button class="danger"
-                    onclick="respondRequest(${r.id}, 'rejected')">
-                    Откажи
-                </button>
+    return `
+        <div class="request ${escapeHtml(r.status)}">
+
+            <b>${escapeHtml(r.proposer)}</b>
+            предлага размяна с
+            <b>${escapeHtml(r.receiver)}</b>
+
+            <p>
+                ${formatDate(r.proposer_date)}
+                ↔
+                ${formatDate(r.receiver_date)}
+            </p>
+
+            ${
+                r.message
+                ?
+                `<p>„${escapeHtml(r.message)}“</p>`
+                :
+                ""
+            }
+
+            <div class="status">
+                Статус: <b>${escapeHtml(statusText)}</b>
             </div>
-        ` : ""}
 
-        ${currentUser === "Петя" && r.status === "accepted" ? `
-            <div class="request-buttons">
-                <button class="success"
-                    onclick="approveRequest(${r.id})">
-                    Одобри размяната
-                </button>
+            ${buttons}
 
-                <button class="danger"
-                    onclick="adminRejectRequest(${r.id})">
-                    Откажи
-                </button>
-            </div>
-        ` : ""}
-    </div>
-`;
-```
-
+        </div>
+    `;
 }
 
-function renderAdminRequests() {
-const waiting = requests.filter(r => r.status === "accepted");
 
-```
-if (!waiting.length) {
-    return "<p class='small'>Няма размени, чакащи одобрение.</p>";
+/* =========================
+   CREATE REQUEST
+========================= */
+
+async function createRequest(){
+
+    const myDate =
+        document.getElementById("swapMyDate").value;
+
+    const receiver =
+        document.getElementById("swapReceiver").value;
+
+    const receiverDate =
+        document.getElementById("swapReceiverDate").value;
+
+    const message =
+        document.getElementById("swapMessage").value.trim();
+
+    if(!myDate || !receiverDate){
+        alert("Избери и двете дати.");
+        return;
+    }
+
+    if(receiver === currentUser.name){
+        alert("Не можеш да правиш размяна със себе си.");
+        return;
+    }
+
+    const myShift = ensureSchedule(
+        currentUser.name,
+        myDate
+    );
+
+    const receiverShift = ensureSchedule(
+        receiver,
+        receiverDate
+    );
+
+    if(!myShift.shift_type && !myShift.start_time){
+        alert("На избраната твоя дата няма работна смяна.");
+        return;
+    }
+
+    if(!receiverShift.shift_type && !receiverShift.start_time){
+        alert("На избраната дата колегата няма работна смяна.");
+        return;
+    }
+
+    const {error} = await supabaseClient
+        .from("shift_requests")
+        .insert({
+            proposer:currentUser.name,
+            receiver:receiver,
+            proposer_date:myDate,
+            receiver_date:receiverDate,
+            message:message,
+            status:"pending"
+        });
+
+    if(error){
+        alert(
+            "Грешка при създаване на заявката: " +
+            error.message
+        );
+        return;
+    }
+
+    await loadRequests();
+    render();
+
+    alert("Заявката е изпратена.");
 }
 
-return waiting.map(renderRequest).join("");
-```
 
-}
+/* =========================
+   RECEIVER RESPONSE
+========================= */
 
-async function respondRequest(id, status) {
-const { error } = await supabaseClient
-.from("shift_requests")
-.update({
-status: status,
-receiver_response_at: new Date().toISOString()
-})
-.eq("id", id)
-.eq("receiver", currentUser)
-.eq("status", "pending");
+async function respondRequest(id,status){
 
-```
-if (error) {
-    alert("Грешка: " + error.message);
-    return;
-}
-
-await loadRequests();
-renderRequestsPage();
-```
-
-}
-
-async function adminRejectRequest(id) {
-const { error } = await supabaseClient
-.from("shift_requests")
-.update({
-status: "rejected",
-admin_decision_at: new Date().toISOString()
-})
-.eq("id", id)
-.eq("status", "accepted");
-
-```
-if (error) {
-    alert("Грешка: " + error.message);
-    return;
-}
-
-await loadRequests();
-renderRequestsPage();
-```
-
-}
-
-async function approveRequest(id) {
-const request = requests.find(r => r.id === id);
-
-```
-if (!request || request.status !== "accepted") {
-    alert("Това предложение вече не чака одобрение.");
-    return;
-}
-
-const proposerDate = fromDbDate(request.proposer_date);
-const receiverDate = fromDbDate(request.receiver_date);
-
-const proposerShift = schedules[request.proposer]?.[proposerDate];
-const receiverShift = schedules[request.receiver]?.[receiverDate];
-
-if (!proposerShift || !receiverShift) {
-    alert("Не могат да се намерят двете смени.");
-    return;
-}
-
-const proposerCopy = { ...proposerShift };
-const receiverCopy = { ...receiverShift };
-
-schedules[request.proposer][proposerDate] = receiverCopy;
-schedules[request.receiver][receiverDate] = proposerCopy;
-
-try {
-    await saveAllSchedules();
-
-    const { error } = await supabaseClient
+    const {error} = await supabaseClient
         .from("shift_requests")
         .update({
-            status: "approved",
-            admin_decision_at: new Date().toISOString()
+            status:status,
+            receiver_response_at:new Date().toISOString()
         })
-        .eq("id", id)
-        .eq("status", "accepted");
+        .eq("id",id);
 
-    if (error) throw error;
+    if(error){
+        alert(
+            "Грешка: " +
+            error.message
+        );
+        return;
+    }
 
-    await loadSchedules();
     await loadRequests();
-
-    alert("Размяната е одобрена и графикът е променен.");
-
-    currentPage = "admin";
-    render();
-
-} catch (e) {
-    alert("Грешка при одобряване: " + e.message);
-
-    await loadSchedules();
     render();
 }
-```
 
+
+/* =========================
+   ADMIN APPROVAL
+========================= */
+
+async function adminRequest(id,status){
+
+    const request = requests.find(r=>r.id===id);
+
+    if(!request){
+        return;
+    }
+
+    if(status === "approved"){
+
+        const proposerShift = ensureSchedule(
+            request.proposer,
+            request.proposer_date
+        );
+
+        const receiverShift = ensureSchedule(
+            request.receiver,
+            request.receiver_date
+        );
+
+        /*
+           Копираме смените, за да не се
+           получи референция към един и същ обект.
+        */
+
+        const temp = {
+            shift_type:proposerShift.shift_type,
+            start_time:proposerShift.start_time,
+            end_time:proposerShift.end_time,
+            break_time:proposerShift.break_time
+        };
+
+        schedules[request.proposer][request.proposer_date] = {
+            shift_type:receiverShift.shift_type,
+            start_time:receiverShift.start_time,
+            end_time:receiverShift.end_time,
+            break_time:receiverShift.break_time
+        };
+
+        schedules[request.receiver][request.receiver_date] = temp;
+
+        try{
+
+            await saveSchedule(
+                request.proposer,
+                request.proposer_date
+            );
+
+            await saveSchedule(
+                request.receiver,
+                request.receiver_date
+            );
+
+        }catch(error){
+
+            alert(
+                "Грешка при размяната: " +
+                error.message
+            );
+
+            await loadSchedules();
+            return;
+        }
+    }
+
+    const {error} = await supabaseClient
+        .from("shift_requests")
+        .update({
+            status:status,
+            admin_decision_at:new Date().toISOString()
+        })
+        .eq("id",id);
+
+    if(error){
+        alert(
+            "Грешка: " +
+            error.message
+        );
+        return;
+    }
+
+    await loadRequests();
+    render();
+
+    if(status==="approved"){
+        alert("Размяната е одобрена и смените са разменени.");
+    }
 }
 
-function escapeHtml(text) {
-return String(text)
-.replaceAll("&", "&")
-.replaceAll("<", "<")
-.replaceAll(">", ">")
-.replaceAll('"', """)
-.replaceAll("'", "'");
-}
 
-loginPage(); </script>
+/* =========================
+   ENTER KEY LOGIN
+========================= */
+
+document.getElementById("loginPassword")
+    .addEventListener("keydown",function(event){
+
+        if(event.key==="Enter"){
+            login();
+        }
+
+    });
+
+</script>
 
 </body>
 </html>
+```
