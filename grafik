@@ -1,0 +1,1680 @@
+```html
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Работен график</title>
+
+    <style>
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            width: 96%;
+            max-width: 1400px;
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+        }
+
+        /* =========================
+           LOGIN
+        ========================= */
+
+        .login-box {
+            max-width: 400px;
+            margin: auto;
+            text-align: center;
+        }
+
+        h1 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            color: #333;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 13px;
+            margin: 7px 0;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 13px 18px;
+            margin-top: 8px;
+            border: none;
+            border-radius: 8px;
+            background: #1e3c72;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #16315d;
+        }
+
+        .login-button {
+            width: 100%;
+        }
+
+        .logout {
+            background: #d9534f;
+            float: right;
+        }
+
+        .logout:hover {
+            background: #b52b27;
+        }
+
+        /* =========================
+           PAGES
+        ========================= */
+
+        #loginPage {
+            width: 100%;
+        }
+
+        #schedulePage {
+            display: none;
+            width: 100%;
+        }
+
+        .welcome {
+            clear: both;
+            padding-top: 15px;
+            text-align: center;
+        }
+
+        .navigation {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 25px 0;
+        }
+
+        .navigation button {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .navigation .active {
+            background: #198754;
+        }
+
+        .admin-button {
+            background: #6f42c1;
+        }
+
+        .admin-button:hover {
+            background: #59339d;
+        }
+
+        /* =========================
+           TABLE
+        ========================= */
+
+        .table-wrapper {
+            width: 100%;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th {
+            background: #1e3c72;
+            color: white;
+            padding: 12px;
+            white-space: nowrap;
+        }
+
+        td {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            text-align: center;
+            white-space: nowrap;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+        }
+
+        .work {
+            color: #198754;
+            font-weight: bold;
+        }
+
+        .rest {
+            color: #d9534f;
+            font-weight: bold;
+        }
+
+        .no-data {
+            color: #777;
+        }
+
+        /* =========================
+           ADMIN
+        ========================= */
+
+        #adminPage {
+            display: none;
+        }
+
+        .admin-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .admin-info {
+            background: #f1f3f5;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .admin-table select {
+            min-width: 150px;
+            margin: 0;
+        }
+
+        .time-input {
+            width: 100px;
+            padding: 9px;
+            margin: 0 3px;
+        }
+
+        .save-button {
+            background: #198754;
+            font-size: 17px;
+            padding: 15px 25px;
+        }
+
+        .save-button:hover {
+            background: #146c43;
+        }
+
+        .back-button {
+            background: #6c757d;
+        }
+
+        .success-message {
+            display: none;
+            background: #d1e7dd;
+            color: #0f5132;
+            padding: 12px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        .error {
+            color: #d9534f;
+            margin-top: 12px;
+            font-weight: bold;
+        }
+
+        .admin-label {
+            display: inline-block;
+            background: #6f42c1;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 13px;
+            margin-left: 8px;
+        }
+
+        @media (max-width: 700px) {
+
+            .container {
+                padding: 18px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+
+            th,
+            td {
+                padding: 8px 5px;
+            }
+
+            .navigation {
+                flex-direction: column;
+            }
+
+            .navigation button {
+                width: 100%;
+            }
+
+            .logout {
+                float: none;
+                display: block;
+                margin-left: auto;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="container">
+
+
+    <!-- ================================================= -->
+    <!-- LOGIN -->
+    <!-- ================================================= -->
+
+    <div id="loginPage">
+
+        <div class="login-box">
+
+            <h1>Работен график</h1>
+
+            <p>Влезте с вашите данни</p>
+
+            <input
+                type="text"
+                id="username"
+                placeholder="Име и фамилия"
+                autocomplete="off"
+            >
+
+            <input
+                type="password"
+                id="password"
+                placeholder="Парола"
+            >
+
+            <button
+                class="login-button"
+                onclick="login()"
+            >
+                Вход
+            </button>
+
+            <div
+                id="error"
+                class="error"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ОСНОВНА СТРАНИЦА -->
+    <!-- ================================================= -->
+
+    <div id="schedulePage">
+
+        <button
+            class="logout"
+            onclick="logout()"
+        >
+            Изход
+        </button>
+
+
+        <div class="welcome">
+
+            <h1>Работен график</h1>
+
+            <h2 id="employeeName"></h2>
+
+        </div>
+
+
+        <!-- НАВИГАЦИЯ -->
+
+        <div class="navigation">
+
+            <button
+                id="myScheduleButton"
+                onclick="showMySchedule()"
+            >
+                Моят график
+            </button>
+
+
+            <button
+                id="allScheduleButton"
+                onclick="showAllSchedule()"
+            >
+                Общ график
+            </button>
+
+
+            <!-- Само Петя вижда това -->
+
+            <button
+                id="adminButton"
+                class="admin-button"
+                onclick="showAdmin()"
+                style="display:none;"
+            >
+                ⚙ Админ панел
+            </button>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- МОЯТ ГРАФИК -->
+        <!-- ================================================= -->
+
+        <div id="mySchedulePage">
+
+            <h2 style="text-align:center;">
+                Моят работен график
+            </h2>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Дата</th>
+
+                            <th>Ден</th>
+
+                            <th>Начало</th>
+
+                            <th>Край</th>
+
+                            <th>Почивка</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="scheduleBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- ОБЩ ГРАФИК -->
+        <!-- ================================================= -->
+
+        <div
+            id="allSchedulePage"
+            style="display:none;"
+        >
+
+            <h2 style="text-align:center;">
+                Общ график
+            </h2>
+
+            <p style="text-align:center;color:#666;">
+                График на всички служители
+            </p>
+
+            <div class="table-wrapper">
+
+                <table>
+
+                    <thead id="allScheduleHead"></thead>
+
+                    <tbody id="allScheduleBody"></tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================================================= -->
+        <!-- АДМИН ПАНЕЛ -->
+        <!-- ================================================= -->
+
+        <div id="adminPage">
+
+            <div class="admin-header">
+
+                <h2>
+                    ⚙ Администраторски панел
+                </h2>
+
+                <p>
+                    Редактиране на работния график
+                </p>
+
+            </div>
+
+
+            <div class="admin-info">
+
+                <strong>Петя</strong>
+                <span class="admin-label">
+                    АДМИНИСТРАТОР
+                </span>
+
+                <br><br>
+
+                Тук можете директно да променяте
+                смените на служителите.
+
+            </div>
+
+
+            <div class="table-wrapper">
+
+                <table class="admin-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>Дата</th>
+
+                            <th>Ден</th>
+
+                            <th>Служител</th>
+
+                            <th>Смяна</th>
+
+                            <th>Начало</th>
+
+                            <th>Край</th>
+
+                            <th>Почивка</th>
+
+                        </tr>
+
+                    </thead>
+
+                    <tbody id="adminBody"></tbody>
+
+                </table>
+
+            </div>
+
+
+            <div style="text-align:center;margin-top:25px;">
+
+                <button
+                    class="save-button"
+                    onclick="saveAdminChanges()"
+                >
+                    💾 Запази промените
+                </button>
+
+                <br>
+
+                <button
+                    class="back-button"
+                    onclick="showAllSchedule()"
+                >
+                    ← Назад към общия график
+                </button>
+
+            </div>
+
+
+            <div
+                id="successMessage"
+                class="success-message"
+            >
+                ✓ Промените са запазени успешно!
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+
+/* =====================================================
+   ПОТРЕБИТЕЛИ
+===================================================== */
+
+const users = {
+
+    "Иван Панов": {
+        password: "1989",
+        admin: false
+    },
+
+    "Алехандро Петров": {
+        password: "2005",
+        admin: false
+    },
+
+    "Велислав Вълов": {
+        password: "2008",
+        admin: false
+    },
+
+    "Илион Иванов": {
+        password: "2004",
+        admin: false
+    },
+
+    "Петя": {
+        password: "0502",
+        admin: true
+    }
+
+};
+
+
+/* =====================================================
+   ГРАФИК
+===================================================== */
+
+const defaultSchedules = {
+
+    "Иван Панов": [
+
+        ["28.09.2026", "Понеделник", "08:00", "16:30", "30 мин."],
+
+        ["29.09.2026", "Вторник", "08:00", "16:30", "30 мин."],
+
+        ["30.09.2026", "Сряда", "Почивка", "-", "-"],
+
+        ["01.10.2026", "Четвъртък", "08:00", "16:30", "30 мин."],
+
+        ["02.10.2026", "Петък", "08:00", "16:30", "30 мин."]
+    ],
+
+
+    "Алехандро Петров": [
+
+        ["28.09.2026", "Понеделник", "12:00", "20:30", "30 мин."],
+
+        ["29.09.2026", "Вторник", "12:00", "20:30", "30 мин."],
+
+        ["30.09.2026", "Сряда", "08:00", "16:30", "30 мин."],
+
+        ["01.10.2026", "Четвъртък", "Почивка", "-", "-"],
+
+        ["02.10.2026", "Петък", "12:00", "20:30", "30 мин."]
+    ],
+
+
+    "Велислав Вълов": [
+
+        ["28.09.2026", "Понеделник", "08:00", "16:30", "30 мин."],
+
+        ["29.09.2026", "Вторник", "Почивка", "-", "-"],
+
+        ["30.09.2026", "Сряда", "08:00", "16:30", "30 мин."],
+
+        ["01.10.2026", "Четвъртък", "12:00", "20:30", "30 мин."],
+
+        ["02.10.2026", "Петък", "12:00", "20:30", "30 мин."]
+    ],
+
+
+    "Илион Иванов": [
+
+        ["28.09.2026", "Понеделник", "12:00", "20:30", "30 мин."],
+
+        ["29.09.2026", "Вторник", "08:00", "16:30", "30 мин."],
+
+        ["30.09.2026", "Сряда", "12:00", "20:30", "30 мин."],
+
+        ["01.10.2026", "Четвъртък", "08:00", "16:30", "30 мин."],
+
+        ["02.10.2026", "Петък", "Почивка", "-", "-"]
+    ],
+
+
+    /*
+       ИЛИЯН Е БИВШ СЛУЖИТЕЛ.
+       Няма вход, но остава в общия график.
+    */
+
+    "Илиян Игнатов": [
+
+        ["28.09.2026", "Понеделник", "12:00", "20:30", "30 мин."],
+
+        ["29.09.2026", "Вторник", "12:00", "20:30", "30 мин."],
+
+        ["30.09.2026", "Сряда", "08:00", "16:30", "30 мин."],
+
+        ["01.10.2026", "Четвъртък", "Почивка", "-", "-"],
+
+        ["02.10.2026", "Петък", "12:00", "20:30", "30 мин."]
+    ],
+
+
+    "Петя": [
+
+        ["28.09.2026", "Понеделник", "Няма данни", "-", "-"],
+
+        ["29.09.2026", "Вторник", "Няма данни", "-", "-"],
+
+        ["30.09.2026", "Сряда", "Няма данни", "-", "-"],
+
+        ["01.10.2026", "Четвъртък", "Няма данни", "-", "-"],
+
+        ["02.10.2026", "Петък", "Няма данни", "-", "-"]
+    ]
+
+};
+
+
+/* =====================================================
+   ЗАРЕЖДАНЕ НА ЗАПАЗЕНИЯ ГРАФИК
+===================================================== */
+
+let schedules =
+    JSON.parse(
+        localStorage.getItem("workSchedules")
+    ) || defaultSchedules;
+
+
+/* =====================================================
+   ТЕКУЩ ПОТРЕБИТЕЛ
+===================================================== */
+
+let currentUser = null;
+
+
+/* =====================================================
+   ВХОД
+===================================================== */
+
+function login() {
+
+    const username =
+        document
+            .getElementById("username")
+            .value
+            .trim();
+
+    const password =
+        document
+            .getElementById("password")
+            .value;
+
+    const error =
+        document.getElementById("error");
+
+
+    if (
+        users[username] &&
+        users[username].password === password
+    ) {
+
+        currentUser = username;
+
+        error.textContent = "";
+
+
+        document
+            .getElementById("loginPage")
+            .style.display = "none";
+
+
+        document
+            .getElementById("schedulePage")
+            .style.display = "block";
+
+
+        document
+            .getElementById("employeeName")
+            .textContent = username;
+
+
+        /*
+           Само Петя получава
+           администраторския бутон.
+        */
+
+        if (users[username].admin) {
+
+            document
+                .getElementById("adminButton")
+                .style.display = "block";
+
+        }
+        else {
+
+            document
+                .getElementById("adminButton")
+                .style.display = "none";
+
+        }
+
+
+        showMySchedule();
+
+    }
+
+    else {
+
+        error.textContent =
+            "Грешно име или парола.";
+
+    }
+
+}
+
+
+/* =====================================================
+   МОЯТ ГРАФИК
+===================================================== */
+
+function showMySchedule() {
+
+    document
+        .getElementById("mySchedulePage")
+        .style.display = "block";
+
+
+    document
+        .getElementById("allSchedulePage")
+        .style.display = "none";
+
+
+    document
+        .getElementById("adminPage")
+        .style.display = "none";
+
+
+    document
+        .getElementById("myScheduleButton")
+        .classList.add("active");
+
+
+    document
+        .getElementById("allScheduleButton")
+        .classList.remove("active");
+
+
+    loadMySchedule();
+
+}
+
+
+/* =====================================================
+   ЗАРЕЖДАНЕ НА МОЯ ГРАФИК
+===================================================== */
+
+function loadMySchedule() {
+
+    const body =
+        document.getElementById("scheduleBody");
+
+    body.innerHTML = "";
+
+
+    const schedule =
+        schedules[currentUser];
+
+
+    if (!schedule) {
+
+        body.innerHTML =
+            "<tr><td colspan='5'>Няма въведен график.</td></tr>";
+
+        return;
+
+    }
+
+
+    schedule.forEach(row => {
+
+        const tr =
+            document.createElement("tr");
+
+
+        row.forEach((cell, index) => {
+
+            const td =
+                document.createElement("td");
+
+
+            td.textContent = cell;
+
+
+            if (
+                cell === "Почивка" ||
+                cell === "Няма данни"
+            ) {
+
+                td.classList.add("rest");
+
+            }
+
+
+            if (
+                index === 2 &&
+                cell !== "-" &&
+                cell !== "Почивка" &&
+                cell !== "Няма данни"
+            ) {
+
+                td.classList.add("work");
+
+            }
+
+
+            tr.appendChild(td);
+
+        });
+
+
+        body.appendChild(tr);
+
+    });
+
+}
+
+
+/* =====================================================
+   ОБЩ ГРАФИК
+===================================================== */
+
+function showAllSchedule() {
+
+    document
+        .getElementById("mySchedulePage")
+        .style.display = "none";
+
+
+    document
+        .getElementById("allSchedulePage")
+        .style.display = "block";
+
+
+    document
+        .getElementById("adminPage")
+        .style.display = "none";
+
+
+    document
+        .getElementById("myScheduleButton")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("allScheduleButton")
+        .classList.add("active");
+
+
+    loadAllSchedule();
+
+}
+
+
+/* =====================================================
+   ЗАРЕЖДАНЕ НА ОБЩИЯ ГРАФИК
+===================================================== */
+
+function loadAllSchedule() {
+
+    const head =
+        document.getElementById("allScheduleHead");
+
+    const body =
+        document.getElementById("allScheduleBody");
+
+
+    head.innerHTML = "";
+    body.innerHTML = "";
+
+
+    const employees =
+        Object.keys(schedules);
+
+
+    const header =
+        document.createElement("tr");
+
+
+    const dateHeader =
+        document.createElement("th");
+
+    dateHeader.textContent = "Дата";
+
+    header.appendChild(dateHeader);
+
+
+    const dayHeader =
+        document.createElement("th");
+
+    dayHeader.textContent = "Ден";
+
+    header.appendChild(dayHeader);
+
+
+    employees.forEach(employee => {
+
+        const th =
+            document.createElement("th");
+
+        th.textContent = employee;
+
+        header.appendChild(th);
+
+    });
+
+
+    head.appendChild(header);
+
+
+    const days =
+        schedules[employees[0]].length;
+
+
+    for (let i = 0; i < days; i++) {
+
+        const tr =
+            document.createElement("tr");
+
+
+        const date =
+            document.createElement("td");
+
+        date.textContent =
+            schedules[employees[0]][i][0];
+
+        tr.appendChild(date);
+
+
+        const day =
+            document.createElement("td");
+
+        day.textContent =
+            schedules[employees[0]][i][1];
+
+        tr.appendChild(day);
+
+
+        employees.forEach(employee => {
+
+            const td =
+                document.createElement("td");
+
+
+            const row =
+                schedules[employee][i];
+
+
+            if (row[2] === "Почивка") {
+
+                td.innerHTML =
+                    "<strong>Почивка</strong>";
+
+                td.classList.add("rest");
+
+            }
+
+            else if (row[2] === "Няма данни") {
+
+                td.textContent =
+                    "Няма данни";
+
+                td.classList.add("no-data");
+
+            }
+
+            else {
+
+                td.innerHTML =
+                    "<strong>" +
+                    row[2] +
+                    " – " +
+                    row[3] +
+                    "</strong><br>" +
+                    row[4];
+
+                td.classList.add("work");
+
+            }
+
+
+            tr.appendChild(td);
+
+        });
+
+
+        body.appendChild(tr);
+
+    }
+
+}
+
+
+/* =====================================================
+   АДМИН ПАНЕЛ
+===================================================== */
+
+function showAdmin() {
+
+    /*
+       Защита:
+       Само Петя може да отвори администрацията.
+    */
+
+    if (
+        currentUser !== "Петя" ||
+        !users[currentUser].admin
+    ) {
+
+        return;
+
+    }
+
+
+    document
+        .getElementById("mySchedulePage")
+        .style.display = "none";
+
+
+    document
+        .getElementById("allSchedulePage")
+        .style.display = "none";
+
+
+    document
+        .getElementById("adminPage")
+        .style.display = "block";
+
+
+    document
+        .getElementById("myScheduleButton")
+        .classList.remove("active");
+
+
+    document
+        .getElementById("allScheduleButton")
+        .classList.remove("active");
+
+
+    loadAdminTable();
+
+}
+
+
+/* =====================================================
+   АДМИН ТАБЛИЦА
+===================================================== */
+
+function loadAdminTable() {
+
+    const body =
+        document.getElementById("adminBody");
+
+
+    body.innerHTML = "";
+
+
+    const employees =
+        Object.keys(schedules);
+
+
+    employees.forEach(employee => {
+
+        schedules[employee].forEach(
+            (row, index) => {
+
+                const tr =
+                    document.createElement("tr");
+
+
+                /*
+                   ДАТА
+                */
+
+                const date =
+                    document.createElement("td");
+
+                date.textContent =
+                    row[0];
+
+                tr.appendChild(date);
+
+
+                /*
+                   ДЕН
+                */
+
+                const day =
+                    document.createElement("td");
+
+                day.textContent =
+                    row[1];
+
+                tr.appendChild(day);
+
+
+                /*
+                   СЛУЖИТЕЛ
+                */
+
+                const name =
+                    document.createElement("td");
+
+                name.textContent =
+                    employee;
+
+                tr.appendChild(name);
+
+
+                /*
+                   СМЯНА
+                */
+
+                const shiftCell =
+                    document.createElement("td");
+
+
+                const select =
+                    document.createElement("select");
+
+
+                select.dataset.employee =
+                    employee;
+
+                select.dataset.index =
+                    index;
+
+
+                const options = [
+
+                    "Почивка",
+
+                    "1-ва смяна",
+
+                    "2-ра смяна",
+
+                    "Персонална"
+
+                ];
+
+
+                options.forEach(option => {
+
+                    const opt =
+                        document.createElement("option");
+
+                    opt.value = option;
+
+                    opt.textContent = option;
+
+
+                    select.appendChild(opt);
+
+                });
+
+
+                /*
+                   Определяне на текущата смяна
+                */
+
+                if (row[2] === "Почивка") {
+
+                    select.value = "Почивка";
+
+                }
+
+                else if (
+                    row[2] === "08:00" &&
+                    row[3] === "16:30"
+                ) {
+
+                    select.value = "1-ва смяна";
+
+                }
+
+                else if (
+                    row[2] === "12:00" &&
+                    row[3] === "20:30"
+                ) {
+
+                    select.value = "2-ра смяна";
+
+                }
+
+                else {
+
+                    select.value = "Персонална";
+
+                }
+
+
+                shiftCell.appendChild(select);
+
+                tr.appendChild(shiftCell);
+
+
+                /*
+                   НАЧАЛО
+                */
+
+                const startCell =
+                    document.createElement("td");
+
+
+                const startInput =
+                    document.createElement("input");
+
+
+                startInput.type = "time";
+
+                startInput.className =
+                    "time-input";
+
+                startInput.value =
+                    row[2] === "Почивка" ||
+                    row[2] === "Няма данни"
+                        ? ""
+                        : row[2];
+
+
+                startInput.dataset.employee =
+                    employee;
+
+                startInput.dataset.index =
+                    index;
+
+                startInput.dataset.type =
+                    "start";
+
+
+                startCell.appendChild(startInput);
+
+                tr.appendChild(startCell);
+
+
+                /*
+                   КРАЙ
+                */
+
+                const endCell =
+                    document.createElement("td");
+
+
+                const endInput =
+                    document.createElement("input");
+
+
+                endInput.type = "time";
+
+                endInput.className =
+                    "time-input";
+
+                endInput.value =
+                    row[3] === "-" ||
+                    row[3] === ""
+                        ? ""
+                        : row[3];
+
+
+                endInput.dataset.employee =
+                    employee;
+
+                endInput.dataset.index =
+                    index;
+
+                endInput.dataset.type =
+                    "end";
+
+
+                endCell.appendChild(endInput);
+
+                tr.appendChild(endCell);
+
+
+                /*
+                   ПОЧИВКА
+                */
+
+                const breakCell =
+                    document.createElement("td");
+
+
+                const breakInput =
+                    document.createElement("input");
+
+
+                breakInput.type = "text";
+
+                breakInput.className =
+                    "time-input";
+
+                breakInput.value =
+                    row[4] === "-"
+                        ? ""
+                        : row[4];
+
+
+                breakInput.dataset.employee =
+                    employee;
+
+                breakInput.dataset.index =
+                    index;
+
+                breakInput.dataset.type =
+                    "break";
+
+
+                breakCell.appendChild(breakInput);
+
+                tr.appendChild(breakCell);
+
+
+                /*
+                   При избор на смяна
+                   автоматично задаваме часовете.
+                */
+
+                select.addEventListener(
+                    "change",
+                    function() {
+
+                        const employeeName =
+                            this.dataset.employee;
+
+                        const rowIndex =
+                            Number(this.dataset.index);
+
+
+                        const start =
+                            document.querySelector(
+                                `input[data-employee="${CSS.escape(employeeName)}"][data-index="${rowIndex}"][data-type="start"]`
+                            );
+
+
+                        const end =
+                            document.querySelector(
+                                `input[data-employee="${CSS.escape(employeeName)}"][data-index="${rowIndex}"][data-type="end"]`
+                            );
+
+
+                        const breakInput =
+                            document.querySelector(
+                                `input[data-employee="${CSS.escape(employeeName)}"][data-index="${rowIndex}"][data-type="break"]`
+                            );
+
+
+                        if (
+                            this.value === "Почивка"
+                        ) {
+
+                            start.value = "";
+                            end.value = "";
+                            breakInput.value = "";
+
+                        }
+
+
+                        else if (
+                            this.value === "1-ва смяна"
+                        ) {
+
+                            start.value = "08:00";
+                            end.value = "16:30";
+                            breakInput.value = "30 мин.";
+
+                        }
+
+
+                        else if (
+                            this.value === "2-ра смяна"
+                        ) {
+
+                            start.value = "12:00";
+                            end.value = "20:30";
+                            breakInput.value = "30 мин.";
+
+                        }
+
+                    }
+                );
+
+
+                body.appendChild(tr);
+
+            }
+        );
+
+    });
+
+}
+
+
+/* =====================================================
+   ЗАПАЗВАНЕ НА АДМИН ПРОМЕНИТЕ
+===================================================== */
+
+function saveAdminChanges() {
+
+    if (
+        currentUser !== "Петя" ||
+        !users[currentUser].admin
+    ) {
+
+        return;
+
+    }
+
+
+    const selects =
+        document.querySelectorAll(
+            "#adminBody select"
+        );
+
+
+    selects.forEach(select => {
+
+        const employee =
+            select.dataset.employee;
+
+        const index =
+            Number(select.dataset.index);
+
+
+        const start =
+            document.querySelector(
+                `input[data-employee="${CSS.escape(employee)}"][data-index="${index}"][data-type="start"]`
+            );
+
+
+        const end =
+            document.querySelector(
+                `input[data-employee="${CSS.escape(employee)}"][data-index="${index}"][data-type="end"]`
+            );
+
+
+        const breakInput =
+            document.querySelector(
+                `input[data-employee="${CSS.escape(employee)}"][data-index="${index}"][data-type="break"]`
+            );
+
+
+        const row =
+            schedules[employee][index];
+
+
+        /*
+           ПОЧИВКА
+        */
+
+        if (select.value === "Почивка") {
+
+            row[2] = "Почивка";
+            row[3] = "-";
+            row[4] = "-";
+
+        }
+
+
+        /*
+           РАБОТА
+        */
+
+        else {
+
+            row[2] =
+                start.value || "08:00";
+
+            row[3] =
+                end.value || "16:30";
+
+            row[4] =
+                breakInput.value || "30 мин.";
+
+        }
+
+    });
+
+
+    /*
+       Запазване в браузъра
+    */
+
+    localStorage.setItem(
+        "workSchedules",
+        JSON.stringify(schedules)
+    );
+
+
+    /*
+       Съобщение
+    */
+
+    const message =
+        document.getElementById(
+            "successMessage"
+        );
+
+
+    message.style.display = "block";
+
+
+    setTimeout(
+        function() {
+
+            message.style.display = "none";
+
+        },
+        3000
+    );
+
+}
+
+
+/* =====================================================
+   ИЗХОД
+===================================================== */
+
+function logout() {
+
+    currentUser = null;
+
+
+    document
+        .getElementById("schedulePage")
+        .style.display = "none";
+
+
+    document
+        .getElementById("loginPage")
+        .style.display = "block";
+
+
+    document
+        .getElementById("username")
+        .value = "";
+
+
+    document
+        .getElementById("password")
+        .value = "";
+
+
+    document
+        .getElementById("error")
+        .textContent = "";
+
+
+    document
+        .getElementById("adminPage")
+        .style.display = "none";
+
+
+    document
+        .getElementById("adminButton")
+        .style.display = "none";
+
+}
+
+
+/* =====================================================
+   ENTER ЗА ВХОД
+===================================================== */
+
+document
+    .getElementById("password")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (event.key === "Enter") {
+
+                login();
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+</html>
+```
