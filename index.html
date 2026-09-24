@@ -1,10 +1,12 @@
-```html
 <!DOCTYPE html>
+
 <html lang="bg">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Работен график</title>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 * {
@@ -18,21 +20,53 @@ body {
     color: #222;
 }
 
+button,
+select,
+input,
+textarea {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+.header {
+    background: #111827;
+    color: white;
+    padding: 16px 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+.header button {
+    background: #374151;
+    color: white;
+    border: 0;
+    padding: 9px 14px;
+    border-radius: 8px;
+}
+
 .container {
-    max-width: 1400px;
-    margin: 30px auto;
-    padding: 20px;
+    max-width: 1500px;
+    margin: 20px auto;
+    padding: 0 15px;
 }
 
 .card {
     background: white;
-    border-radius: 14px;
-    padding: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
-}
-
-h1, h2 {
-    margin-top: 0;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,.08);
+    margin-bottom: 20px;
 }
 
 .login-box {
@@ -40,299 +74,280 @@ h1, h2 {
     margin: 80px auto;
 }
 
-input, select, button {
-    width: 100%;
-    padding: 11px;
-    margin-top: 8px;
-    margin-bottom: 12px;
-    border-radius: 8px;
-    border: 1px solid #ccc;
-    font-size: 15px;
-}
-
-button {
-    background: #222;
-    color: white;
-    cursor: pointer;
-    border: none;
-}
-
-button:hover {
-    opacity: 0.9;
-}
-
-button.secondary {
-    background: #666;
-}
-
-button.admin {
-    background: #8b1e1e;
-}
-
-.hidden {
-    display: none !important;
-}
-
-.error {
-    color: #c00;
-    margin-bottom: 10px;
-}
-
-.success {
-    color: #16803c;
-    font-weight: bold;
-    margin: 10px 0;
-}
-
-.topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
-}
-
-.topbar-buttons {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.topbar-buttons button {
-    width: auto;
-    margin: 0;
-}
-
-.table-wrapper {
-    overflow-x: auto;
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 850px;
-}
-
-th, td {
-    border: 1px solid #ddd;
-    padding: 9px;
+.login-box h1 {
     text-align: center;
 }
 
-th {
-    background: #222;
+input,
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    background: white;
+}
+
+textarea {
+    min-height: 90px;
+    resize: vertical;
+}
+
+.primary {
+    background: #2563eb;
+    color: white;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 8px;
+}
+
+.success {
+    background: #16a34a;
+    color: white;
+    border: 0;
+    padding: 9px 13px;
+    border-radius: 7px;
+}
+
+.danger {
+    background: #dc2626;
+    color: white;
+    border: 0;
+    padding: 9px 13px;
+    border-radius: 7px;
+}
+
+.secondary {
+    background: #e5e7eb;
+    color: #111827;
+    border: 0;
+    padding: 9px 13px;
+    border-radius: 7px;
+}
+
+.nav {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.nav button {
+    border: 0;
+    background: #e5e7eb;
+    padding: 10px 14px;
+    border-radius: 8px;
+}
+
+.nav button.active {
+    background: #2563eb;
     color: white;
 }
 
-tr:nth-child(even) {
-    background: #f8f8f8;
+.month-buttons {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
 }
 
-.admin-table {
-    min-width: 1100px;
+.month-buttons button {
+    border: 0;
+    padding: 9px 13px;
+    border-radius: 7px;
+    background: #e5e7eb;
 }
 
-.admin-table input,
-.admin-table select {
-    margin: 0;
+.month-buttons button.active {
+    background: #111827;
+    color: white;
+}
+
+.table-wrap {
+    overflow-x: auto;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+}
+
+table {
+    border-collapse: collapse;
     width: 100%;
-    min-width: 120px;
+    min-width: 900px;
+}
+
+th,
+td {
+    border: 1px solid #e5e7eb;
+    padding: 8px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+th {
+    background: #f9fafb;
+}
+
+.employee-name {
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.day-header {
+    min-width: 115px;
+}
+
+.shift {
+    border-radius: 7px;
+    padding: 7px;
+    background: #f9fafb;
+}
+
+.shift strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.small {
+    font-size: 12px;
+    color: #6b7280;
+}
+
+.day-actions {
+    margin-top: 7px;
+}
+
+.day-actions button {
+    font-size: 11px;
+    padding: 5px 7px;
+    border: 0;
+    border-radius: 5px;
+    background: #dbeafe;
+    color: #1d4ed8;
+}
+
+.admin-input {
+    width: 100%;
+    min-width: 105px;
+    margin: 2px 0;
+    padding: 6px;
+    font-size: 13px;
+}
+
+.admin-row-label {
+    font-weight: bold;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.status {
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    display: none;
+}
+
+.status.ok {
+    display: block;
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status.error {
+    display: block;
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+.status.info {
+    display: block;
+    background: #dbeafe;
+    color: #1e40af;
+}
+
+.request {
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 15px;
+    margin-bottom: 12px;
+    background: #fafafa;
+}
+
+.request.pending {
+    border-left: 5px solid #f59e0b;
+}
+
+.request.accepted {
+    border-left: 5px solid #2563eb;
+}
+
+.request.approved {
+    border-left: 5px solid #16a34a;
+}
+
+.request.rejected {
+    border-left: 5px solid #dc2626;
+}
+
+.request-title {
+    font-weight: bold;
+    margin-bottom: 7px;
+}
+
+.request-buttons {
+    display: flex;
+    gap: 7px;
+    flex-wrap: wrap;
+    margin-top: 10px;
 }
 
 .badge {
     display: inline-block;
-    padding: 5px 9px;
-    border-radius: 7px;
-    font-size: 13px;
-    font-weight: bold;
-}
-
-.shift-1 {
-    background: #dbeafe;
-}
-
-.shift-2 {
-    background: #dcfce7;
-}
-
-.shift-r {
-    background: #fef3c7;
-}
-
-.shift-c {
-    background: #fce7f3;
-}
-
-.leave {
-    background: #e0e7ff;
-}
-
-.absence {
-    background: #fee2e2;
-}
-
-.rest {
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
     background: #e5e7eb;
 }
 
-.empty {
-    color: #999;
+@media (max-width: 700px) {
+    .container {
+        padding: 0 8px;
+    }
+
+    .card {
+        padding: 12px;
+    }
+
+    .header {
+        padding: 12px;
+    }
 }
 </style>
+
 </head>
 
 <body>
 
-<!-- LOGIN -->
-<div id="loginPage" class="container">
-    <div class="card login-box">
-        <h1>Работен график</h1>
-
-        <label>Име и фамилия</label>
-        <input id="loginName" type="text" placeholder="Въведи име">
-
-        <label>Парола</label>
-        <input id="loginPassword" type="password" placeholder="Въведи парола">
-
-        <div id="loginError" class="error"></div>
-
-        <button onclick="login()">Вход</button>
-    </div>
-</div>
-
-
-<!-- USER PAGE -->
-<div id="userPage" class="container hidden">
-
-    <div class="card">
-
-        <div class="topbar">
-            <div>
-                <h1 id="welcomeTitle">Моят работен график</h1>
-                <div id="userNameText"></div>
-            </div>
-
-            <div class="topbar-buttons">
-                <button onclick="showMySchedule()">Моят график</button>
-                <button onclick="showAllSchedule()">Общ график</button>
-                <button id="adminButton" class="admin hidden" onclick="showAdmin()">Админ панел</button>
-                <button class="secondary" onclick="logout()">Изход</button>
-            </div>
-        </div>
-
-        <!-- МОЯ ГРАФИК -->
-        <div id="myScheduleSection">
-            <h2>Моят график</h2>
-
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Дата</th>
-                            <th>Ден</th>
-                            <th>Смяна</th>
-                            <th>Начало</th>
-                            <th>Край</th>
-                            <th>Почивка</th>
-                        </tr>
-                    </thead>
-                    <tbody id="myScheduleBody"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- ОБЩ ГРАФИК -->
-        <div id="allScheduleSection" class="hidden">
-            <h2>Общ график</h2>
-
-            <div class="table-wrapper">
-                <table>
-                    <thead id="allScheduleHead"></thead>
-                    <tbody id="allScheduleBody"></tbody>
-                </table>
-            </div>
-        </div>
-
-        <!-- АДМИН -->
-        <div id="adminSection" class="hidden">
-
-            <h2>Админ панел — редактиране на графика</h2>
-
-            <p>
-                Петя може да редактира графика на <strong>всички служители</strong>,
-                включително хората, които нямат профил за вход.
-            </p>
-
-            <div id="saveMessage" class="success"></div>
-
-            <div class="table-wrapper">
-                <table class="admin-table">
-                    <thead>
-                        <tr>
-                            <th>Дата</th>
-                            <th>Ден</th>
-                            <th>Служител</th>
-                            <th>Тип</th>
-                            <th>Начало</th>
-                            <th>Край</th>
-                            <th>Почивка</th>
-                        </tr>
-                    </thead>
-
-                    <tbody id="adminTableBody"></tbody>
-                </table>
-            </div>
-
-            <br>
-
-            <button onclick="saveAdminSchedule()">Запази всички промени</button>
-
-        </div>
-
-    </div>
-</div>
-
+<div id="app"></div>
 
 <script>
+const SUPABASE_URL = "https://feahxunujegspmfgicfw.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_qtFfIY15FcRdBcUzTW56Jg_bGXHiLgR";
 
-/* =========================================================
-   ПОТРЕБИТЕЛИ, КОИТО МОГАТ ДА ВЛИЗАТ
-   ========================================================= */
+const supabaseClient = window.supabase.createClient(
+    SUPABASE_URL,
+    SUPABASE_PUBLISHABLE_KEY
+);
 
 const users = {
-    "Иван Панов": {
-        password: "1989",
-        admin: false
-    },
-
-    "Алехандро Петров": {
-        password: "2005",
-        admin: false
-    },
-
-    "Велислав Вълов": {
-        password: "2008",
-        admin: false
-    },
-
-    "Илион Иванов": {
-        password: "2004",
-        admin: false
-    },
-
-    "Петя": {
-        password: "0502",
-        admin: true
-    }
+    "Иван Панов": "1989",
+    "Алехандро Петров": "2005",
+    "Велислав Вълов": "2008",
+    "Илион Иванов": "2004",
+    "Петя": "0502"
 };
-
-
-/* =========================================================
-   ВСИЧКИ ХОРА В ГРАФИКА
-   ВАЖНО:
-   ТУК СА И ХОРАТА БЕЗ ПРОФИЛ.
-   ========================================================= */
 
 const employees = [
     "Иван Панов",
@@ -343,846 +358,1016 @@ const employees = [
     "Петя"
 ];
 
-
-/* =========================================================
-   ДАТИ НА ГРАФИКА
-   ========================================================= */
-
-const dates = [
-    {
-        date: "28.09.2026",
-        day: "Понеделник"
-    },
-    {
-        date: "29.09.2026",
-        day: "Вторник"
-    },
-    {
-        date: "30.09.2026",
-        day: "Сряда"
-    },
-    {
-        date: "01.10.2026",
-        day: "Четвъртък"
-    },
-    {
-        date: "02.10.2026",
-        day: "Петък"
-    }
+const months = [
+    { year: 2026, month: 9, name: "Септември" },
+    { year: 2026, month: 10, name: "Октомври" },
+    { year: 2026, month: 11, name: "Ноември" },
+    { year: 2026, month: 12, name: "Декември" }
 ];
 
-
-/* =========================================================
-   НАЧАЛЕН ГРАФИК
-   ========================================================= */
-
-const defaultSchedules = {
-
-    "Иван Панов": {
-        "28.09.2026": {
-            type: "1-ва смяна",
-            start: "09:00",
-            end: "16:00",
-            break: "30 мин."
-        },
-
-        "29.09.2026": {
-            type: "1-ва смяна",
-            start: "09:00",
-            end: "16:00",
-            break: "30 мин."
-        },
-
-        "30.09.2026": {
-            type: "Почивка",
-            start: "",
-            end: "",
-            break: ""
-        },
-
-        "01.10.2026": {
-            type: "Р",
-            start: "09:00",
-            end: "18:00",
-            break: "30 мин."
-        },
-
-        "02.10.2026": {
-            type: "Ц",
-            start: "09:00",
-            end: "21:00",
-            break: "60 мин."
-        }
-    },
-
-
-    "Алехандро Петров": {
-        "28.09.2026": {
-            type: "2-ра смяна",
-            start: "14:00",
-            end: "21:00",
-            break: "30 мин."
-        },
-
-        "29.09.2026": {
-            type: "2-ра смяна",
-            start: "14:00",
-            end: "21:00",
-            break: "30 мин."
-        },
-
-        "30.09.2026": {
-            type: "1-ва смяна",
-            start: "09:00",
-            end: "16:00",
-            break: "30 мин."
-        },
-
-        "01.10.2026": {
-            type: "Почивка",
-            start: "",
-            end: "",
-            break: ""
-        },
-
-        "02.10.2026": {
-            type: "2-ра смяна",
-            start: "14:00",
-            end: "21:00",
-            break: "30 мин."
-        }
-    },
-
-
-    "Велислав Вълов": {
-        "28.09.2026": {
-            type: "1-ва смяна",
-            start: "09:00",
-            end: "16:00",
-            break: "30 мин."
-        },
-
-        "29.09.2026": {
-            type: "Почивка",
-            start: "",
-            end: "",
-            break: ""
-        },
-
-        "30.09.2026": {
-            type: "1-ва смяна",
-            start: "09:00",
-            end: "16:00",
-            break: "30 мин."
-        },
-
-        "01.10.2026": {
-            type: "2-ра смяна",
-            start: "14:00",
-            end: "21:00",
-            break: "30 мин."
-        },
-
-        "02.10.2026": {
-            type: "Р",
-            start: "09:00",
-            end: "18:00",
-            break: "30 мин."
-        }
-    },
-
-
-    "Илион Иванов": {
-        "28.09.2026": {
-            type: "2-ра смяна",
-            start: "14:00",
-            end: "21:00",
-            break: "30 мин."
-        },
-
-        "29.09.2026": {
-            type: "1-ва смяна",
-            start: "09:00",
-            end: "16:00",
-            break: "30 мин."
-        },
-
-        "30.09.2026": {
-            type: "2-ра смяна",
-            start: "14:00",
-            end: "21:00",
-            break: "30 мин."
-        },
-
-        "01.10.2026": {
-            type: "Р",
-            start: "09:00",
-            end: "18:00",
-            break: "30 мин."
-        },
-
-        "02.10.2026": {
-            type: "Почивка",
-            start: "",
-            end: "",
-            break: ""
-        }
-    },
-
-
-    "Илиян Игнатов": {
-        "28.09.2026": {
-            type: "2-ра смяна",
-            start: "14:00",
-            end: "21:00",
-            break: "30 мин."
-        },
-
-        "29.09.2026": {
-            type: "2-ра смяна",
-            start: "14:00",
-            end: "21:00",
-            break: "30 мин."
-        },
-
-        "30.09.2026": {
-            type: "1-ва смяна",
-            start: "09:00",
-            end: "16:00",
-            break: "30 мин."
-        },
-
-        "01.10.2026": {
-            type: "Почивка",
-            start: "",
-            end: "",
-            break: ""
-        },
-
-        "02.10.2026": {
-            type: "2-ра смяна",
-            start: "14:00",
-            end: "21:00",
-            break: "30 мин."
-        }
-    },
-
-
-    "Петя": {
-        "28.09.2026": {
-            type: "",
-            start: "",
-            end: "",
-            break: ""
-        },
-
-        "29.09.2026": {
-            type: "",
-            start: "",
-            end: "",
-            break: ""
-        },
-
-        "30.09.2026": {
-            type: "",
-            start: "",
-            end: "",
-            break: ""
-        },
-
-        "01.10.2026": {
-            type: "",
-            start: "",
-            end: "",
-            break: ""
-        },
-
-        "02.10.2026": {
-            type: "",
-            start: "",
-            end: "",
-            break: ""
-        }
-    }
+const shiftTypes = {
+    "": { label: "", start: "", end: "", break: "" },
+    "1-ва": { label: "1-ва", start: "09:00", end: "16:00", break: "30 мин" },
+    "2-ра": { label: "2-ра", start: "14:00", end: "21:00", break: "30 мин" },
+    "Р": { label: "Р", start: "09:00", end: "18:00", break: "30 мин" },
+    "Ц": { label: "Ц", start: "09:00", end: "21:00", break: "60 мин" },
+    "Почивка": { label: "Почивка", start: "", end: "", break: "" },
+    "Отпуска": { label: "Отпуска", start: "", end: "", break: "" },
+    "Самоотлъчка": { label: "Самоотлъчка", start: "", end: "", break: "" }
 };
 
-
-/* =========================================================
-   ЗАРЕЖДАНЕ ОТ LOCAL STORAGE
-   ========================================================= */
-
-let schedules =
-    JSON.parse(localStorage.getItem("workSchedules")) ||
-    structuredClone(defaultSchedules);
-
 let currentUser = null;
+let currentMonth = 9;
+let currentPage = "my";
+let schedules = {};
+let requests = [];
+let loading = false;
 
+function dateKey(year, month, day) {
+    return `${String(day).padStart(2, "0")}.${String(month).padStart(2, "0")}.${year}`;
+}
 
-/* =========================================================
-   LOGIN
-   ========================================================= */
+function toDbDate(date) {
+    const parts = date.split(".");
+    return `${parts[2]}-${parts[1]}-${parts[0]}`;
+}
 
-function login() {
+function fromDbDate(date) {
+    const parts = date.split("-");
+    return `${parts[2]}.${parts[1]}.${parts[0]}`;
+}
 
-    const name = document.getElementById("loginName").value.trim();
-    const password = document.getElementById("loginPassword").value;
+function daysInMonth(year, month) {
+    return new Date(year, month, 0).getDate();
+}
 
-    const error = document.getElementById("loginError");
+function getMonthDates(year, month) {
+    const result = [];
+    const days = daysInMonth(year, month);
 
-    if (!users[name]) {
-        error.textContent = "Няма такъв потребител.";
+    for (let d = 1; d <= days; d++) {
+        result.push({
+            date: dateKey(year, month, d),
+            day: d,
+            weekday: new Date(year, month - 1, d)
+                .toLocaleDateString("bg-BG", { weekday: "short" })
+        });
+    }
+
+    return result;
+}
+
+function emptyShift() {
+    return {
+        type: "",
+        start: "",
+        end: "",
+        break: ""
+    };
+}
+
+function ensureScheduleStructure() {
+    employees.forEach(employee => {
+        if (!schedules[employee]) schedules[employee] = {};
+
+        for (const month of months) {
+            for (const item of getMonthDates(month.year, month.month)) {
+                if (!schedules[employee][item.date]) {
+                    schedules[employee][item.date] = emptyShift();
+                }
+            }
+        }
+    });
+}
+
+const defaultSchedules = {
+    "Иван Панов": {
+        "28.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
+        "29.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
+        "30.09.2026": { type:"Почивка", start:"", end:"", break:"" },
+        "01.10.2026": { type:"Р", start:"09:00", end:"18:00", break:"30 мин" },
+        "02.10.2026": { type:"Ц", start:"09:00", end:"21:00", break:"60 мин" }
+    },
+
+    "Алехандро Петров": {
+        "28.09.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
+        "29.09.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
+        "30.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
+        "01.10.2026": { type:"Почивка", start:"", end:"", break:"" },
+        "02.10.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" }
+    },
+
+    "Велислав Вълов": {
+        "28.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
+        "29.09.2026": { type:"Почивка", start:"", end:"", break:"" },
+        "30.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
+        "01.10.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
+        "02.10.2026": { type:"Р", start:"09:00", end:"18:00", break:"30 мин" }
+    },
+
+    "Илион Иванов": {
+        "28.09.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
+        "29.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
+        "30.09.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
+        "01.10.2026": { type:"Р", start:"09:00", end:"18:00", break:"30 мин" },
+        "02.10.2026": { type:"Почивка", start:"", end:"", break:"" }
+    },
+
+    "Илиян Игнатов": {
+        "28.09.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
+        "29.09.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" },
+        "30.09.2026": { type:"1-ва", start:"09:00", end:"16:00", break:"30 мин" },
+        "01.10.2026": { type:"Почивка", start:"", end:"", break:"" },
+        "02.10.2026": { type:"2-ра", start:"14:00", end:"21:00", break:"30 мин" }
+    },
+
+    "Петя": {}
+};
+
+function copyDefaults() {
+    schedules = {};
+
+    employees.forEach(employee => {
+        schedules[employee] = {};
+
+        for (const month of months) {
+            for (const item of getMonthDates(month.year, month.month)) {
+                schedules[employee][item.date] = emptyShift();
+            }
+        }
+    });
+
+    Object.entries(defaultSchedules).forEach(([employee, dates]) => {
+        Object.entries(dates).forEach(([date, shift]) => {
+            schedules[employee][date] = { ...shift };
+        });
+    });
+}
+
+async function saveAllSchedules() {
+    const rows = [];
+
+    employees.forEach(employee => {
+        for (const month of months) {
+            for (const item of getMonthDates(month.year, month.month)) {
+                const shift = schedules[employee]?.[item.date] || emptyShift();
+
+                rows.push({
+                    employee: employee,
+                    work_date: toDbDate(item.date),
+                    shift_type: shift.type || "",
+                    start_time: shift.start || "",
+                    end_time: shift.end || "",
+                    break_time: shift.break || "",
+                    updated_at: new Date().toISOString()
+                });
+            }
+        }
+    });
+
+    const { error } = await supabaseClient
+        .from("work_schedule")
+        .upsert(rows, {
+            onConflict: "employee,work_date"
+        });
+
+    if (error) {
+        throw error;
+    }
+}
+
+async function loadSchedules() {
+    const { data, error } = await supabaseClient
+        .from("work_schedule")
+        .select("*");
+
+    if (error) throw error;
+
+    if (!data || data.length === 0) {
+        copyDefaults();
+        await saveAllSchedules();
         return;
     }
 
-    if (users[name].password !== password) {
-        error.textContent = "Грешна парола.";
+    schedules = {};
+
+    employees.forEach(employee => {
+        schedules[employee] = {};
+    });
+
+    data.forEach(row => {
+        if (!schedules[row.employee]) {
+            schedules[row.employee] = {};
+        }
+
+        schedules[row.employee][fromDbDate(row.work_date)] = {
+            type: row.shift_type || "",
+            start: row.start_time || "",
+            end: row.end_time || "",
+            break: row.break_time || ""
+        };
+    });
+
+    ensureScheduleStructure();
+}
+
+async function loadRequests() {
+    const { data, error } = await supabaseClient
+        .from("shift_requests")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+    if (error) throw error;
+
+    requests = data || [];
+}
+
+function showStatus(message, type = "info") {
+    const el = document.getElementById("status");
+
+    if (!el) return;
+
+    el.textContent = message;
+    el.className = `status ${type}`;
+}
+
+function clearStatus() {
+    const el = document.getElementById("status");
+
+    if (el) {
+        el.style.display = "none";
+    }
+}
+
+function loginPage() {
+    document.getElementById("app").innerHTML = `
+        <div class="container">
+            <div class="card login-box">
+                <h1>Работен график</h1>
+
+                <label>Име и фамилия</label>
+                <select id="loginName">
+                    <option value="">Избери служител</option>
+                    ${Object.keys(users).map(name =>
+                        `<option value="${name}">${name}</option>`
+                    ).join("")}
+                </select>
+
+                <label>Парола</label>
+                <input id="loginPassword" type="password" placeholder="Парола">
+
+                <button class="primary" style="width:100%" onclick="login()">
+                    Вход
+                </button>
+
+                <div id="loginError" style="color:#dc2626;margin-top:12px;"></div>
+            </div>
+        </div>
+    `;
+}
+
+async function login() {
+    const name = document.getElementById("loginName").value;
+    const password = document.getElementById("loginPassword").value;
+    const error = document.getElementById("loginError");
+
+    if (!name || users[name] !== password) {
+        error.textContent = "Грешно име или парола.";
         return;
     }
 
     currentUser = name;
 
-    document.getElementById("loginPage").classList.add("hidden");
-    document.getElementById("userPage").classList.remove("hidden");
+    try {
+        error.textContent = "Зареждане...";
 
-    document.getElementById("userNameText").textContent =
-        "Влезли сте като: " + currentUser;
+        await loadSchedules();
+        await loadRequests();
 
-    if (users[currentUser].admin) {
-        document.getElementById("adminButton").classList.remove("hidden");
-    } else {
-        document.getElementById("adminButton").classList.add("hidden");
+        currentPage = currentUser === "Петя" ? "admin" : "my";
+        render();
+
+    } catch (e) {
+        error.textContent = "Грешка при свързването с базата: " + e.message;
+        currentUser = null;
     }
-
-    showMySchedule();
 }
-
-
-/* =========================================================
-   ИЗХОД
-   ========================================================= */
 
 function logout() {
-
     currentUser = null;
-
-    document.getElementById("userPage").classList.add("hidden");
-    document.getElementById("loginPage").classList.remove("hidden");
-
-    document.getElementById("loginName").value = "";
-    document.getElementById("loginPassword").value = "";
+    schedules = {};
+    requests = [];
+    loginPage();
 }
 
+function render() {
+    const isAdmin = currentUser === "Петя";
 
-/* =========================================================
-   МОЯТ ГРАФИК
-   ========================================================= */
+    document.getElementById("app").innerHTML = `
+        <div class="header">
+            <h1>Моят работен график</h1>
 
-function showMySchedule() {
+            <div>
+                <span style="margin-right:10px">${currentUser}</span>
+                <button onclick="logout()">Изход</button>
+            </div>
+        </div>
 
-    hideSections();
+        <div class="container">
+            <div id="status" class="status"></div>
 
-    document
-        .getElementById("myScheduleSection")
-        .classList.remove("hidden");
+            <div class="nav">
+                <button class="${currentPage === "my" ? "active" : ""}"
+                        onclick="currentPage='my'; render()">
+                    Моят график
+                </button>
 
-    const body = document.getElementById("myScheduleBody");
+                <button class="${currentPage === "all" ? "active" : ""}"
+                        onclick="currentPage='all'; render()">
+                    Общ график
+                </button>
 
-    body.innerHTML = "";
+                <button class="${currentPage === "requests" ? "active" : ""}"
+                        onclick="currentPage='requests'; renderRequestsPage()">
+                    Размени
+                </button>
 
-    const userSchedule = schedules[currentUser] || {};
+                ${isAdmin ? `
+                    <button class="${currentPage === "admin" ? "active" : ""}"
+                            onclick="currentPage='admin'; render()">
+                        Админ
+                    </button>
+                ` : ""}
+            </div>
 
-    dates.forEach(item => {
+            <div id="content"></div>
+        </div>
+    `;
 
-        const data = userSchedule[item.date] || {
-            type: "",
-            start: "",
-            end: "",
-            break: ""
-        };
-
-        const tr = document.createElement("tr");
-
-        tr.innerHTML = `
-            <td>${item.date}</td>
-            <td>${item.day}</td>
-            <td>${formatType(data.type)}</td>
-            <td>${data.start || "-"}</td>
-            <td>${data.end || "-"}</td>
-            <td>${data.break || "-"}</td>
-        `;
-
-        body.appendChild(tr);
-    });
-}
-
-
-/* =========================================================
-   ОБЩ ГРАФИК
-   ========================================================= */
-
-function showAllSchedule() {
-
-    hideSections();
-
-    document
-        .getElementById("allScheduleSection")
-        .classList.remove("hidden");
-
-    const head = document.getElementById("allScheduleHead");
-    const body = document.getElementById("allScheduleBody");
-
-    head.innerHTML = "";
-    body.innerHTML = "";
-
-    let header = "<tr><th>Дата</th><th>Ден</th>";
-
-    employees.forEach(employee => {
-        header += `<th>${employee}</th>`;
-    });
-
-    header += "</tr>";
-
-    head.innerHTML = header;
-
-
-    dates.forEach(item => {
-
-        let row =
-            `<tr>
-                <td>${item.date}</td>
-                <td>${item.day}</td>`;
-
-        employees.forEach(employee => {
-
-            const data =
-                schedules[employee]?.[item.date] || {
-                    type: "",
-                    start: "",
-                    end: "",
-                    break: ""
-                };
-
-            row += `
-                <td>
-                    ${formatType(data.type)}
-                    ${
-                        data.start && data.end
-                        ? `<br>${data.start} – ${data.end}`
-                        : ""
-                    }
-                </td>
-            `;
-        });
-
-        row += "</tr>";
-
-        body.innerHTML += row;
-    });
-}
-
-
-/* =========================================================
-   АДМИН ПАНЕЛ
-   ========================================================= */
-
-function showAdmin() {
-
-    if (!users[currentUser]?.admin) {
-        return;
+    if (currentPage === "my") {
+        renderMySchedule();
+    } else if (currentPage === "all") {
+        renderAllSchedule();
+    } else if (currentPage === "admin") {
+        renderAdmin();
+    } else {
+        renderRequestsPage();
     }
-
-    hideSections();
-
-    document
-        .getElementById("adminSection")
-        .classList.remove("hidden");
-
-    buildAdminTable();
 }
 
+function monthButtons() {
+    return `
+        <div class="month-buttons">
+            ${months.map(m => `
+                <button
+                    class="${currentMonth === m.month ? "active" : ""}"
+                    onclick="currentMonth=${m.month}; render()">
+                    ${m.name} 2026
+                </button>
+            `).join("")}
+        </div>
+    `;
+}
 
-/* =========================================================
-   ИЗГРАЖДАНЕ НА АДМИН ТАБЛИЦАТА
-   ========================================================= */
+function renderMySchedule() {
+    const content = document.getElementById("content");
+    const dates = getMonthDates(2026, currentMonth);
 
-function buildAdminTable() {
+    content.innerHTML = `
+        <div class="card">
+            <h2>${currentUser}</h2>
+            ${monthButtons()}
 
-    const body = document.getElementById("adminTableBody");
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Дата</th>
+                            <th>Ден</th>
+                            <th>Смяна</th>
+                            <th>Часове</th>
+                            <th>Почивка</th>
+                            <th>Размяна</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        ${dates.map(item => {
+                            const s = schedules[currentUser]?.[item.date] || emptyShift();
 
-    body.innerHTML = "";
+                            return `
+                                <tr>
+                                    <td>${item.date}</td>
+                                    <td>${item.weekday}</td>
+                                    <td><strong>${s.type || "-"}</strong></td>
+                                    <td>${s.start && s.end ? `${s.start} – ${s.end}` : "-"}</td>
+                                    <td>${s.break || "-"}</td>
+                                    <td>
+                                        ${isWorkShift(s) ? `
+                                            <button class="secondary"
+                                                onclick="openSwap('${item.date}')">
+                                                Предложи размяна
+                                            </button>
+                                        ` : "-"}
+                                    </td>
+                                </tr>
+                            `;
+                        }).join("")}
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-    /*
-       ВАЖНО:
-       Използваме employees, а НЕ users.
+        <div class="card">
+            <h3>Моите предложения</h3>
+            ${renderMyRequestList()}
+        </div>
+    `;
+}
 
-       Това означава, че Петя ще вижда:
-       - Иван
-       - Алехандро
-       - Велислав
-       - Илион
-       - Илиян
-       - Петя
+function renderAllSchedule() {
+    const content = document.getElementById("content");
+    const dates = getMonthDates(2026, currentMonth);
 
-       дори когато някой от тях няма login профил.
-    */
+    content.innerHTML = `
+        <div class="card">
+            <h2>Общ график</h2>
 
-    employees.forEach(employee => {
+            ${monthButtons()}
 
-        dates.forEach(item => {
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Служител</th>
+                            ${dates.map(item => `
+                                <th class="day-header">
+                                    ${item.date}<br>
+                                    <span class="small">${item.weekday}</span>
+                                </th>
+                            `).join("")}
+                        </tr>
+                    </thead>
 
-            if (!schedules[employee]) {
-                schedules[employee] = {};
-            }
+                    <tbody>
+                        ${employees.map(employee => `
+                            <tr>
+                                <td class="employee-name">${employee}</td>
 
-            if (!schedules[employee][item.date]) {
+                                ${dates.map(item => {
+                                    const s = schedules[employee]?.[item.date] || emptyShift();
+
+                                    return `
+                                        <td>
+                                            <strong>${s.type || "-"}</strong>
+                                            ${s.start && s.end
+                                                ? `<div class="small">${s.start}-${s.end}</div>`
+                                                : ""}
+                                        </td>
+                                    `;
+                                }).join("")}
+                            </tr>
+                        `).join("")}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    `;
+}
+
+function renderAdmin() {
+    const content = document.getElementById("content");
+    const dates = getMonthDates(2026, currentMonth);
+
+    content.innerHTML = `
+        <div class="card">
+            <h2>Администрация – график</h2>
+
+            ${monthButtons()}
+
+            <button class="success" onclick="saveAdminSchedule()">
+                💾 Запази графика
+            </button>
+
+            <div style="height:12px"></div>
+
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Служител</th>
+
+                            ${dates.map(item => `
+                                <th class="day-header">
+                                    ${item.date}<br>
+                                    <span class="small">${item.weekday}</span>
+                                </th>
+                            `).join("")}
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        ${employees.map(employee => `
+                            <tr>
+                                <td class="admin-row-label">${employee}</td>
+
+                                ${dates.map(item => {
+                                    const s = schedules[employee]?.[item.date] || emptyShift();
+
+                                    return `
+                                        <td>
+                                            <select
+                                                class="admin-input"
+                                                id="type_${safeId(employee)}_${safeId(item.date)}"
+                                                onchange="changeAdminShift('${employee}','${item.date}',this.value)">
+                                                ${Object.keys(shiftTypes).map(type => `
+                                                    <option value="${type}"
+                                                        ${s.type === type ? "selected" : ""}>
+                                                        ${type || "— празно —"}
+                                                    </option>
+                                                `).join("")}
+                                            </select>
+
+                                            <input
+                                                class="admin-input"
+                                                placeholder="Начало"
+                                                value="${s.start || ""}"
+                                                id="start_${safeId(employee)}_${safeId(item.date)}">
+
+                                            <input
+                                                class="admin-input"
+                                                placeholder="Край"
+                                                value="${s.end || ""}"
+                                                id="end_${safeId(employee)}_${safeId(item.date)}">
+
+                                            <input
+                                                class="admin-input"
+                                                placeholder="Почивка"
+                                                value="${s.break || ""}"
+                                                id="break_${safeId(employee)}_${safeId(item.date)}">
+                                        </td>
+                                    `;
+                                }).join("")}
+                            </tr>
+                        `).join("")}
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top:12px" class="small">
+                1-ва: 09:00–16:00 · 2-ра: 14:00–21:00 · Р: 09:00–18:00 · Ц: 09:00–21:00
+            </div>
+        </div>
+
+        <div class="card">
+            <h2>Чакащи размени</h2>
+            ${renderAdminRequests()}
+        </div>
+    `;
+}
+
+function safeId(value) {
+    return value
+        .replaceAll(" ", "_")
+        .replaceAll(".", "_")
+        .replaceAll("-", "_");
+}
+
+function changeAdminShift(employee, date, type) {
+    if (!schedules[employee]) schedules[employee] = {};
+
+    const preset = shiftTypes[type] || emptyShift();
+
+    schedules[employee][date] = {
+        type: type,
+        start: preset.start,
+        end: preset.end,
+        break: preset.break
+    };
+
+    const start = document.getElementById(
+        `start_${safeId(employee)}_${safeId(date)}`
+    );
+
+    const end = document.getElementById(
+        `end_${safeId(employee)}_${safeId(date)}`
+    );
+
+    const breakInput = document.getElementById(
+        `break_${safeId(employee)}_${safeId(date)}`
+    );
+
+    if (start) start.value = preset.start;
+    if (end) end.value = preset.end;
+    if (breakInput) breakInput.value = preset.break;
+}
+
+async function saveAdminSchedule() {
+    try {
+        for (const employee of employees) {
+            for (const item of getMonthDates(2026, currentMonth)) {
+                const start = document.getElementById(
+                    `start_${safeId(employee)}_${safeId(item.date)}`
+                );
+
+                const end = document.getElementById(
+                    `end_${safeId(employee)}_${safeId(item.date)}`
+                );
+
+                const breakInput = document.getElementById(
+                    `break_${safeId(employee)}_${safeId(item.date)}`
+                );
+
+                const typeSelect = document.getElementById(
+                    `type_${safeId(employee)}_${safeId(item.date)}`
+                );
+
                 schedules[employee][item.date] = {
-                    type: "",
-                    start: "",
-                    end: "",
-                    break: ""
+                    type: typeSelect?.value || "",
+                    start: start?.value || "",
+                    end: end?.value || "",
+                    break: breakInput?.value || ""
                 };
             }
-
-            const data = schedules[employee][item.date];
-
-            const tr = document.createElement("tr");
-
-            tr.innerHTML = `
-
-                <td>${item.date}</td>
-
-                <td>${item.day}</td>
-
-                <td>
-                    <strong>${employee}</strong>
-                </td>
-
-                <td>
-                    <select
-                        class="shift-select"
-                        data-employee="${employee}"
-                        data-date="${item.date}"
-                        onchange="changeShift(this)"
-                    >
-
-                        <option value="" ${data.type === "" ? "selected" : ""}>
-                            Празно
-                        </option>
-
-                        <option value="1-ва смяна" ${data.type === "1-ва смяна" ? "selected" : ""}>
-                            1-ва смяна
-                        </option>
-
-                        <option value="2-ра смяна" ${data.type === "2-ра смяна" ? "selected" : ""}>
-                            2-ра смяна
-                        </option>
-
-                        <option value="Р" ${data.type === "Р" ? "selected" : ""}>
-                            Р — Редовна
-                        </option>
-
-                        <option value="Ц" ${data.type === "Ц" ? "selected" : ""}>
-                            Ц — Целодневна
-                        </option>
-
-                        <option value="Почивка" ${data.type === "Почивка" ? "selected" : ""}>
-                            Почивка
-                        </option>
-
-                        <option value="Отпуска" ${data.type === "Отпуска" ? "selected" : ""}>
-                            Отпуска
-                        </option>
-
-                        <option value="Самоотлъчка" ${data.type === "Самоотлъчка" ? "selected" : ""}>
-                            Самоотлъчка
-                        </option>
-
-                        <option value="Персонална" ${data.type === "Персонална" ? "selected" : ""}>
-                            Персонална
-                        </option>
-
-                    </select>
-                </td>
-
-                <td>
-                    <input
-                        type="time"
-                        class="start-input"
-                        data-employee="${employee}"
-                        data-date="${item.date}"
-                        value="${data.start || ""}"
-                    >
-                </td>
-
-                <td>
-                    <input
-                        type="time"
-                        class="end-input"
-                        data-employee="${employee}"
-                        data-date="${item.date}"
-                        value="${data.end || ""}"
-                    >
-                </td>
-
-                <td>
-                    <input
-                        type="text"
-                        class="break-input"
-                        data-employee="${employee}"
-                        data-date="${item.date}"
-                        value="${data.break || ""}"
-                        placeholder="напр. 30 мин."
-                    >
-                </td>
-            `;
-
-            body.appendChild(tr);
-        });
-    });
-}
-
-
-/* =========================================================
-   ПРОМЯНА НА СМЯНА
-   ========================================================= */
-
-function changeShift(select) {
-
-    const employee = select.dataset.employee;
-    const date = select.dataset.date;
-    const type = select.value;
-
-    const startInput = document.querySelector(
-        `.start-input[data-employee="${employee}"][data-date="${date}"]`
-    );
-
-    const endInput = document.querySelector(
-        `.end-input[data-employee="${employee}"][data-date="${date}"]`
-    );
-
-    const breakInput = document.querySelector(
-        `.break-input[data-employee="${employee}"][data-date="${date}"]`
-    );
-
-
-    if (type === "1-ва смяна") {
-
-        startInput.value = "09:00";
-        endInput.value = "16:00";
-        breakInput.value = "30 мин.";
-    }
-
-
-    else if (type === "2-ра смяна") {
-
-        startInput.value = "14:00";
-        endInput.value = "21:00";
-        breakInput.value = "30 мин.";
-    }
-
-
-    else if (type === "Р") {
-
-        startInput.value = "09:00";
-        endInput.value = "18:00";
-        breakInput.value = "30 мин.";
-    }
-
-
-    else if (type === "Ц") {
-
-        startInput.value = "09:00";
-        endInput.value = "21:00";
-        breakInput.value = "60 мин.";
-    }
-
-
-    else if (
-        type === "Почивка" ||
-        type === "Отпуска" ||
-        type === "Самоотлъчка" ||
-        type === ""
-    ) {
-
-        startInput.value = "";
-        endInput.value = "";
-        breakInput.value = "";
-    }
-
-
-    else if (type === "Персонална") {
-
-        /*
-           При персонална смяна оставяме полетата
-           свободни за въвеждане от Петя.
-        */
-
-        startInput.value = "";
-        endInput.value = "";
-        breakInput.value = "";
-    }
-}
-
-
-/* =========================================================
-   ЗАПАЗВАНЕ НА АДМИН ПРОМЕНИТЕ
-   ========================================================= */
-
-function saveAdminSchedule() {
-
-    if (!users[currentUser]?.admin) {
-        return;
-    }
-
-    const selects =
-        document.querySelectorAll(".shift-select");
-
-    selects.forEach(select => {
-
-        const employee = select.dataset.employee;
-        const date = select.dataset.date;
-
-        const startInput =
-            document.querySelector(
-                `.start-input[data-employee="${employee}"][data-date="${date}"]`
-            );
-
-        const endInput =
-            document.querySelector(
-                `.end-input[data-employee="${employee}"][data-date="${date}"]`
-            );
-
-        const breakInput =
-            document.querySelector(
-                `.break-input[data-employee="${employee}"][data-date="${date}"]`
-            );
-
-
-        if (!schedules[employee]) {
-            schedules[employee] = {};
         }
 
-        schedules[employee][date] = {
+        await saveAllSchedules();
 
-            type: select.value,
+        showStatus("Графикът е запазен успешно.", "ok");
 
-            start: startInput.value,
+        setTimeout(() => render(), 700);
 
-            end: endInput.value,
+    } catch (e) {
+        showStatus("Грешка при запис: " + e.message, "error");
+    }
+}
 
-            break: breakInput.value
-        };
-    });
+function isWorkShift(shift) {
+    if (!shift) return false;
 
+    return shift.type &&
+        !["Почивка", "Отпуска", "Самоотлъчка"].includes(shift.type);
+}
 
-    localStorage.setItem(
-        "workSchedules",
-        JSON.stringify(schedules)
+function openSwap(date) {
+    const content = document.getElementById("content");
+
+    const others = employees.filter(e =>
+        e !== currentUser &&
+        e !== "Петя"
     );
 
+    content.innerHTML = `
+        <div class="card">
+            <h2>Предложи размяна</h2>
 
-    const message =
-        document.getElementById("saveMessage");
+            <p>
+                Твоята смяна:
+                <strong>${date}</strong>
+                —
+                ${schedules[currentUser]?.[date]?.type || ""}
+                ${schedules[currentUser]?.[date]?.start || ""}
+                ${schedules[currentUser]?.[date]?.end
+                    ? "– " + schedules[currentUser][date].end
+                    : ""}
+            </p>
 
-    message.textContent =
-        "✓ Всички промени са запазени успешно.";
+            <label>С кого искаш да размениш?</label>
+            <select id="swapReceiver">
+                ${others.map(e => `<option value="${e}">${e}</option>`).join("")}
+            </select>
 
-    setTimeout(() => {
-        message.textContent = "";
-    }, 3000);
+            <label>Неговата/нейната дата</label>
+            <select id="swapReceiverDate">
+                ${getAllDates().map(d => `
+                    <option value="${d.date}">${d.date} — ${d.weekday}</option>
+                `).join("")}
+            </select>
 
+            <label>Съобщение</label>
+            <textarea id="swapMessage"
+                placeholder="Напиши съобщение към служителя..."></textarea>
 
-    /*
-       Обновяваме общия график,
-       за да се виждат веднага промените.
-    */
+```
+        <button class="primary" onclick="sendSwap('${date}')">
+            Изпрати предложение
+        </button>
 
-    showAllSchedule();
+        <button class="secondary" onclick="render()">
+            Отказ
+        </button>
+    </div>
+`;
+```
+
 }
 
+function getAllDates() {
+const result = [];
 
-/* =========================================================
-   СКРИВАНЕ НА СЕКЦИИ
-   ========================================================= */
-
-function hideSections() {
-
-    document
-        .getElementById("myScheduleSection")
-        .classList.add("hidden");
-
-    document
-        .getElementById("allScheduleSection")
-        .classList.add("hidden");
-
-    document
-        .getElementById("adminSection")
-        .classList.add("hidden");
+```
+for (const month of months) {
+    result.push(...getMonthDates(month.year, month.month));
 }
 
+return result;
+```
 
-/* =========================================================
-   ПОКАЗВАНЕ НА ТИПА
-   ========================================================= */
-
-function formatType(type) {
-
-    if (!type) {
-        return `<span class="empty">—</span>`;
-    }
-
-    let className = "";
-
-    if (type === "1-ва смяна") {
-        className = "shift-1";
-    }
-
-    else if (type === "2-ра смяна") {
-        className = "shift-2";
-    }
-
-    else if (type === "Р") {
-        className = "shift-r";
-    }
-
-    else if (type === "Ц") {
-        className = "shift-c";
-    }
-
-    else if (type === "Отпуска") {
-        className = "leave";
-    }
-
-    else if (type === "Самоотлъчка") {
-        className = "absence";
-    }
-
-    else if (type === "Почивка") {
-        className = "rest";
-    }
-
-    return `<span class="badge ${className}">${type}</span>`;
 }
 
+async function sendSwap(myDate) {
+const receiver = document.getElementById("swapReceiver").value;
+const receiverDate = document.getElementById("swapReceiverDate").value;
+const message = document.getElementById("swapMessage").value.trim();
 
-/* =========================================================
-   ENTER = LOGIN
-   ========================================================= */
+```
+if (!receiver || !receiverDate) {
+    alert("Избери служител и дата.");
+    return;
+}
 
-document.addEventListener("keydown", function(event) {
+if (receiver === currentUser) {
+    alert("Не можеш да изпратиш предложение към себе си.");
+    return;
+}
 
-    if (
-        event.key === "Enter" &&
-        !document
-            .getElementById("loginPage")
-            .classList.contains("hidden")
-    ) {
-        login();
-    }
-});
+if (myDate === receiverDate && receiver === currentUser) {
+    alert("Невалидна размяна.");
+    return;
+}
 
-</script>
+const { error } = await supabaseClient
+    .from("shift_requests")
+    .insert({
+        proposer: currentUser,
+        receiver: receiver,
+        proposer_date: toDbDate(myDate),
+        receiver_date: toDbDate(receiverDate),
+        message: message,
+        status: "pending"
+    });
+
+if (error) {
+    alert("Грешка: " + error.message);
+    return;
+}
+
+await loadRequests();
+
+alert("Предложението е изпратено. Изчаква се отговор от служителя.");
+currentPage = "requests";
+renderRequestsPage();
+```
+
+}
+
+function renderRequestsPage() {
+const content = document.getElementById("content");
+
+```
+const received = requests.filter(r => r.receiver === currentUser);
+const sent = requests.filter(r => r.proposer === currentUser);
+
+content.innerHTML = `
+    <div class="card">
+        <h2>Размени на смени</h2>
+
+        <h3>Получени предложения</h3>
+
+        ${received.length
+            ? received.map(renderRequest).join("")
+            : "<p class='small'>Няма получени предложения.</p>"}
+
+        <hr>
+
+        <h3>Изпратени предложения</h3>
+
+        ${sent.length
+            ? sent.map(renderRequest).join("")
+            : "<p class='small'>Няма изпратени предложения.</p>"}
+    </div>
+
+    ${currentUser === "Петя" ? `
+        <div class="card">
+            <h2>Одобрение от Петя</h2>
+            ${renderAdminRequests()}
+        </div>
+    ` : ""}
+`;
+```
+
+}
+
+function renderMyRequestList() {
+const mine = requests.filter(r =>
+r.proposer === currentUser ||
+r.receiver === currentUser
+);
+
+```
+if (!mine.length) {
+    return "<p class='small'>Няма предложения.</p>";
+}
+
+return mine.slice(0, 10).map(renderRequest).join("");
+```
+
+}
+
+function renderRequest(r) {
+const myReceived = r.receiver === currentUser;
+
+```
+let statusText = {
+    pending: "Чака отговор",
+    accepted: "Прието – чака Петя",
+    rejected: "Отказано",
+    approved: "Одобрено от Петя"
+}[r.status] || r.status;
+
+const proposerShift = schedules[r.proposer]?.[fromDbDate(r.proposer_date)];
+const receiverShift = schedules[r.receiver]?.[fromDbDate(r.receiver_date)];
+
+return `
+    <div class="request ${r.status}">
+        <div class="request-title">
+            ${r.proposer} → ${r.receiver}
+        </div>
+
+        <div>
+            <strong>${fromDbDate(r.proposer_date)}</strong>
+            —
+            ${proposerShift?.type || "няма смена"}
+            ↔
+            <strong>${fromDbDate(r.receiver_date)}</strong>
+            —
+            ${receiverShift?.type || "няма смена"}
+        </div>
+
+        ${r.message
+            ? `<p>💬 ${escapeHtml(r.message)}</p>`
+            : ""}
+
+        <span class="badge">${statusText}</span>
+
+        ${myReceived && r.status === "pending" ? `
+            <div class="request-buttons">
+                <button class="success"
+                    onclick="respondRequest(${r.id}, 'accepted')">
+                    Приеми
+                </button>
+
+                <button class="danger"
+                    onclick="respondRequest(${r.id}, 'rejected')">
+                    Откажи
+                </button>
+            </div>
+        ` : ""}
+
+        ${currentUser === "Петя" && r.status === "accepted" ? `
+            <div class="request-buttons">
+                <button class="success"
+                    onclick="approveRequest(${r.id})">
+                    Одобри размяната
+                </button>
+
+                <button class="danger"
+                    onclick="adminRejectRequest(${r.id})">
+                    Откажи
+                </button>
+            </div>
+        ` : ""}
+    </div>
+`;
+```
+
+}
+
+function renderAdminRequests() {
+const waiting = requests.filter(r => r.status === "accepted");
+
+```
+if (!waiting.length) {
+    return "<p class='small'>Няма размени, чакащи одобрение.</p>";
+}
+
+return waiting.map(renderRequest).join("");
+```
+
+}
+
+async function respondRequest(id, status) {
+const { error } = await supabaseClient
+.from("shift_requests")
+.update({
+status: status,
+receiver_response_at: new Date().toISOString()
+})
+.eq("id", id)
+.eq("receiver", currentUser)
+.eq("status", "pending");
+
+```
+if (error) {
+    alert("Грешка: " + error.message);
+    return;
+}
+
+await loadRequests();
+renderRequestsPage();
+```
+
+}
+
+async function adminRejectRequest(id) {
+const { error } = await supabaseClient
+.from("shift_requests")
+.update({
+status: "rejected",
+admin_decision_at: new Date().toISOString()
+})
+.eq("id", id)
+.eq("status", "accepted");
+
+```
+if (error) {
+    alert("Грешка: " + error.message);
+    return;
+}
+
+await loadRequests();
+renderRequestsPage();
+```
+
+}
+
+async function approveRequest(id) {
+const request = requests.find(r => r.id === id);
+
+```
+if (!request || request.status !== "accepted") {
+    alert("Това предложение вече не чака одобрение.");
+    return;
+}
+
+const proposerDate = fromDbDate(request.proposer_date);
+const receiverDate = fromDbDate(request.receiver_date);
+
+const proposerShift = schedules[request.proposer]?.[proposerDate];
+const receiverShift = schedules[request.receiver]?.[receiverDate];
+
+if (!proposerShift || !receiverShift) {
+    alert("Не могат да се намерят двете смени.");
+    return;
+}
+
+const proposerCopy = { ...proposerShift };
+const receiverCopy = { ...receiverShift };
+
+schedules[request.proposer][proposerDate] = receiverCopy;
+schedules[request.receiver][receiverDate] = proposerCopy;
+
+try {
+    await saveAllSchedules();
+
+    const { error } = await supabaseClient
+        .from("shift_requests")
+        .update({
+            status: "approved",
+            admin_decision_at: new Date().toISOString()
+        })
+        .eq("id", id)
+        .eq("status", "accepted");
+
+    if (error) throw error;
+
+    await loadSchedules();
+    await loadRequests();
+
+    alert("Размяната е одобрена и графикът е променен.");
+
+    currentPage = "admin";
+    render();
+
+} catch (e) {
+    alert("Грешка при одобряване: " + e.message);
+
+    await loadSchedules();
+    render();
+}
+```
+
+}
+
+function escapeHtml(text) {
+return String(text)
+.replaceAll("&", "&")
+.replaceAll("<", "<")
+.replaceAll(">", ">")
+.replaceAll('"', """)
+.replaceAll("'", "'");
+}
+
+loginPage(); </script>
 
 </body>
 </html>
-```
