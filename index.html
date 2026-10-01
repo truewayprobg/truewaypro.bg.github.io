@@ -9,306 +9,217 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-* {
-    box-sizing: border-box;
+*{box-sizing:border-box}
+
+body{
+    margin:0;
+    font-family:Arial,sans-serif;
+    background:#f1f5f9;
+    color:#1e293b
 }
 
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    background: #f1f5f9;
-    color: #1e293b;
+button,select,input,textarea{
+    font:inherit
 }
 
-button,
-select,
-input,
-textarea {
-    font: inherit;
+button{
+    border:0;
+    border-radius:8px;
+    padding:10px 16px;
+    cursor:pointer;
+    background:#2563eb;
+    color:white;
+    font-weight:bold
 }
 
-button {
-    border: 0;
-    border-radius: 8px;
-    padding: 10px 16px;
-    cursor: pointer;
-    background: #2563eb;
-    color: white;
-    font-weight: bold;
+button:hover{opacity:.9}
+button:disabled{opacity:.5;cursor:not-allowed}
+.hidden{display:none!important}
+
+.login-box{
+    width:360px;
+    max-width:calc(100% - 30px);
+    margin:100px auto;
+    background:white;
+    padding:30px;
+    border-radius:16px;
+    box-shadow:0 10px 30px rgba(0,0,0,.12)
 }
 
-button:hover {
-    opacity: .9;
-}
-
-button:disabled {
-    opacity: .5;
-    cursor: not-allowed;
-}
-
-.hidden {
-    display: none !important;
-}
-
-/* LOGIN */
-
-.login-box {
-    width: 360px;
-    max-width: calc(100% - 30px);
-    margin: 100px auto;
-    background: white;
-    padding: 30px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.12);
-}
-
-.login-box h1 {
-    text-align: center;
-    margin-top: 0;
-}
+.login-box h1{text-align:center;margin-top:0}
 
 .login-box input,
-.login-box select {
-    width: 100%;
-    padding: 12px;
-    margin-bottom: 12px;
-    border: 1px solid #cbd5e1;
-    border-radius: 8px;
+.login-box select{
+    width:100%;
+    padding:12px;
+    margin-bottom:12px;
+    border:1px solid #cbd5e1;
+    border-radius:8px
 }
 
-/* HEADER */
-
-header {
-    background: #0f172a;
-    color: white;
-    padding: 15px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 15px;
-    flex-wrap: wrap;
+header{
+    background:#0f172a;
+    color:white;
+    padding:15px 20px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    flex-wrap:wrap
 }
 
-header h2 {
-    margin: 0;
+header h2{margin:0}
+
+.container{
+    padding:20px;
+    max-width:1800px;
+    margin:auto
 }
 
-/* CONTAINER */
-
-.container {
-    padding: 20px;
-    max-width: 1800px;
-    margin: auto;
+.month-buttons{
+    display:flex;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:20px
 }
 
-/* MONTHS */
+.month-buttons button{background:#64748b}
+.month-buttons button.active{background:#2563eb}
 
-.month-buttons {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    margin-bottom: 20px;
+.card{
+    background:white;
+    border-radius:14px;
+    padding:18px;
+    margin-bottom:20px;
+    box-shadow:0 4px 15px rgba(0,0,0,.07)
 }
 
-.month-buttons button {
-    background: #64748b;
+.card h2{margin-top:0}
+
+.table-wrapper{
+    overflow-x:auto;
+    width:100%
 }
 
-.month-buttons button.active {
-    background: #2563eb;
+table{
+    border-collapse:collapse;
+    width:max-content;
+    min-width:100%
 }
 
-/* CARD */
-
-.card {
-    background: white;
-    border-radius: 14px;
-    padding: 18px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 15px rgba(0,0,0,.07);
+th,td{
+    border:1px solid #cbd5e1;
+    padding:6px;
+    text-align:center;
+    white-space:nowrap
 }
 
-.card h2 {
-    margin-top: 0;
+th{
+    background:#e2e8f0;
+    position:sticky;
+    top:0;
+    z-index:2
 }
 
-/* TABLE */
-
-.table-wrapper {
-    overflow-x: auto;
-    width: 100%;
+.employee-name{
+    position:sticky;
+    left:0;
+    z-index:3;
+    background:#f8fafc;
+    font-weight:bold
 }
 
-table {
-    border-collapse: collapse;
-    width: max-content;
-    min-width: 100%;
-}
-
-th,
-td {
-    border: 1px solid #cbd5e1;
-    padding: 6px;
-    text-align: center;
-    white-space: nowrap;
-}
-
-th {
-    background: #e2e8f0;
-    position: sticky;
-    top: 0;
-    z-index: 2;
-}
-
-.employee-name {
-    position: sticky;
-    left: 0;
-    z-index: 3;
-    background: #f8fafc;
-    font-weight: bold;
-}
-
-.day-cell {
-    min-width: 150px;
-}
-
-/* ADMIN */
+.day-cell{min-width:150px}
 
 .admin-table select,
-.admin-table input {
-    width: 100%;
-    min-width: 105px;
-    padding: 6px;
-    border: 1px solid #cbd5e1;
-    border-radius: 5px;
+.admin-table input{
+    width:100%;
+    min-width:105px;
+    padding:6px;
+    border:1px solid #cbd5e1;
+    border-radius:5px
 }
 
-.admin-table input[type="time"] {
-    min-width: 90px;
+.admin-table input[type="time"]{min-width:90px}
+.admin-table input[type="text"]{min-width:90px}
+
+.save-box{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    flex-wrap:wrap;
+    margin-bottom:15px
 }
 
-.admin-table input[type="text"] {
-    min-width: 90px;
+.save-button{
+    background:#16a34a;
+    font-size:16px;
+    padding:12px 20px
 }
 
-/* SAVE */
+.save-status{font-weight:bold}
+.success{color:#15803d}
+.error{color:#dc2626}
 
-.save-box {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-bottom: 15px;
-}
-
-.save-button {
-    background: #16a34a;
-    font-size: 16px;
-    padding: 12px 20px;
-}
-
-.save-status {
-    font-weight: bold;
-}
-
-.success {
-    color: #15803d;
-}
-
-.error {
-    color: #dc2626;
-}
-
-/* REQUESTS */
-
-.request-form {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-    gap: 12px;
+.request-form{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px
 }
 
 .request-form input,
 .request-form select,
-.request-form textarea {
-    width: 100%;
-    padding: 10px;
-    border: 1px solid #cbd5e1;
-    border-radius: 7px;
+.request-form textarea{
+    width:100%;
+    padding:10px;
+    border:1px solid #cbd5e1;
+    border-radius:7px
 }
 
-.request-form textarea {
-    min-height: 80px;
-    resize: vertical;
+.request-form textarea{
+    min-height:80px;
+    resize:vertical
 }
 
-.request {
-    border: 1px solid #cbd5e1;
-    border-radius: 10px;
-    padding: 12px;
-    margin-bottom: 10px;
+.request{
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+    padding:12px;
+    margin-bottom:10px
 }
 
-.request.pending {
-    border-left: 5px solid #f59e0b;
-}
-
-.request.accepted {
-    border-left: 5px solid #16a34a;
-}
-
+.request.pending{border-left:5px solid #f59e0b}
+.request.accepted{border-left:5px solid #16a34a}
 .request.rejected,
-.request.admin_rejected {
-    border-left: 5px solid #dc2626;
+.request.admin_rejected{border-left:5px solid #dc2626}
+.request.admin_approved{border-left:5px solid #16a34a}
+
+.request-buttons{
+    display:flex;
+    gap:8px;
+    margin-top:10px;
+    flex-wrap:wrap
 }
 
-.request.admin_approved {
-    border-left: 5px solid #16a34a;
+.btn-green{background:#16a34a}
+.btn-red{background:#dc2626}
+.btn-gray{background:#64748b}
+
+.shift-info{
+    font-size:12px;
+    color:#475569;
+    margin-top:3px
 }
 
-.request-buttons {
-    display: flex;
-    gap: 8px;
-    margin-top: 10px;
-    flex-wrap: wrap;
-}
-
-.btn-green {
-    background: #16a34a;
-}
-
-.btn-red {
-    background: #dc2626;
-}
-
-.btn-gray {
-    background: #64748b;
-}
-
-.shift-info {
-    font-size: 12px;
-    color: #475569;
-    margin-top: 3px;
-}
-
-@media (max-width: 700px) {
-    .container {
-        padding: 10px;
-    }
-
-    header {
-        padding: 12px;
-    }
-
-    .login-box {
-        margin-top: 50px;
-    }
+@media(max-width:700px){
+    .container{padding:10px}
+    header{padding:12px}
+    .login-box{margin-top:50px}
 }
 </style>
 </head>
 
 <body>
-
-<!-- LOGIN -->
 
 <div id="loginPage" class="login-box">
 
@@ -324,10 +235,7 @@ th {
         placeholder="Парола"
     >
 
-    <button
-        onclick="login()"
-        style="width:100%;"
-    >
+    <button onclick="login()" style="width:100%">
         Вход
     </button>
 
@@ -336,8 +244,6 @@ th {
 </div>
 
 
-<!-- APP -->
-
 <div id="app" class="hidden">
 
 <header>
@@ -345,18 +251,11 @@ th {
     <h2>📅 Работен график</h2>
 
     <div>
-
         <span id="loggedUser"></span>
-
         &nbsp;
-
-        <button
-            onclick="logout()"
-            class="btn-gray"
-        >
+        <button onclick="logout()" class="btn-gray">
             Изход
         </button>
-
     </div>
 
 </header>
@@ -364,15 +263,11 @@ th {
 
 <div class="container">
 
-    <!-- MONTHS -->
-
     <div
         class="month-buttons"
         id="monthButtons"
     ></div>
 
-
-    <!-- MY SCHEDULE -->
 
     <div class="card">
 
@@ -383,8 +278,6 @@ th {
     </div>
 
 
-    <!-- ALL SCHEDULE -->
-
     <div class="card">
 
         <h2>График на всички служители</h2>
@@ -393,8 +286,6 @@ th {
 
     </div>
 
-
-    <!-- ADMIN -->
 
     <div
         id="adminSection"
@@ -423,8 +314,6 @@ th {
         <p>
             Избери смяна и часовете ще се попълнят автоматично.
             Всички работни смени са с <b>60 минути почивка</b>.
-            Промените се записват едва след натискане на
-            <b>„Запази всички промени“</b>.
         </p>
 
         <div id="adminSchedule"></div>
@@ -432,15 +321,13 @@ th {
     </div>
 
 
-    <!-- SHIFT REQUESTS -->
-
     <div class="card">
 
         <h2>🔄 Размяна на смени</h2>
 
         <div id="requestForm"></div>
 
-        <hr style="margin:20px 0;">
+        <hr style="margin:20px 0">
 
         <h3>Заявки</h3>
 
@@ -453,10 +340,6 @@ th {
 
 
 <script>
-
-/* =========================================================
-   SUPABASE
-========================================================= */
 
 const SUPABASE_URL =
     "https://feahxunujegspmfgicfw.supabase.co";
@@ -471,61 +354,38 @@ const supabaseClient =
     );
 
 
-/* =========================================================
-   USERS
-========================================================= */
-
 const users = [
 
+    {name:"Иван Панов",password:"1994"},
+
+    {name:"Алехандро Петров",password:"2005"},
+
+    {name:"Велислав Вълов",password:"2008"},
+
+    {name:"Илион Иванов",password:"2004"},
+
     {
-        name: "Иван Панов",
-        password: "1994"
+        name:"Илиян Игнатов",
+        password:"",
+        septemberOnly:true
     },
 
     {
-        name: "Алехандро Петров",
-        password: "2005"
+        name:"Денислав Андонов",
+        password:"",
+        septemberOnly:true
     },
 
-    {
-        name: "Велислав Вълов",
-        password: "2008"
-    },
+    {name:"Пламена Николова",password:"2002"},
 
     {
-        name: "Илион Иванов",
-        password: "2004"
-    },
-
-    {
-        name: "Илиян Игнатов",
-        password: "",
-        septemberOnly: true
-    },
-
-    {
-        name: "Денислав Андонов",
-        password: "",
-        septemberOnly: true
-    },
-
-    {
-        name: "Пламена Николова",
-        password: "5555"
-    },
-
-    {
-        name: "Петя",
-        password: "0502",
-        admin: true
+        name:"Петя",
+        password:"0502",
+        admin:true
     }
 
 ];
 
-
-/* =========================================================
-   EMPLOYEES
-========================================================= */
 
 const employees = [
 
@@ -540,6 +400,7 @@ const employees = [
 
 ];
 
+
 const permanentEmployees = [
 
     "Иван Панов",
@@ -551,240 +412,208 @@ const permanentEmployees = [
 
 ];
 
-const septemberOnlyEmployees = [
-
-    "Илиян Игнатов",
-    "Денислав Андонов"
-
-];
-
-
-/* =========================================================
-   MONTHS
-========================================================= */
 
 const months = [
 
     {
-        key: "2026-09",
-        name: "Септември 2026",
-        year: 2026,
-        month: 8
+        key:"2026-09",
+        name:"Септември 2026",
+        year:2026,
+        month:8
     },
 
     {
-        key: "2026-10",
-        name: "Октомври 2026",
-        year: 2026,
-        month: 9
+        key:"2026-10",
+        name:"Октомври 2026",
+        year:2026,
+        month:9
     },
 
     {
-        key: "2026-11",
-        name: "Ноември 2026",
-        year: 2026,
-        month: 10
+        key:"2026-11",
+        name:"Ноември 2026",
+        year:2026,
+        month:10
     },
 
     {
-        key: "2026-12",
-        name: "Декември 2026",
-        year: 2026,
-        month: 11
+        key:"2026-12",
+        name:"Декември 2026",
+        year:2026,
+        month:11
     }
 
 ];
 
 
 let currentMonth = "2026-09";
-
 let currentUser = null;
-
 let schedules = {};
-
 let requests = [];
 
 
-/* =========================================================
-   АВТОМАТИЧНИ СМЕНИ
-========================================================= */
-
 const defaultTimes = {
 
-    "1-ва смяна": {
-        start: "09:00",
-        end: "16:00",
-        break: "60 мин"
+    "1-ва смяна":{
+        start:"09:00",
+        end:"16:00",
+        break:"60 мин"
     },
 
-    "2-ра смяна": {
-        start: "14:00",
-        end: "21:00",
-        break: "60 мин"
+    "2-ра смяна":{
+        start:"14:00",
+        end:"21:00",
+        break:"60 мин"
     },
 
-    "Р": {
-        start: "09:00",
-        end: "18:00",
-        break: "60 мин"
+    "Р":{
+        start:"09:00",
+        end:"18:00",
+        break:"60 мин"
     },
 
-    "Ц": {
-        start: "09:00",
-        end: "21:00",
-        break: "60 мин"
+    "Смяна управител":{
+        start:"09:00",
+        end:"17:00",
+        break:"60 мин"
     },
 
-    "Отпуска": {
-        start: "",
-        end: "",
-        break: ""
+    "Ц":{
+        start:"09:00",
+        end:"21:00",
+        break:"60 мин"
     },
 
-    "Самоотлъчка": {
-        start: "",
-        end: "",
-        break: ""
+    "Отпуска":{
+        start:"",
+        end:"",
+        break:""
     },
 
-    "Персонална": {
-        start: "",
-        end: "",
-        break: ""
+    "Самоотлъчка":{
+        start:"",
+        end:"",
+        break:""
     },
 
-    "": {
-        start: "",
-        end: "",
-        break: ""
+    "Персонална":{
+        start:"",
+        end:"",
+        break:""
+    },
+
+    "":{
+        start:"",
+        end:"",
+        break:""
     }
 
 };
 
 
-/* =========================================================
-   НАЧАЛНИ ДАННИ
-========================================================= */
-
 const initialData = {
 
-    "Иван Панов": {
+    "Иван Панов":{
 
         "2026-09-28":
-            ["1-ва смяна", "09:00", "16:00", "60 мин"],
+            ["1-ва смяна","09:00","16:00","60 мин"],
 
         "2026-09-29":
-            ["1-ва смяна", "09:00", "16:00", "60 мин"],
+            ["1-ва смяна","09:00","16:00","60 мин"],
 
         "2026-09-30":
-            ["", "", "", "60 мин"],
+            ["","","","60 мин"],
 
         "2026-10-01":
-            ["Р", "09:00", "18:00", "60 мин"],
+            ["Р","09:00","18:00","60 мин"],
 
         "2026-10-02":
-            ["Ц", "09:00", "21:00", "60 мин"]
+            ["Ц","09:00","21:00","60 мин"]
 
     },
 
-
-    "Алехандро Петров": {
+    "Алехандро Петров":{
 
         "2026-09-28":
-            ["2-ра смяна", "14:00", "21:00", "60 мин"],
+            ["2-ра смяна","14:00","21:00","60 мин"],
 
         "2026-09-29":
-            ["2-ра смяна", "14:00", "21:00", "60 мин"],
+            ["2-ра смяна","14:00","21:00","60 мин"],
 
         "2026-09-30":
-            ["1-ва смяна", "09:00", "16:00", "60 мин"],
+            ["1-ва смяна","09:00","16:00","60 мин"],
 
         "2026-10-01":
-            ["", "", "", "60 мин"],
+            ["","","","60 мин"],
 
         "2026-10-02":
-            ["2-ра смяна", "14:00", "21:00", "60 мин"]
+            ["2-ра смяна","14:00","21:00","60 мин"]
 
     },
 
-
-    "Велислав Вълов": {
+    "Велислав Вълов":{
 
         "2026-09-28":
-            ["1-ва смяна", "09:00", "16:00", "60 мин"],
+            ["1-ва смяна","09:00","16:00","60 мин"],
 
         "2026-09-29":
-            ["", "", "", ""],
+            ["","","",""],
 
         "2026-09-30":
-            ["1-ва смяна", "09:00", "16:00", "60 мин"],
+            ["1-ва смяна","09:00","16:00","60 мин"],
 
         "2026-10-01":
-            ["2-ра смяна", "14:00", "21:00", "60 мин"],
+            ["2-ра смяна","14:00","21:00","60 мин"],
 
         "2026-10-02":
-            ["Р", "09:00", "18:00", "60 мин"]
+            ["Р","09:00","18:00","60 мин"]
 
     },
 
-
-    "Илион Иванов": {
+    "Илион Иванов":{
 
         "2026-09-28":
-            ["2-ра смяна", "14:00", "21:00", "60 мин"],
+            ["2-ра смяна","14:00","21:00","60 мин"],
 
         "2026-09-29":
-            ["1-ва смяна", "09:00", "16:00", "60 мин"],
+            ["1-ва смяна","09:00","16:00","60 мин"],
 
         "2026-09-30":
-            ["2-ра смяна", "14:00", "21:00", "60 мин"],
+            ["2-ра смяна","14:00","21:00","60 мин"],
 
         "2026-10-01":
-            ["Р", "09:00", "18:00", "60 мин"],
+            ["Р","09:00","18:00","60 мин"],
 
         "2026-10-02":
-            ["", "", "", ""]
+            ["","","",""]
 
     },
 
-
-    "Илиян Игнатов": {
+    "Илиян Игнатов":{
 
         "2026-09-28":
-            ["2-ра смяна", "14:00", "21:00", "60 мин"],
+            ["2-ра смяна","14:00","21:00","60 мин"],
 
         "2026-09-29":
-            ["2-ра смяна", "14:00", "21:00", "60 мин"],
+            ["2-ра смяна","14:00","21:00","60 мин"],
 
         "2026-09-30":
-            ["1-ва смяна", "09:00", "16:00", "60 мин"]
+            ["1-ва смяна","09:00","16:00","60 мин"]
 
     },
 
+    "Денислав Андонов":{},
 
-    "Денислав Андонов": {},
+    "Пламена Николова":{},
 
-    "Пламена Николова": {},
-
-    "Петя": {}
+    "Петя":{}
 
 };
 
 
-/* =========================================================
-   ПОМОЩНИ ФУНКЦИИ
-========================================================= */
+function getEmployeesForMonth(monthKey){
 
-function isSeptemberOnly(name) {
-
-    return septemberOnlyEmployees.includes(name);
-
-}
-
-
-function getEmployeesForMonth(monthKey) {
-
-    if (monthKey === "2026-09") {
+    if(monthKey==="2026-09"){
         return employees.slice();
     }
 
@@ -793,16 +622,16 @@ function getEmployeesForMonth(monthKey) {
 }
 
 
-function getMonthDays(monthKey) {
+function getMonthDays(monthKey){
 
     const month =
         months.find(
-            m => m.key === monthKey
+            m=>m.key===monthKey
         );
 
-    if (!month) return [];
+    if(!month)return[];
 
-    const days = [];
+    const days=[];
 
     const date =
         new Date(
@@ -811,30 +640,31 @@ function getMonthDays(monthKey) {
             1
         );
 
-    while (
-        date.getMonth() === month.month
-    ) {
+    while(
+        date.getMonth()===month.month
+    ){
 
         const year =
             date.getFullYear();
 
         const monthNumber =
             String(
-                date.getMonth() + 1
-            ).padStart(2, "0");
+                date.getMonth()+1
+            ).padStart(2,"0");
 
         const day =
             String(
                 date.getDate()
-            ).padStart(2, "0");
+            ).padStart(2,"0");
 
         days.push(
             `${year}-${monthNumber}-${day}`
         );
 
         date.setDate(
-            date.getDate() + 1
+            date.getDate()+1
         );
+
     }
 
     return days;
@@ -842,7 +672,7 @@ function getMonthDays(monthKey) {
 }
 
 
-function formatDate(dateString) {
+function formatDate(dateString){
 
     const parts =
         dateString.split("-");
@@ -852,15 +682,14 @@ function formatDate(dateString) {
 }
 
 
-function dayName(dateString) {
+function dayName(dateString){
 
     const date =
         new Date(
-            dateString + "T00:00:00"
+            dateString+"T00:00:00"
         );
 
-    const names = [
-
+    const names=[
         "Неделя",
         "Понеделник",
         "Вторник",
@@ -868,33 +697,27 @@ function dayName(dateString) {
         "Четвъртък",
         "Петък",
         "Събота"
-
     ];
 
-    return names[
-        date.getDay()
-    ];
+    return names[date.getDay()];
 
 }
 
 
-function ensureSchedule(
-    employee,
-    date
-) {
+function ensureSchedule(employee,date){
 
-    if (!schedules[employee]) {
-        schedules[employee] = {};
+    if(!schedules[employee]){
+        schedules[employee]={};
     }
 
-    if (!schedules[employee][date]) {
+    if(!schedules[employee][date]){
 
-        schedules[employee][date] = {
+        schedules[employee][date]={
 
-            shift_type: "",
-            start_time: "",
-            end_time: "",
-            break_time: ""
+            shift_type:"",
+            start_time:"",
+            end_time:"",
+            break_time:""
 
         };
 
@@ -903,30 +726,16 @@ function ensureSchedule(
 }
 
 
-function getSchedule(
-    employee,
-    date
-) {
+function getSchedule(employee,date){
 
-    ensureSchedule(
-        employee,
-        date
-    );
+    ensureSchedule(employee,date);
 
-    return schedules[
-        employee
-    ][
-        date
-    ];
+    return schedules[employee][date];
 
 }
 
 
-/* =========================================================
-   LOGIN
-========================================================= */
-
-function setupLoginUsers() {
+function setupLoginUsers(){
 
     const select =
         document.getElementById(
@@ -936,29 +745,24 @@ function setupLoginUsers() {
     select.innerHTML =
         '<option value="">Избери име</option>';
 
-    users.forEach(user => {
+    users.forEach(user=>{
 
         const option =
             document.createElement(
                 "option"
             );
 
-        option.value =
-            user.name;
+        option.value=user.name;
+        option.textContent=user.name;
 
-        option.textContent =
-            user.name;
-
-        select.appendChild(
-            option
-        );
+        select.appendChild(option);
 
     });
 
 }
 
 
-async function login() {
+async function login(){
 
     const name =
         document.getElementById(
@@ -972,15 +776,15 @@ async function login() {
 
     const user =
         users.find(
-            u => u.name === name
+            u=>u.name===name
         );
 
 
-    if (!user) {
+    if(!user){
 
         document.getElementById(
             "loginError"
-        ).textContent =
+        ).textContent=
             "Моля, избери име.";
 
         return;
@@ -988,31 +792,28 @@ async function login() {
     }
 
 
-    if (user.septemberOnly) {
+    if(user.septemberOnly){
 
-        if (password !== "") {
+        if(password!==""){
 
             document.getElementById(
                 "loginError"
-            ).textContent =
+            ).textContent=
                 "Този потребител няма парола.";
 
             return;
 
         }
 
-        currentMonth =
-            "2026-09";
+        currentMonth="2026-09";
 
-    } else {
+    }else{
 
-        if (
-            password !== user.password
-        ) {
+        if(password!==user.password){
 
             document.getElementById(
                 "loginError"
-            ).textContent =
+            ).textContent=
                 "Грешна парола.";
 
             return;
@@ -1022,31 +823,24 @@ async function login() {
     }
 
 
-    currentUser = user;
+    currentUser=user;
 
 
     document.getElementById(
         "loginPage"
-    ).classList.add(
-        "hidden"
-    );
-
+    ).classList.add("hidden");
 
     document.getElementById(
         "app"
-    ).classList.remove(
-        "hidden"
-    );
-
+    ).classList.remove("hidden");
 
     document.getElementById(
         "loggedUser"
-    ).textContent =
+    ).textContent=
         `👤 ${user.name}`;
 
 
     await loadSchedules();
-
     await loadRequests();
 
     renderAll();
@@ -1054,138 +848,111 @@ async function login() {
 }
 
 
-function logout() {
+function logout(){
 
-    currentUser = null;
+    currentUser=null;
 
     document.getElementById(
         "app"
-    ).classList.add(
-        "hidden"
-    );
+    ).classList.add("hidden");
 
     document.getElementById(
         "loginPage"
-    ).classList.remove(
-        "hidden"
-    );
+    ).classList.remove("hidden");
 
     document.getElementById(
         "loginPassword"
-    ).value = "";
+    ).value="";
 
     document.getElementById(
         "loginError"
-    ).textContent = "";
+    ).textContent="";
 
 }
 
 
-/* =========================================================
-   МЕСЕЦИ
-========================================================= */
-
-function renderMonthButtons() {
+function renderMonthButtons(){
 
     const container =
         document.getElementById(
             "monthButtons"
         );
 
-    container.innerHTML = "";
+    container.innerHTML="";
 
-    months.forEach(month => {
+
+    months.forEach(month=>{
 
         const button =
             document.createElement(
                 "button"
             );
 
-        button.textContent =
+        button.textContent=
             month.name;
 
 
-        if (
-            month.key === currentMonth
-        ) {
-
-            button.classList.add(
-                "active"
-            );
-
+        if(month.key===currentMonth){
+            button.classList.add("active");
         }
 
 
         const disabled =
             currentUser &&
             currentUser.septemberOnly &&
-            month.key !== "2026-09";
+            month.key!=="2026-09";
 
 
-        if (disabled) {
+        if(disabled){
 
-            button.disabled = true;
+            button.disabled=true;
 
-        } else {
+        }else{
 
-            button.onclick = () =>
-                selectMonth(
-                    month.key
-                );
+            button.onclick=()=>{
+                selectMonth(month.key)
+            };
 
         }
 
 
-        container.appendChild(
-            button
-        );
+        container.appendChild(button);
 
     });
 
 }
 
 
-async function selectMonth(
-    monthKey
-) {
+async function selectMonth(monthKey){
 
-    if (
+    if(
         currentUser &&
         currentUser.septemberOnly &&
-        monthKey !== "2026-09"
-    ) {
-
+        monthKey!=="2026-09"
+    ){
         return;
-
     }
 
-    currentMonth =
-        monthKey;
+    currentMonth=monthKey;
 
     renderAll();
 
 }
 
 
-/* =========================================================
-   LOAD SCHEDULES
-========================================================= */
+async function loadSchedules(){
 
-async function loadSchedules() {
-
-    const {
-        data,
-        error
-    } = await supabaseClient
-        .from("work_schedule")
-        .select("*");
+    const {data,error} =
+        await supabaseClient
+            .from("work_schedule")
+            .select("*");
 
 
-    if (error) {
+    if(error){
 
         console.error(error);
 
-        schedules = {};
+        schedules={};
 
         createInitialSchedule();
 
@@ -1194,10 +961,10 @@ async function loadSchedules() {
     }
 
 
-    schedules = {};
+    schedules={};
 
 
-    data.forEach(row => {
+    data.forEach(row=>{
 
         ensureSchedule(
             row.employee,
@@ -1209,19 +976,19 @@ async function loadSchedules() {
             row.employee
         ][
             row.work_date
-        ] = {
+        ]={
 
             shift_type:
-                row.shift_type || "",
+                row.shift_type||"",
 
             start_time:
-                row.start_time || "",
+                row.start_time||"",
 
             end_time:
-                row.end_time || "",
+                row.end_time||"",
 
             break_time:
-                row.break_time || ""
+                row.break_time||""
 
         };
 
@@ -1233,26 +1000,18 @@ async function loadSchedules() {
 }
 
 
-/* =========================================================
-   INITIAL SCHEDULE
-========================================================= */
+function createInitialSchedule(){
 
-function createInitialSchedule(
-    insertToDb = true
-) {
-
-    employees.forEach(employee => {
+    employees.forEach(employee=>{
 
         Object.keys(
-            initialData[employee] || {}
-        ).forEach(date => {
+            initialData[employee]||{}
+        ).forEach(date=>{
 
             const values =
                 initialData[
                     employee
-                ][
-                    date
-                ];
+                ][date];
 
 
             ensureSchedule(
@@ -1264,35 +1023,31 @@ function createInitialSchedule(
             const current =
                 schedules[
                     employee
-                ][
-                    date
-                ];
+                ][date];
 
 
-            if (
+            if(
                 !current.shift_type &&
                 !current.start_time &&
                 !current.end_time &&
                 !current.break_time
-            ) {
+            ){
 
                 schedules[
                     employee
-                ][
-                    date
-                ] = {
+                ][date]={
 
                     shift_type:
-                        values[0] || "",
+                        values[0]||"",
 
                     start_time:
-                        values[1] || "",
+                        values[1]||"",
 
                     end_time:
-                        values[2] || "",
+                        values[2]||"",
 
                     break_time:
-                        values[3] || ""
+                        values[3]||""
 
                 };
 
@@ -1305,11 +1060,7 @@ function createInitialSchedule(
 }
 
 
-/* =========================================================
-   МОЯТА СМЯНА
-========================================================= */
-
-function renderMySchedule() {
+function renderMySchedule(){
 
     const container =
         document.getElementById(
@@ -1317,15 +1068,13 @@ function renderMySchedule() {
         );
 
     const days =
-        getMonthDays(
-            currentMonth
-        );
+        getMonthDays(currentMonth);
 
 
-    if (!currentUser) return;
+    if(!currentUser)return;
 
 
-    let html = `
+    let html=`
 
         <div class="table-wrapper">
 
@@ -1350,7 +1099,7 @@ function renderMySchedule() {
     `;
 
 
-    days.forEach(date => {
+    days.forEach(date=>{
 
         const s =
             getSchedule(
@@ -1360,40 +1109,28 @@ function renderMySchedule() {
 
 
         const shift =
-            s.shift_type ||
-            "Почивка";
+            s.shift_type||"Почивка";
 
 
         const time =
-            s.start_time ||
-            s.end_time
-                ? `${s.start_time} – ${s.end_time}`
-                : "";
+            (s.start_time||s.end_time)
+            ? `${s.start_time} – ${s.end_time}`
+            : "";
 
 
-        html += `
+        html+=`
 
             <tr>
 
-                <td>
-                    ${formatDate(date)}
-                </td>
+                <td>${formatDate(date)}</td>
 
-                <td>
-                    ${dayName(date)}
-                </td>
+                <td>${dayName(date)}</td>
 
-                <td>
-                    ${shift}
-                </td>
+                <td>${shift}</td>
 
-                <td>
-                    ${time}
-                </td>
+                <td>${time}</td>
 
-                <td>
-                    ${s.break_time || ""}
-                </td>
+                <td>${s.break_time||""}</td>
 
             </tr>
 
@@ -1402,28 +1139,21 @@ function renderMySchedule() {
     });
 
 
-    html += `
+    html+=`
 
         </tbody>
-
         </table>
-
         </div>
 
     `;
 
 
-    container.innerHTML =
-        html;
+    container.innerHTML=html;
 
 }
 
 
-/* =========================================================
-   ВСИЧКИ СЛУЖИТЕЛИ
-========================================================= */
-
-function renderAllSchedule() {
+function renderAllSchedule(){
 
     const container =
         document.getElementById(
@@ -1431,17 +1161,13 @@ function renderAllSchedule() {
         );
 
     const days =
-        getMonthDays(
-            currentMonth
-        );
+        getMonthDays(currentMonth);
 
     const visibleEmployees =
-        getEmployeesForMonth(
-            currentMonth
-        );
+        getEmployeesForMonth(currentMonth);
 
 
-    let html = `
+    let html=`
 
         <div class="table-wrapper">
 
@@ -1456,9 +1182,9 @@ function renderAllSchedule() {
     `;
 
 
-    days.forEach(date => {
+    days.forEach(date=>{
 
-        html += `
+        html+=`
 
             <th>
 
@@ -1477,7 +1203,7 @@ function renderAllSchedule() {
     });
 
 
-    html += `
+    html+=`
 
         </tr>
 
@@ -1488,23 +1214,20 @@ function renderAllSchedule() {
     `;
 
 
-    visibleEmployees.forEach(
-        employee => {
+    visibleEmployees.forEach(employee=>{
 
-        html += `
+        html+=`
 
             <tr>
 
                 <td class="employee-name">
-
                     ${employee}
-
                 </td>
 
         `;
 
 
-        days.forEach(date => {
+        days.forEach(date=>{
 
             const s =
                 getSchedule(
@@ -1514,26 +1237,23 @@ function renderAllSchedule() {
 
 
             const shift =
-                s.shift_type ||
-                "Почивка";
+                s.shift_type||"Почивка";
 
 
-            let time = "";
+            let time="";
 
 
-            if (
-                s.start_time ||
+            if(
+                s.start_time||
                 s.end_time
-            ) {
+            ){
 
-                time = `
+                time=`
 
                     <div class="shift-info">
-
                         ${s.start_time}
                         –
                         ${s.end_time}
-
                     </div>
 
                 `;
@@ -1541,13 +1261,11 @@ function renderAllSchedule() {
             }
 
 
-            html += `
+            html+=`
 
                 <td class="day-cell">
 
-                    <b>
-                        ${shift}
-                    </b>
+                    <b>${shift}</b>
 
                     ${time}
 
@@ -1556,7 +1274,7 @@ function renderAllSchedule() {
                         ? `<div class="shift-info">
                             Почивка: ${s.break_time}
                            </div>`
-                        : ""
+                        :""
                     }
 
                 </td>
@@ -1566,37 +1284,26 @@ function renderAllSchedule() {
         });
 
 
-        html += `
-
-            </tr>
-
-        `;
+        html+=`</tr>`;
 
     });
 
 
-    html += `
+    html+=`
 
         </tbody>
-
         </table>
-
         </div>
 
     `;
 
 
-    container.innerHTML =
-        html;
+    container.innerHTML=html;
 
 }
 
 
-/* =========================================================
-   ADMIN PANEL
-========================================================= */
-
-function renderAdmin() {
+function renderAdmin(){
 
     const section =
         document.getElementById(
@@ -1604,23 +1311,19 @@ function renderAdmin() {
         );
 
 
-    if (
-        !currentUser ||
+    if(
+        !currentUser||
         !currentUser.admin
-    ) {
+    ){
 
-        section.classList.add(
-            "hidden"
-        );
+        section.classList.add("hidden");
 
         return;
 
     }
 
 
-    section.classList.remove(
-        "hidden"
-    );
+    section.classList.remove("hidden");
 
 
     const container =
@@ -1628,20 +1331,14 @@ function renderAdmin() {
             "adminSchedule"
         );
 
-
     const days =
-        getMonthDays(
-            currentMonth
-        );
-
+        getMonthDays(currentMonth);
 
     const visibleEmployees =
-        getEmployeesForMonth(
-            currentMonth
-        );
+        getEmployeesForMonth(currentMonth);
 
 
-    let html = `
+    let html=`
 
         <div class="table-wrapper">
 
@@ -1656,9 +1353,9 @@ function renderAdmin() {
     `;
 
 
-    days.forEach(date => {
+    days.forEach(date=>{
 
-        html += `
+        html+=`
 
             <th>
 
@@ -1677,7 +1374,7 @@ function renderAdmin() {
     });
 
 
-    html += `
+    html+=`
 
         </tr>
 
@@ -1688,23 +1385,20 @@ function renderAdmin() {
     `;
 
 
-    visibleEmployees.forEach(
-        employee => {
+    visibleEmployees.forEach(employee=>{
 
-        html += `
+        html+=`
 
             <tr>
 
                 <td class="employee-name">
-
                     ${employee}
-
                 </td>
 
         `;
 
 
-        days.forEach(date => {
+        days.forEach(date=>{
 
             const s =
                 getSchedule(
@@ -1714,12 +1408,10 @@ function renderAdmin() {
 
 
             const encodedEmployee =
-                encodeURIComponent(
-                    employee
-                );
+                encodeURIComponent(employee);
 
 
-            html += `
+            html+=`
 
                 <td
                     class="day-cell"
@@ -1737,18 +1429,16 @@ function renderAdmin() {
                         "
                     >
 
-                        ${shiftOptions(
-                            s.shift_type
-                        )}
+                        ${shiftOptions(s.shift_type)}
 
                     </select>
 
 
-                    <div style="margin-top:5px;">
+                    <div style="margin-top:5px">
 
                         <input
                             type="time"
-                            value="${s.start_time || ""}"
+                            value="${s.start_time||""}"
                             onchange="
                                 changeTimeLocal(
                                     decodeURIComponent('${encodedEmployee}'),
@@ -1761,7 +1451,7 @@ function renderAdmin() {
 
                         <input
                             type="time"
-                            value="${s.end_time || ""}"
+                            value="${s.end_time||""}"
                             onchange="
                                 changeTimeLocal(
                                     decodeURIComponent('${encodedEmployee}'),
@@ -1775,12 +1465,12 @@ function renderAdmin() {
                     </div>
 
 
-                    <div style="margin-top:5px;">
+                    <div style="margin-top:5px">
 
                         <input
                             type="text"
                             placeholder="Почивка"
-                            value="${s.break_time || ""}"
+                            value="${s.break_time||""}"
                             onchange="
                                 changeTimeLocal(
                                     decodeURIComponent('${encodedEmployee}'),
@@ -1800,43 +1490,30 @@ function renderAdmin() {
         });
 
 
-        html += `
-
-            </tr>
-
-        `;
+        html+=`</tr>`;
 
     });
 
 
-    html += `
+    html+=`
 
         </tbody>
-
         </table>
-
         </div>
 
     `;
 
 
-    container.innerHTML =
-        html;
+    container.innerHTML=html;
 
 }
 
 
-/* =========================================================
-   SHIFT OPTIONS
-========================================================= */
+function shiftOptions(selected){
 
-function shiftOptions(
-    selected
-) {
+    const options=[
 
-    const options = [
-
-        ["", "Почивка"],
+        ["","Почивка"],
 
         [
             "1-ва смяна",
@@ -1851,6 +1528,11 @@ function shiftOptions(
         [
             "Р",
             "Р — 09:00–18:00"
+        ],
+
+        [
+            "Смяна управител",
+            "Смяна управител — 09:00–17:00"
         ],
 
         [
@@ -1876,40 +1558,25 @@ function shiftOptions(
     ];
 
 
-    return options.map(
-        option => {
+    return options.map(option=>`
 
-        return `
+        <option
+            value="${option[0]}"
+            ${selected===option[0]?"selected":""}
+        >
+            ${option[1]}
+        </option>
 
-            <option
-                value="${option[0]}"
-                ${
-                    selected === option[0]
-                    ? "selected"
-                    : ""
-                }
-            >
-
-                ${option[1]}
-
-            </option>
-
-        `;
-
-    }).join("");
+    `).join("");
 
 }
 
-
-/* =========================================================
-   ПРОМЯНА НА СМЯНА
-========================================================= */
 
 function changeShiftLocal(
     employee,
     date,
     value
-) {
+){
 
     ensureSchedule(
         employee,
@@ -1919,61 +1586,42 @@ function changeShiftLocal(
 
     schedules[
         employee
-    ][
-        date
-    ].shift_type =
-        value;
+    ][date].shift_type=value;
 
 
-    if (
-        defaultTimes[value]
-    ) {
+    if(defaultTimes[value]){
 
         schedules[
             employee
-        ][
-            date
-        ].start_time =
+        ][date].start_time =
             defaultTimes[value].start;
 
-
         schedules[
             employee
-        ][
-            date
-        ].end_time =
+        ][date].end_time =
             defaultTimes[value].end;
 
-
         schedules[
             employee
-        ][
-            date
-        ].break_time =
+        ][date].break_time =
             defaultTimes[value].break;
 
     }
 
 
-    if (value === "") {
+    if(value===""){
 
         schedules[
             employee
-        ][
-            date
-        ].start_time = "";
+        ][date].start_time="";
 
         schedules[
             employee
-        ][
-            date
-        ].end_time = "";
+        ][date].end_time="";
 
         schedules[
             employee
-        ][
-            date
-        ].break_time = "";
+        ][date].break_time="";
 
     }
 
@@ -1986,46 +1634,32 @@ function changeShiftLocal(
 }
 
 
-/* =========================================================
-   РЪЧНА ПРОМЯНА НА ЧАСОВЕ
-========================================================= */
-
 function changeTimeLocal(
     employee,
     date,
     field,
     value
-) {
+){
 
     ensureSchedule(
         employee,
         date
     );
 
-
     schedules[
         employee
-    ][
-        date
-    ][field] =
-        value;
+    ][date][field]=value;
 
 }
 
 
-/* =========================================================
-   ОБНОВЯВА САМО КОНКРЕТНАТА КЛЕТКА
-========================================================= */
-
 function updateAdminCellDisplay(
     employee,
     date
-) {
+){
 
     const encoded =
-        encodeURIComponent(
-            employee
-        );
+        encodeURIComponent(employee);
 
 
     const cell =
@@ -2034,13 +1668,11 @@ function updateAdminCellDisplay(
         );
 
 
-    if (!cell) return;
+    if(!cell)return;
 
 
     const inputs =
-        cell.querySelectorAll(
-            "input"
-        );
+        cell.querySelectorAll("input");
 
 
     const s =
@@ -2050,46 +1682,30 @@ function updateAdminCellDisplay(
         );
 
 
-    if (inputs[0]) {
-
-        inputs[0].value =
-            s.start_time || "";
-
+    if(inputs[0]){
+        inputs[0].value=
+            s.start_time||"";
     }
 
-
-    if (inputs[1]) {
-
-        inputs[1].value =
-            s.end_time || "";
-
+    if(inputs[1]){
+        inputs[1].value=
+            s.end_time||"";
     }
 
-
-    if (inputs[2]) {
-
-        inputs[2].value =
-            s.break_time || "";
-
+    if(inputs[2]){
+        inputs[2].value=
+            s.break_time||"";
     }
 
 }
 
 
-/* =========================================================
-   ЗАПАЗВАНЕ НА ВСИЧКИ ПРОМЕНИ
-========================================================= */
+async function saveAllAdminChanges(){
 
-async function saveAllAdminChanges() {
-
-    if (
-        !currentUser ||
+    if(
+        !currentUser||
         !currentUser.admin
-    ) {
-
-        return;
-
-    }
+    )return;
 
 
     const button =
@@ -2103,36 +1719,26 @@ async function saveAllAdminChanges() {
         );
 
 
-    button.disabled = true;
+    button.disabled=true;
 
+    status.className="save-status";
 
-    status.className =
-        "save-status";
-
-
-    status.textContent =
+    status.textContent=
         "⏳ Запазване...";
 
 
     const days =
-        getMonthDays(
-            currentMonth
-        );
-
+        getMonthDays(currentMonth);
 
     const visibleEmployees =
-        getEmployeesForMonth(
-            currentMonth
-        );
+        getEmployeesForMonth(currentMonth);
+
+    const rows=[];
 
 
-    const rows = [];
+    visibleEmployees.forEach(employee=>{
 
-
-    visibleEmployees.forEach(
-        employee => {
-
-        days.forEach(date => {
+        days.forEach(date=>{
 
             const s =
                 getSchedule(
@@ -2143,23 +1749,21 @@ async function saveAllAdminChanges() {
 
             rows.push({
 
-                employee:
-                    employee,
+                employee:employee,
 
-                work_date:
-                    date,
+                work_date:date,
 
                 shift_type:
-                    s.shift_type || "",
+                    s.shift_type||"",
 
                 start_time:
-                    s.start_time || "",
+                    s.start_time||"",
 
                 end_time:
-                    s.end_time || "",
+                    s.end_time||"",
 
                 break_time:
-                    s.break_time || "",
+                    s.break_time||"",
 
                 updated_at:
                     new Date().toISOString()
@@ -2171,60 +1775,52 @@ async function saveAllAdminChanges() {
     });
 
 
-    const {
-        error
-    } = await supabaseClient
-        .from("work_schedule")
-        .upsert(
-            rows,
-            {
-                onConflict:
-                    "employee,work_date"
-            }
-        );
+    const {error} =
+        await supabaseClient
+            .from("work_schedule")
+            .upsert(
+                rows,
+                {
+                    onConflict:
+                        "employee,work_date"
+                }
+            );
 
 
-    if (error) {
+    if(error){
 
         console.error(error);
 
-        status.className =
+        status.className=
             "save-status error";
 
-        status.textContent =
+        status.textContent=
             "❌ Грешка при запазването.";
 
-        button.disabled = false;
+        button.disabled=false;
 
         return;
 
     }
 
 
-    status.className =
+    status.className=
         "save-status success";
 
-
-    status.textContent =
+    status.textContent=
         `✅ Всички промени за ${getCurrentMonthName()} са запазени.`;
 
-
-    button.disabled = false;
+    button.disabled=false;
 
 }
 
 
-/* =========================================================
-   ТЕКУЩ МЕСЕЦ
-========================================================= */
-
-function getCurrentMonthName() {
+function getCurrentMonthName(){
 
     const month =
         months.find(
-            m => m.key === currentMonth
+            m=>m.key===currentMonth
         );
-
 
     return month
         ? month.name
@@ -2233,48 +1829,35 @@ function getCurrentMonthName() {
 }
 
 
-/* =========================================================
-   REQUESTS - LOAD
-========================================================= */
+async function loadRequests(){
 
-async function loadRequests() {
-
-    const {
-        data,
-        error
-    } = await supabaseClient
-        .from("shift_requests")
-        .select("*")
-        .order(
-            "created_at",
-            {
-                ascending: false
-            }
-        );
+    const {data,error} =
+        await supabaseClient
+            .from("shift_requests")
+            .select("*")
+            .order(
+                "created_at",
+                {ascending:false}
+            );
 
 
-    if (error) {
+    if(error){
 
         console.error(error);
 
-        requests = [];
+        requests=[];
 
         return;
 
     }
 
 
-    requests =
-        data || [];
+    requests=data||[];
 
 }
 
 
-/* =========================================================
-   REQUEST FORM
-========================================================= */
-
-function renderRequestForm() {
+function renderRequestForm(){
 
     const container =
         document.getElementById(
@@ -2282,32 +1865,26 @@ function renderRequestForm() {
         );
 
 
-    if (!currentUser) return;
+    if(!currentUser)return;
 
 
     const visibleEmployees =
         getEmployeesForMonth(
             currentMonth
         ).filter(
-            name =>
-                name !==
-                currentUser.name
+            name=>name!==currentUser.name
         );
 
 
-    const minDate =
-        currentUser.septemberOnly
-            ? "2026-09-01"
-            : "2026-09-01";
-
+    const minDate="2026-09-01";
 
     const maxDate =
         currentUser.septemberOnly
-            ? "2026-09-30"
-            : "2026-12-31";
+        ? "2026-09-30"
+        : "2026-12-31";
 
 
-    container.innerHTML = `
+    container.innerHTML=`
 
         <div class="request-form">
 
@@ -2324,10 +1901,11 @@ function renderRequestForm() {
                     </option>
 
                     ${visibleEmployees.map(
-                        name =>
-                            `<option value="${name}">
+                        name=>`
+                            <option value="${name}">
                                 ${name}
-                            </option>`
+                            </option>
+                        `
                     ).join("")}
 
                 </select>
@@ -2383,9 +1961,7 @@ function renderRequestForm() {
 
             <div>
 
-                <button
-                    onclick="createRequest()"
-                >
+                <button onclick="createRequest()">
                     Изпрати заявка
                 </button>
 
@@ -2398,29 +1974,22 @@ function renderRequestForm() {
 }
 
 
-/* =========================================================
-   CREATE REQUEST
-========================================================= */
-
-async function createRequest() {
+async function createRequest(){
 
     const receiver =
         document.getElementById(
             "requestReceiver"
         ).value;
 
-
     const proposerDate =
         document.getElementById(
             "proposerDate"
         ).value;
 
-
     const receiverDate =
         document.getElementById(
             "receiverDate"
         ).value;
-
 
     const message =
         document.getElementById(
@@ -2428,11 +1997,11 @@ async function createRequest() {
         ).value;
 
 
-    if (
-        !receiver ||
-        !proposerDate ||
+    if(
+        !receiver||
+        !proposerDate||
         !receiverDate
-    ) {
+    ){
 
         alert(
             "Попълни служителя и двете дати."
@@ -2443,34 +2012,33 @@ async function createRequest() {
     }
 
 
-    const {
-        error
-    } = await supabaseClient
-        .from("shift_requests")
-        .insert({
+    const {error} =
+        await supabaseClient
+            .from("shift_requests")
+            .insert({
 
-            proposer:
-                currentUser.name,
+                proposer:
+                    currentUser.name,
 
-            receiver:
-                receiver,
+                receiver:
+                    receiver,
 
-            proposer_date:
-                proposerDate,
+                proposer_date:
+                    proposerDate,
 
-            receiver_date:
-                receiverDate,
+                receiver_date:
+                    receiverDate,
 
-            message:
-                message || "",
+                message:
+                    message||"",
 
-            status:
-                "pending"
+                status:
+                    "pending"
 
-        });
+            });
 
 
-    if (error) {
+    if(error){
 
         console.error(error);
 
@@ -2483,10 +2051,7 @@ async function createRequest() {
     }
 
 
-    alert(
-        "Заявката е изпратена."
-    );
-
+    alert("Заявката е изпратена.");
 
     await loadRequests();
 
@@ -2495,11 +2060,7 @@ async function createRequest() {
 }
 
 
-/* =========================================================
-   RENDER REQUESTS
-========================================================= */
-
-function renderRequests() {
+function renderRequests(){
 
     const container =
         document.getElementById(
@@ -2507,31 +2068,28 @@ function renderRequests() {
         );
 
 
-    if (!currentUser) return;
+    if(!currentUser)return;
 
 
     const visible =
-        requests.filter(
-            request => {
+        requests.filter(request=>{
 
-        return (
+            return(
+                request.proposer===
+                    currentUser.name||
 
-            request.proposer ===
-                currentUser.name ||
+                request.receiver===
+                    currentUser.name||
 
-            request.receiver ===
-                currentUser.name ||
+                currentUser.admin
+            );
 
-            currentUser.admin
-
-        );
-
-    });
+        });
 
 
-    if (!visible.length) {
+    if(!visible.length){
 
-        container.innerHTML =
+        container.innerHTML=
             "<p>Няма заявки.</p>";
 
         return;
@@ -2539,116 +2097,64 @@ function renderRequests() {
     }
 
 
-    let html = "";
+    let html="";
 
 
-    visible.forEach(
-        request => {
+    visible.forEach(request=>{
 
-        let statusText = "";
-
-
-        if (
-            request.status ===
-            "pending"
-        ) {
-
-            statusText =
-                "⏳ Изчаква";
-
-        }
+        let statusText="";
 
 
-        if (
-            request.status ===
-            "accepted"
-        ) {
+        if(request.status==="pending")
+            statusText="⏳ Изчаква";
 
-            statusText =
-                "✅ Приета от служителя";
+        if(request.status==="accepted")
+            statusText="✅ Приета от служителя";
 
-        }
+        if(request.status==="rejected")
+            statusText="❌ Отхвърлена от служителя";
 
+        if(request.status==="admin_approved")
+            statusText="✅ Одобрена от Петя";
 
-        if (
-            request.status ===
-            "rejected"
-        ) {
-
-            statusText =
-                "❌ Отхвърлена от служителя";
-
-        }
+        if(request.status==="admin_rejected")
+            statusText="❌ Отхвърлена от Петя";
 
 
-        if (
-            request.status ===
-            "admin_approved"
-        ) {
-
-            statusText =
-                "✅ Одобрена от Петя";
-
-        }
-
-
-        if (
-            request.status ===
-            "admin_rejected"
-        ) {
-
-            statusText =
-                "❌ Отхвърлена от Петя";
-
-        }
-
-
-        html += `
+        html+=`
 
             <div class="request ${request.status}">
 
-                <b>
-                    ${request.proposer}
-                </b>
+                <b>${request.proposer}</b>
 
                 и
 
-                <b>
-                    ${request.receiver}
-                </b>
+                <b>${request.receiver}</b>
 
                 искат да разменят смени.
 
                 <br><br>
 
                 📅
-                ${formatDate(
-                    request.proposer_date
-                )}
+                ${formatDate(request.proposer_date)}
 
                 ↔️
 
-                ${formatDate(
-                    request.receiver_date
-                )}
+                ${formatDate(request.receiver_date)}
 
                 <br>
 
                 ${
                     request.message
                     ? `💬 ${request.message}<br>`
-                    : ""
+                    :""
                 }
 
                 <br>
 
-                <b>
-                    ${statusText}
-                </b>
+                <b>${statusText}</b>
 
-                ${renderRequestButtons(
-                    request
-                )}
+                ${renderRequestButtons(request)}
 
             </div>
 
@@ -2657,31 +2163,22 @@ function renderRequests() {
     });
 
 
-    container.innerHTML =
-        html;
+    container.innerHTML=html;
 
 }
 
 
-/* =========================================================
-   REQUEST BUTTONS
-========================================================= */
+function renderRequestButtons(request){
 
-function renderRequestButtons(
-    request
-) {
-
-    let html = "";
+    let html="";
 
 
-    if (
-        request.status ===
-            "pending" &&
-        request.receiver ===
-            currentUser.name
-    ) {
+    if(
+        request.status==="pending" &&
+        request.receiver===currentUser.name
+    ){
 
-        html += `
+        html+=`
 
             <div class="request-buttons">
 
@@ -2696,7 +2193,6 @@ function renderRequestButtons(
                 >
                     Приемам
                 </button>
-
 
                 <button
                     class="btn-red"
@@ -2717,13 +2213,12 @@ function renderRequestButtons(
     }
 
 
-    if (
+    if(
         currentUser.admin &&
-        request.status ===
-            "accepted"
-    ) {
+        request.status==="accepted"
+    ){
 
-        html += `
+        html+=`
 
             <div class="request-buttons">
 
@@ -2738,7 +2233,6 @@ function renderRequestButtons(
                 >
                     Одобри размяната
                 </button>
-
 
                 <button
                     class="btn-red"
@@ -2764,41 +2258,30 @@ function renderRequestButtons(
 }
 
 
-/* =========================================================
-   RESPONSE
-========================================================= */
-
 async function respondToRequest(
     id,
     status
-) {
+){
 
-    const {
-        error
-    } = await supabaseClient
-        .from("shift_requests")
-        .update({
+    const {error} =
+        await supabaseClient
+            .from("shift_requests")
+            .update({
 
-            status:
-                status,
+                status:status,
 
-            receiver_response_at:
-                new Date().toISOString()
+                receiver_response_at:
+                    new Date().toISOString()
 
-        })
-        .eq(
-            "id",
-            id
-        );
+            })
+            .eq("id",id);
 
 
-    if (error) {
+    if(error){
 
         console.error(error);
 
-        alert(
-            "Грешка."
-        );
+        alert("Грешка.");
 
         return;
 
@@ -2812,33 +2295,22 @@ async function respondToRequest(
 }
 
 
-/* =========================================================
-   ADMIN DECISION
-========================================================= */
-
 async function adminDecision(
     id,
     status
-) {
+){
 
-    const {
-        data: request,
-        error: requestError
-    } = await supabaseClient
-        .from("shift_requests")
-        .select("*")
-        .eq(
-            "id",
-            id
-        )
-        .single();
+    const {data:request,error:requestError} =
+        await supabaseClient
+            .from("shift_requests")
+            .select("*")
+            .eq("id",id)
+            .single();
 
 
-    if (requestError) {
+    if(requestError){
 
-        console.error(
-            requestError
-        );
+        console.error(requestError);
 
         alert(
             "Не може да се намери заявката."
@@ -2849,17 +2321,13 @@ async function adminDecision(
     }
 
 
-    if (
-        status ===
-        "admin_approved"
-    ) {
+    if(status==="admin_approved"){
 
         const proposerSchedule =
             getSchedule(
                 request.proposer,
                 request.proposer_date
             );
-
 
         const receiverSchedule =
             getSchedule(
@@ -2868,12 +2336,11 @@ async function adminDecision(
             );
 
 
-        const a = {
+        const a={
             ...proposerSchedule
         };
 
-
-        const b = {
+        const b={
             ...receiverSchedule
         };
 
@@ -2882,7 +2349,7 @@ async function adminDecision(
             request.proposer
         ][
             request.proposer_date
-        ] = {
+        ]={
             ...b
         };
 
@@ -2891,12 +2358,12 @@ async function adminDecision(
             request.receiver
         ][
             request.receiver_date
-        ] = {
+        ]={
             ...a
         };
 
 
-        const rows = [
+        const rows=[
 
             {
 
@@ -2907,22 +2374,21 @@ async function adminDecision(
                     request.proposer_date,
 
                 shift_type:
-                    b.shift_type || "",
+                    b.shift_type||"",
 
                 start_time:
-                    b.start_time || "",
+                    b.start_time||"",
 
                 end_time:
-                    b.end_time || "",
+                    b.end_time||"",
 
                 break_time:
-                    b.break_time || "",
+                    b.break_time||"",
 
                 updated_at:
                     new Date().toISOString()
 
             },
-
 
             {
 
@@ -2933,16 +2399,16 @@ async function adminDecision(
                     request.receiver_date,
 
                 shift_type:
-                    a.shift_type || "",
+                    a.shift_type||"",
 
                 start_time:
-                    a.start_time || "",
+                    a.start_time||"",
 
                 end_time:
-                    a.end_time || "",
+                    a.end_time||"",
 
                 break_time:
-                    a.break_time || "",
+                    a.break_time||"",
 
                 updated_at:
                     new Date().toISOString()
@@ -2952,24 +2418,21 @@ async function adminDecision(
         ];
 
 
-        const {
-            error: saveError
-        } = await supabaseClient
-            .from("work_schedule")
-            .upsert(
-                rows,
-                {
-                    onConflict:
-                        "employee,work_date"
-                }
-            );
+        const {error:saveError} =
+            await supabaseClient
+                .from("work_schedule")
+                .upsert(
+                    rows,
+                    {
+                        onConflict:
+                            "employee,work_date"
+                    }
+                );
 
 
-        if (saveError) {
+        if(saveError){
 
-            console.error(
-                saveError
-            );
+            console.error(saveError);
 
             alert(
                 "Грешка при записването на размяната."
@@ -2982,26 +2445,21 @@ async function adminDecision(
     }
 
 
-    const {
-        error
-    } = await supabaseClient
-        .from("shift_requests")
-        .update({
+    const {error} =
+        await supabaseClient
+            .from("shift_requests")
+            .update({
 
-            status:
-                status,
+                status:status,
 
-            admin_decision_at:
-                new Date().toISOString()
+                admin_decision_at:
+                    new Date().toISOString()
 
-        })
-        .eq(
-            "id",
-            id
-        );
+            })
+            .eq("id",id);
 
 
-    if (error) {
+    if(error){
 
         console.error(error);
 
@@ -3021,30 +2479,17 @@ async function adminDecision(
 }
 
 
-/* =========================================================
-   RENDER ALL
-========================================================= */
-
-function renderAll() {
+function renderAll(){
 
     renderMonthButtons();
-
     renderMySchedule();
-
     renderAllSchedule();
-
     renderAdmin();
-
     renderRequestForm();
-
     renderRequests();
 
 }
 
-
-/* =========================================================
-   START
-========================================================= */
 
 setupLoginUsers();
 
