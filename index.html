@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -799,7 +798,7 @@ textarea {
 
                 <p class="small-note">
                     Почивка се записва като празно поле.
-                    „Ц“ е 09:00–21:00 и се брои за 11 работни часа.
+                    „Ц“ е 09:00–21:00.
                 </p>
 
                 <div id="shiftTypesAdmin"></div>
@@ -963,6 +962,68 @@ function saveShiftTypesLocal(types) {
         "shiftTypes",
         JSON.stringify(types)
     );
+}
+
+
+/* =========================================================
+   SCHEDULE TIMES FOR DATABASE
+   FIX FOR NOT NULL start_time / end_time
+========================================================= */
+
+function getScheduleTimes(shiftCode) {
+
+    const type =
+        getShiftTypes().find(
+            t => t.code === shiftCode
+        );
+
+    if (
+        type &&
+        type.start &&
+        type.end
+    ) {
+
+        return {
+
+            start_time:
+                type.start,
+
+            end_time:
+                type.end,
+
+            break_time:
+                "60"
+
+        };
+
+    }
+
+    /*
+       Supabase work_schedule.start_time
+       and end_time are NOT NULL.
+
+       Therefore for:
+       - Почивка
+       - Отпуска
+       - Самоотлъчка
+       - Персонална
+
+       we store 00:00 instead of NULL.
+    */
+
+    return {
+
+        start_time:
+            "00:00",
+
+        end_time:
+            "00:00",
+
+        break_time:
+            "0"
+
+    };
+
 }
 
 
@@ -1727,13 +1788,6 @@ function renderMySchedule() {
                 day
             );
 
-        const dateString =
-            formatDate(
-                currentYear,
-                currentMonth,
-                day
-            );
-
         const today =
             new Date();
 
@@ -1897,13 +1951,6 @@ function renderAllSchedule() {
                 editingAllSchedule
             ) {
 
-                const select =
-                    createShiftSelect(
-                        user.name,
-                        date,
-                        false
-                    );
-
                 html +=
                     `<td id="cell-${safeId(user.name)}-${date}"></td>`;
 
@@ -2042,9 +2089,9 @@ async function saveAllSchedule() {
         const shift =
             select.value;
 
-        const type =
-            getShiftTypes().find(
-                x => x.code === shift
+        const times =
+            getScheduleTimes(
+                shift
             );
 
         rows.push({
@@ -2059,15 +2106,13 @@ async function saveAllSchedule() {
                 shift,
 
             start_time:
-                type?.start || null,
+                times.start_time,
 
             end_time:
-                type?.end || null,
+                times.end_time,
 
             break_time:
-                type?.start
-                    ? "60"
-                    : null,
+                times.break_time,
 
             updated_at:
                 new Date().toISOString()
@@ -3084,6 +3129,7 @@ function renderAdminSwapRequests(
 
 /* =========================================================
    APPROVE SWAP
+   FIXED
 ========================================================= */
 
 async function approveSwap(
@@ -3183,6 +3229,11 @@ async function approveSwap(
         );
 
 
+    /*
+       Ако няма запис за даден служител/дата,
+       приемаме, че е почивка.
+    */
+
     const proposerShift =
         proposerRow?.shift_type || "";
 
@@ -3190,18 +3241,32 @@ async function approveSwap(
         receiverRow?.shift_type || "";
 
 
-    const proposerType =
-        getShiftTypes().find(
-            t =>
-                t.code === proposerShift
+    /*
+       ВАЖНО:
+       Не изпращаме NULL към start_time/end_time.
+    */
+
+    const proposerTimes =
+        getScheduleTimes(
+            proposerShift
         );
 
-    const receiverType =
-        getShiftTypes().find(
-            t =>
-                t.code === receiverShift
+    const receiverTimes =
+        getScheduleTimes(
+            receiverShift
         );
 
+
+    const now =
+        new Date().toISOString();
+
+
+    /*
+       Разменяме самите смени:
+
+       proposer получава receiverShift
+       receiver получава proposerShift
+    */
 
     const updates = [
 
@@ -3216,18 +3281,16 @@ async function approveSwap(
                 receiverShift,
 
             start_time:
-                receiverType?.start || null,
+                receiverTimes.start_time,
 
             end_time:
-                receiverType?.end || null,
+                receiverTimes.end_time,
 
             break_time:
-                receiverType?.start
-                    ? "60"
-                    : null,
+                receiverTimes.break_time,
 
             updated_at:
-                new Date().toISOString()
+                now
 
         },
 
@@ -3242,22 +3305,26 @@ async function approveSwap(
                 proposerShift,
 
             start_time:
-                proposerType?.start || null,
+                proposerTimes.start_time,
 
             end_time:
-                proposerType?.end || null,
+                proposerTimes.end_time,
 
             break_time:
-                proposerType?.start
-                    ? "60"
-                    : null,
+                proposerTimes.break_time,
 
             updated_at:
-                new Date().toISOString()
+                now
 
         }
 
     ];
+
+
+    console.log(
+        "SWAP UPDATES:",
+        updates
+    );
 
 
     const {
@@ -3274,6 +3341,11 @@ async function approveSwap(
 
 
     if (updateError) {
+
+        console.error(
+            "SWAP UPDATE ERROR:",
+            updateError
+        );
 
         alert(
             "Грешка при размяната:\n" +
@@ -3317,7 +3389,7 @@ async function approveSwap(
 
     renderAllSchedule();
 
-    loadSwapRequests();
+    await loadSwapRequests();
 
 
     alert(
@@ -3412,4 +3484,3 @@ init();
 
 </body>
 </html>
-```
