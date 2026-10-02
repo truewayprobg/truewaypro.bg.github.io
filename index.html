@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -1090,4 +1091,2325 @@ async function login() {
             "loginName"
         ).value;
 
-    const passwo
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+    const errorBox =
+        document.getElementById(
+            "loginError"
+        );
+
+    errorBox.textContent = "";
+
+    if (!name) {
+
+        errorBox.textContent =
+            "Избери служител.";
+
+        return;
+    }
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("app_users")
+        .select(
+            "id,name,password,admin,active,september_only"
+        )
+        .eq(
+            "name",
+            name
+        )
+        .eq(
+            "active",
+            true
+        )
+        .maybeSingle();
+
+    if (error) {
+
+        console.error(
+            "LOGIN ERROR:",
+            error
+        );
+
+        errorBox.textContent =
+            "Supabase грешка: " +
+            error.message;
+
+        return;
+    }
+
+    if (!data) {
+
+        errorBox.textContent =
+            "Потребителят не е намерен.";
+
+        return;
+    }
+
+    if (
+        String(data.password ?? "") !==
+        String(password)
+    ) {
+
+        errorBox.textContent =
+            "Грешна парола.";
+
+        return;
+    }
+
+    currentUser = {
+
+        id: data.id,
+
+        name: data.name,
+
+        password: data.password,
+
+        admin: data.admin,
+
+        active: data.active,
+
+        septemberOnly:
+            data.september_only
+
+    };
+
+    localStorage.setItem(
+        "loggedUser",
+        currentUser.name
+    );
+
+    showApp();
+
+}
+
+
+/* =========================================================
+   SHOW APP
+========================================================= */
+
+async function showApp() {
+
+    document
+        .getElementById("loginPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("appPage")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("currentUserName")
+        .textContent =
+            currentUser.name;
+
+    if (currentUser.admin) {
+
+        document
+            .getElementById("tabAdmin")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("adminSwapCard")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("adminScheduleSaveArea")
+            .classList.remove("hidden");
+
+        editingAllSchedule = true;
+
+    } else {
+
+        editingAllSchedule = false;
+
+    }
+
+    await refreshEverything();
+
+    showTab("my");
+}
+
+
+/* =========================================================
+   AUTO LOGIN
+========================================================= */
+
+async function restoreSession() {
+
+    const savedName =
+        localStorage.getItem(
+            "loggedUser"
+        );
+
+    if (!savedName) {
+        return;
+    }
+
+    const user =
+        USERS.find(
+            u =>
+                u.name === savedName &&
+                u.active
+        );
+
+    if (!user) {
+        return;
+    }
+
+    currentUser = user;
+
+    await showApp();
+}
+
+
+/* =========================================================
+   LOGOUT
+========================================================= */
+
+function logout() {
+
+    localStorage.removeItem(
+        "loggedUser"
+    );
+
+    currentUser = null;
+
+    document
+        .getElementById("appPage")
+        .classList.add("hidden");
+
+    document
+        .getElementById("loginPage")
+        .classList.remove("hidden");
+
+    document
+        .getElementById("loginPassword")
+        .value = "";
+
+    document
+        .getElementById("loginName")
+        .value = "";
+
+    document
+        .getElementById("loginError")
+        .textContent = "";
+
+}
+
+
+/* =========================================================
+   TABS
+========================================================= */
+
+function showTab(tab) {
+
+    const sections = [
+        "mySection",
+        "allSection",
+        "swapSection",
+        "adminSection"
+    ];
+
+    sections.forEach(id => {
+
+        document
+            .getElementById(id)
+            .classList.add("hidden");
+
+    });
+
+
+    const buttons = [
+        "tabMy",
+        "tabAll",
+        "tabSwap",
+        "tabAdmin"
+    ];
+
+    buttons.forEach(id => {
+
+        document
+            .getElementById(id)
+            .classList.remove("active");
+
+    });
+
+
+    if (tab === "my") {
+
+        document
+            .getElementById("mySection")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("tabMy")
+            .classList.add("active");
+
+    }
+
+    if (tab === "all") {
+
+        document
+            .getElementById("allSection")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("tabAll")
+            .classList.add("active");
+
+        renderAllSchedule();
+
+    }
+
+    if (tab === "swap") {
+
+        document
+            .getElementById("swapSection")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("tabSwap")
+            .classList.add("active");
+
+        updateSwapReceiver();
+
+        loadSwapRequests();
+
+    }
+
+    if (tab === "admin") {
+
+        if (!currentUser.admin) {
+            return;
+        }
+
+        document
+            .getElementById("adminSection")
+            .classList.remove("hidden");
+
+        document
+            .getElementById("tabAdmin")
+            .classList.add("active");
+
+        renderAdminUsers();
+
+        renderShiftTypesAdmin();
+
+    }
+}
+
+
+/* =========================================================
+   MONTH
+========================================================= */
+
+function changeMonth(amount) {
+
+    currentMonth += amount;
+
+    if (currentMonth < 0) {
+
+        currentMonth = 11;
+        currentYear--;
+
+    }
+
+    if (currentMonth > 11) {
+
+        currentMonth = 0;
+        currentYear++;
+
+    }
+
+    refreshScheduleViews();
+
+}
+
+
+function goToday() {
+
+    const now =
+        new Date();
+
+    currentMonth =
+        now.getMonth();
+
+    currentYear =
+        now.getFullYear();
+
+    refreshScheduleViews();
+
+}
+
+
+function getDaysInMonth(
+    year,
+    month
+) {
+
+    return new Date(
+        year,
+        month + 1,
+        0
+    ).getDate();
+
+}
+
+
+function formatDate(
+    year,
+    month,
+    day
+) {
+
+    return (
+        year +
+        "-" +
+        String(month + 1)
+            .padStart(2,"0") +
+        "-" +
+        String(day)
+            .padStart(2,"0")
+    );
+
+}
+
+
+function monthName(
+    month
+) {
+
+    return [
+        "Януари",
+        "Февруари",
+        "Март",
+        "Април",
+        "Май",
+        "Юни",
+        "Юли",
+        "Август",
+        "Септември",
+        "Октомври",
+        "Ноември",
+        "Декември"
+    ][month];
+
+}
+
+
+function dayName(
+    date
+) {
+
+    return [
+        "Нд",
+        "Пн",
+        "Вт",
+        "Ср",
+        "Чт",
+        "Пт",
+        "Сб"
+    ][date.getDay()];
+
+}
+
+
+/* =========================================================
+   SCHEDULE
+========================================================= */
+
+async function loadSchedule() {
+
+    const start =
+        formatDate(
+            currentYear,
+            currentMonth,
+            1
+        );
+
+    const end =
+        formatDate(
+            currentYear,
+            currentMonth,
+            getDaysInMonth(
+                currentYear,
+                currentMonth
+            )
+        );
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("work_schedule")
+        .select("*")
+        .gte(
+            "work_date",
+            start
+        )
+        .lte(
+            "work_date",
+            end
+        );
+
+    if (error) {
+
+        console.error(
+            "SCHEDULE ERROR:",
+            error
+        );
+
+        alert(
+            "Грешка при зареждане на графика:\n" +
+            error.message
+        );
+
+        return;
+    }
+
+    scheduleData = {};
+
+    (data || []).forEach(row => {
+
+        const key =
+            row.employee +
+            "|" +
+            row.work_date;
+
+        scheduleData[key] =
+            row.shift_type || "";
+
+    });
+
+}
+
+
+/* =========================================================
+   EMPLOYEE FILTER
+========================================================= */
+
+function employeeVisibleInMonth(
+    user
+) {
+
+    if (!user.active) {
+        return false;
+    }
+
+    if (
+        user.septemberOnly &&
+        currentMonth !== 8
+    ) {
+        return false;
+    }
+
+    return true;
+}
+
+
+/* =========================================================
+   SHIFT SELECT
+========================================================= */
+
+function createShiftSelect(
+    employee,
+    date,
+    disabled = false
+) {
+
+    const select =
+        document.createElement(
+            "select"
+        );
+
+    select.className =
+        "shift-select";
+
+    const types =
+        getShiftTypes();
+
+    const current =
+        scheduleData[
+            employee +
+            "|" +
+            date
+        ] || "";
+
+    types.forEach(type => {
+
+        const option =
+            document.createElement(
+                "option"
+            );
+
+        option.value =
+            type.code;
+
+        option.textContent =
+            type.code === ""
+                ? "П"
+                : type.code;
+
+        if (
+            type.code === current
+        ) {
+            option.selected = true;
+        }
+
+        select.appendChild(
+            option
+        );
+
+    });
+
+    select.disabled =
+        disabled;
+
+    return select;
+}
+
+
+/* =========================================================
+   MY SCHEDULE
+========================================================= */
+
+function renderMySchedule() {
+
+    const container =
+        document.getElementById(
+            "myScheduleContainer"
+        );
+
+    document.getElementById(
+        "myMonthTitle"
+    ).textContent =
+        monthName(currentMonth) +
+        " " +
+        currentYear;
+
+    if (!currentUser) {
+        return;
+    }
+
+    const days =
+        getDaysInMonth(
+            currentYear,
+            currentMonth
+        );
+
+    let html =
+        '<div class="table-wrapper">';
+
+    html +=
+        '<table class="schedule-table">';
+
+    html += "<thead><tr>";
+
+    html +=
+        '<th class="employee-cell">Дата</th>';
+
+    for (
+        let day = 1;
+        day <= days;
+        day++
+    ) {
+
+        const date =
+            new Date(
+                currentYear,
+                currentMonth,
+                day
+            );
+
+        const dateString =
+            formatDate(
+                currentYear,
+                currentMonth,
+                day
+            );
+
+        const today =
+            new Date();
+
+        const isToday =
+            today.getFullYear() === currentYear &&
+            today.getMonth() === currentMonth &&
+            today.getDate() === day;
+
+        const weekend =
+            date.getDay() === 0 ||
+            date.getDay() === 6;
+
+        html +=
+            `<th class="day-header ${weekend ? "weekend" : ""} ${isToday ? "today" : ""}">
+                ${day}<br>
+                <small>${dayName(date)}</small>
+            </th>`;
+
+    }
+
+    html += "</tr></thead><tbody><tr>";
+
+    html +=
+        `<td class="employee-cell">
+            ${currentUser.name}
+        </td>`;
+
+    for (
+        let day = 1;
+        day <= days;
+        day++
+    ) {
+
+        const date =
+            formatDate(
+                currentYear,
+                currentMonth,
+                day
+            );
+
+        const shift =
+            scheduleData[
+                currentUser.name +
+                "|" +
+                date
+            ] || "";
+
+        html +=
+            `<td>${shift || "П"}</td>`;
+
+    }
+
+    html += "</tr></tbody></table></div>";
+
+    container.innerHTML =
+        html;
+
+}
+
+
+/* =========================================================
+   ALL SCHEDULE
+========================================================= */
+
+function renderAllSchedule() {
+
+    const container =
+        document.getElementById(
+            "allScheduleContainer"
+        );
+
+    document.getElementById(
+        "allMonthTitle"
+    ).textContent =
+        monthName(currentMonth) +
+        " " +
+        currentYear;
+
+    const users =
+        USERS.filter(
+            employeeVisibleInMonth
+        );
+
+    const days =
+        getDaysInMonth(
+            currentYear,
+            currentMonth
+        );
+
+    let html =
+        '<div class="table-wrapper">';
+
+    html +=
+        '<table class="schedule-table">';
+
+    html += "<thead><tr>";
+
+    html +=
+        '<th class="employee-cell">Служител</th>';
+
+    for (
+        let day = 1;
+        day <= days;
+        day++
+    ) {
+
+        const date =
+            new Date(
+                currentYear,
+                currentMonth,
+                day
+            );
+
+        const today =
+            new Date();
+
+        const isToday =
+            today.getFullYear() === currentYear &&
+            today.getMonth() === currentMonth &&
+            today.getDate() === day;
+
+        const weekend =
+            date.getDay() === 0 ||
+            date.getDay() === 6;
+
+        html +=
+            `<th class="day-header ${weekend ? "weekend" : ""} ${isToday ? "today" : ""}">
+                ${day}<br>
+                <small>${dayName(date)}</small>
+            </th>`;
+
+    }
+
+    html += "</tr></thead><tbody>";
+
+
+    users.forEach(user => {
+
+        html += "<tr>";
+
+        html +=
+            `<td class="employee-cell">
+                ${escapeHtml(user.name)}
+            </td>`;
+
+        for (
+            let day = 1;
+            day <= days;
+            day++
+        ) {
+
+            const date =
+                formatDate(
+                    currentYear,
+                    currentMonth,
+                    day
+                );
+
+            if (
+                currentUser.admin &&
+                editingAllSchedule
+            ) {
+
+                const select =
+                    createShiftSelect(
+                        user.name,
+                        date,
+                        false
+                    );
+
+                html +=
+                    `<td id="cell-${safeId(user.name)}-${date}"></td>`;
+
+            } else {
+
+                const shift =
+                    scheduleData[
+                        user.name +
+                        "|" +
+                        date
+                    ] || "";
+
+                html +=
+                    `<td>${escapeHtml(shift || "П")}</td>`;
+
+            }
+
+        }
+
+        html += "</tr>";
+
+    });
+
+
+    html += "</tbody></table></div>";
+
+    container.innerHTML =
+        html;
+
+
+    /* Put selects into cells */
+
+    if (
+        currentUser.admin &&
+        editingAllSchedule
+    ) {
+
+        users.forEach(user => {
+
+            for (
+                let day = 1;
+                day <= days;
+                day++
+            ) {
+
+                const date =
+                    formatDate(
+                        currentYear,
+                        currentMonth,
+                        day
+                    );
+
+                const cell =
+                    document.getElementById(
+                        `cell-${safeId(user.name)}-${date}`
+                    );
+
+                if (!cell) {
+                    continue;
+                }
+
+                const select =
+                    createShiftSelect(
+                        user.name,
+                        date,
+                        false
+                    );
+
+                select.dataset.employee =
+                    user.name;
+
+                select.dataset.date =
+                    date;
+
+                cell.appendChild(
+                    select
+                );
+
+            }
+
+        });
+
+    }
+
+}
+
+
+function safeId(value) {
+
+    return value
+        .replace(
+            /[^a-zA-Z0-9А-Яа-я_-]/g,
+            "_"
+        );
+
+}
+
+
+function escapeHtml(value) {
+
+    return String(value)
+        .replaceAll("&","&amp;")
+        .replaceAll("<","&lt;")
+        .replaceAll(">","&gt;")
+        .replaceAll('"',"&quot;")
+        .replaceAll("'","&#039;");
+
+}
+
+
+/* =========================================================
+   SAVE ALL SCHEDULE
+========================================================= */
+
+async function saveAllSchedule() {
+
+    if (!currentUser.admin) {
+        return;
+    }
+
+    const selects =
+        document.querySelectorAll(
+            "#allScheduleContainer select"
+        );
+
+    const rows = [];
+
+    selects.forEach(select => {
+
+        const employee =
+            select.dataset.employee;
+
+        const date =
+            select.dataset.date;
+
+        const shift =
+            select.value;
+
+        const type =
+            getShiftTypes().find(
+                x => x.code === shift
+            );
+
+        rows.push({
+
+            employee:
+                employee,
+
+            work_date:
+                date,
+
+            shift_type:
+                shift,
+
+            start_time:
+                type?.start || null,
+
+            end_time:
+                type?.end || null,
+
+            break_time:
+                type?.start
+                    ? "60"
+                    : null,
+
+            updated_at:
+                new Date().toISOString()
+
+        });
+
+    });
+
+
+    if (rows.length === 0) {
+        return;
+    }
+
+
+    document.getElementById(
+        "scheduleStatus"
+    ).textContent =
+        "Запазване...";
+
+
+    const {
+        error
+    } = await supabaseClient
+        .from("work_schedule")
+        .upsert(
+            rows,
+            {
+                onConflict:
+                    "employee,work_date"
+            }
+        );
+
+
+    if (error) {
+
+        console.error(
+            "SAVE SCHEDULE ERROR:",
+            error
+        );
+
+        document.getElementById(
+            "scheduleStatus"
+        ).textContent =
+            "Грешка: " +
+            error.message;
+
+        return;
+    }
+
+
+    document.getElementById(
+        "scheduleStatus"
+    ).textContent =
+        "✓ Промените са запазени.";
+
+    await loadSchedule();
+
+    renderAllSchedule();
+
+}
+
+
+/* =========================================================
+   REFRESH
+========================================================= */
+
+async function refreshEverything() {
+
+    await loadSchedule();
+
+    refreshScheduleViews();
+
+    updateSwapReceiver();
+
+    loadSwapRequests();
+
+    if (currentUser?.admin) {
+
+        renderAdminUsers();
+
+        renderShiftTypesAdmin();
+
+    }
+
+}
+
+
+function refreshScheduleViews() {
+
+    renderMySchedule();
+
+    renderAllSchedule();
+
+}
+
+
+/* =========================================================
+   ADMIN USERS
+========================================================= */
+
+function renderAdminUsers() {
+
+    if (!currentUser?.admin) {
+        return;
+    }
+
+    const container =
+        document.getElementById(
+            "adminUsers"
+        );
+
+    container.innerHTML = "";
+
+    USERS.forEach(user => {
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+        div.className =
+            "admin-user";
+
+        div.innerHTML = `
+
+            <div class="admin-user-grid">
+
+                <input
+                    id="user-name-${user.id}"
+                    value="${escapeHtml(user.name)}"
+                >
+
+                <input
+                    id="user-password-${user.id}"
+                    value="${escapeHtml(user.password || "")}"
+                    placeholder="Парола"
+                >
+
+                <label class="check-row">
+                    <input
+                        type="checkbox"
+                        id="user-active-${user.id}"
+                        ${user.active ? "checked" : ""}
+                    >
+                    Активен
+                </label>
+
+                <label class="check-row">
+                    <input
+                        type="checkbox"
+                        id="user-admin-${user.id}"
+                        ${user.admin ? "checked" : ""}
+                    >
+                    Админ
+                </label>
+
+                <label class="check-row">
+                    <input
+                        type="checkbox"
+                        id="user-september-${user.id}"
+                        ${user.septemberOnly ? "checked" : ""}
+                    >
+                    Само септември
+                </label>
+
+            </div>
+
+            <br>
+
+            <button
+                class="success-btn"
+                onclick="saveUser('${user.id}')"
+            >
+                Запази
+            </button>
+
+        `;
+
+        container.appendChild(
+            div
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   ADD USER
+========================================================= */
+
+async function addUser() {
+
+    if (!currentUser?.admin) {
+        return;
+    }
+
+    const name =
+        document.getElementById(
+            "newUserName"
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            "newUserPassword"
+        ).value;
+
+    const admin =
+        document.getElementById(
+            "newUserAdmin"
+        ).checked;
+
+    const septemberOnly =
+        document.getElementById(
+            "newUserSeptember"
+        ).checked;
+
+
+    if (!name) {
+
+        alert(
+            "Въведи име."
+        );
+
+        return;
+    }
+
+
+    const {
+        error
+    } = await supabaseClient
+        .from("app_users")
+        .insert({
+
+            name:
+                name,
+
+            password:
+                password,
+
+            admin:
+                admin,
+
+            active:
+                true,
+
+            september_only:
+                septemberOnly
+
+        });
+
+
+    if (error) {
+
+        alert(
+            "Грешка:\n" +
+            error.message
+        );
+
+        return;
+    }
+
+
+    document.getElementById(
+        "newUserName"
+    ).value = "";
+
+    document.getElementById(
+        "newUserPassword"
+    ).value = "";
+
+    document.getElementById(
+        "newUserAdmin"
+    ).checked = false;
+
+    document.getElementById(
+        "newUserSeptember"
+    ).checked = false;
+
+
+    await loadUsersFromSupabase();
+
+    renderAdminUsers();
+
+    renderAllSchedule();
+
+    updateSwapReceiver();
+
+
+    alert(
+        "Потребителят е добавен."
+    );
+
+}
+
+
+/* =========================================================
+   SAVE USER
+========================================================= */
+
+async function saveUser(
+    userId
+) {
+
+    if (!currentUser?.admin) {
+        return;
+    }
+
+    const name =
+        document.getElementById(
+            `user-name-${userId}`
+        ).value.trim();
+
+    const password =
+        document.getElementById(
+            `user-password-${userId}`
+        ).value;
+
+    const active =
+        document.getElementById(
+            `user-active-${userId}`
+        ).checked;
+
+    const admin =
+        document.getElementById(
+            `user-admin-${userId}`
+        ).checked;
+
+    const septemberOnly =
+        document.getElementById(
+            `user-september-${userId}`
+        ).checked;
+
+
+    if (!name) {
+
+        alert(
+            "Името не може да е празно."
+        );
+
+        return;
+    }
+
+
+    const {
+        error
+    } = await supabaseClient
+        .from("app_users")
+        .update({
+
+            name:
+                name,
+
+            password:
+                password,
+
+            active:
+                active,
+
+            admin:
+                admin,
+
+            september_only:
+                septemberOnly,
+
+            updated_at:
+                new Date().toISOString()
+
+        })
+        .eq(
+            "id",
+            userId
+        );
+
+
+    if (error) {
+
+        alert(
+            "Грешка при запазване:\n" +
+            error.message
+        );
+
+        return;
+    }
+
+
+    await loadUsersFromSupabase();
+
+    const updated =
+        USERS.find(
+            u => u.id === userId
+        );
+
+    if (
+        updated &&
+        updated.id === currentUser.id
+    ) {
+
+        currentUser =
+            updated;
+
+        document.getElementById(
+            "currentUserName"
+        ).textContent =
+            currentUser.name;
+
+    }
+
+
+    renderAdminUsers();
+
+    populateLoginUsers();
+
+    renderAllSchedule();
+
+    updateSwapReceiver();
+
+
+    alert(
+        "Потребителят е запазен."
+    );
+
+}
+
+
+/* =========================================================
+   SHIFT TYPES ADMIN
+========================================================= */
+
+function renderShiftTypesAdmin() {
+
+    if (!currentUser?.admin) {
+        return;
+    }
+
+    const container =
+        document.getElementById(
+            "shiftTypesAdmin"
+        );
+
+    const types =
+        getShiftTypes();
+
+    container.innerHTML = "";
+
+    types.forEach(
+        (type,index) => {
+
+            const row =
+                document.createElement(
+                    "div"
+                );
+
+            row.className =
+                "shift-type-row";
+
+            row.innerHTML = `
+
+                <input
+                    value="${escapeHtml(type.code)}"
+                    placeholder="Код"
+                    onchange="updateShiftType(${index}, 'code', this.value)"
+                >
+
+                <input
+                    value="${escapeHtml(type.name)}"
+                    placeholder="Име"
+                    onchange="updateShiftType(${index}, 'name', this.value)"
+                >
+
+                <input
+                    value="${escapeHtml(type.start || '')}"
+                    placeholder="Начало"
+                    onchange="updateShiftType(${index}, 'start', this.value)"
+                >
+
+                <input
+                    value="${escapeHtml(type.end || '')}"
+                    placeholder="Край"
+                    onchange="updateShiftType(${index}, 'end', this.value)"
+                >
+
+                <button
+                    class="danger-btn"
+                    onclick="deleteShiftType(${index})"
+                >
+                    Изтрий
+                </button>
+
+            `;
+
+            container.appendChild(
+                row
+            );
+
+        }
+    );
+
+}
+
+
+function updateShiftType(
+    index,
+    field,
+    value
+) {
+
+    const types =
+        getShiftTypes();
+
+    types[index][field] =
+        value;
+
+    saveShiftTypesLocal(
+        types
+    );
+
+}
+
+
+function deleteShiftType(
+    index
+) {
+
+    const types =
+        getShiftTypes();
+
+    if (
+        !confirm(
+            "Сигурен ли си, че искаш да изтриеш тази смяна?"
+        )
+    ) {
+        return;
+    }
+
+    types.splice(
+        index,
+        1
+    );
+
+    saveShiftTypesLocal(
+        types
+    );
+
+    renderShiftTypesAdmin();
+
+}
+
+
+function addShiftType() {
+
+    const types =
+        getShiftTypes();
+
+    types.push({
+
+        code: "Нова",
+
+        name: "Нова смяна",
+
+        start: "09:00",
+
+        end: "17:00",
+
+        paid: 7
+
+    });
+
+    saveShiftTypesLocal(
+        types
+    );
+
+    renderShiftTypesAdmin();
+
+}
+
+
+/* =========================================================
+   SWAP USERS
+========================================================= */
+
+function updateSwapReceiver() {
+
+    const select =
+        document.getElementById(
+            "swapReceiver"
+        );
+
+    if (!select) {
+        return;
+    }
+
+    select.innerHTML =
+        '<option value="">Избери служител</option>';
+
+    USERS
+        .filter(
+            u =>
+                u.active &&
+                u.name !== currentUser?.name
+        )
+        .forEach(user => {
+
+            const option =
+                document.createElement(
+                    "option"
+                );
+
+            option.value =
+                user.name;
+
+            option.textContent =
+                user.name;
+
+            select.appendChild(
+                option
+            );
+
+        });
+
+}
+
+
+/* =========================================================
+   SEND SWAP
+========================================================= */
+
+async function sendSwapRequest() {
+
+    if (!currentUser) {
+        return;
+    }
+
+    const myDate =
+        document.getElementById(
+            "swapMyDate"
+        ).value;
+
+    const receiver =
+        document.getElementById(
+            "swapReceiver"
+        ).value;
+
+    const receiverDate =
+        document.getElementById(
+            "swapReceiverDate"
+        ).value;
+
+    const message =
+        document.getElementById(
+            "swapMessage"
+        ).value.trim();
+
+
+    if (
+        !myDate ||
+        !receiver ||
+        !receiverDate
+    ) {
+
+        alert(
+            "Попълни всички полета."
+        );
+
+        return;
+    }
+
+
+    const {
+        error
+    } = await supabaseClient
+        .from("shift_requests")
+        .insert({
+
+            proposer:
+                currentUser.name,
+
+            receiver:
+                receiver,
+
+            proposer_date:
+                myDate,
+
+            receiver_date:
+                receiverDate,
+
+            message:
+                message,
+
+            status:
+                "pending"
+
+        });
+
+
+    if (error) {
+
+        alert(
+            "Грешка:\n" +
+            error.message
+        );
+
+        return;
+    }
+
+
+    document.getElementById(
+        "swapMyDate"
+    ).value = "";
+
+    document.getElementById(
+        "swapReceiver"
+    ).value = "";
+
+    document.getElementById(
+        "swapReceiverDate"
+    ).value = "";
+
+    document.getElementById(
+        "swapMessage"
+    ).value = "";
+
+
+    await loadSwapRequests();
+
+
+    alert(
+        "Заявката е изпратена."
+    );
+
+}
+
+
+/* =========================================================
+   LOAD SWAP REQUESTS
+========================================================= */
+
+async function loadSwapRequests() {
+
+    if (!currentUser) {
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("shift_requests")
+        .select("*")
+        .or(
+            `proposer.eq.${escapeFilter(currentUser.name)},receiver.eq.${escapeFilter(currentUser.name)}`
+        )
+        .order(
+            "created_at",
+            {
+                ascending: false
+            }
+        );
+
+
+    if (error) {
+
+        console.error(
+            "SWAP LOAD ERROR:",
+            error
+        );
+
+        return;
+    }
+
+
+    renderMySwapRequests(
+        data || []
+    );
+
+
+    if (currentUser.admin) {
+
+        const result =
+            await supabaseClient
+                .from("shift_requests")
+                .select("*")
+                .order(
+                    "created_at",
+                    {
+                        ascending: false
+                    }
+                );
+
+        if (!result.error) {
+
+            renderAdminSwapRequests(
+                result.data || []
+            );
+
+        }
+
+    }
+
+}
+
+
+function escapeFilter(
+    value
+) {
+
+    return String(value)
+        .replaceAll(
+            ",",
+            "\\,"
+        );
+
+}
+
+
+/* =========================================================
+   MY SWAP REQUESTS
+========================================================= */
+
+function renderMySwapRequests(
+    requests
+) {
+
+    const container =
+        document.getElementById(
+            "mySwapRequests"
+        );
+
+    container.innerHTML = "";
+
+    if (requests.length === 0) {
+
+        container.innerHTML =
+            '<p class="small-note">Няма заявки.</p>';
+
+        return;
+    }
+
+
+    requests.forEach(req => {
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+        div.className =
+            "swap-request";
+
+        const badgeClass =
+            req.status === "approved"
+                ? "badge-approved"
+                : req.status === "rejected"
+                    ? "badge-rejected"
+                    : "badge-pending";
+
+        const statusText =
+            req.status === "approved"
+                ? "Одобрена"
+                : req.status === "rejected"
+                    ? "Отхвърлена"
+                    : "Чакаща";
+
+
+        div.innerHTML = `
+
+            <strong>
+                ${escapeHtml(req.proposer)}
+            </strong>
+
+            ↔
+
+            <strong>
+                ${escapeHtml(req.receiver)}
+            </strong>
+
+            <br><br>
+
+            ${escapeHtml(req.proposer_date)}
+            →
+            ${escapeHtml(req.receiver_date)}
+
+            <br><br>
+
+            ${escapeHtml(req.message || "")}
+
+            <br><br>
+
+            <span class="badge ${badgeClass}">
+                ${statusText}
+            </span>
+
+        `;
+
+        container.appendChild(
+            div
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   ADMIN SWAPS
+========================================================= */
+
+function renderAdminSwapRequests(
+    requests
+) {
+
+    const container =
+        document.getElementById(
+            "adminSwapRequests"
+        );
+
+    container.innerHTML = "";
+
+    if (requests.length === 0) {
+
+        container.innerHTML =
+            '<p class="small-note">Няма заявки.</p>';
+
+        return;
+    }
+
+
+    requests.forEach(req => {
+
+        const div =
+            document.createElement(
+                "div"
+            );
+
+        div.className =
+            "swap-request";
+
+        const statusClass =
+            req.status === "approved"
+                ? "badge-approved"
+                : req.status === "rejected"
+                    ? "badge-rejected"
+                    : "badge-pending";
+
+        const statusText =
+            req.status === "approved"
+                ? "Одобрена"
+                : req.status === "rejected"
+                    ? "Отхвърлена"
+                    : "Чакаща";
+
+
+        div.innerHTML = `
+
+            <strong>
+                ${escapeHtml(req.proposer)}
+            </strong>
+
+            ↔
+
+            <strong>
+                ${escapeHtml(req.receiver)}
+            </strong>
+
+            <br><br>
+
+            ${escapeHtml(req.proposer_date)}
+            ↔
+            ${escapeHtml(req.receiver_date)}
+
+            <br><br>
+
+            ${escapeHtml(req.message || "")}
+
+            <br><br>
+
+            <span class="badge ${statusClass}">
+                ${statusText}
+            </span>
+
+            ${
+                req.status === "pending"
+                    ? `
+                        <br><br>
+
+                        <button
+                            class="success-btn"
+                            onclick="approveSwap('${req.id}')"
+                        >
+                            Одобри
+                        </button>
+
+                        <button
+                            class="danger-btn"
+                            onclick="rejectSwap('${req.id}')"
+                        >
+                            Отхвърли
+                        </button>
+                    `
+                    : ""
+            }
+
+        `;
+
+        container.appendChild(
+            div
+        );
+
+    });
+
+}
+
+
+/* =========================================================
+   APPROVE SWAP
+========================================================= */
+
+async function approveSwap(
+    requestId
+) {
+
+    if (!currentUser?.admin) {
+        return;
+    }
+
+
+    const {
+        data: requests,
+        error
+    } = await supabaseClient
+        .from("shift_requests")
+        .select("*")
+        .eq(
+            "id",
+            requestId
+        )
+        .maybeSingle();
+
+
+    if (error || !requests) {
+
+        alert(
+            "Заявката не е намерена."
+        );
+
+        return;
+    }
+
+
+    const request =
+        requests;
+
+
+    const {
+        data: rows,
+        error: scheduleError
+    } = await supabaseClient
+        .from("work_schedule")
+        .select("*")
+        .in(
+            "employee",
+            [
+                request.proposer,
+                request.receiver
+            ]
+        )
+        .in(
+            "work_date",
+            [
+                request.proposer_date,
+                request.receiver_date
+            ]
+        );
+
+
+    if (scheduleError) {
+
+        alert(
+            scheduleError.message
+        );
+
+        return;
+    }
+
+
+    function findRow(
+        employee,
+        date
+    ) {
+
+        return (
+            rows || []
+        ).find(
+            r =>
+                r.employee === employee &&
+                r.work_date === date
+        );
+
+    }
+
+
+    const proposerRow =
+        findRow(
+            request.proposer,
+            request.proposer_date
+        );
+
+    const receiverRow =
+        findRow(
+            request.receiver,
+            request.receiver_date
+        );
+
+
+    const proposerShift =
+        proposerRow?.shift_type || "";
+
+    const receiverShift =
+        receiverRow?.shift_type || "";
+
+
+    const proposerType =
+        getShiftTypes().find(
+            t =>
+                t.code === proposerShift
+        );
+
+    const receiverType =
+        getShiftTypes().find(
+            t =>
+                t.code === receiverShift
+        );
+
+
+    const updates = [
+
+        {
+            employee:
+                request.proposer,
+
+            work_date:
+                request.proposer_date,
+
+            shift_type:
+                receiverShift,
+
+            start_time:
+                receiverType?.start || null,
+
+            end_time:
+                receiverType?.end || null,
+
+            break_time:
+                receiverType?.start
+                    ? "60"
+                    : null,
+
+            updated_at:
+                new Date().toISOString()
+
+        },
+
+        {
+            employee:
+                request.receiver,
+
+            work_date:
+                request.receiver_date,
+
+            shift_type:
+                proposerShift,
+
+            start_time:
+                proposerType?.start || null,
+
+            end_time:
+                proposerType?.end || null,
+
+            break_time:
+                proposerType?.start
+                    ? "60"
+                    : null,
+
+            updated_at:
+                new Date().toISOString()
+
+        }
+
+    ];
+
+
+    const {
+        error: updateError
+    } = await supabaseClient
+        .from("work_schedule")
+        .upsert(
+            updates,
+            {
+                onConflict:
+                    "employee,work_date"
+            }
+        );
+
+
+    if (updateError) {
+
+        alert(
+            "Грешка при размяната:\n" +
+            updateError.message
+        );
+
+        return;
+    }
+
+
+    const {
+        error: requestError
+    } = await supabaseClient
+        .from("shift_requests")
+        .update({
+
+            status:
+                "approved",
+
+            admin_decision_at:
+                new Date().toISOString()
+
+        })
+        .eq(
+            "id",
+            requestId
+        );
+
+
+    if (requestError) {
+
+        alert(
+            requestError.message
+        );
+
+        return;
+    }
+
+
+    await loadSchedule();
+
+    renderAllSchedule();
+
+    loadSwapRequests();
+
+
+    alert(
+        "Размяната е одобрена."
+    );
+
+}
+
+
+/* =========================================================
+   REJECT SWAP
+========================================================= */
+
+async function rejectSwap(
+    requestId
+) {
+
+    if (!currentUser?.admin) {
+        return;
+    }
+
+
+    const {
+        error
+    } = await supabaseClient
+        .from("shift_requests")
+        .update({
+
+            status:
+                "rejected",
+
+            admin_decision_at:
+                new Date().toISOString()
+
+        })
+        .eq(
+            "id",
+            requestId
+        );
+
+
+    if (error) {
+
+        alert(
+            error.message
+        );
+
+        return;
+    }
+
+
+    await loadSwapRequests();
+
+}
+
+
+/* =========================================================
+   INITIALIZATION
+========================================================= */
+
+async function init() {
+
+    console.log(
+        "Работен график - стартиране..."
+    );
+
+    const loaded =
+        await loadUsersFromSupabase();
+
+    if (!loaded) {
+
+        console.error(
+            "Потребителите не бяха заредени."
+        );
+
+        return;
+    }
+
+    console.log(
+        "Потребители:",
+        USERS
+    );
+
+    await restoreSession();
+
+}
+
+
+init();
+
+</script>
+
+</body>
+</html>
+```
