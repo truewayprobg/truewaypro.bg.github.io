@@ -66,7 +66,7 @@ button {
 
 /* =========================================================
    LOGIN
-   ========================================================= */
+========================================================= */
 
 #loginScreen {
     min-height: 100vh;
@@ -136,7 +136,7 @@ button {
 
 /* =========================================================
    APP
-   ========================================================= */
+========================================================= */
 
 #app {
     min-height: 100vh;
@@ -254,7 +254,7 @@ main {
 
 /* =========================================================
    SCHEDULE TABLE
-   ========================================================= */
+========================================================= */
 
 .table-wrap {
     width: 100%;
@@ -352,7 +352,7 @@ main {
 
 /* =========================================================
    BUTTONS
-   ========================================================= */
+========================================================= */
 
 .primary-button {
     border: 0;
@@ -393,7 +393,7 @@ main {
 
 /* =========================================================
    ADMIN
-   ========================================================= */
+========================================================= */
 
 .admin-user {
     border: 1px solid var(--border);
@@ -427,7 +427,7 @@ main {
 
 /* =========================================================
    SWAPS
-   ========================================================= */
+========================================================= */
 
 .swap-form {
     display: grid;
@@ -471,9 +471,10 @@ main {
 
 /* =========================================================
    RESPONSIVE
-   ========================================================= */
+========================================================= */
 
 @media (max-width: 800px) {
+
     .header-inner {
         align-items: flex-start;
         flex-direction: column;
@@ -516,7 +517,7 @@ main {
 
 <!-- =========================================================
      LOGIN
-     ========================================================= -->
+========================================================= -->
 
 <div id="loginScreen">
 
@@ -525,21 +526,31 @@ main {
         <h1>📅 Работен график</h1>
 
         <div class="form-group">
-            <label for="loginName">Име</label>
+
+            <label for="loginName">
+                Име
+            </label>
 
             <select id="loginName">
-                <option value="">Избери потребител</option>
+                <option value="">
+                    Избери потребител
+                </option>
             </select>
+
         </div>
 
         <div class="form-group">
-            <label for="loginPassword">Парола</label>
+
+            <label for="loginPassword">
+                Парола
+            </label>
 
             <input
                 type="password"
                 id="loginPassword"
                 placeholder="Въведи парола"
             >
+
         </div>
 
         <button
@@ -561,7 +572,7 @@ main {
 
 <!-- =========================================================
      APP
-     ========================================================= -->
+========================================================= -->
 
 <div id="app" class="hidden">
 
@@ -640,7 +651,7 @@ main {
 
 <!-- =========================================================
      MY SCHEDULE
-     ========================================================= -->
+========================================================= -->
 
 <section
     id="mySchedule"
@@ -679,7 +690,7 @@ main {
 
 <!-- =========================================================
      ALL SCHEDULE
-     ========================================================= -->
+========================================================= -->
 
 <section
     id="allSchedule"
@@ -705,7 +716,12 @@ main {
 
         </div>
 
-        <div id="adminSaveArea" class="hidden" style="margin-bottom:15px;">
+        <div
+            id="adminSaveArea"
+            class="hidden"
+            style="margin-bottom:15px;"
+        >
+
             <button
                 id="saveAllScheduleButton"
                 class="primary-button"
@@ -713,12 +729,15 @@ main {
             >
                 💾 Запази промените
             </button>
+
         </div>
 
         <div id="allScheduleContainer">
+
             <div class="loading">
                 Зареждане...
             </div>
+
         </div>
 
     </div>
@@ -728,7 +747,7 @@ main {
 
 <!-- =========================================================
      SWAPS
-     ========================================================= -->
+========================================================= -->
 
 <section
     id="swaps"
@@ -737,34 +756,48 @@ main {
 
     <div class="panel">
 
-        <h2>🔄 Изпращане на смяна</h2>
+        <h2>
+            🔄 Изпращане на смяна
+        </h2>
 
         <div class="swap-form">
 
             <div class="form-group">
-                <label>Моята дата</label>
+
+                <label>
+                    Моята дата
+                </label>
 
                 <input
                     type="date"
                     id="swapMyDate"
                 >
+
             </div>
 
 
             <div class="form-group">
-                <label>На кого</label>
+
+                <label>
+                    На кого
+                </label>
 
                 <select id="swapReceiver"></select>
+
             </div>
 
 
             <div class="form-group">
-                <label>Дата на другия служител</label>
+
+                <label>
+                    Дата на другия служител
+                </label>
 
                 <input
                     type="date"
                     id="swapReceiverDate"
                 >
+
             </div>
 
 
@@ -796,12 +829,16 @@ main {
 
     <div class="panel">
 
-        <h2>📨 Заявки</h2>
+        <h2>
+            📨 Заявки
+        </h2>
 
         <div id="swapRequestsContainer">
+
             <div class="loading">
                 Зареждане...
             </div>
+
         </div>
 
     </div>
@@ -811,22 +848,24 @@ main {
 
 <!-- =========================================================
      ADMIN
-     ========================================================= -->
+========================================================= -->
 
 <section
     id="admin"
     class="tab-content hidden"
 >
 
-    <!-- ADD USER -->
-
     <div class="panel">
 
-        <h2>👤 Добавяне на потребител</h2>
+        <h2>
+            👤 Добавяне на потребител
+        </h2>
 
         <div class="form-group">
 
-            <label>Име</label>
+            <label>
+                Име
+            </label>
 
             <input
                 id="newUserName"
@@ -839,7 +878,9 @@ main {
 
         <div class="form-group">
 
-            <label>Парола</label>
+            <label>
+                Парола
+            </label>
 
             <input
                 id="newUserPassword"
@@ -853,19 +894,25 @@ main {
         <div class="checkbox-row">
 
             <label>
+
                 <input
                     type="checkbox"
                     id="newUserAdmin"
                 >
+
                 Администратор
+
             </label>
 
             <label>
+
                 <input
                     type="checkbox"
                     id="newUserSeptemberOnly"
                 >
+
                 Само за септември
+
             </label>
 
         </div>
@@ -882,62 +929,87 @@ main {
     </div>
 
 
-    <!-- USERS -->
-
     <div class="panel">
 
-        <h2>👥 Потребители</h2>
+        <h2>
+            👥 Потребители
+        </h2>
 
         <div id="adminUsersContainer">
+
             <div class="loading">
                 Зареждане...
             </div>
+
         </div>
 
     </div>
 
 
-    <!-- SHIFT TYPES -->
-
     <div class="panel">
 
-        <h2>🕐 Видове смени</h2>
+        <h2>
+            🕐 Видове смени
+        </h2>
 
         <div id="shiftTypesContainer"></div>
 
-        <hr style="border:0;border-top:1px solid var(--border);margin:20px 0;">
+        <hr
+            style="
+                border:0;
+                border-top:1px solid var(--border);
+                margin:20px 0;
+            "
+        >
 
-        <h3>Добавяне на смяна</h3>
+        <h3>
+            Добавяне на смяна
+        </h3>
 
         <div class="form-group">
-            <label>Име</label>
+
+            <label>
+                Име
+            </label>
 
             <input
                 id="newShiftName"
                 placeholder="Например Нощна"
             >
+
         </div>
 
         <div class="form-group">
-            <label>Начало</label>
+
+            <label>
+                Начало
+            </label>
 
             <input
                 id="newShiftStart"
                 type="time"
             >
+
         </div>
 
         <div class="form-group">
-            <label>Край</label>
+
+            <label>
+                Край
+            </label>
 
             <input
                 id="newShiftEnd"
                 type="time"
             >
+
         </div>
 
         <div class="form-group">
-            <label>Почивка в минути</label>
+
+            <label>
+                Почивка в минути
+            </label>
 
             <input
                 id="newShiftBreak"
@@ -945,6 +1017,7 @@ main {
                 value="60"
                 min="0"
             >
+
         </div>
 
         <button
@@ -967,7 +1040,7 @@ main {
 
 /* =========================================================
    SUPABASE
-   ========================================================= */
+========================================================= */
 
 const SUPABASE_URL =
     "https://feahxunujegspmfgicfw.supabase.co";
@@ -984,7 +1057,7 @@ const supabaseClient =
 
 /* =========================================================
    VARIABLES
-   ========================================================= */
+========================================================= */
 
 let USERS = [];
 
@@ -995,6 +1068,7 @@ let currentDate = new Date();
 let scheduleData = {};
 
 let shiftTypes = [
+
     {
         name: "1-ва смяна",
         start: "09:00",
@@ -1002,6 +1076,7 @@ let shiftTypes = [
         break: 60,
         active: true
     },
+
     {
         name: "2-ра смяна",
         start: "14:00",
@@ -1009,6 +1084,7 @@ let shiftTypes = [
         break: 60,
         active: true
     },
+
     {
         name: "Р",
         start: "09:00",
@@ -1016,6 +1092,7 @@ let shiftTypes = [
         break: 60,
         active: true
     },
+
     {
         name: "Управител",
         start: "09:00",
@@ -1023,6 +1100,7 @@ let shiftTypes = [
         break: 60,
         active: true
     },
+
     {
         name: "Ц",
         start: "09:00",
@@ -1030,6 +1108,7 @@ let shiftTypes = [
         break: 60,
         active: true
     },
+
     {
         name: "Отпуска",
         start: null,
@@ -1037,6 +1116,7 @@ let shiftTypes = [
         break: 0,
         active: true
     },
+
     {
         name: "Самоотлъчка",
         start: null,
@@ -1044,6 +1124,7 @@ let shiftTypes = [
         break: 0,
         active: true
     },
+
     {
         name: "Персонална",
         start: null,
@@ -1051,14 +1132,16 @@ let shiftTypes = [
         break: 0,
         active: true
     }
+
 ];
 
 
 /* =========================================================
    MONTHS
-   ========================================================= */
+========================================================= */
 
 const MONTHS = [
+
     "Януари",
     "Февруари",
     "Март",
@@ -1071,51 +1154,62 @@ const MONTHS = [
     "Октомври",
     "Ноември",
     "Декември"
+
 ];
 
 
 /* =========================================================
    INITIALIZATION
-   ========================================================= */
+========================================================= */
 
-document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener(
+    "DOMContentLoaded",
+    async () => {
 
-    loadShiftTypes();
+        loadShiftTypes();
 
-    await loadUsersFromSupabase();
+        await loadUsersFromSupabase();
 
-    populateLoginUsers();
+        populateLoginUsers();
 
-    const savedUser =
-        localStorage.getItem("work_schedule_user");
-
-    if (savedUser) {
-
-        const foundUser =
-            USERS.find(u => u.name === savedUser);
-
-        if (foundUser && foundUser.active) {
-
-            currentUser = foundUser;
-
-            await showApp();
-
-        } else {
-
-            localStorage.removeItem(
+        const savedUser =
+            localStorage.getItem(
                 "work_schedule_user"
             );
+
+        if (savedUser) {
+
+            const foundUser =
+                USERS.find(
+                    u => u.name === savedUser
+                );
+
+            if (
+                foundUser &&
+                foundUser.active
+            ) {
+
+                currentUser = foundUser;
+
+                await showApp();
+
+            } else {
+
+                localStorage.removeItem(
+                    "work_schedule_user"
+                );
+
+            }
 
         }
 
     }
-
-});
+);
 
 
 /* =========================================================
    LOAD USERS
-   ========================================================= */
+========================================================= */
 
 async function loadUsersFromSupabase() {
 
@@ -1123,9 +1217,12 @@ async function loadUsersFromSupabase() {
         await supabaseClient
             .from("app_users")
             .select("*")
-            .order("name", {
-                ascending: true
-            });
+            .order(
+                "name",
+                {
+                    ascending: true
+                }
+            );
 
     if (error) {
 
@@ -1138,22 +1235,25 @@ async function loadUsersFromSupabase() {
         return false;
     }
 
-    USERS = (data || []).map(user => ({
+    USERS =
+        (data || []).map(
+            user => ({
 
-        id: user.id,
+                id: user.id,
 
-        name: user.name,
+                name: user.name,
 
-        password: user.password,
+                password: user.password,
 
-        admin: user.admin,
+                admin: user.admin,
 
-        active: user.active,
+                active: user.active,
 
-        septemberOnly:
-            user.september_only
+                septemberOnly:
+                    user.september_only
 
-    }));
+            })
+        );
 
     return true;
 }
@@ -1161,50 +1261,72 @@ async function loadUsersFromSupabase() {
 
 /* =========================================================
    LOGIN USERS DROPDOWN
-   ========================================================= */
+========================================================= */
 
 function populateLoginUsers() {
 
     const select =
-        document.getElementById("loginName");
+        document.getElementById(
+            "loginName"
+        );
 
     select.innerHTML =
-        `<option value="">Избери потребител</option>`;
+        `<option value="">
+            Избери потребител
+        </option>`;
 
     USERS
-        .filter(u => u.active)
-        .forEach(user => {
+        .filter(
+            u => u.active
+        )
+        .forEach(
+            user => {
 
-            const option =
-                document.createElement("option");
+                const option =
+                    document.createElement(
+                        "option"
+                    );
 
-            option.value = user.name;
+                option.value =
+                    user.name;
 
-            option.textContent = user.name;
+                option.textContent =
+                    user.name;
 
-            select.appendChild(option);
+                select.appendChild(
+                    option
+                );
 
-        });
+            }
+        );
 
 }
 
 
 /* =========================================================
    LOGIN
-   ========================================================= */
+========================================================= */
 
 async function login() {
 
     const name =
-        document.getElementById("loginName").value;
+        document.getElementById(
+            "loginName"
+        ).value;
 
     const password =
-        document.getElementById("loginPassword").value;
+        document.getElementById(
+            "loginPassword"
+        ).value;
 
     const errorBox =
-        document.getElementById("loginError");
+        document.getElementById(
+            "loginError"
+        );
 
-    errorBox.classList.add("hidden");
+    errorBox.classList.add(
+        "hidden"
+    );
 
     if (!name) {
 
@@ -1234,7 +1356,10 @@ async function login() {
         return;
     }
 
-    if (!data || data.password !== password) {
+    if (
+        !data ||
+        data.password !== password
+    ) {
 
         showLoginError(
             "Грешно име или парола."
@@ -1266,47 +1391,74 @@ async function login() {
     );
 
     await showApp();
+
 }
 
 
 /* =========================================================
    SHOW APP
-   ========================================================= */
+========================================================= */
 
 async function showApp() {
 
     document
-        .getElementById("loginScreen")
-        .classList.add("hidden");
+        .getElementById(
+            "loginScreen"
+        )
+        .classList.add(
+            "hidden"
+        );
 
     document
-        .getElementById("app")
-        .classList.remove("hidden");
+        .getElementById(
+            "app"
+        )
+        .classList.remove(
+            "hidden"
+        );
 
     document
-        .getElementById("currentUserName")
+        .getElementById(
+            "currentUserName"
+        )
         .textContent =
         currentUser.name;
 
     if (currentUser.admin) {
 
         document
-            .getElementById("adminTab")
-            .classList.remove("hidden");
+            .getElementById(
+                "adminTab"
+            )
+            .classList.remove(
+                "hidden"
+            );
 
         document
-            .getElementById("adminSaveArea")
-            .classList.remove("hidden");
+            .getElementById(
+                "adminSaveArea"
+            )
+            .classList.remove(
+                "hidden"
+            );
 
     } else {
 
         document
-            .getElementById("adminTab")
-            .classList.add("hidden");
+            .getElementById(
+                "adminTab"
+            )
+            .classList.add(
+                "hidden"
+            );
 
         document
-            .getElementById("adminSaveArea")
-            .classList.add("hidden");
+            .getElementById(
+                "adminSaveArea"
+            )
+            .classList.add(
+                "hidden"
+            );
 
     }
 
@@ -1321,7 +1473,7 @@ async function showApp() {
 
 /* =========================================================
    LOGOUT
-   ========================================================= */
+========================================================= */
 
 function logout() {
 
@@ -1332,15 +1484,25 @@ function logout() {
     );
 
     document
-        .getElementById("app")
-        .classList.add("hidden");
+        .getElementById(
+            "app"
+        )
+        .classList.add(
+            "hidden"
+        );
 
     document
-        .getElementById("loginScreen")
-        .classList.remove("hidden");
+        .getElementById(
+            "loginScreen"
+        )
+        .classList.remove(
+            "hidden"
+        );
 
     document
-        .getElementById("loginPassword")
+        .getElementById(
+            "loginPassword"
+        )
         .value = "";
 
     populateLoginUsers();
@@ -1350,35 +1512,47 @@ function logout() {
 
 /* =========================================================
    LOGIN ERROR
-   ========================================================= */
+========================================================= */
 
-function showLoginError(message) {
+function showLoginError(
+    message
+) {
 
     const box =
-        document.getElementById("loginError");
+        document.getElementById(
+            "loginError"
+        );
 
-    box.textContent = message;
+    box.textContent =
+        message;
 
-    box.classList.remove("hidden");
+    box.classList.remove(
+        "hidden"
+    );
 
 }
 
 
 /* =========================================================
    THEME
-   ========================================================= */
+========================================================= */
 
 function toggleTheme() {
 
     const key =
-        "theme_" + currentUser.name;
+        "theme_" +
+        currentUser.name;
 
     const dark =
-        !document.body.classList.contains("dark");
+        !document.body.classList.contains(
+            "dark"
+        );
 
     if (dark) {
 
-        document.body.classList.add("dark");
+        document.body.classList.add(
+            "dark"
+        );
 
         localStorage.setItem(
             key,
@@ -1387,7 +1561,9 @@ function toggleTheme() {
 
     } else {
 
-        document.body.classList.remove("dark");
+        document.body.classList.remove(
+            "dark"
+        );
 
         localStorage.setItem(
             key,
@@ -1402,10 +1578,13 @@ function toggleTheme() {
 function applyTheme() {
 
     const key =
-        "theme_" + currentUser.name;
+        "theme_" +
+        currentUser.name;
 
     const theme =
-        localStorage.getItem(key);
+        localStorage.getItem(
+            key
+        );
 
     document.body.classList.toggle(
         "dark",
@@ -1417,29 +1596,47 @@ function applyTheme() {
 
 /* =========================================================
    TABS
-   ========================================================= */
+========================================================= */
 
-function openTab(tabId) {
-
-    document
-        .querySelectorAll(".tab-content")
-        .forEach(section => {
-
-            section.classList.add("hidden");
-
-        });
+function openTab(
+    tabId
+) {
 
     document
-        .getElementById(tabId)
-        .classList.remove("hidden");
+        .querySelectorAll(
+            ".tab-content"
+        )
+        .forEach(
+            section => {
+
+                section.classList.add(
+                    "hidden"
+                );
+
+            }
+        );
 
     document
-        .querySelectorAll(".tab")
-        .forEach(tab => {
+        .getElementById(
+            tabId
+        )
+        .classList.remove(
+            "hidden"
+        );
 
-            tab.classList.remove("active");
+    document
+        .querySelectorAll(
+            ".tab"
+        )
+        .forEach(
+            tab => {
 
-        });
+                tab.classList.remove(
+                    "active"
+                );
+
+            }
+        );
 
     const activeTab =
         document.querySelector(
@@ -1447,21 +1644,37 @@ function openTab(tabId) {
         );
 
     if (activeTab) {
-        activeTab.classList.add("active");
+
+        activeTab.classList.add(
+            "active"
+        );
+
     }
 
-    if (tabId === "swaps") {
+    if (
+        tabId === "swaps"
+    ) {
+
         loadSwapRequests();
+
     }
 
-    if (tabId === "admin") {
+    if (
+        tabId === "admin"
+    ) {
 
         if (!currentUser.admin) {
-            openTab("mySchedule");
+
+            openTab(
+                "mySchedule"
+            );
+
             return;
+
         }
 
         renderAdminUsers();
+
         renderShiftTypes();
 
     }
@@ -1471,12 +1684,15 @@ function openTab(tabId) {
 
 /* =========================================================
    MONTH
-   ========================================================= */
+========================================================= */
 
-function changeMonth(direction) {
+function changeMonth(
+    direction
+) {
 
     currentDate.setMonth(
-        currentDate.getMonth() + direction
+        currentDate.getMonth() +
+        direction
     );
 
     renderAll();
@@ -1486,9 +1702,11 @@ function changeMonth(direction) {
 
 /* =========================================================
    DATE HELPERS
-   ========================================================= */
+========================================================= */
 
-function getDaysInMonth(date) {
+function getDaysInMonth(
+    date
+) {
 
     return new Date(
         date.getFullYear(),
@@ -1499,51 +1717,88 @@ function getDaysInMonth(date) {
 }
 
 
-function formatDate(year, month, day) {
+function formatDate(
+    year,
+    month,
+    day
+) {
 
     return (
         year +
         "-" +
-        String(month + 1).padStart(2, "0") +
+        String(
+            month + 1
+        ).padStart(
+            2,
+            "0"
+        ) +
         "-" +
-        String(day).padStart(2, "0")
+        String(
+            day
+        ).padStart(
+            2,
+            "0"
+        )
     );
 
 }
 
 
-function isWeekend(year, month, day) {
+function isWeekend(
+    year,
+    month,
+    day
+) {
 
     const date =
-        new Date(year, month, day);
+        new Date(
+            year,
+            month,
+            day
+        );
 
     const weekday =
         date.getDay();
 
-    return weekday === 0 || weekday === 6;
+    return (
+        weekday === 0 ||
+        weekday === 6
+    );
 
 }
 
 
 /* =========================================================
    SHIFT HELPERS
-   ========================================================= */
+========================================================= */
 
-function getShiftByName(name) {
+function getShiftByName(
+    name
+) {
 
-    if (!name) return null;
+    if (!name) {
+        return null;
+    }
 
-    return shiftTypes.find(
-        shift => shift.name === name
-    ) || null;
+    return (
+        shiftTypes.find(
+            shift =>
+                shift.name === name
+        ) ||
+        null
+    );
 
 }
 
 
-function shiftDisplay(shiftName) {
+function shiftDisplay(
+    shiftName
+) {
 
     const shift =
-        getShiftByName(shiftName);
+        getShiftByName(
+            shiftName
+        );
 
     if (!shift) {
 
@@ -1556,7 +1811,10 @@ function shiftDisplay(shiftName) {
 
     let time = "";
 
-    if (shift.start && shift.end) {
+    if (
+        shift.start &&
+        shift.end
+    ) {
 
         time =
             shift.start +
@@ -1566,8 +1824,11 @@ function shiftDisplay(shiftName) {
     }
 
     return {
+
         text: shift.name,
+
         time: time
+
     };
 
 }
@@ -1575,7 +1836,7 @@ function shiftDisplay(shiftName) {
 
 /* =========================================================
    LOAD SCHEDULE
-   ========================================================= */
+========================================================= */
 
 async function loadSchedule() {
 
@@ -1597,39 +1858,48 @@ async function loadSchedule() {
 
     scheduleData = {};
 
-    (data || []).forEach(row => {
+    (data || []).forEach(
+        row => {
 
-        const key =
-            row.employee +
-            "|" +
-            row.work_date;
+            const key =
+                row.employee +
+                "|" +
+                row.work_date;
 
-        scheduleData[key] = row.shift_type || "";
+            scheduleData[key] =
+                row.shift_type || "";
 
-    });
+        }
+    );
 
 }
 
 
 /* =========================================================
    GET SHIFT
-   ========================================================= */
+========================================================= */
 
-function getScheduleShift(employee, date) {
+function getScheduleShift(
+    employee,
+    date
+) {
 
     const key =
         employee +
         "|" +
         date;
 
-    return scheduleData[key] || "";
+    return (
+        scheduleData[key] ||
+        ""
+    );
 
 }
 
 
 /* =========================================================
    RENDER EVERYTHING
-   ========================================================= */
+========================================================= */
 
 function renderAll() {
 
@@ -1637,7 +1907,10 @@ function renderAll() {
 
     renderAllSchedule();
 
-    if (currentUser.admin) {
+    if (
+        currentUser &&
+        currentUser.admin
+    ) {
 
         renderAdminUsers();
 
@@ -1650,29 +1923,33 @@ function renderAll() {
 
 /* =========================================================
    MONTH TITLE
-   ========================================================= */
+========================================================= */
 
 function renderMonthTitles() {
 
     const title =
-        MONTHS[currentDate.getMonth()] +
+        MONTHS[
+            currentDate.getMonth()
+        ] +
         " " +
         currentDate.getFullYear();
 
     document.getElementById(
         "monthTitleMy"
-    ).textContent = title;
+    ).textContent =
+        title;
 
     document.getElementById(
         "monthTitleAll"
-    ).textContent = title;
+    ).textContent =
+        title;
 
 }
 
 
 /* =========================================================
    MY SCHEDULE
-   ========================================================= */
+========================================================= */
 
 function renderMySchedule() {
 
@@ -1683,7 +1960,9 @@ function renderMySchedule() {
             "myScheduleContainer"
         );
 
-    if (!currentUser) return;
+    if (!currentUser) {
+        return;
+    }
 
     const year =
         currentDate.getFullYear();
@@ -1692,24 +1971,38 @@ function renderMySchedule() {
         currentDate.getMonth();
 
     const days =
-        getDaysInMonth(currentDate);
+        getDaysInMonth(
+            currentDate
+        );
 
     let html =
         `<div class="table-wrap">
         <table class="schedule-table">
         <thead>
         <tr>
-        <th class="employee-header">Служител</th>`;
+        <th class="employee-header">
+            Служител
+        </th>`;
 
-    for (let day = 1; day <= days; day++) {
+    for (
+        let day = 1;
+        day <= days;
+        day++
+    ) {
 
         const date =
-            new Date(year, month, day);
+            new Date(
+                year,
+                month,
+                day
+            );
 
         const weekday =
             date.toLocaleDateString(
                 "bg-BG",
-                { weekday: "short" }
+                {
+                    weekday: "short"
+                }
             );
 
         html += `
@@ -1731,14 +2024,24 @@ function renderMySchedule() {
 
     html += `
         <td class="employee-name">
-            ${escapeHtml(currentUser.name)}
+            ${escapeHtml(
+                currentUser.name
+            )}
         </td>
     `;
 
-    for (let day = 1; day <= days; day++) {
+    for (
+        let day = 1;
+        day <= days;
+        day++
+    ) {
 
         const date =
-            formatDate(year, month, day);
+            formatDate(
+                year,
+                month,
+                day
+            );
 
         const shiftName =
             getScheduleShift(
@@ -1747,7 +2050,9 @@ function renderMySchedule() {
             );
 
         const display =
-            shiftDisplay(shiftName);
+            shiftDisplay(
+                shiftName
+            );
 
         const weekend =
             isWeekend(
@@ -1757,18 +2062,28 @@ function renderMySchedule() {
             );
 
         html += `
-            <td class="day-cell ${weekend ? "weekend" : ""}">
+            <td class="day-cell ${
+                weekend
+                    ? "weekend"
+                    : ""
+            }">
+
                 <div class="day-number">
                     ${day}
                 </div>
 
                 <div class="shift-text">
-                    ${escapeHtml(display.text)}
+                    ${escapeHtml(
+                        display.text
+                    )}
                 </div>
 
                 <div class="shift-time">
-                    ${escapeHtml(display.time)}
+                    ${escapeHtml(
+                        display.time
+                    )}
                 </div>
+
             </td>
         `;
 
@@ -1781,14 +2096,15 @@ function renderMySchedule() {
         </div>
     `;
 
-    container.innerHTML = html;
+    container.innerHTML =
+        html;
 
 }
 
 
 /* =========================================================
    ALL SCHEDULE
-   ========================================================= */
+========================================================= */
 
 function renderAllSchedule() {
 
@@ -1806,42 +2122,60 @@ function renderAllSchedule() {
         currentDate.getMonth();
 
     const days =
-        getDaysInMonth(currentDate);
+        getDaysInMonth(
+            currentDate
+        );
 
     const visibleUsers =
-        USERS.filter(user => {
+        USERS.filter(
+            user => {
 
-            if (!user.active) {
-                return false;
+                if (!user.active) {
+                    return false;
+                }
+
+                if (
+                    user.septemberOnly &&
+                    month !== 8
+                ) {
+
+                    return false;
+
+                }
+
+                return true;
+
             }
-
-            if (
-                user.septemberOnly &&
-                month !== 8
-            ) {
-                return false;
-            }
-
-            return true;
-
-        });
+        );
 
     let html =
         `<div class="table-wrap">
         <table class="schedule-table">
         <thead>
         <tr>
-        <th class="employee-header">Служител</th>`;
+        <th class="employee-header">
+            Служител
+        </th>`;
 
-    for (let day = 1; day <= days; day++) {
+    for (
+        let day = 1;
+        day <= days;
+        day++
+    ) {
 
         const date =
-            new Date(year, month, day);
+            new Date(
+                year,
+                month,
+                day
+            );
 
         const weekday =
             date.toLocaleDateString(
                 "bg-BG",
-                { weekday: "short" }
+                {
+                    weekday: "short"
+                }
             );
 
         html += `
@@ -1859,103 +2193,150 @@ function renderAllSchedule() {
         <tbody>
     `;
 
-    visibleUsers.forEach(user => {
+    visibleUsers.forEach(
+        user => {
 
-        html += `<tr>`;
+            html += `<tr>`;
 
-        html += `
-            <td class="employee-name">
-                ${escapeHtml(user.name)}
-            </td>
-        `;
+            html += `
+                <td class="employee-name">
+                    ${escapeHtml(
+                        user.name
+                    )}
+                </td>
+            `;
 
-        for (let day = 1; day <= days; day++) {
+            for (
+                let day = 1;
+                day <= days;
+                day++
+            ) {
 
-            const date =
-                formatDate(year, month, day);
+                const date =
+                    formatDate(
+                        year,
+                        month,
+                        day
+                    );
 
-            const shift =
-                getScheduleShift(
-                    user.name,
-                    date
-                );
+                const shift =
+                    getScheduleShift(
+                        user.name,
+                        date
+                    );
 
-            const weekend =
-                isWeekend(
-                    year,
-                    month,
-                    day
-                );
+                const weekend =
+                    isWeekend(
+                        year,
+                        month,
+                        day
+                    );
 
-            if (currentUser.admin) {
+                if (
+                    currentUser.admin
+                ) {
 
-                let options =
-                    `<option value="">П</option>`;
+                    let options =
+                        `<option value="">
+                            П
+                        </option>`;
 
-                shiftTypes
-                    .filter(s => s.active)
-                    .forEach(s => {
+                    shiftTypes
+                        .filter(
+                            s => s.active
+                        )
+                        .forEach(
+                            s => {
 
-                        const selected =
-                            shift === s.name
-                                ? "selected"
-                                : "";
+                                const selected =
+                                    shift ===
+                                    s.name
+                                        ? "selected"
+                                        : "";
 
-                        options += `
-                            <option
-                                value="${escapeAttribute(s.name)}"
-                                ${selected}
+                                options += `
+                                    <option
+                                        value="${escapeAttribute(
+                                            s.name
+                                        )}"
+                                        ${selected}
+                                    >
+                                        ${escapeHtml(
+                                            s.name
+                                        )}
+                                    </option>
+                                `;
+
+                            }
+                        );
+
+                    html += `
+                        <td class="day-cell ${
+                            weekend
+                                ? "weekend"
+                                : ""
+                        }">
+
+                            <div class="day-number">
+                                ${day}
+                            </div>
+
+                            <select
+                                class="shift-select admin-shift-select"
+                                data-employee="${escapeAttribute(
+                                    user.name
+                                )}"
+                                data-date="${date}"
                             >
-                                ${escapeHtml(s.name)}
-                            </option>
-                        `;
 
-                    });
+                                ${options}
 
-                html += `
-                    <td class="day-cell ${weekend ? "weekend" : ""}">
-                        <div class="day-number">
-                            ${day}
-                        </div>
+                            </select>
 
-                        <select
-                            class="shift-select admin-shift-select"
-                            data-employee="${escapeAttribute(user.name)}"
-                            data-date="${date}"
-                        >
-                            ${options}
-                        </select>
-                    </td>
-                `;
+                        </td>
+                    `;
 
-            } else {
+                } else {
 
-                const display =
-                    shiftDisplay(shift);
+                    const display =
+                        shiftDisplay(
+                            shift
+                        );
 
-                html += `
-                    <td class="day-cell ${weekend ? "weekend" : ""}">
-                        <div class="day-number">
-                            ${day}
-                        </div>
+                    html += `
+                        <td class="day-cell ${
+                            weekend
+                                ? "weekend"
+                                : ""
+                        }">
 
-                        <div class="shift-text">
-                            ${escapeHtml(display.text)}
-                        </div>
+                            <div class="day-number">
+                                ${day}
+                            </div>
 
-                        <div class="shift-time">
-                            ${escapeHtml(display.time)}
-                        </div>
-                    </td>
-                `;
+                            <div class="shift-text">
+                                ${escapeHtml(
+                                    display.text
+                                )}
+                            </div>
+
+                            <div class="shift-time">
+                                ${escapeHtml(
+                                    display.time
+                                )}
+                            </div>
+
+                        </td>
+                    `;
+
+                }
 
             }
 
+            html += `</tr>`;
+
         }
-
-        html += `</tr>`;
-
-    });
+    );
 
     html += `
         </tbody>
@@ -1963,18 +2344,23 @@ function renderAllSchedule() {
         </div>
     `;
 
-    container.innerHTML = html;
+    container.innerHTML =
+        html;
 
 }
 
 
 /* =========================================================
    SAVE ALL SCHEDULE CHANGES
-   ========================================================= */
+   FIXED VERSION
+========================================================= */
 
 async function saveAllScheduleChanges() {
 
-    if (!currentUser || !currentUser.admin) {
+    if (
+        !currentUser ||
+        !currentUser.admin
+    ) {
 
         alert(
             "Нямате права за редактиране."
@@ -1988,7 +2374,9 @@ async function saveAllScheduleChanges() {
             ".admin-shift-select"
         );
 
-    if (!selects.length) return;
+    if (!selects.length) {
+        return;
+    }
 
     const scrollPosition =
         window.scrollY;
@@ -2005,7 +2393,9 @@ async function saveAllScheduleChanges() {
 
     try {
 
-        for (const select of selects) {
+        for (
+            const select of selects
+        ) {
 
             const employee =
                 select.dataset.employee;
@@ -2017,15 +2407,20 @@ async function saveAllScheduleChanges() {
                 select.value || null;
 
             const shift =
-                getShiftByName(shiftName);
+                getShiftByName(
+                    shiftName
+                );
 
             const values = {
 
-                employee: employee,
+                employee:
+                    employee,
 
-                work_date: date,
+                work_date:
+                    date,
 
-                shift_type: shiftName,
+                shift_type:
+                    shiftName,
 
                 start_time:
                     shift?.start || null,
@@ -2041,42 +2436,166 @@ async function saveAllScheduleChanges() {
 
             };
 
-            const { error } =
+
+            /* =================================================
+               ПРОВЕРЯВАМЕ ДАЛИ ИМА СЪЩЕСТВУВАЩ ЗАПИС
+            ================================================= */
+
+            const {
+                data: existingRow,
+                error: findError
+            } =
                 await supabaseClient
                     .from("work_schedule")
-                    .upsert(
-                        values,
-                        {
-                            onConflict:
-                                "employee,work_date"
-                        }
+                    .select("id")
+                    .eq(
+                        "employee",
+                        employee
+                    )
+                    .eq(
+                        "work_date",
+                        date
+                    )
+                    .maybeSingle();
+
+
+            if (findError) {
+
+                console.error(
+                    "Грешка при проверка:",
+                    findError
+                );
+
+                throw new Error(
+                    "Грешка при проверка на " +
+                    employee +
+                    " / " +
+                    date +
+                    ":\n" +
+                    findError.message
+                );
+
+            }
+
+
+            /* =================================================
+               ИМА ЗАПИС → UPDATE
+            ================================================= */
+
+            if (existingRow) {
+
+                const {
+                    error: updateError
+                } =
+                    await supabaseClient
+                        .from(
+                            "work_schedule"
+                        )
+                        .update(
+                            values
+                        )
+                        .eq(
+                            "id",
+                            existingRow.id
+                        );
+
+
+                if (updateError) {
+
+                    console.error(
+                        "UPDATE ERROR:",
+                        updateError
                     );
 
-            if (error) {
-                throw error;
+                    throw new Error(
+                        "Грешка при запис на " +
+                        employee +
+                        " / " +
+                        date +
+                        ":\n" +
+                        updateError.message
+                    );
+
+                }
+
+            }
+
+
+            /* =================================================
+               НЯМА ЗАПИС → INSERT
+            ================================================= */
+
+            else {
+
+                const {
+                    error: insertError
+                } =
+                    await supabaseClient
+                        .from(
+                            "work_schedule"
+                        )
+                        .insert(
+                            values
+                        );
+
+
+                if (insertError) {
+
+                    console.error(
+                        "INSERT ERROR:",
+                        insertError
+                    );
+
+                    throw new Error(
+                        "Грешка при добавяне на " +
+                        employee +
+                        " / " +
+                        date +
+                        ":\n" +
+                        insertError.message
+                    );
+
+                }
+
             }
 
         }
 
+
+        /* =================================================
+           ЗАРЕЖДАНЕ НА ГРАФИКА
+        ================================================= */
+
         await loadSchedule();
 
         renderAllSchedule();
+
+
+        /* =================================================
+           ВРЪЩАМЕ СКРОЛ ПОЗИЦИЯТА
+        ================================================= */
 
         window.scrollTo(
             0,
             scrollPosition
         );
 
+
         alert(
-            "Графикът е записан успешно."
+            "✅ Графикът е записан успешно."
         );
+
 
     } catch (error) {
 
-        console.error(error);
+        console.error(
+            "SAVE SCHEDULE ERROR:",
+            error
+        );
 
         alert(
-            "Грешка при записването на графика."
+            "❌ Грешка при записването:\n\n" +
+            error.message
         );
 
     } finally {
@@ -2093,11 +2612,14 @@ async function saveAllScheduleChanges() {
 
 /* =========================================================
    ADD USER
-   ========================================================= */
+========================================================= */
 
 async function addUser() {
 
-    if (!currentUser || !currentUser.admin) {
+    if (
+        !currentUser ||
+        !currentUser.admin
+    ) {
 
         alert(
             "Нямате права за тази операция."
@@ -2108,24 +2630,32 @@ async function addUser() {
 
     const name =
         document
-            .getElementById("newUserName")
+            .getElementById(
+                "newUserName"
+            )
             .value
             .trim();
 
     const password =
         document
-            .getElementById("newUserPassword")
+            .getElementById(
+                "newUserPassword"
+            )
             .value
             .trim();
 
     const admin =
         document
-            .getElementById("newUserAdmin")
+            .getElementById(
+                "newUserAdmin"
+            )
             .checked;
 
     const septemberOnly =
         document
-            .getElementById("newUserSeptemberOnly")
+            .getElementById(
+                "newUserSeptemberOnly"
+            )
             .checked;
 
     if (!name) {
@@ -2137,16 +2667,26 @@ async function addUser() {
         return;
     }
 
-    const { data: existing, error: checkError } =
+    const {
+        data: existing,
+        error: checkError
+    } =
         await supabaseClient
-            .from("app_users")
+            .from(
+                "app_users"
+            )
             .select("id")
-            .eq("name", name)
+            .eq(
+                "name",
+                name
+            )
             .maybeSingle();
 
     if (checkError) {
 
-        console.error(checkError);
+        console.error(
+            checkError
+        );
 
         alert(
             "Грешка при проверката."
@@ -2166,16 +2706,22 @@ async function addUser() {
 
     const { error } =
         await supabaseClient
-            .from("app_users")
+            .from(
+                "app_users"
+            )
             .insert({
 
-                name: name,
+                name:
+                    name,
 
-                password: password,
+                password:
+                    password,
 
-                admin: admin,
+                admin:
+                    admin,
 
-                active: true,
+                active:
+                    true,
 
                 september_only:
                     septemberOnly
@@ -2184,7 +2730,9 @@ async function addUser() {
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         alert(
             "Грешка при добавянето."
@@ -2195,21 +2743,21 @@ async function addUser() {
 
     await loadUsersFromSupabase();
 
-    document
-        .getElementById("newUserName")
-        .value = "";
+    document.getElementById(
+        "newUserName"
+    ).value = "";
 
-    document
-        .getElementById("newUserPassword")
-        .value = "";
+    document.getElementById(
+        "newUserPassword"
+    ).value = "";
 
-    document
-        .getElementById("newUserAdmin")
-        .checked = false;
+    document.getElementById(
+        "newUserAdmin"
+    ).checked = false;
 
-    document
-        .getElementById("newUserSeptemberOnly")
-        .checked = false;
+    document.getElementById(
+        "newUserSeptemberOnly"
+    ).checked = false;
 
     populateLoginUsers();
 
@@ -2228,7 +2776,7 @@ async function addUser() {
 
 /* =========================================================
    ADMIN USERS
-   ========================================================= */
+========================================================= */
 
 function renderAdminUsers() {
 
@@ -2237,97 +2785,132 @@ function renderAdminUsers() {
             "adminUsersContainer"
         );
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
     container.innerHTML = "";
 
-    USERS.forEach(user => {
+    USERS.forEach(
+        user => {
 
-        const div =
-            document.createElement("div");
+            const div =
+                document.createElement(
+                    "div"
+                );
 
-        div.className =
-            "admin-user";
+            div.className =
+                "admin-user";
 
-        div.innerHTML = `
+            div.innerHTML = `
 
-            <div class="admin-user-grid">
-
-                <input
-                    class="admin-name"
-                    value="${escapeAttribute(user.name)}"
-                    data-id="${user.id}"
-                >
-
-                <input
-                    class="admin-password"
-                    value="${escapeAttribute(user.password)}"
-                    data-id="${user.id}"
-                    type="text"
-                >
-
-                <label class="checkbox-row">
-                    <input
-                        type="checkbox"
-                        class="admin-active"
-                        data-id="${user.id}"
-                        ${user.active ? "checked" : ""}
-                    >
-                    Активен
-                </label>
-
-                <label class="checkbox-row">
-                    <input
-                        type="checkbox"
-                        class="admin-is-admin"
-                        data-id="${user.id}"
-                        ${user.admin ? "checked" : ""}
-                    >
-                    Админ
-                </label>
-
-                <button
-                    class="primary-button"
-                    onclick="saveUser('${user.id}')"
-                >
-                    💾 Запази
-                </button>
-
-            </div>
-
-            <div style="margin-top:10px;">
-
-                <label class="checkbox-row">
+                <div class="admin-user-grid">
 
                     <input
-                        type="checkbox"
-                        class="admin-september"
+                        class="admin-name"
+                        value="${escapeAttribute(
+                            user.name
+                        )}"
                         data-id="${user.id}"
-                        ${user.septemberOnly ? "checked" : ""}
                     >
 
-                    Само за септември
+                    <input
+                        class="admin-password"
+                        value="${escapeAttribute(
+                            user.password
+                        )}"
+                        data-id="${user.id}"
+                        type="text"
+                    >
 
-                </label>
+                    <label class="checkbox-row">
 
-            </div>
+                        <input
+                            type="checkbox"
+                            class="admin-active"
+                            data-id="${user.id}"
+                            ${
+                                user.active
+                                    ? "checked"
+                                    : ""
+                            }
+                        >
 
-        `;
+                        Активен
 
-        container.appendChild(div);
+                    </label>
 
-    });
+                    <label class="checkbox-row">
+
+                        <input
+                            type="checkbox"
+                            class="admin-is-admin"
+                            data-id="${user.id}"
+                            ${
+                                user.admin
+                                    ? "checked"
+                                    : ""
+                            }
+                        >
+
+                        Админ
+
+                    </label>
+
+                    <button
+                        class="primary-button"
+                        onclick="saveUser('${user.id}')"
+                    >
+                        💾 Запази
+                    </button>
+
+                </div>
+
+                <div style="margin-top:10px;">
+
+                    <label class="checkbox-row">
+
+                        <input
+                            type="checkbox"
+                            class="admin-september"
+                            data-id="${user.id}"
+                            ${
+                                user.septemberOnly
+                                    ? "checked"
+                                    : ""
+                            }
+                        >
+
+                        Само за септември
+
+                    </label>
+
+                </div>
+
+            `;
+
+            container.appendChild(
+                div
+            );
+
+        }
+    );
 
 }
 
 
 /* =========================================================
    SAVE USER
-   ========================================================= */
+========================================================= */
 
-async function saveUser(userId) {
+async function saveUser(
+    userId
+) {
 
-    if (!currentUser.admin) {
+    if (
+        !currentUser ||
+        !currentUser.admin
+    ) {
 
         alert(
             "Нямате права."
@@ -2361,7 +2944,9 @@ async function saveUser(userId) {
             `.admin-september[data-id="${userId}"]`
         );
 
-    if (!nameInput) return;
+    if (!nameInput) {
+        return;
+    }
 
     const name =
         nameInput.value.trim();
@@ -2375,12 +2960,17 @@ async function saveUser(userId) {
         return;
     }
 
-    const { error } =
+    const {
+        error
+    } =
         await supabaseClient
-            .from("app_users")
+            .from(
+                "app_users"
+            )
             .update({
 
-                name: name,
+                name:
+                    name,
 
                 password:
                     passwordInput.value,
@@ -2398,11 +2988,16 @@ async function saveUser(userId) {
                     new Date().toISOString()
 
             })
-            .eq("id", userId);
+            .eq(
+                "id",
+                userId
+            );
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         alert(
             "Грешка при запазването."
@@ -2428,7 +3023,7 @@ async function saveUser(userId) {
 
 /* =========================================================
    SHIFT TYPES – LOCAL STORAGE
-   ========================================================= */
+========================================================= */
 
 function loadShiftTypes() {
 
@@ -2442,11 +3037,15 @@ function loadShiftTypes() {
         try {
 
             shiftTypes =
-                JSON.parse(saved);
+                JSON.parse(
+                    saved
+                );
 
         } catch (e) {
 
-            console.error(e);
+            console.error(
+                e
+            );
 
         }
 
@@ -2459,7 +3058,9 @@ function saveShiftTypes() {
 
     localStorage.setItem(
         "work_schedule_shift_types",
-        JSON.stringify(shiftTypes)
+        JSON.stringify(
+            shiftTypes
+        )
     );
 
 }
@@ -2467,7 +3068,7 @@ function saveShiftTypes() {
 
 /* =========================================================
    RENDER SHIFT TYPES
-   ========================================================= */
+========================================================= */
 
 function renderShiftTypes() {
 
@@ -2476,118 +3077,148 @@ function renderShiftTypes() {
             "shiftTypesContainer"
         );
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
     container.innerHTML = "";
 
-    shiftTypes.forEach((shift, index) => {
+    shiftTypes.forEach(
+        (
+            shift,
+            index
+        ) => {
 
-        const div =
-            document.createElement("div");
+            const div =
+                document.createElement(
+                    "div"
+                );
 
-        div.className =
-            "admin-user";
+            div.className =
+                "admin-user";
 
-        div.innerHTML = `
-
-            <div style="
-                display:grid;
-                grid-template-columns:
-                1.5fr 1fr 1fr 100px auto;
-                gap:10px;
-                align-items:center;
-            ">
-
-                <input
-                    id="shift-name-${index}"
-                    value="${escapeAttribute(shift.name)}"
-                >
-
-                <input
-                    id="shift-start-${index}"
-                    type="time"
-                    value="${shift.start || ""}"
-                >
-
-                <input
-                    id="shift-end-${index}"
-                    type="time"
-                    value="${shift.end || ""}"
-                >
-
-                <input
-                    id="shift-break-${index}"
-                    type="number"
-                    min="0"
-                    value="${shift.break || 0}"
-                >
+            div.innerHTML = `
 
                 <div style="
-                    display:flex;
-                    gap:6px;
-                    flex-wrap:wrap;
+                    display:grid;
+                    grid-template-columns:
+                    1.5fr 1fr 1fr 100px auto;
+                    gap:10px;
+                    align-items:center;
                 ">
 
-                    <button
-                        class="primary-button"
-                        onclick="saveShiftType(${index})"
+                    <input
+                        id="shift-name-${index}"
+                        value="${escapeAttribute(
+                            shift.name
+                        )}"
                     >
-                        💾
-                    </button>
 
-                    <button
-                        class="${
-                            shift.active
-                                ? "danger-button"
-                                : "success-button"
+                    <input
+                        id="shift-start-${index}"
+                        type="time"
+                        value="${
+                            shift.start || ""
                         }"
-                        onclick="toggleShiftType(${index})"
                     >
-                        ${
-                            shift.active
-                                ? "Изкл."
-                                : "Вкл."
-                        }
-                    </button>
+
+                    <input
+                        id="shift-end-${index}"
+                        type="time"
+                        value="${
+                            shift.end || ""
+                        }"
+                    >
+
+                    <input
+                        id="shift-break-${index}"
+                        type="number"
+                        min="0"
+                        value="${
+                            shift.break || 0
+                        }"
+                    >
+
+                    <div style="
+                        display:flex;
+                        gap:6px;
+                        flex-wrap:wrap;
+                    ">
+
+                        <button
+                            class="primary-button"
+                            onclick="saveShiftType(${index})"
+                        >
+                            💾
+                        </button>
+
+                        <button
+                            class="${
+                                shift.active
+                                    ? "danger-button"
+                                    : "success-button"
+                            }"
+                            onclick="toggleShiftType(${index})"
+                        >
+                            ${
+                                shift.active
+                                    ? "Изкл."
+                                    : "Вкл."
+                            }
+                        </button>
+
+                    </div>
 
                 </div>
 
-            </div>
-        `;
+            `;
 
-        container.appendChild(div);
+            container.appendChild(
+                div
+            );
 
-    });
+        }
+    );
 
 }
 
 
 /* =========================================================
    ADD SHIFT TYPE
-   ========================================================= */
+========================================================= */
 
 function addShiftType() {
 
     const name =
         document
-            .getElementById("newShiftName")
+            .getElementById(
+                "newShiftName"
+            )
             .value
             .trim();
 
     const start =
         document
-            .getElementById("newShiftStart")
-            .value || null;
+            .getElementById(
+                "newShiftStart"
+            )
+            .value ||
+        null;
 
     const end =
         document
-            .getElementById("newShiftEnd")
-            .value || null;
+            .getElementById(
+                "newShiftEnd"
+            )
+            .value ||
+        null;
 
     const breakTime =
         Number(
             document
-                .getElementById("newShiftBreak")
+                .getElementById(
+                    "newShiftBreak"
+                )
                 .value
         ) || 0;
 
@@ -2602,15 +3233,20 @@ function addShiftType() {
 
     shiftTypes.push({
 
-        name: name,
+        name:
+            name,
 
-        start: start,
+        start:
+            start,
 
-        end: end,
+        end:
+            end,
 
-        break: breakTime,
+        break:
+            breakTime,
 
-        active: true
+        active:
+            true
 
     });
 
@@ -2621,15 +3257,21 @@ function addShiftType() {
     renderAllSchedule();
 
     document
-        .getElementById("newShiftName")
+        .getElementById(
+            "newShiftName"
+        )
         .value = "";
 
     document
-        .getElementById("newShiftStart")
+        .getElementById(
+            "newShiftStart"
+        )
         .value = "";
 
     document
-        .getElementById("newShiftEnd")
+        .getElementById(
+            "newShiftEnd"
+        )
         .value = "";
 
 }
@@ -2637,9 +3279,11 @@ function addShiftType() {
 
 /* =========================================================
    SAVE SHIFT TYPE
-   ========================================================= */
+========================================================= */
 
-function saveShiftType(index) {
+function saveShiftType(
+    index
+) {
 
     const name =
         document
@@ -2654,14 +3298,16 @@ function saveShiftType(index) {
             .getElementById(
                 `shift-start-${index}`
             )
-            .value || null;
+            .value ||
+        null;
 
     const end =
         document
             .getElementById(
                 `shift-end-${index}`
             )
-            .value || null;
+            .value ||
+        null;
 
     const breakTime =
         Number(
@@ -2685,13 +3331,17 @@ function saveShiftType(index) {
 
         ...shiftTypes[index],
 
-        name: name,
+        name:
+            name,
 
-        start: start,
+        start:
+            start,
 
-        end: end,
+        end:
+            end,
 
-        break: breakTime
+        break:
+            breakTime
 
     };
 
@@ -2710,9 +3360,11 @@ function saveShiftType(index) {
 
 /* =========================================================
    TOGGLE SHIFT
-   ========================================================= */
+========================================================= */
 
-function toggleShiftType(index) {
+function toggleShiftType(
+    index
+) {
 
     shiftTypes[index].active =
         !shiftTypes[index].active;
@@ -2728,7 +3380,7 @@ function toggleShiftType(index) {
 
 /* =========================================================
    SWAPS
-   ========================================================= */
+========================================================= */
 
 function updateSwapReceiver() {
 
@@ -2737,52 +3389,78 @@ function updateSwapReceiver() {
             "swapReceiver"
         );
 
-    if (!select) return;
+    if (!select) {
+        return;
+    }
 
     select.innerHTML =
-        `<option value="">Избери служител</option>`;
+        `<option value="">
+            Избери служител
+        </option>`;
 
     USERS
-        .filter(u =>
-            u.active &&
-            u.name !== currentUser.name
+        .filter(
+            u =>
+                u.active &&
+                u.name !==
+                    currentUser.name
         )
-        .forEach(user => {
+        .forEach(
+            user => {
 
-            const option =
-                document.createElement("option");
+                const option =
+                    document.createElement(
+                        "option"
+                    );
 
-            option.value = user.name;
+                option.value =
+                    user.name;
 
-            option.textContent = user.name;
+                option.textContent =
+                    user.name;
 
-            select.appendChild(option);
+                select.appendChild(
+                    option
+                );
 
-        });
+            }
+        );
 
 }
 
+
+/* =========================================================
+   SEND SWAP REQUEST
+========================================================= */
 
 async function sendSwapRequest() {
 
     const proposerDate =
         document
-            .getElementById("swapMyDate")
+            .getElementById(
+                "swapMyDate"
+            )
             .value;
 
     const receiver =
         document
-            .getElementById("swapReceiver")
+            .getElementById(
+                "swapReceiver"
+            )
             .value;
 
     const receiverDate =
         document
-            .getElementById("swapReceiverDate")
+            .getElementById(
+                "swapReceiverDate"
+            )
             .value;
 
     const message =
         document
-            .getElementById("swapMessage")
+            .getElementById(
+                "swapMessage"
+            )
             .value
             .trim();
 
@@ -2801,7 +3479,9 @@ async function sendSwapRequest() {
 
     const { error } =
         await supabaseClient
-            .from("shift_requests")
+            .from(
+                "shift_requests"
+            )
             .insert({
 
                 proposer:
@@ -2826,7 +3506,9 @@ async function sendSwapRequest() {
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         alert(
             "Грешка при изпращането."
@@ -2836,7 +3518,9 @@ async function sendSwapRequest() {
     }
 
     document
-        .getElementById("swapMessage")
+        .getElementById(
+            "swapMessage"
+        )
         .value = "";
 
     alert(
@@ -2850,7 +3534,7 @@ async function sendSwapRequest() {
 
 /* =========================================================
    LOAD SWAP REQUESTS
-   ========================================================= */
+========================================================= */
 
 async function loadSwapRequests() {
 
@@ -2859,7 +3543,9 @@ async function loadSwapRequests() {
             "swapRequestsContainer"
         );
 
-    if (!container) return;
+    if (!container) {
+        return;
+    }
 
     container.innerHTML =
         `<div class="loading">
@@ -2868,7 +3554,9 @@ async function loadSwapRequests() {
 
     let query =
         supabaseClient
-            .from("shift_requests")
+            .from(
+                "shift_requests"
+            )
             .select("*")
             .order(
                 "created_at",
@@ -2877,7 +3565,9 @@ async function loadSwapRequests() {
                 }
             );
 
-    if (!currentUser.admin) {
+    if (
+        !currentUser.admin
+    ) {
 
         query =
             query.or(
@@ -2886,20 +3576,30 @@ async function loadSwapRequests() {
 
     }
 
-    const { data, error } =
+    const {
+        data,
+        error
+    } =
         await query;
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         container.innerHTML =
-            `<p>Грешка при зареждането.</p>`;
+            `<p>
+                Грешка при зареждането.
+            </p>`;
 
         return;
     }
 
-    if (!data || !data.length) {
+    if (
+        !data ||
+        !data.length
+    ) {
 
         container.innerHTML =
             `<p style="color:var(--muted)">
@@ -2913,122 +3613,178 @@ async function loadSwapRequests() {
 
     container.innerHTML = "";
 
-    data.forEach(request => {
+    data.forEach(
+        request => {
 
-        const div =
-            document.createElement("div");
+            const div =
+                document.createElement(
+                    "div"
+                );
 
-        div.className =
-            "swap-request";
+            div.className =
+                "swap-request";
 
-        let statusClass =
-            "pending";
+            let statusClass =
+                "pending";
 
-        if (request.status === "accepted") {
-            statusClass = "accepted";
-        }
+            if (
+                request.status ===
+                "accepted"
+            ) {
 
-        if (request.status === "rejected") {
-            statusClass = "rejected";
-        }
+                statusClass =
+                    "accepted";
 
-        let buttons = "";
-
-        if (
-            request.receiver === currentUser.name &&
-            request.status === "pending"
-        ) {
-
-            buttons += `
-                <button
-                    class="success-button"
-                    onclick="respondSwap(${request.id}, 'accepted')"
-                >
-                    ✔ Приеми
-                </button>
-
-                <button
-                    class="danger-button"
-                    onclick="respondSwap(${request.id}, 'rejected')"
-                >
-                    ✖ Откажи
-                </button>
-            `;
-
-        }
-
-        if (
-            currentUser.admin &&
-            request.status === "accepted"
-        ) {
-
-            buttons += `
-                <button
-                    class="primary-button"
-                    onclick="approveSwap(${request.id})"
-                >
-                    ✔ Одобри размяната
-                </button>
-            `;
-
-        }
-
-        div.innerHTML = `
-
-            <div>
-                <strong>
-                    ${escapeHtml(request.proposer)}
-                </strong>
-
-                → 
-
-                <strong>
-                    ${escapeHtml(request.receiver)}
-                </strong>
-            </div>
-
-            <div style="margin-top:7px;">
-                ${escapeHtml(request.proposer_date)}
-                ↔
-                ${escapeHtml(request.receiver_date)}
-            </div>
-
-            ${
-                request.message
-                ? `
-                    <div style="margin-top:7px;">
-                        💬 ${escapeHtml(request.message)}
-                    </div>
-                `
-                : ""
             }
 
-            <div style="margin-top:10px;">
-                <span class="status ${statusClass}">
-                    ${escapeHtml(request.status)}
-                </span>
-            </div>
+            if (
+                request.status ===
+                "rejected"
+            ) {
 
-            ${
-                buttons
-                ? `
-                    <div style="
-                        display:flex;
-                        gap:8px;
-                        margin-top:12px;
-                        flex-wrap:wrap;
-                    ">
-                        ${buttons}
-                    </div>
-                `
-                : ""
+                statusClass =
+                    "rejected";
+
             }
 
-        `;
+            let buttons = "";
 
-        container.appendChild(div);
+            if (
+                request.receiver ===
+                    currentUser.name &&
+                request.status ===
+                    "pending"
+            ) {
 
-    });
+                buttons += `
+
+                    <button
+                        class="success-button"
+                        onclick="respondSwap(
+                            ${request.id},
+                            'accepted'
+                        )"
+                    >
+                        ✔ Приеми
+                    </button>
+
+                    <button
+                        class="danger-button"
+                        onclick="respondSwap(
+                            ${request.id},
+                            'rejected'
+                        )"
+                    >
+                        ✖ Откажи
+                    </button>
+
+                `;
+
+            }
+
+            if (
+                currentUser.admin &&
+                request.status ===
+                    "accepted"
+            ) {
+
+                buttons += `
+
+                    <button
+                        class="primary-button"
+                        onclick="approveSwap(
+                            ${request.id}
+                        )"
+                    >
+                        ✔ Одобри размяната
+                    </button>
+
+                `;
+
+            }
+
+            div.innerHTML = `
+
+                <div>
+
+                    <strong>
+                        ${escapeHtml(
+                            request.proposer
+                        )}
+                    </strong>
+
+                    →
+
+                    <strong>
+                        ${escapeHtml(
+                            request.receiver
+                        )}
+                    </strong>
+
+                </div>
+
+                <div style="margin-top:7px;">
+
+                    ${escapeHtml(
+                        request.proposer_date
+                    )}
+
+                    ↔
+
+                    ${escapeHtml(
+                        request.receiver_date
+                    )}
+
+                </div>
+
+                ${
+                    request.message
+                        ? `
+                            <div style="margin-top:7px;">
+                                💬
+                                ${escapeHtml(
+                                    request.message
+                                )}
+                            </div>
+                        `
+                        : ""
+                }
+
+                <div style="margin-top:10px;">
+
+                    <span
+                        class="status ${statusClass}"
+                    >
+                        ${escapeHtml(
+                            request.status
+                        )}
+                    </span>
+
+                </div>
+
+                ${
+                    buttons
+                        ? `
+                            <div style="
+                                display:flex;
+                                gap:8px;
+                                margin-top:12px;
+                                flex-wrap:wrap;
+                            ">
+                                ${buttons}
+                            </div>
+                        `
+                        : ""
+                }
+
+            `;
+
+            container.appendChild(
+                div
+            );
+
+        }
+    );
 
     updateSwapReceiver();
 
@@ -3037,7 +3793,7 @@ async function loadSwapRequests() {
 
 /* =========================================================
    RESPOND SWAP
-   ========================================================= */
+========================================================= */
 
 async function respondSwap(
     id,
@@ -3046,7 +3802,9 @@ async function respondSwap(
 
     const { error } =
         await supabaseClient
-            .from("shift_requests")
+            .from(
+                "shift_requests"
+            )
             .update({
 
                 status:
@@ -3056,12 +3814,20 @@ async function respondSwap(
                     new Date().toISOString()
 
             })
-            .eq("id", id)
-            .eq("receiver", currentUser.name);
+            .eq(
+                "id",
+                id
+            )
+            .eq(
+                "receiver",
+                currentUser.name
+            );
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
         alert(
             "Грешка."
@@ -3077,11 +3843,15 @@ async function respondSwap(
 
 /* =========================================================
    ADMIN APPROVE SWAP
-   ========================================================= */
+========================================================= */
 
-async function approveSwap(id) {
+async function approveSwap(
+    id
+) {
 
-    if (!currentUser.admin) {
+    if (
+        !currentUser.admin
+    ) {
 
         alert(
             "Нямате права."
@@ -3090,14 +3860,25 @@ async function approveSwap(id) {
         return;
     }
 
-    const { data: request, error } =
+    const {
+        data: request,
+        error
+    } =
         await supabaseClient
-            .from("shift_requests")
+            .from(
+                "shift_requests"
+            )
             .select("*")
-            .eq("id", id)
+            .eq(
+                "id",
+                id
+            )
             .maybeSingle();
 
-    if (error || !request) {
+    if (
+        error ||
+        !request
+    ) {
 
         alert(
             "Заявката не е намерена."
@@ -3106,7 +3887,10 @@ async function approveSwap(id) {
         return;
     }
 
-    if (request.status !== "accepted") {
+    if (
+        request.status !==
+        "accepted"
+    ) {
 
         alert(
             "Заявката трябва първо да бъде приета."
@@ -3115,92 +3899,128 @@ async function approveSwap(id) {
         return;
     }
 
-    const { data: proposerShift } =
+    const {
+        data: proposerShift
+    } =
         await supabaseClient
-            .from("work_schedule")
+            .from(
+                "work_schedule"
+            )
             .select("*")
-            .eq("employee", request.proposer)
-            .eq("work_date", request.proposer_date)
+            .eq(
+                "employee",
+                request.proposer
+            )
+            .eq(
+                "work_date",
+                request.proposer_date
+            )
             .maybeSingle();
 
-    const { data: receiverShift } =
+    const {
+        data: receiverShift
+    } =
         await supabaseClient
-            .from("work_schedule")
+            .from(
+                "work_schedule"
+            )
             .select("*")
-            .eq("employee", request.receiver)
-            .eq("work_date", request.receiver_date)
+            .eq(
+                "employee",
+                request.receiver
+            )
+            .eq(
+                "work_date",
+                request.receiver_date
+            )
             .maybeSingle();
 
-    if (proposerShift) {
+    if (
+        proposerShift
+    ) {
 
         await supabaseClient
-            .from("work_schedule")
-            .upsert({
+            .from(
+                "work_schedule"
+            )
+            .upsert(
+                {
 
-                employee:
-                    request.receiver,
+                    employee:
+                        request.receiver,
 
-                work_date:
-                    request.receiver_date,
+                    work_date:
+                        request.receiver_date,
 
-                shift_type:
-                    proposerShift.shift_type,
+                    shift_type:
+                        proposerShift.shift_type,
 
-                start_time:
-                    proposerShift.start_time,
+                    start_time:
+                        proposerShift.start_time,
 
-                end_time:
-                    proposerShift.end_time,
+                    end_time:
+                        proposerShift.end_time,
 
-                break_time:
-                    proposerShift.break_time,
+                    break_time:
+                        proposerShift.break_time,
 
-                updated_at:
-                    new Date().toISOString()
+                    updated_at:
+                        new Date().toISOString()
 
-            }, {
-                onConflict:
-                    "employee,work_date"
-            });
+                },
+                {
+                    onConflict:
+                        "employee,work_date"
+                }
+            );
 
     }
 
-    if (receiverShift) {
+    if (
+        receiverShift
+    ) {
 
         await supabaseClient
-            .from("work_schedule")
-            .upsert({
+            .from(
+                "work_schedule"
+            )
+            .upsert(
+                {
 
-                employee:
-                    request.proposer,
+                    employee:
+                        request.proposer,
 
-                work_date:
-                    request.proposer_date,
+                    work_date:
+                        request.proposer_date,
 
-                shift_type:
-                    receiverShift.shift_type,
+                    shift_type:
+                        receiverShift.shift_type,
 
-                start_time:
-                    receiverShift.start_time,
+                    start_time:
+                        receiverShift.start_time,
 
-                end_time:
-                    receiverShift.end_time,
+                    end_time:
+                        receiverShift.end_time,
 
-                break_time:
-                    receiverShift.break_time,
+                    break_time:
+                        receiverShift.break_time,
 
-                updated_at:
-                    new Date().toISOString()
+                    updated_at:
+                        new Date().toISOString()
 
-            }, {
-                onConflict:
-                    "employee,work_date"
-            });
+                },
+                {
+                    onConflict:
+                        "employee,work_date"
+                }
+            );
 
     }
 
     await supabaseClient
-        .from("shift_requests")
+        .from(
+            "shift_requests"
+        )
         .update({
 
             status:
@@ -3210,7 +4030,10 @@ async function approveSwap(id) {
                 new Date().toISOString()
 
         })
-        .eq("id", id);
+        .eq(
+            "id",
+            id
+        );
 
     await loadSchedule();
 
@@ -3227,27 +4050,53 @@ async function approveSwap(id) {
 
 /* =========================================================
    ESCAPE
-   ========================================================= */
+========================================================= */
 
-function escapeHtml(value) {
+function escapeHtml(
+    value
+) {
 
-    if (value === null || value === undefined) {
+    if (
+        value === null ||
+        value === undefined
+    ) {
+
         return "";
+
     }
 
     return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
 
-function escapeAttribute(value) {
+function escapeAttribute(
+    value
+) {
 
-    return escapeHtml(value);
+    return escapeHtml(
+        value
+    );
 
 }
 
@@ -3256,3 +4105,7 @@ function escapeAttribute(value) {
 </body>
 </html>
 ```
+
+Тази версия е със сменената логика за **запис на графика**. Ако проблемът е именно в `upsert/onConflict`, това го заобикаля.
+
+**Важно:** ако след поставянето на този код пак излезе грешка, вече съобщението ще показва конкретно **коя дата и кой служител** не може да се запише и какво връща Supabase. Това ще ни позволи да оправим и самата база, ако проблемът е в RLS.
