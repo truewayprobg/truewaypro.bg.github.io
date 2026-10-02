@@ -4,35 +4,92 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Работен график</title>
+<title>WorkFlow • Работен график</title>
 
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
 
+/* =========================================================
+   VARIABLES
+========================================================= */
+
 :root {
-    --bg: #f3f4f6;
+    --bg: #f5f7fb;
     --card: #ffffff;
+    --card2: #f8fafc;
     --text: #111827;
     --muted: #6b7280;
-    --border: #d1d5db;
-    --primary: #2563eb;
-    --primary-hover: #1d4ed8;
-    --danger: #dc2626;
-    --success: #16a34a;
-    --warning: #d97706;
-    --shadow: 0 4px 20px rgba(0,0,0,.08);
+    --border: #e5e7eb;
+
+    --primary: #6366f1;
+    --primary2: #8b5cf6;
+
+    --green: #10b981;
+    --red: #ef4444;
+    --orange: #f59e0b;
+    --blue: #3b82f6;
+    --pink: #ec4899;
+
+    --shadow:
+        0 10px 35px rgba(15,23,42,.08);
+
+    --radius: 18px;
 }
+
+body.dark {
+
+    --bg: #0b1120;
+    --card: #111827;
+    --card2: #172033;
+    --text: #f8fafc;
+    --muted: #94a3b8;
+    --border: #263247;
+
+    --shadow:
+        0 10px 35px rgba(0,0,0,.3);
+}
+
+
+/* =========================================================
+   RESET
+========================================================= */
 
 * {
     box-sizing: border-box;
 }
 
+html,
 body {
     margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: var(--bg);
+    padding: 0;
+    min-height: 100%;
+}
+
+body {
+
+    font-family:
+        Inter,
+        ui-sans-serif,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(99,102,241,.12),
+            transparent 35%
+        ),
+        var(--bg);
+
     color: var(--text);
+
+    transition:
+        background .25s,
+        color .25s;
 }
 
 button,
@@ -49,462 +106,1594 @@ button {
     display: none !important;
 }
 
-/* =========================
+
+/* =========================================================
    LOGIN
-========================= */
+========================================================= */
 
 #loginPage {
+
     min-height: 100vh;
+
     display: flex;
     align-items: center;
     justify-content: center;
+
     padding: 20px;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(99,102,241,.35),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(139,92,246,.3),
+            transparent 35%
+        ),
+        #080d1a;
 }
 
-.login-box {
+.login-container {
+
     width: 100%;
-    max-width: 420px;
-    background: var(--card);
-    padding: 35px;
+    max-width: 1000px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    border-radius: 30px;
+
+    overflow: hidden;
+
+    background: rgba(255,255,255,.97);
+
+    box-shadow:
+        0 30px 80px rgba(0,0,0,.35);
+}
+
+
+/* LEFT */
+
+.login-brand {
+
+    padding: 55px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            145deg,
+            #4f46e5,
+            #7c3aed
+        );
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.login-brand::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.08);
+
+    top: -100px;
+    right: -80px;
+}
+
+.login-brand::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 220px;
+    height: 220px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,.07);
+
+    bottom: -100px;
+    left: -60px;
+}
+
+.logo-big {
+
+    width: 65px;
+    height: 65px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     border-radius: 18px;
-    box-shadow: var(--shadow);
-}
 
-.login-box h1 {
-    text-align: center;
-    margin-top: 0;
-    margin-bottom: 8px;
-}
+    background:
+        rgba(255,255,255,.16);
 
-.login-box p {
-    text-align: center;
-    color: var(--muted);
+    font-size: 32px;
+
     margin-bottom: 30px;
+
+    position: relative;
+    z-index: 1;
+}
+
+.login-brand h1 {
+
+    font-size: 42px;
+
+    line-height: 1.05;
+
+    margin: 0 0 18px;
+
+    position: relative;
+    z-index: 1;
+}
+
+.login-brand p {
+
+    color:
+        rgba(255,255,255,.78);
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+    position: relative;
+    z-index: 1;
+}
+
+.feature-list {
+
+    margin-top: 35px;
+
+    position: relative;
+    z-index: 1;
+}
+
+.feature {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 15px;
+
+    font-size: 14px;
+}
+
+.feature-icon {
+
+    width: 34px;
+    height: 34px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 10px;
+
+    background:
+        rgba(255,255,255,.14);
+}
+
+
+/* LOGIN FORM */
+
+.login-form {
+
+    padding: 55px;
+
+    background: white;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+}
+
+.login-form h2 {
+
+    font-size: 28px;
+
+    margin:
+        0 0 8px;
+}
+
+.login-subtitle {
+
+    color: #6b7280;
+
+    margin:
+        0 0 30px;
 }
 
 .form-group {
-    margin-bottom: 18px;
+
+    margin-bottom: 20px;
 }
 
 .form-group label {
+
     display: block;
-    font-weight: bold;
-    margin-bottom: 7px;
+
+    font-weight: 700;
+
+    font-size: 13px;
+
+    margin-bottom: 8px;
+
+    color: #374151;
+}
+
+.input-wrap {
+
+    position: relative;
+}
+
+.input-wrap span {
+
+    position: absolute;
+
+    left: 14px;
+
+    top: 50%;
+
+    transform:
+        translateY(-50%);
+
+    color: #9ca3af;
 }
 
 .form-group input,
 .form-group select {
+
     width: 100%;
-    padding: 12px;
-    border: 1px solid var(--border);
-    border-radius: 9px;
+
+    padding:
+        14px 14px 14px 42px;
+
+    border:
+        1px solid #e5e7eb;
+
+    border-radius: 12px;
+
+    outline: none;
+
+    background: #f9fafb;
+
+    transition:
+        border .2s,
+        box-shadow .2s;
+}
+
+.form-group select {
+
+    padding-left: 42px;
+}
+
+.form-group input:focus,
+.form-group select:focus {
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(99,102,241,.12);
+
     background: white;
 }
 
 .login-button {
+
     width: 100%;
-    padding: 13px;
+
+    padding: 14px;
+
     border: 0;
-    border-radius: 9px;
-    background: var(--primary);
+
+    border-radius: 12px;
+
     color: white;
-    font-weight: bold;
+
+    font-weight: 800;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    box-shadow:
+        0 8px 20px
+        rgba(99,102,241,.25);
+
+    transition:
+        transform .15s,
+        box-shadow .15s;
 }
 
 .login-button:hover {
-    background: var(--primary-hover);
+
+    transform:
+        translateY(-1px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(99,102,241,.32);
 }
 
 .login-error {
-    color: var(--danger);
-    text-align: center;
+
     margin-top: 15px;
+
+    padding: 12px;
+
+    border-radius: 10px;
+
+    background: #fef2f2;
+
+    color: #b91c1c;
+
+    font-size: 13px;
+
+    line-height: 1.5;
 }
 
-/* =========================
+
+/* =========================================================
    APP
-========================= */
+========================================================= */
 
 #appPage {
     min-height: 100vh;
 }
 
-.topbar {
-    background: #111827;
-    color: white;
-    padding: 14px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-    flex-wrap: wrap;
-}
 
-.topbar-left {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
+/* SIDEBAR */
 
-.topbar h1 {
-    margin: 0;
-    font-size: 20px;
-}
+.sidebar {
 
-.user-info {
-    color: #d1d5db;
-    font-size: 14px;
-}
+    width: 250px;
 
-.topbar-buttons {
-    display: flex;
-    gap: 8px;
-    flex-wrap: wrap;
-}
+    position: fixed;
 
-.topbar button {
-    border: 0;
-    border-radius: 7px;
-    padding: 8px 12px;
-}
-
-.logout-btn {
-    background: #dc2626;
-    color: white;
-}
-
-.theme-btn {
-    background: #374151;
-    color: white;
-}
-
-/* =========================
-   CONTENT
-========================= */
-
-.container {
-    max-width: 1600px;
-    margin: 0 auto;
-    padding: 20px;
-}
-
-.toolbar {
-    background: var(--card);
-    padding: 15px;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-}
-
-.toolbar-left,
-.toolbar-right {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.toolbar select,
-.toolbar button {
-    padding: 9px 12px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: white;
-}
-
-.primary-btn {
-    background: var(--primary) !important;
-    color: white;
-    border-color: var(--primary) !important;
-}
-
-.success-btn {
-    background: var(--success) !important;
-    color: white;
-    border-color: var(--success) !important;
-}
-
-.danger-btn {
-    background: var(--danger) !important;
-    color: white;
-    border-color: var(--danger) !important;
-}
-
-/* =========================
-   TABS
-========================= */
-
-.tabs {
-    display: flex;
-    gap: 8px;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
-.tab-button {
-    padding: 10px 16px;
-    border: 0;
-    border-radius: 8px;
-    background: #e5e7eb;
-}
-
-.tab-button.active {
-    background: var(--primary);
-    color: white;
-}
-
-/* =========================
-   SCHEDULE
-========================= */
-
-.schedule-card {
-    background: var(--card);
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    overflow: hidden;
-}
-
-.table-wrapper {
-    overflow-x: auto;
-}
-
-.schedule-table {
-    border-collapse: collapse;
-    width: 100%;
-    min-width: 900px;
-}
-
-.schedule-table th,
-.schedule-table td {
-    border: 1px solid var(--border);
-    padding: 6px;
-    text-align: center;
-}
-
-.schedule-table th {
-    background: #e5e7eb;
-    font-size: 13px;
-}
-
-.schedule-table .employee-cell {
-    position: sticky;
+    top: 0;
+    bottom: 0;
     left: 0;
-    z-index: 3;
-    background: var(--card);
-    text-align: left;
-    font-weight: bold;
-    min-width: 190px;
+
+    background:
+        linear-gradient(
+            180deg,
+            #111827,
+            #0f172a
+        );
+
+    color: white;
+
+    padding: 25px 15px;
+
+    z-index: 20;
 }
 
-.schedule-table th.employee-cell {
-    background: #e5e7eb;
-}
+.sidebar-logo {
 
-.day-header {
-    min-width: 105px;
-}
-
-.weekend {
-    background: #fef2f2 !important;
-}
-
-.date-number {
-    font-size: 15px;
-    font-weight: bold;
-}
-
-.day-name {
-    font-size: 11px;
-    color: var(--muted);
-}
-
-.shift-box {
-    min-height: 55px;
     display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    padding:
+        0 12px 25px;
+
+    border-bottom:
+        1px solid
+        rgba(255,255,255,.08);
+
+    margin-bottom: 25px;
+}
+
+.sidebar-logo-icon {
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 12px;
+
+    display: flex;
+
     align-items: center;
     justify-content: center;
-    border-radius: 7px;
-    font-weight: bold;
-    font-size: 13px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #6366f1,
+            #8b5cf6
+        );
+
+    font-size: 21px;
 }
 
-.shift-work {
-    background: #dcfce7;
-    color: #166534;
+.sidebar-logo strong {
+
+    font-size: 17px;
 }
 
-.shift-first {
-    background: #dbeafe;
-    color: #1e40af;
+.sidebar-logo small {
+
+    display: block;
+
+    color: #9ca3af;
+
+    margin-top: 2px;
+
+    font-size: 11px;
 }
 
-.shift-second {
-    background: #ede9fe;
-    color: #5b21b6;
+.nav-title {
+
+    padding:
+        0 12px 10px;
+
+    color: #64748b;
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1px;
+
+    font-weight: 800;
 }
 
-.shift-regular {
-    background: #fef3c7;
-    color: #92400e;
-}
+.nav-button {
 
-.shift-full {
-    background: #fee2e2;
-    color: #991b1b;
-}
-
-.shift-leave {
-    background: #cffafe;
-    color: #155e75;
-}
-
-.shift-absent {
-    background: #fce7f3;
-    color: #9d174d;
-}
-
-.shift-rest {
-    background: #f3f4f6;
-    color: #6b7280;
-}
-
-/* =========================
-   ADMIN SELECT
-========================= */
-
-.admin-select {
     width: 100%;
-    min-width: 95px;
-    padding: 7px 4px;
-    border-radius: 6px;
-    border: 1px solid var(--border);
-    background: white;
-    font-size: 12px;
-}
 
-.admin-select.changed {
-    border: 2px solid var(--warning);
-    background: #fffbeb;
-}
+    display: flex;
 
-.save-info {
-    font-size: 13px;
-    color: var(--muted);
-}
+    align-items: center;
 
-/* =========================
-   CARDS
-========================= */
+    gap: 12px;
 
-.info-card {
-    background: var(--card);
-    padding: 20px;
-    border-radius: 12px;
-    box-shadow: var(--shadow);
-    margin-bottom: 20px;
-}
-
-.info-card h2 {
-    margin-top: 0;
-}
-
-/* =========================
-   REQUESTS
-========================= */
-
-.request {
-    border: 1px solid var(--border);
-    border-radius: 9px;
     padding: 12px;
+
+    border: 0;
+
+    border-radius: 11px;
+
+    background: transparent;
+
+    color: #cbd5e1;
+
+    text-align: left;
+
+    margin-bottom: 5px;
+
+    transition:
+        background .2s,
+        color .2s;
+}
+
+.nav-button:hover {
+
+    background:
+        rgba(255,255,255,.06);
+
+    color: white;
+}
+
+.nav-button.active {
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(99,102,241,.9),
+            rgba(139,92,246,.85)
+        );
+
+    color: white;
+
+    box-shadow:
+        0 8px 20px
+        rgba(99,102,241,.2);
+}
+
+.nav-icon {
+
+    width: 22px;
+
+    text-align: center;
+
+    font-size: 17px;
+}
+
+.sidebar-bottom {
+
+    position: absolute;
+
+    left: 15px;
+    right: 15px;
+    bottom: 20px;
+}
+
+.user-card {
+
+    background:
+        rgba(255,255,255,.06);
+
+    border:
+        1px solid
+        rgba(255,255,255,.08);
+
+    padding: 12px;
+
+    border-radius: 13px;
+
     margin-bottom: 10px;
 }
 
-.request-actions {
+.user-card-name {
+
+    font-weight: 700;
+
+    font-size: 13px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+.user-card-role {
+
+    font-size: 11px;
+
+    color: #94a3b8;
+
+    margin-top: 3px;
+}
+
+.logout {
+
+    width: 100%;
+
+    border: 0;
+
+    background:
+        rgba(239,68,68,.12);
+
+    color: #fca5a5;
+
+    padding: 11px;
+
+    border-radius: 10px;
+}
+
+.logout:hover {
+
+    background:
+        rgba(239,68,68,.2);
+}
+
+
+/* MAIN */
+
+.main {
+
+    margin-left: 250px;
+
+    min-height: 100vh;
+
+    padding: 25px 30px;
+}
+
+
+/* TOP */
+
+.top {
+
     display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.page-title h1 {
+
+    margin: 0;
+
+    font-size: 28px;
+
+    letter-spacing: -.5px;
+}
+
+.page-title p {
+
+    margin:
+        5px 0 0;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+.top-actions {
+
+    display: flex;
+
     gap: 8px;
-    margin-top: 10px;
 }
 
-/* =========================
-   DARK MODE
-========================= */
+.icon-button {
 
-body.dark {
-    --bg: #111827;
-    --card: #1f2937;
-    --text: #f9fafb;
-    --muted: #9ca3af;
-    --border: #374151;
+    width: 42px;
+    height: 42px;
+
+    border:
+        1px solid var(--border);
+
+    background:
+        var(--card);
+
+    color: var(--text);
+
+    border-radius: 11px;
+
+    box-shadow:
+        0 3px 10px rgba(0,0,0,.03);
 }
 
-body.dark .form-group input,
-body.dark .form-group select,
-body.dark .toolbar select,
-body.dark .toolbar button,
-body.dark .admin-select {
-    background: #111827;
+
+/* =========================================================
+   DASHBOARD
+========================================================= */
+
+.dashboard-cards {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.stat-card {
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+
+    padding: 20px;
+
+    box-shadow:
+        var(--shadow);
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.stat-card::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 80px;
+    height: 80px;
+
+    border-radius: 50%;
+
+    right: -30px;
+    top: -30px;
+
+    background:
+        rgba(99,102,241,.07);
+}
+
+.stat-label {
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: .5px;
+}
+
+.stat-number {
+
+    font-size: 28px;
+
+    font-weight: 800;
+
+    margin-top: 7px;
+}
+
+.stat-icon {
+
+    float: right;
+
+    width: 38px;
+    height: 38px;
+
+    border-radius: 11px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        rgba(99,102,241,.1);
+
+    font-size: 18px;
+}
+
+
+/* =========================================================
+   TOOLBAR
+========================================================= */
+
+.toolbar {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+
+    padding: 15px 18px;
+
+    margin-bottom: 15px;
+
+    box-shadow:
+        var(--shadow);
+}
+
+.toolbar-group {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+}
+
+.month-navigation {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+}
+
+.month-title {
+
+    min-width: 170px;
+
+    text-align: center;
+
+    font-size: 17px;
+
+    font-weight: 800;
+}
+
+.control-button {
+
+    border:
+        1px solid var(--border);
+
+    background: var(--card);
+
+    color: var(--text);
+
+    border-radius: 9px;
+
+    padding: 9px 12px;
+}
+
+.control-button:hover {
+
+    border-color:
+        var(--primary);
+
+    color:
+        var(--primary);
+}
+
+.primary-button {
+
+    border: 0;
+
     color: white;
+
+    border-radius: 9px;
+
+    padding: 10px 15px;
+
+    font-weight: 700;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
 }
 
-body.dark .schedule-table th {
-    background: #374151;
-}
+.success-button {
 
-body.dark .schedule-table .employee-cell {
-    background: #1f2937;
-}
+    border: 0;
 
-body.dark .tab-button {
-    background: #374151;
     color: white;
+
+    border-radius: 9px;
+
+    padding: 10px 15px;
+
+    font-weight: 700;
+
+    background:
+        var(--green);
 }
 
-/* =========================
+
+/* =========================================================
+   SCHEDULE
+========================================================= */
+
+.schedule-card {
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+
+    overflow: hidden;
+
+    box-shadow:
+        var(--shadow);
+}
+
+.table-scroll {
+
+    overflow-x: auto;
+
+    scrollbar-width: thin;
+}
+
+.schedule-table {
+
+    border-collapse:
+        separate;
+
+    border-spacing: 0;
+
+    min-width: 1100px;
+
+    width: 100%;
+}
+
+.schedule-table th {
+
+    background:
+        var(--card2);
+
+    color:
+        var(--muted);
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: .4px;
+
+    padding: 12px 6px;
+
+    border-bottom:
+        1px solid var(--border);
+}
+
+.schedule-table td {
+
+    border-bottom:
+        1px solid var(--border);
+
+    border-right:
+        1px solid var(--border);
+
+    padding: 5px;
+
+    text-align: center;
+}
+
+.schedule-table tr:last-child td {
+
+    border-bottom: 0;
+}
+
+.employee {
+
+    position: sticky;
+
+    left: 0;
+
+    z-index: 5;
+
+    background: var(--card) !important;
+
+    min-width: 190px;
+
+    text-align: left !important;
+
+    padding-left: 15px !important;
+}
+
+.employee-name {
+
+    font-weight: 800;
+
+    font-size: 13px;
+}
+
+.employee-role {
+
+    color: var(--muted);
+
+    font-size: 10px;
+
+    margin-top: 3px;
+}
+
+.day-cell {
+
+    min-width: 90px;
+
+    height: 68px;
+}
+
+.day-number {
+
+    font-size: 13px;
+
+    font-weight: 800;
+}
+
+.day-name {
+
+    font-size: 9px;
+
+    color: var(--muted);
+
+    margin-top: 2px;
+}
+
+.weekend {
+
+    background:
+        rgba(239,68,68,.035);
+}
+
+
+/* SHIFT */
+
+.shift {
+
+    height: 50px;
+
+    border-radius: 10px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    font-weight: 800;
+
+    font-size: 13px;
+
+    border: 1px solid transparent;
+}
+
+.shift small {
+
+    font-size: 8px;
+
+    font-weight: 600;
+
+    margin-top: 3px;
+
+    opacity: .7;
+}
+
+.shift-p {
+
+    background: #f1f5f9;
+
+    color: #64748b;
+}
+
+.shift-first {
+
+    background: #dbeafe;
+
+    color: #1d4ed8;
+
+    border-color: #bfdbfe;
+}
+
+.shift-second {
+
+    background: #ede9fe;
+
+    color: #6d28d9;
+
+    border-color: #ddd6fe;
+}
+
+.shift-r {
+
+    background: #fef3c7;
+
+    color: #a16207;
+
+    border-color: #fde68a;
+}
+
+.shift-c {
+
+    background: #fee2e2;
+
+    color: #dc2626;
+
+    border-color: #fecaca;
+}
+
+.shift-leave {
+
+    background: #cffafe;
+
+    color: #0e7490;
+
+    border-color: #a5f3fc;
+}
+
+.shift-absent {
+
+    background: #fce7f3;
+
+    color: #be185d;
+
+    border-color: #fbcfe8;
+}
+
+
+/* =========================================================
+   ADMIN
+========================================================= */
+
+.admin-select {
+
+    width: 100%;
+
+    min-width: 82px;
+
+    padding: 8px 4px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 8px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    outline: none;
+
+    font-size: 11px;
+}
+
+.admin-select:focus {
+
+    border-color:
+        var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(99,102,241,.12);
+}
+
+.admin-select.changed {
+
+    border:
+        2px solid var(--orange);
+
+    background:
+        #fffbeb;
+}
+
+
+/* =========================================================
+   LEGEND
+========================================================= */
+
+.legend {
+
+    display: flex;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    padding: 15px;
+
+    border-top:
+        1px solid var(--border);
+
+    background:
+        var(--card2);
+}
+
+.legend-item {
+
+    display: flex;
+
+    align-items: center;
+
+    gap: 6px;
+
+    font-size: 11px;
+
+    color: var(--muted);
+}
+
+.legend-color {
+
+    width: 14px;
+    height: 14px;
+
+    border-radius: 4px;
+}
+
+
+/* =========================================================
+   MY SCHEDULE
+========================================================= */
+
+.my-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+
+    margin-bottom: 20px;
+}
+
+.my-card {
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+
+    padding: 20px;
+
+    box-shadow:
+        var(--shadow);
+}
+
+.my-card-label {
+
+    color: var(--muted);
+
+    font-size: 12px;
+}
+
+.my-card-value {
+
+    font-size: 25px;
+
+    font-weight: 800;
+
+    margin-top: 5px;
+}
+
+
+/* =========================================================
+   REQUESTS
+========================================================= */
+
+.request-form {
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:
+        var(--radius);
+
+    padding: 22px;
+
+    box-shadow:
+        var(--shadow);
+
+    margin-bottom: 20px;
+}
+
+.form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 15px;
+}
+
+.form-grid label {
+
+    display: block;
+
+    font-size: 12px;
+
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+.form-grid input,
+.form-grid select {
+
+    width: 100%;
+
+    padding: 11px;
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 9px;
+
+    background: var(--card);
+
+    color: var(--text);
+
+    outline: none;
+}
+
+.request {
+
+    background: var(--card);
+
+    border:
+        1px solid var(--border);
+
+    border-radius: 13px;
+
+    padding: 15px;
+
+    margin-bottom: 10px;
+}
+
+.request-top {
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+.status {
+
+    padding: 4px 9px;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+
+    font-weight: 800;
+}
+
+.status-pending {
+
+    background: #fef3c7;
+
+    color: #92400e;
+}
+
+.status-approved {
+
+    background: #dcfce7;
+
+    color: #166534;
+}
+
+.status-rejected {
+
+    background: #fee2e2;
+
+    color: #991b1b;
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty {
+
+    text-align: center;
+
+    padding: 50px 20px;
+
+    color: var(--muted);
+}
+
+.empty-icon {
+
+    font-size: 40px;
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+#toast {
+
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    z-index: 100;
+
+    max-width: 360px;
+
+    padding: 14px 17px;
+
+    border-radius: 12px;
+
+    background:
+        #111827;
+
+    color: white;
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.25);
+
+    transform:
+        translateY(120px);
+
+    opacity: 0;
+
+    transition:
+        .25s;
+}
+
+#toast.show {
+
+    transform:
+        translateY(0);
+
+    opacity: 1;
+}
+
+
+/* =========================================================
    MOBILE
-========================= */
+========================================================= */
 
-@media (max-width: 700px) {
+@media(max-width: 900px) {
 
-    .container {
-        padding: 10px;
+    .sidebar {
+
+        width: 70px;
+
+        padding: 15px 8px;
     }
 
-    .login-box {
-        padding: 25px;
+    .sidebar-logo {
+
+        justify-content: center;
+
+        padding:
+            0 0 15px;
     }
 
-    .topbar {
-        padding: 12px;
+    .sidebar-logo > div:not(.sidebar-logo-icon),
+    .nav-title,
+    .nav-button span:not(.nav-icon),
+    .user-card {
+
+        display: none;
     }
 
-    .topbar h1 {
-        font-size: 17px;
+    .nav-button {
+
+        justify-content: center;
+    }
+
+    .sidebar-bottom {
+
+        left: 8px;
+        right: 8px;
+    }
+
+    .main {
+
+        margin-left: 70px;
+
+        padding: 18px;
+    }
+
+    .dashboard-cards {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+    }
+
+    .my-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+    .form-grid {
+
+        grid-template-columns:
+            1fr;
+    }
+
+}
+
+@media(max-width: 650px) {
+
+    .login-container {
+
+        grid-template-columns: 1fr;
+
+        max-width: 440px;
+    }
+
+    .login-brand {
+
+        display: none;
+    }
+
+    .login-form {
+
+        padding: 35px 25px;
+    }
+
+    .main {
+
+        padding: 15px 10px;
+    }
+
+    .top {
+
+        align-items: flex-start;
+    }
+
+    .page-title h1 {
+
+        font-size: 23px;
+    }
+
+    .dashboard-cards {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        gap: 10px;
+    }
+
+    .stat-card {
+
+        padding: 15px;
+    }
+
+    .stat-number {
+
+        font-size: 22px;
     }
 
     .toolbar {
-        align-items: stretch;
+
+        padding: 12px;
     }
 
-    .toolbar-left,
-    .toolbar-right {
-        width: 100%;
+    .month-title {
+
+        min-width: 130px;
+
+        font-size: 14px;
     }
 
-    .toolbar select,
-    .toolbar button {
-        flex: 1;
-    }
 }
 
 </style>
 </head>
 
+
 <body>
+
 
 <!-- =========================================================
      LOGIN
@@ -512,53 +1701,119 @@ body.dark .tab-button {
 
 <div id="loginPage">
 
-    <div class="login-box">
+    <div class="login-container">
 
-        <h1>📅 Работен график</h1>
+        <div class="login-brand">
 
-        <p>Влезте в системата</p>
+            <div class="logo-big">
+                📅
+            </div>
 
-        <div class="form-group">
+            <h1>
+                WorkFlow
+            </h1>
 
-            <label for="loginName">
-                Име
-            </label>
+            <p>
+                Интелигентна система за управление
+                на работния график.
+            </p>
 
-            <select id="loginName">
+            <div class="feature-list">
 
-                <option value="">
-                    Зареждане...
-                </option>
+                <div class="feature">
+                    <div class="feature-icon">📅</div>
+                    <span>Месечен работен график</span>
+                </div>
 
-            </select>
+                <div class="feature">
+                    <div class="feature-icon">👥</div>
+                    <span>График на целия екип</span>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">🔄</div>
+                    <span>Размяна на смени</span>
+                </div>
+
+                <div class="feature">
+                    <div class="feature-icon">⚙️</div>
+                    <span>Административен контрол</span>
+                </div>
+
+            </div>
 
         </div>
 
-        <div class="form-group">
 
-            <label for="loginPassword">
-                Парола
-            </label>
+        <div class="login-form">
 
-            <input
-                id="loginPassword"
-                type="password"
-                placeholder="Въведете парола"
+            <h2>
+                Добре дошли 👋
+            </h2>
+
+            <p class="login-subtitle">
+                Влезте в своя работен график.
+            </p>
+
+
+            <div class="form-group">
+
+                <label>
+                    Служител
+                </label>
+
+                <div class="input-wrap">
+
+                    <span>👤</span>
+
+                    <select id="loginName">
+
+                        <option value="">
+                            Зареждане на служители...
+                        </option>
+
+                    </select>
+
+                </div>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Парола
+                </label>
+
+                <div class="input-wrap">
+
+                    <span>🔒</span>
+
+                    <input
+                        id="loginPassword"
+                        type="password"
+                        placeholder="Въведи парола"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="login-button"
+                id="loginButton"
             >
+                Вход в системата →
+            </button>
+
+
+            <div
+                id="loginError"
+                class="login-error hidden"
+            ></div>
 
         </div>
-
-        <button
-            class="login-button"
-            id="loginButton"
-        >
-            Вход
-        </button>
-
-        <div
-            id="loginError"
-            class="login-error"
-        ></div>
 
     </div>
 
@@ -574,252 +1829,459 @@ body.dark .tab-button {
     class="hidden"
 >
 
-    <header class="topbar">
 
-        <div class="topbar-left">
+    <!-- SIDEBAR -->
 
-            <h1>
-                📅 Работен график
-            </h1>
+    <aside class="sidebar">
 
-            <span
-                id="loggedUser"
-                class="user-info"
-            ></span>
+        <div class="sidebar-logo">
+
+            <div class="sidebar-logo-icon">
+                📅
+            </div>
+
+            <div>
+
+                <strong>
+                    WorkFlow
+                </strong>
+
+                <small>
+                    Работен график
+                </small>
+
+            </div>
 
         </div>
 
-        <div class="topbar-buttons">
+
+        <div class="nav-title">
+            Меню
+        </div>
+
+
+        <button
+            class="nav-button active"
+            data-page="schedulePage"
+        >
+
+            <span class="nav-icon">📅</span>
+
+            <span>
+                График
+            </span>
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            data-page="myPage"
+        >
+
+            <span class="nav-icon">👤</span>
+
+            <span>
+                Моят график
+            </span>
+
+        </button>
+
+
+        <button
+            class="nav-button hidden"
+            id="adminNav"
+            data-page="adminPage"
+        >
+
+            <span class="nav-icon">⚙️</span>
+
+            <span>
+                Администрация
+            </span>
+
+        </button>
+
+
+        <button
+            class="nav-button"
+            data-page="requestsPage"
+        >
+
+            <span class="nav-icon">🔄</span>
+
+            <span>
+                Размени
+            </span>
+
+        </button>
+
+
+        <div class="sidebar-bottom">
+
+            <div class="user-card">
+
+                <div
+                    id="sidebarUser"
+                    class="user-card-name"
+                >
+                    -
+                </div>
+
+                <div
+                    id="sidebarRole"
+                    class="user-card-role"
+                >
+                    -
+                </div>
+
+            </div>
+
 
             <button
-                class="theme-btn"
-                id="themeButton"
-            >
-                🌙 Тема
-            </button>
-
-            <button
-                class="logout-btn"
+                class="logout"
                 id="logoutButton"
             >
-                Изход
+                🚪 Изход
             </button>
 
         </div>
 
-    </header>
+    </aside>
 
 
-    <main class="container">
+    <!-- MAIN -->
 
-        <!-- =====================================================
-             TABS
-        ====================================================== -->
+    <main class="main">
 
-        <div class="tabs">
 
-            <button
-                class="tab-button active"
-                data-tab="scheduleTab"
-            >
-                📅 График
-            </button>
+        <!-- TOP -->
 
-            <button
-                class="tab-button"
-                data-tab="myTab"
-            >
-                👤 Моят график
-            </button>
+        <div class="top">
 
-            <button
-                class="tab-button hidden"
-                id="adminTabButton"
-                data-tab="adminTab"
-            >
-                ⚙️ Администрация
-            </button>
+            <div class="page-title">
 
-            <button
-                class="tab-button"
-                data-tab="requestsTab"
-            >
-                🔄 Размени
-            </button>
+                <h1 id="pageTitle">
+                    Работен график
+                </h1>
 
-        </div>
-
-
-        <!-- =====================================================
-             SCHEDULE TAB
-        ====================================================== -->
-
-        <section id="scheduleTab">
-
-            <div class="toolbar">
-
-                <div class="toolbar-left">
-
-                    <button
-                        id="previousMonth"
-                    >
-                        ◀ Предишен
-                    </button>
-
-                    <select
-                        id="monthSelect"
-                    ></select>
-
-                    <select
-                        id="yearSelect"
-                    ></select>
-
-                    <button
-                        id="nextMonth"
-                    >
-                        Следващ ▶
-                    </button>
-
-                </div>
-
-                <div class="toolbar-right">
-
-                    <span
-                        id="scheduleInfo"
-                        class="save-info"
-                    ></span>
-
-                </div>
-
-            </div>
-
-            <div class="schedule-card">
-
-                <div class="table-wrapper">
-
-                    <table class="schedule-table">
-
-                        <thead id="scheduleHead"></thead>
-
-                        <tbody id="scheduleBody"></tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             MY TAB
-        ====================================================== -->
-
-        <section
-            id="myTab"
-            class="hidden"
-        >
-
-            <div class="info-card">
-
-                <h2>
-                    👤 Моят график
-                </h2>
-
-                <div id="myScheduleInfo"></div>
-
-            </div>
-
-            <div class="schedule-card">
-
-                <div class="table-wrapper">
-
-                    <table class="schedule-table">
-
-                        <thead id="myScheduleHead"></thead>
-
-                        <tbody id="myScheduleBody"></tbody>
-
-                    </table>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =====================================================
-             ADMIN TAB
-        ====================================================== -->
-
-        <section
-            id="adminTab"
-            class="hidden"
-        >
-
-            <div class="toolbar">
-
-                <div class="toolbar-left">
-
-                    <button
-                        id="adminPreviousMonth"
-                    >
-                        ◀
-                    </button>
-
-                    <select
-                        id="adminMonthSelect"
-                    ></select>
-
-                    <select
-                        id="adminYearSelect"
-                    ></select>
-
-                    <button
-                        id="adminNextMonth"
-                    >
-                        ▶
-                    </button>
-
-                </div>
-
-                <div class="toolbar-right">
-
-                    <button
-                        id="saveScheduleButton"
-                        class="success-btn"
-                    >
-                        💾 Запази промените
-                    </button>
-
-                </div>
-
-            </div>
-
-            <div class="info-card">
-
-                <h2>
-                    ⚙️ Администрация
-                </h2>
-
-                <p class="save-info">
-                    Променените клетки са маркирани в жълто.
-                    След редакция натисни „Запази промените“.
+                <p id="pageSubtitle">
+                    Месечен график на екипа
                 </p>
 
             </div>
 
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-button"
+                    id="themeButton"
+                    title="Смени тема"
+                >
+                    🌙
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================================
+             SCHEDULE PAGE
+        ================================================== -->
+
+        <section id="schedulePage">
+
+
+            <div class="dashboard-cards">
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">
+                        👥
+                    </span>
+
+                    <div class="stat-label">
+                        Служители
+                    </div>
+
+                    <div
+                        id="statEmployees"
+                        class="stat-number"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">
+                        📅
+                    </span>
+
+                    <div class="stat-label">
+                        Дни
+                    </div>
+
+                    <div
+                        id="statDays"
+                        class="stat-number"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">
+                        🕐
+                    </span>
+
+                    <div class="stat-label">
+                        Месец
+                    </div>
+
+                    <div
+                        id="statMonth"
+                        class="stat-number"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="stat-card">
+
+                    <span class="stat-icon">
+                        🔄
+                    </span>
+
+                    <div class="stat-label">
+                        Заявки
+                    </div>
+
+                    <div
+                        id="statRequests"
+                        class="stat-number"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="toolbar">
+
+                <div class="toolbar-group">
+
+                    <div class="month-navigation">
+
+                        <button
+                            class="control-button"
+                            id="previousMonth"
+                        >
+                            ←
+                        </button>
+
+                        <div
+                            id="monthTitle"
+                            class="month-title"
+                        >
+                            -
+                        </div>
+
+                        <button
+                            class="control-button"
+                            id="nextMonth"
+                        >
+                            →
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
             <div class="schedule-card">
 
-                <div class="table-wrapper">
+                <div class="table-scroll">
 
                     <table class="schedule-table">
 
-                        <thead id="adminScheduleHead"></thead>
+                        <thead
+                            id="scheduleHead"
+                        ></thead>
 
-                        <tbody id="adminScheduleBody"></tbody>
+                        <tbody
+                            id="scheduleBody"
+                        ></tbody>
+
+                    </table>
+
+                </div>
+
+
+                <div class="legend">
+
+                    <div class="legend-item">
+                        <span
+                            class="legend-color"
+                            style="background:#dbeafe"
+                        ></span>
+                        1-ва
+                    </div>
+
+                    <div class="legend-item">
+                        <span
+                            class="legend-color"
+                            style="background:#ede9fe"
+                        ></span>
+                        2-ра
+                    </div>
+
+                    <div class="legend-item">
+                        <span
+                            class="legend-color"
+                            style="background:#fef3c7"
+                        ></span>
+                        Р
+                    </div>
+
+                    <div class="legend-item">
+                        <span
+                            class="legend-color"
+                            style="background:#fee2e2"
+                        ></span>
+                        Ц
+                    </div>
+
+                    <div class="legend-item">
+                        <span
+                            class="legend-color"
+                            style="background:#cffafe"
+                        ></span>
+                        Отпуска
+                    </div>
+
+                    <div class="legend-item">
+                        <span
+                            class="legend-color"
+                            style="background:#f1f5f9"
+                        ></span>
+                        Почивка
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             MY PAGE
+        ================================================== -->
+
+        <section
+            id="myPage"
+            class="hidden"
+        >
+
+            <div class="my-grid">
+
+                <div class="my-card">
+
+                    <div class="my-card-label">
+                        Служител
+                    </div>
+
+                    <div
+                        id="myName"
+                        class="my-card-value"
+                    >
+                        -
+                    </div>
+
+                </div>
+
+
+                <div class="my-card">
+
+                    <div class="my-card-label">
+                        Работни часове
+                    </div>
+
+                    <div
+                        id="myHours"
+                        class="my-card-value"
+                    >
+                        0 ч.
+                    </div>
+
+                </div>
+
+
+                <div class="my-card">
+
+                    <div class="my-card-label">
+                        Работни дни
+                    </div>
+
+                    <div
+                        id="myWorkDays"
+                        class="my-card-value"
+                    >
+                        0
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="schedule-card">
+
+                <div class="table-scroll">
+
+                    <table class="schedule-table">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    Дата
+                                </th>
+
+                                <th>
+                                    Ден
+                                </th>
+
+                                <th>
+                                    Смяна
+                                </th>
+
+                                <th>
+                                    Работни часове
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody
+                            id="myScheduleBody"
+                        ></tbody>
 
                     </table>
 
@@ -830,63 +2292,169 @@ body.dark .tab-button {
         </section>
 
 
-        <!-- =====================================================
-             REQUESTS
-        ====================================================== -->
+        <!-- =================================================
+             ADMIN PAGE
+        ================================================== -->
 
         <section
-            id="requestsTab"
+            id="adminPage"
             class="hidden"
         >
 
-            <div class="info-card">
+            <div class="toolbar">
 
-                <h2>
-                    🔄 Размяна на смени
+                <div class="toolbar-group">
+
+                    <div class="month-navigation">
+
+                        <button
+                            class="control-button"
+                            id="adminPreviousMonth"
+                        >
+                            ←
+                        </button>
+
+                        <div
+                            id="adminMonthTitle"
+                            class="month-title"
+                        >
+                            -
+                        </div>
+
+                        <button
+                            class="control-button"
+                            id="adminNextMonth"
+                        >
+                            →
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="toolbar-group">
+
+                    <span
+                        id="changeCounter"
+                        style="
+                            color:var(--muted);
+                            font-size:12px;
+                        "
+                    >
+                        Няма промени
+                    </span>
+
+                    <button
+                        class="success-button"
+                        id="saveScheduleButton"
+                    >
+                        💾 Запази
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="schedule-card">
+
+                <div class="table-scroll">
+
+                    <table class="schedule-table">
+
+                        <thead
+                            id="adminScheduleHead"
+                        ></thead>
+
+                        <tbody
+                            id="adminScheduleBody"
+                        ></tbody>
+
+                    </table>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =================================================
+             REQUESTS PAGE
+        ================================================== -->
+
+        <section
+            id="requestsPage"
+            class="hidden"
+        >
+
+            <div class="request-form">
+
+                <h2 style="margin-top:0">
+                    🔄 Нова размяна
                 </h2>
 
-                <div class="form-group">
+                <p
+                    style="
+                        color:var(--muted);
+                        font-size:13px;
+                    "
+                >
+                    Изпрати заявка до друг служител.
+                </p>
 
-                    <label>
-                        Дата
-                    </label>
 
-                    <input
-                        type="date"
-                        id="swapDate"
-                    >
+                <div class="form-grid">
+
+                    <div>
+
+                        <label>
+                            Дата
+                        </label>
+
+                        <input
+                            type="date"
+                            id="swapDate"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Служител
+                        </label>
+
+                        <select
+                            id="swapEmployee"
+                        ></select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Съобщение
+                        </label>
+
+                        <input
+                            type="text"
+                            id="swapMessage"
+                            placeholder="По желание..."
+                        >
+
+                    </div>
 
                 </div>
 
-                <div class="form-group">
-
-                    <label>
-                        Служител
-                    </label>
-
-                    <select
-                        id="swapEmployee"
-                    ></select>
-
-                </div>
-
-                <div class="form-group">
-
-                    <label>
-                        Съобщение
-                    </label>
-
-                    <input
-                        type="text"
-                        id="swapMessage"
-                        placeholder="Напр. Можеш ли да поемеш тази смяна?"
-                    >
-
-                </div>
 
                 <button
+                    class="primary-button"
                     id="sendSwapButton"
-                    class="primary-btn"
+                    style="margin-top:15px"
                 >
                     Изпрати заявка
                 </button>
@@ -894,9 +2462,9 @@ body.dark .tab-button {
             </div>
 
 
-            <div class="info-card">
+            <div class="request-form">
 
-                <h2>
+                <h2 style="margin-top:0">
                     📬 Заявки
                 </h2>
 
@@ -909,6 +2477,9 @@ body.dark .tab-button {
     </main>
 
 </div>
+
+
+<div id="toast"></div>
 
 
 <script>
@@ -931,7 +2502,7 @@ const supabaseClient =
 
 
 /* =========================================================
-   GLOBAL STATE
+   STATE
 ========================================================= */
 
 let users = [];
@@ -949,73 +2520,99 @@ let currentYear =
     currentDate.getFullYear();
 
 
+const MONTHS = [
+    "Януари",
+    "Февруари",
+    "Март",
+    "Април",
+    "Май",
+    "Юни",
+    "Юли",
+    "Август",
+    "Септември",
+    "Октомври",
+    "Ноември",
+    "Декември"
+];
+
+const DAYS = [
+    "Нед",
+    "Пон",
+    "Вто",
+    "Сря",
+    "Чет",
+    "Пет",
+    "Съб"
+];
+
+
 /* =========================================================
    SHIFT TYPES
 ========================================================= */
 
 const SHIFT_TYPES = {
 
-    "П": {
-        label: "Почивка",
-        start: null,
-        end: null,
-        break: 0,
-        className: "shift-rest"
-    },
-
     "1-ва смяна": {
-        label: "1-ва смяна",
         start: "09:00",
         end: "16:00",
         break: 60,
-        className: "shift-first"
+        className: "shift-first",
+        short: "1-ва"
     },
 
     "2-ра смяна": {
-        label: "2-ра смяна",
         start: "14:00",
         end: "21:00",
         break: 60,
-        className: "shift-second"
+        className: "shift-second",
+        short: "2-ра"
     },
 
     "Р": {
-        label: "Р",
         start: "09:00",
         end: "18:00",
         break: 60,
-        className: "shift-regular"
+        className: "shift-r",
+        short: "Р"
     },
 
     "Ц": {
-        label: "Ц",
         start: "09:00",
         end: "21:00",
         break: 60,
-        className: "shift-full"
+        className: "shift-c",
+        short: "Ц"
     },
 
     "Отпуска": {
-        label: "Отпуска",
         start: null,
         end: null,
         break: 0,
-        className: "shift-leave"
+        className: "shift-leave",
+        short: "Отп."
     },
 
     "Самоотлъчка": {
-        label: "Самоотлъчка",
         start: null,
         end: null,
         break: 0,
-        className: "shift-absent"
+        className: "shift-absent",
+        short: "СА"
+    },
+
+    "П": {
+        start: null,
+        end: null,
+        break: 0,
+        className: "shift-p",
+        short: "П"
     }
 
 };
 
 
 /* =========================================================
-   DOM
+   ELEMENTS
 ========================================================= */
 
 const loginPage =
@@ -1036,42 +2633,6 @@ const loginButton =
 const loginError =
     document.getElementById("loginError");
 
-const loggedUser =
-    document.getElementById("loggedUser");
-
-const logoutButton =
-    document.getElementById("logoutButton");
-
-const themeButton =
-    document.getElementById("themeButton");
-
-const monthSelect =
-    document.getElementById("monthSelect");
-
-const yearSelect =
-    document.getElementById("yearSelect");
-
-const scheduleHead =
-    document.getElementById("scheduleHead");
-
-const scheduleBody =
-    document.getElementById("scheduleBody");
-
-const adminTabButton =
-    document.getElementById("adminTabButton");
-
-const adminMonthSelect =
-    document.getElementById("adminMonthSelect");
-
-const adminYearSelect =
-    document.getElementById("adminYearSelect");
-
-const adminScheduleHead =
-    document.getElementById("adminScheduleHead");
-
-const adminScheduleBody =
-    document.getElementById("adminScheduleBody");
-
 
 /* =========================================================
    HELPERS
@@ -1089,7 +2650,33 @@ function escapeHtml(value) {
 }
 
 
-function formatSupabaseError(error) {
+function showToast(message) {
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    clearTimeout(
+        window.toastTimer
+    );
+
+    window.toastTimer =
+        setTimeout(
+            () => {
+                toast.classList.remove(
+                    "show"
+                );
+            },
+            3000
+        );
+
+}
+
+
+function supabaseError(error) {
 
     if (!error) {
         return "Неизвестна грешка.";
@@ -1097,47 +2684,33 @@ function formatSupabaseError(error) {
 
     return [
         error.message
-            ? "Съобщение: " + error.message
+            ? error.message
             : "",
 
         error.details
-            ? "Детайли: " + error.details
+            ? "\n" + error.details
             : "",
 
         error.hint
-            ? "Подсказка: " + error.hint
+            ? "\n" + error.hint
             : "",
 
         error.code
-            ? "Код: " + error.code
+            ? "\nКод: " + error.code
             : ""
 
     ]
     .filter(Boolean)
-    .join("\n");
+    .join("");
 
 }
 
 
-function getDaysInMonth(year, month) {
-
-    return new Date(
-        year,
-        month + 1,
-        0
-    ).getDate();
-
-}
-
-
-function dateKey(employee, date) {
-
-    return employee + "|" + date;
-
-}
-
-
-function makeDate(year, month, day) {
+function makeDate(
+    year,
+    month,
+    day
+) {
 
     return (
         year +
@@ -1150,40 +2723,45 @@ function makeDate(year, month, day) {
 }
 
 
-function getDayName(dateString) {
+function daysInMonth(
+    year,
+    month
+) {
 
-    const date =
-        new Date(dateString + "T00:00:00");
-
-    return [
-        "Нед",
-        "Пон",
-        "Вто",
-        "Сря",
-        "Чет",
-        "Пет",
-        "Съб"
-    ][date.getDay()];
+    return new Date(
+        year,
+        month + 1,
+        0
+    ).getDate();
 
 }
 
 
-function isWeekend(dateString) {
-
-    const date =
-        new Date(dateString + "T00:00:00");
+function isWeekend(date) {
 
     const day =
-        date.getDay();
+        new Date(
+            date + "T00:00:00"
+        ).getDay();
 
     return day === 0 || day === 6;
 
 }
 
 
-function getShift(shiftName) {
+function key(
+    employee,
+    date
+) {
 
-    return SHIFT_TYPES[shiftName] || null;
+    return employee + "|" + date;
+
+}
+
+
+function shiftInfo(name) {
+
+    return SHIFT_TYPES[name] || null;
 
 }
 
@@ -1194,84 +2772,141 @@ function getShift(shiftName) {
 
 async function loadUsers() {
 
-    const {
-        data,
-        error
-    } = await supabaseClient
-        .from("app_users")
-        .select("id,name,password,admin,active")
-        .eq("active", true)
-        .order("name");
+    loginName.innerHTML =
+        `<option value="">
+            Зареждане...
+        </option>`;
 
-    if (error) {
+    loginError.classList.add(
+        "hidden"
+    );
 
-        console.error(error);
+
+    try {
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+            .from("app_users")
+            .select("*")
+            .eq("active", true)
+            .order("name");
+
+
+        console.log(
+            "USERS:",
+            data
+        );
+
+        console.log(
+            "USERS ERROR:",
+            error
+        );
+
+
+        if (error) {
+
+            loginName.innerHTML =
+                `<option value="">
+                    Грешка
+                </option>`;
+
+            loginError.innerHTML =
+                `
+                <strong>Грешка при зареждане:</strong><br>
+                ${escapeHtml(
+                    supabaseError(error)
+                )}
+                `;
+
+            loginError.classList.remove(
+                "hidden"
+            );
+
+            return false;
+        }
+
+
+        users =
+            Array.isArray(data)
+                ? data
+                : [];
+
+
+        if (!users.length) {
+
+            loginName.innerHTML =
+                `<option value="">
+                    Няма служители
+                </option>`;
+
+            loginError.textContent =
+                "В app_users няма активни служители.";
+
+            loginError.classList.remove(
+                "hidden"
+            );
+
+            return false;
+        }
+
+
+        loginName.innerHTML =
+            `<option value="">
+                Избери служител
+            </option>`;
+
+
+        users.forEach(
+            user => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value =
+                    user.name;
+
+                option.textContent =
+                    user.name;
+
+                loginName.appendChild(
+                    option
+                );
+
+            }
+        );
+
+
+        fillSwapEmployees();
+
+
+        return true;
+
+
+    } catch (error) {
+
+        console.error(
+            error
+        );
+
+        loginName.innerHTML =
+            `<option value="">
+                Грешка
+            </option>`;
 
         loginError.textContent =
-            "Грешка при зареждане на служителите.";
+            error.message ||
+            "Неизвестна грешка.";
 
-        return;
+        loginError.classList.remove(
+            "hidden"
+        );
 
+        return false;
     }
-
-    users = data || [];
-
-    loginName.innerHTML =
-        '<option value="">Избери име</option>';
-
-    users.forEach(user => {
-
-        const option =
-            document.createElement("option");
-
-        option.value =
-            user.name;
-
-        option.textContent =
-            user.name;
-
-        loginName.appendChild(option);
-
-    });
-
-    fillEmployeeSelect();
-
-}
-
-
-/* =========================================================
-   EMPLOYEE SELECT
-========================================================= */
-
-function fillEmployeeSelect() {
-
-    const select =
-        document.getElementById("swapEmployee");
-
-    if (!select) return;
-
-    select.innerHTML =
-        '<option value="">Избери служител</option>';
-
-    users
-        .filter(user =>
-            !currentUser ||
-            user.name !== currentUser.name
-        )
-        .forEach(user => {
-
-            const option =
-                document.createElement("option");
-
-            option.value =
-                user.name;
-
-            option.textContent =
-                user.name;
-
-            select.appendChild(option);
-
-        });
 
 }
 
@@ -1282,7 +2917,10 @@ function fillEmployeeSelect() {
 
 async function login() {
 
-    loginError.textContent = "";
+    loginError.classList.add(
+        "hidden"
+    );
+
 
     const name =
         loginName.value;
@@ -1290,39 +2928,52 @@ async function login() {
     const password =
         loginPassword.value;
 
+
     if (!name || !password) {
 
         loginError.textContent =
-            "Моля, въведи име и парола.";
+            "Избери служител и въведи парола.";
+
+        loginError.classList.remove(
+            "hidden"
+        );
 
         return;
-
     }
+
 
     const user =
         users.find(
             item =>
                 item.name === name &&
-                item.password === password
+                String(item.password) ===
+                    String(password)
         );
+
 
     if (!user) {
 
         loginError.textContent =
             "Грешно име или парола.";
 
-        return;
+        loginError.classList.remove(
+            "hidden"
+        );
 
+        return;
     }
+
 
     currentUser = user;
 
+
     sessionStorage.setItem(
-        "workScheduleUser",
+        "workflowUser",
         JSON.stringify(user)
     );
 
-    showApp();
+
+    await showApp();
 
 }
 
@@ -1333,42 +2984,56 @@ async function login() {
 
 async function showApp() {
 
-    loginPage.classList.add("hidden");
+    loginPage.classList.add(
+        "hidden"
+    );
 
-    appPage.classList.remove("hidden");
+    appPage.classList.remove(
+        "hidden"
+    );
 
-    loggedUser.textContent =
+
+    document.getElementById(
+        "sidebarUser"
+    ).textContent =
+        currentUser.name;
+
+
+    document.getElementById(
+        "sidebarRole"
+    ).textContent =
         currentUser.admin
-            ? currentUser.name + " · Администратор"
-            : currentUser.name;
+            ? "Администратор"
+            : "Служител";
+
 
     if (currentUser.admin) {
 
-        adminTabButton.classList.remove("hidden");
-
-    } else {
-
-        adminTabButton.classList.add("hidden");
+        document.getElementById(
+            "adminNav"
+        ).classList.remove(
+            "hidden"
+        );
 
     }
 
-    fillEmployeeSelect();
 
-    setupMonthSelectors();
+    fillSwapEmployees();
+
 
     await loadSchedule();
 
-    renderSchedule();
+    renderAll();
 
-    renderMySchedule();
 
-    if (currentUser.admin) {
-
-        renderAdminSchedule();
-
-        await loadRequests();
-
-    }
+    document.getElementById(
+        "swapDate"
+    ).value =
+        makeDate(
+            currentYear,
+            currentMonth,
+            new Date().getDate()
+        );
 
 }
 
@@ -1380,113 +3045,20 @@ async function showApp() {
 function logout() {
 
     sessionStorage.removeItem(
-        "workScheduleUser"
+        "workflowUser"
     );
 
     currentUser = null;
 
-    appPage.classList.add("hidden");
-
-    loginPage.classList.remove("hidden");
-
-    loginPassword.value = "";
-
-}
-
-
-/* =========================================================
-   MONTH SELECTORS
-========================================================= */
-
-function setupMonthSelectors() {
-
-    const months = [
-        "Януари",
-        "Февруари",
-        "Март",
-        "Април",
-        "Май",
-        "Юни",
-        "Юли",
-        "Август",
-        "Септември",
-        "Октомври",
-        "Ноември",
-        "Декември"
-    ];
-
-    monthSelect.innerHTML = "";
-
-    adminMonthSelect.innerHTML = "";
-
-    months.forEach(
-        (month, index) => {
-
-            const option1 =
-                document.createElement("option");
-
-            option1.value = index;
-
-            option1.textContent = month;
-
-            monthSelect.appendChild(option1);
-
-
-            const option2 =
-                document.createElement("option");
-
-            option2.value = index;
-
-            option2.textContent = month;
-
-            adminMonthSelect.appendChild(option2);
-
-        }
+    appPage.classList.add(
+        "hidden"
     );
 
-    monthSelect.value =
-        currentMonth;
+    loginPage.classList.remove(
+        "hidden"
+    );
 
-    adminMonthSelect.value =
-        currentMonth;
-
-
-    yearSelect.innerHTML = "";
-
-    adminYearSelect.innerHTML = "";
-
-    for (
-        let year = currentYear - 2;
-        year <= currentYear + 2;
-        year++
-    ) {
-
-        const option1 =
-            document.createElement("option");
-
-        option1.value = year;
-
-        option1.textContent = year;
-
-        yearSelect.appendChild(option1);
-
-
-        const option2 =
-            document.createElement("option");
-
-        option2.value = year;
-
-        option2.textContent = year;
-
-        adminYearSelect.appendChild(option2);
-
-    }
-
-    yearSelect.value =
-        currentYear;
-
-    adminYearSelect.value =
-        currentYear;
+    loginPassword.value = "";
 
 }
 
@@ -1499,22 +3071,24 @@ async function loadSchedule() {
 
     scheduleData = {};
 
-    const firstDate =
+
+    const first =
         makeDate(
             currentYear,
             currentMonth,
             1
         );
 
-    const lastDate =
+    const last =
         makeDate(
             currentYear,
             currentMonth,
-            getDaysInMonth(
+            daysInMonth(
                 currentYear,
                 currentMonth
             )
         );
+
 
     const {
         data,
@@ -1524,50 +3098,108 @@ async function loadSchedule() {
         .select(
             "employee,work_date,shift_type,start_time,end_time,break_time"
         )
-        .gte("work_date", firstDate)
-        .lte("work_date", lastDate);
+        .gte(
+            "work_date",
+            first
+        )
+        .lte(
+            "work_date",
+            last
+        );
+
 
     if (error) {
 
-        console.error(error);
+        console.error(
+            error
+        );
 
-        alert(
-            "Грешка при зареждане на графика:\n\n" +
-            formatSupabaseError(error)
+        showToast(
+            "Грешка при зареждане на графика"
         );
 
         return;
-
     }
 
-    (data || []).forEach(row => {
 
-        scheduleData[
-            dateKey(
-                row.employee,
-                row.work_date
-            )
-        ] = row;
+    (data || []).forEach(
+        row => {
 
-    });
+            scheduleData[
+                key(
+                    row.employee,
+                    row.work_date
+                )
+            ] = row;
+
+        }
+    );
 
 }
 
 
 /* =========================================================
-   RENDER MAIN SCHEDULE
+   RENDER ALL
 ========================================================= */
 
-function renderSchedule() {
+function renderAll() {
+
+    renderMainSchedule();
+
+    renderMySchedule();
+
+    renderAdminSchedule();
+
+    updateStats();
+
+}
+
+
+/* =========================================================
+   MAIN SCHEDULE
+========================================================= */
+
+function renderMainSchedule() {
 
     const days =
-        getDaysInMonth(
+        daysInMonth(
             currentYear,
             currentMonth
         );
 
+
+    document.getElementById(
+        "monthTitle"
+    ).textContent =
+        MONTHS[currentMonth] +
+        " " +
+        currentYear;
+
+
+    document.getElementById(
+        "statEmployees"
+    ).textContent =
+        users.length;
+
+
+    document.getElementById(
+        "statDays"
+    ).textContent =
+        days;
+
+
+    document.getElementById(
+        "statMonth"
+    ).textContent =
+        MONTHS[currentMonth];
+
+
     let head =
-        '<tr><th class="employee-cell">Служител</th>';
+        `<tr>
+            <th class="employee">
+                Служител
+            </th>`;
+
 
     for (
         let day = 1;
@@ -1587,92 +3219,182 @@ function renderSchedule() {
                 ? "weekend"
                 : "";
 
+
         head += `
-            <th class="day-header ${weekend}">
-                <div class="date-number">
+            <th
+                class="${weekend}"
+                style="min-width:70px"
+            >
+                <div class="day-number">
                     ${day}
                 </div>
                 <div class="day-name">
-                    ${getDayName(date)}
+                    ${DAYS[
+                        new Date(
+                            date +
+                            "T00:00:00"
+                        ).getDay()
+                    ]}
                 </div>
             </th>
         `;
 
     }
 
+
     head += "</tr>";
 
-    scheduleHead.innerHTML = head;
+    document.getElementById(
+        "scheduleHead"
+    ).innerHTML =
+        head;
 
 
     let body = "";
 
-    users.forEach(user => {
 
-        body += `
-            <tr>
-
-                <td class="employee-cell">
-                    ${escapeHtml(user.name)}
-                </td>
-        `;
-
-        for (
-            let day = 1;
-            day <= days;
-            day++
-        ) {
-
-            const date =
-                makeDate(
-                    currentYear,
-                    currentMonth,
-                    day
-                );
-
-            const row =
-                scheduleData[
-                    dateKey(
-                        user.name,
-                        date
-                    )
-                ];
-
-            const shift =
-                row?.shift_type || "П";
-
-            const shiftInfo =
-                getShift(shift);
-
-            const weekend =
-                isWeekend(date)
-                    ? "weekend"
-                    : "";
+    users.forEach(
+        user => {
 
             body += `
-                <td class="${weekend}">
-                    <div class="shift-box ${
-                        shiftInfo
-                            ? shiftInfo.className
-                            : "shift-rest"
-                    }">
-                        ${escapeHtml(shift)}
-                    </div>
-                </td>
+                <tr>
+
+                    <td class="employee">
+
+                        <div class="employee-name">
+                            ${escapeHtml(
+                                user.name
+                            )}
+                        </div>
+
+                        <div class="employee-role">
+                            ${
+                                user.admin
+                                    ? "Администратор"
+                                    : "Служител"
+                            }
+                        </div>
+
+                    </td>
             `;
 
+
+            for (
+                let day = 1;
+                day <= days;
+                day++
+            ) {
+
+                const date =
+                    makeDate(
+                        currentYear,
+                        currentMonth,
+                        day
+                    );
+
+
+                const row =
+                    scheduleData[
+                        key(
+                            user.name,
+                            date
+                        )
+                    ];
+
+
+                const shift =
+                    row?.shift_type ||
+                    "П";
+
+
+                const info =
+                    shiftInfo(shift);
+
+
+                const weekend =
+                    isWeekend(date)
+                        ? "weekend"
+                        : "";
+
+
+                let shiftHtml;
+
+
+                if (
+                    shift === "П"
+                ) {
+
+                    shiftHtml = `
+                        <div
+                            class="shift shift-p"
+                        >
+                            П
+                            <small>
+                                почивка
+                            </small>
+                        </div>
+                    `;
+
+                } else {
+
+                    shiftHtml = `
+                        <div
+                            class="shift ${
+                                info?.className ||
+                                "shift-p"
+                            }"
+                        >
+
+                            ${
+                                escapeHtml(
+                                    info?.short ||
+                                    shift
+                                )
+                            }
+
+                            ${
+                                info?.start
+                                    ? `
+                                    <small>
+                                        ${info.start}
+                                        –
+                                        ${info.end}
+                                    </small>
+                                    `
+                                    : `
+                                    <small>
+                                        ${escapeHtml(
+                                            shift
+                                        )}
+                                    </small>
+                                    `
+                            }
+
+                        </div>
+                    `;
+
+                }
+
+
+                body += `
+                    <td class="${weekend}">
+                        ${shiftHtml}
+                    </td>
+                `;
+
+            }
+
+
+            body += "</tr>";
+
         }
+    );
 
-        body += "</tr>";
-
-    });
-
-    scheduleBody.innerHTML = body;
 
     document.getElementById(
-        "scheduleInfo"
-    ).textContent =
-        `${users.length} служители · ${days} дни`;
+        "scheduleBody"
+    ).innerHTML =
+        body;
 
 }
 
@@ -1683,24 +3405,24 @@ function renderSchedule() {
 
 function renderMySchedule() {
 
-    if (!currentUser) return;
+    if (!currentUser) {
+        return;
+    }
+
+
+    let totalMinutes = 0;
+
+    let workDays = 0;
+
+    let body = "";
+
 
     const days =
-        getDaysInMonth(
+        daysInMonth(
             currentYear,
             currentMonth
         );
 
-    let head =
-        '<tr><th class="employee-cell">Дата</th><th>Ден</th><th>Смяна</th><th>Часове</th></tr>';
-
-    document.getElementById(
-        "myScheduleHead"
-    ).innerHTML = head;
-
-    let body = "";
-
-    let totalMinutes = 0;
 
     for (
         let day = 1;
@@ -1715,60 +3437,77 @@ function renderMySchedule() {
                 day
             );
 
+
         const row =
             scheduleData[
-                dateKey(
+                key(
                     currentUser.name,
                     date
                 )
             ];
 
+
         const shift =
-            row?.shift_type || "П";
+            row?.shift_type ||
+            "П";
 
-        const shiftInfo =
-            getShift(shift);
 
-        let hoursText = "-";
+        const info =
+            shiftInfo(shift);
+
+
+        let hours =
+            0;
+
 
         if (
-            shiftInfo &&
-            shiftInfo.start &&
-            shiftInfo.end
+            info?.start &&
+            info?.end
         ) {
 
             const start =
-                shiftInfo.start
+                info.start
                     .split(":")
                     .map(Number);
 
             const end =
-                shiftInfo.end
+                info.end
                     .split(":")
                     .map(Number);
 
-            let minutes =
-                (end[0] * 60 + end[1]) -
-                (start[0] * 60 + start[1]) -
-                shiftInfo.break;
 
-            if (minutes < 0) {
-                minutes = 0;
+            const minutes =
+                (
+                    end[0] * 60 +
+                    end[1]
+                ) -
+                (
+                    start[0] * 60 +
+                    start[1]
+                ) -
+                info.break;
+
+
+            if (minutes > 0) {
+
+                totalMinutes +=
+                    minutes;
+
+                workDays++;
+
+                hours =
+                    minutes / 60;
+
             }
 
-            totalMinutes += minutes;
-
-            hoursText =
-                (minutes / 60)
-                    .toFixed(2)
-                    .replace(".", ",") +
-                " ч.";
         }
+
 
         const weekend =
             isWeekend(date)
                 ? "weekend"
                 : "";
+
 
         body += `
             <tr>
@@ -1778,7 +3517,12 @@ function renderMySchedule() {
                 </td>
 
                 <td class="${weekend}">
-                    ${getDayName(date)}
+                    ${DAYS[
+                        new Date(
+                            date +
+                            "T00:00:00"
+                        ).getDay()
+                    ]}
                 </td>
 
                 <td class="${weekend}">
@@ -1788,7 +3532,14 @@ function renderMySchedule() {
                 </td>
 
                 <td class="${weekend}">
-                    ${hoursText}
+                    ${
+                        hours
+                            ? hours
+                                .toFixed(2)
+                                .replace(".", ",") +
+                                " ч."
+                            : "-"
+                    }
                 </td>
 
             </tr>
@@ -1796,29 +3547,34 @@ function renderMySchedule() {
 
     }
 
+
     document.getElementById(
         "myScheduleBody"
-    ).innerHTML = body;
+    ).innerHTML =
+        body;
 
-
-    const totalHours =
-        totalMinutes / 60;
 
     document.getElementById(
-        "myScheduleInfo"
-    ).innerHTML = `
-        <p>
-            <strong>Служител:</strong>
-            ${escapeHtml(currentUser.name)}
-        </p>
+        "myName"
+    ).textContent =
+        currentUser.name;
 
-        <p>
-            <strong>Общо работни часове:</strong>
-            ${totalHours
-                .toFixed(2)
-                .replace(".", ",")} ч.
-        </p>
-    `;
+
+    document.getElementById(
+        "myHours"
+    ).textContent =
+        (
+            totalMinutes / 60
+        )
+        .toFixed(2)
+        .replace(".", ",") +
+        " ч.";
+
+
+    document.getElementById(
+        "myWorkDays"
+    ).textContent =
+        workDays;
 
 }
 
@@ -1833,14 +3589,28 @@ function renderAdminSchedule() {
         return;
     }
 
+
     const days =
-        getDaysInMonth(
+        daysInMonth(
             currentYear,
             currentMonth
         );
 
+
+    document.getElementById(
+        "adminMonthTitle"
+    ).textContent =
+        MONTHS[currentMonth] +
+        " " +
+        currentYear;
+
+
     let head =
-        '<tr><th class="employee-cell">Служител</th>';
+        `<tr>
+            <th class="employee">
+                Служител
+            </th>`;
+
 
     for (
         let day = 1;
@@ -1855,145 +3625,227 @@ function renderAdminSchedule() {
                 day
             );
 
-        const weekend =
-            isWeekend(date)
-                ? "weekend"
-                : "";
 
         head += `
-            <th class="day-header ${weekend}">
+            <th>
                 ${day}<br>
-                <small>${getDayName(date)}</small>
+                <small>
+                    ${DAYS[
+                        new Date(
+                            date +
+                            "T00:00:00"
+                        ).getDay()
+                    ]}
+                </small>
             </th>
         `;
 
     }
 
+
     head += "</tr>";
 
-    adminScheduleHead.innerHTML =
+
+    document.getElementById(
+        "adminScheduleHead"
+    ).innerHTML =
         head;
 
 
     let body = "";
 
-    users.forEach(user => {
 
-        body += `
-            <tr>
-
-                <td class="employee-cell">
-                    ${escapeHtml(user.name)}
-                </td>
-        `;
-
-        for (
-            let day = 1;
-            day <= days;
-            day++
-        ) {
-
-            const date =
-                makeDate(
-                    currentYear,
-                    currentMonth,
-                    day
-                );
-
-            const row =
-                scheduleData[
-                    dateKey(
-                        user.name,
-                        date
-                    )
-                ];
-
-            const currentShift =
-                row?.shift_type || "";
-
-            const weekend =
-                isWeekend(date)
-                    ? "weekend"
-                    : "";
+    users.forEach(
+        user => {
 
             body += `
-                <td class="${weekend}">
+                <tr>
 
-                    <select
-                        class="admin-select"
-                        data-employee="${escapeHtml(user.name)}"
-                        data-date="${date}"
-                        data-original="${escapeHtml(currentShift)}"
-                    >
+                    <td class="employee">
 
-                        <option value="">
-                            -
-                        </option>
+                        <div class="employee-name">
+                            ${escapeHtml(
+                                user.name
+                            )}
+                        </div>
 
-                        ${Object.keys(SHIFT_TYPES)
-                            .map(shift => `
-                                <option
-                                    value="${escapeHtml(shift)}"
-                                    ${shift === currentShift
-                                        ? "selected"
-                                        : ""}
-                                >
-                                    ${escapeHtml(shift)}
-                                </option>
-                            `)
-                            .join("")}
-
-                    </select>
-
-                </td>
+                    </td>
             `;
 
+
+            for (
+                let day = 1;
+                day <= days;
+                day++
+            ) {
+
+                const date =
+                    makeDate(
+                        currentYear,
+                        currentMonth,
+                        day
+                    );
+
+
+                const row =
+                    scheduleData[
+                        key(
+                            user.name,
+                            date
+                        )
+                    ];
+
+
+                const currentShift =
+                    row?.shift_type || "";
+
+
+                body += `
+                    <td>
+
+                        <select
+                            class="admin-select"
+                            data-employee="${escapeHtml(
+                                user.name
+                            )}"
+                            data-date="${date}"
+                            data-original="${escapeHtml(
+                                currentShift
+                            )}"
+                        >
+
+                            <option value="">
+                                -
+                            </option>
+
+                            ${
+                                Object.keys(
+                                    SHIFT_TYPES
+                                )
+                                .map(
+                                    shift => `
+                                    <option
+                                        value="${escapeHtml(
+                                            shift
+                                        )}"
+                                        ${
+                                            shift ===
+                                            currentShift
+                                                ? "selected"
+                                                : ""
+                                        }
+                                    >
+                                        ${escapeHtml(
+                                            SHIFT_TYPES[
+                                                shift
+                                            ].short
+                                        )}
+                                    </option>
+                                `
+                                )
+                                .join("")
+                            }
+
+                        </select>
+
+                    </td>
+                `;
+
+            }
+
+
+            body += "</tr>";
+
         }
+    );
 
-        body += "</tr>";
 
-    });
-
-    adminScheduleBody.innerHTML =
+    document.getElementById(
+        "adminScheduleBody"
+    ).innerHTML =
         body;
 
 
     document
-        .querySelectorAll(".admin-select")
-        .forEach(select => {
+        .querySelectorAll(
+            ".admin-select"
+        )
+        .forEach(
+            select => {
 
-            select.addEventListener(
-                "change",
-                () => {
+                select.addEventListener(
+                    "change",
+                    updateChangeCounter
+                );
 
-                    select.classList.toggle(
-                        "changed",
-                        select.value !==
-                        select.dataset.original
-                    );
+            }
+        );
 
-                }
-            );
 
-        });
+    updateChangeCounter();
 
 }
 
 
 /* =========================================================
-   SAVE ONE CELL
+   CHANGE COUNTER
 ========================================================= */
 
-async function saveScheduleCell(
+function updateChangeCounter() {
+
+    const changed =
+        document.querySelectorAll(
+            ".admin-select"
+        );
+
+
+    let count = 0;
+
+
+    changed.forEach(
+        select => {
+
+            const isChanged =
+                select.value !==
+                (
+                    select.dataset.original ||
+                    ""
+                );
+
+
+            select.classList.toggle(
+                "changed",
+                isChanged
+            );
+
+
+            if (isChanged) {
+                count++;
+            }
+
+        }
+    );
+
+
+    document.getElementById(
+        "changeCounter"
+    ).textContent =
+        count
+            ? `${count} промени`
+            : "Няма промени";
+
+}
+
+
+/* =========================================================
+   SAVE CELL
+========================================================= */
+
+async function saveCell(
     employee,
     date,
     shiftName
 ) {
-
-    /*
-        Празната клетка означава почивка.
-        Изтриваме стария запис вместо да записваме NULL.
-    */
 
     if (!shiftName) {
 
@@ -2005,23 +3857,24 @@ async function saveScheduleCell(
             .eq("employee", employee)
             .eq("work_date", date);
 
+
         if (error) {
             throw error;
         }
 
-        return;
 
+        return;
     }
 
 
-    const shift =
-        getShift(shiftName);
+    const info =
+        shiftInfo(shiftName);
 
-    if (!shift) {
+
+    if (!info) {
 
         throw new Error(
-            "Невалидна смяна: " +
-            shiftName
+            "Невалидна смяна."
         );
 
     }
@@ -2029,38 +3882,36 @@ async function saveScheduleCell(
 
     const payload = {
 
-        employee: employee,
+        employee,
 
         work_date: date,
 
         shift_type: shiftName,
 
         start_time:
-            shift.start,
+            info.start,
 
         end_time:
-            shift.end,
+            info.end,
 
         break_time:
-            shift.break
+            info.break
 
     };
 
-
-    /*
-        Първо проверяваме дали вече има запис.
-        Така не зависим от ON CONFLICT.
-    */
 
     const {
         data: existing,
         error: findError
     } = await supabaseClient
         .from("work_schedule")
-        .select("employee,work_date")
+        .select(
+            "employee,work_date"
+        )
         .eq("employee", employee)
         .eq("work_date", date)
         .limit(1);
+
 
     if (findError) {
         throw findError;
@@ -2069,7 +3920,7 @@ async function saveScheduleCell(
 
     if (
         existing &&
-        existing.length > 0
+        existing.length
     ) {
 
         const {
@@ -2079,6 +3930,7 @@ async function saveScheduleCell(
             .update(payload)
             .eq("employee", employee)
             .eq("work_date", date);
+
 
         if (error) {
             throw error;
@@ -2092,6 +3944,7 @@ async function saveScheduleCell(
             .from("work_schedule")
             .insert(payload);
 
+
         if (error) {
             throw error;
         }
@@ -2102,21 +3955,10 @@ async function saveScheduleCell(
 
 
 /* =========================================================
-   SAVE ALL CHANGES
+   SAVE CHANGES
 ========================================================= */
 
-async function saveAllScheduleChanges() {
-
-    if (!currentUser?.admin) {
-        return;
-    }
-
-    const scrollX =
-        window.scrollX;
-
-    const scrollY =
-        window.scrollY;
-
+async function saveChanges() {
 
     const selects =
         Array.from(
@@ -2130,18 +3972,20 @@ async function saveAllScheduleChanges() {
         selects.filter(
             select =>
                 select.value !==
-                (select.dataset.original || "")
+                (
+                    select.dataset.original ||
+                    ""
+                )
         );
 
 
-    if (changed.length === 0) {
+    if (!changed.length) {
 
-        alert(
+        showToast(
             "Няма промени за записване."
         );
 
         return;
-
     }
 
 
@@ -2149,6 +3993,7 @@ async function saveAllScheduleChanges() {
         document.getElementById(
             "saveScheduleButton"
         );
+
 
     button.disabled = true;
 
@@ -2158,9 +4003,9 @@ async function saveAllScheduleChanges() {
 
     try {
 
-        let saved = 0;
-
-        for (const select of changed) {
+        for (
+            const select of changed
+        ) {
 
             const employee =
                 select.dataset.employee;
@@ -2171,19 +4016,16 @@ async function saveAllScheduleChanges() {
             const shift =
                 select.value;
 
-            await saveScheduleCell(
+
+            await saveCell(
                 employee,
                 date,
                 shift
             );
 
 
-            /*
-                Обновяваме локалните данни.
-            */
-
-            const key =
-                dateKey(
+            const k =
+                key(
                     employee,
                     date
                 );
@@ -2191,14 +4033,14 @@ async function saveAllScheduleChanges() {
 
             if (!shift) {
 
-                delete scheduleData[key];
+                delete scheduleData[k];
 
             } else {
 
                 const info =
-                    getShift(shift);
+                    shiftInfo(shift);
 
-                scheduleData[key] = {
+                scheduleData[k] = {
 
                     employee,
 
@@ -2207,13 +4049,13 @@ async function saveAllScheduleChanges() {
                     shift_type: shift,
 
                     start_time:
-                        info?.start || null,
+                        info.start,
 
                     end_time:
-                        info?.end || null,
+                        info.end,
 
                     break_time:
-                        info?.break || 0
+                        info.break
 
                 };
 
@@ -2223,30 +4065,17 @@ async function saveAllScheduleChanges() {
             select.dataset.original =
                 shift;
 
-            select.classList.remove(
-                "changed"
-            );
-
-            saved++;
-
         }
 
 
-        /*
-            Записано успешно.
-        */
+        updateChangeCounter();
 
-        renderSchedule();
+        renderMainSchedule();
 
         renderMySchedule();
 
-        window.scrollTo(
-            scrollX,
-            scrollY
-        );
-
-        alert(
-            `Успешно записани промени: ${saved}`
+        showToast(
+            `Записани са ${changed.length} промени ✓`
         );
 
 
@@ -2257,9 +4086,10 @@ async function saveAllScheduleChanges() {
             error
         );
 
+
         alert(
-            "Грешка при запис на промените:\n\n" +
-            formatSupabaseError(error)
+            "Грешка при запис:\n\n" +
+            supabaseError(error)
         );
 
     } finally {
@@ -2267,49 +4097,7 @@ async function saveAllScheduleChanges() {
         button.disabled = false;
 
         button.textContent =
-            "💾 Запази промените";
-
-    }
-
-}
-
-
-/* =========================================================
-   MONTH CHANGE
-========================================================= */
-
-async function changeMonth(
-    month,
-    year
-) {
-
-    currentMonth =
-        Number(month);
-
-    currentYear =
-        Number(year);
-
-    monthSelect.value =
-        currentMonth;
-
-    yearSelect.value =
-        currentYear;
-
-    adminMonthSelect.value =
-        currentMonth;
-
-    adminYearSelect.value =
-        currentYear;
-
-    await loadSchedule();
-
-    renderSchedule();
-
-    renderMySchedule();
-
-    if (currentUser?.admin) {
-
-        renderAdminSchedule();
+            "💾 Запази";
 
     }
 
@@ -2320,16 +4108,66 @@ async function changeMonth(
    REQUESTS
 ========================================================= */
 
+function fillSwapEmployees() {
+
+    const select =
+        document.getElementById(
+            "swapEmployee"
+        );
+
+
+    if (!select) return;
+
+
+    select.innerHTML =
+        `<option value="">
+            Избери служител
+        </option>`;
+
+
+    users
+        .filter(
+            user =>
+                !currentUser ||
+                user.name !== currentUser.name
+        )
+        .forEach(
+            user => {
+
+                const option =
+                    document.createElement(
+                        "option"
+                    );
+
+                option.value =
+                    user.name;
+
+                option.textContent =
+                    user.name;
+
+                select.appendChild(
+                    option
+                );
+
+            }
+        );
+
+}
+
+
 async function sendSwapRequest() {
 
-    if (!currentUser) return;
+    if (!currentUser) {
+        return;
+    }
+
 
     const date =
         document.getElementById(
             "swapDate"
         ).value;
 
-    const toEmployee =
+    const target =
         document.getElementById(
             "swapEmployee"
         ).value;
@@ -2340,20 +4178,19 @@ async function sendSwapRequest() {
         ).value.trim();
 
 
-    if (!date || !toEmployee) {
+    if (!date || !target) {
 
-        alert(
+        showToast(
             "Избери дата и служител."
         );
 
         return;
-
     }
 
 
     const row =
         scheduleData[
-            dateKey(
+            key(
                 currentUser.name,
                 date
             )
@@ -2362,12 +4199,11 @@ async function sendSwapRequest() {
 
     if (!row?.shift_type) {
 
-        alert(
-            "На тази дата нямаш въведена смяна."
+        showToast(
+            "На тази дата нямаш смяна."
         );
 
         return;
-
     }
 
 
@@ -2381,7 +4217,7 @@ async function sendSwapRequest() {
                 currentUser.name,
 
             to_employee:
-                toEmployee,
+                target,
 
             work_date:
                 date,
@@ -2401,12 +4237,11 @@ async function sendSwapRequest() {
     if (error) {
 
         alert(
-            "Грешка при изпращане:\n\n" +
-            formatSupabaseError(error)
+            "Грешка:\n\n" +
+            supabaseError(error)
         );
 
         return;
-
     }
 
 
@@ -2414,9 +4249,11 @@ async function sendSwapRequest() {
         "swapMessage"
     ).value = "";
 
-    alert(
-        "Заявката е изпратена."
+
+    showToast(
+        "Заявката е изпратена ✓"
     );
+
 
     await loadRequests();
 
@@ -2428,9 +4265,6 @@ async function sendSwapRequest() {
 ========================================================= */
 
 async function loadRequests() {
-
-    if (!currentUser) return;
-
 
     let query =
         supabaseClient
@@ -2444,7 +4278,7 @@ async function loadRequests() {
             );
 
 
-    if (!currentUser.admin) {
+    if (!currentUser?.admin) {
 
         query =
             query.or(
@@ -2462,16 +4296,18 @@ async function loadRequests() {
 
     if (error) {
 
-        console.error(error);
-
-        document.getElementById(
-            "requestsList"
-        ).innerHTML =
-            "<p>Грешка при зареждане на заявките.</p>";
+        console.error(
+            error
+        );
 
         return;
-
     }
+
+
+    document.getElementById(
+        "statRequests"
+    ).textContent =
+        data?.length || 0;
 
 
     const container =
@@ -2480,108 +4316,140 @@ async function loadRequests() {
         );
 
 
-    if (!data || data.length === 0) {
+    if (!data?.length) {
 
-        container.innerHTML =
-            "<p>Няма заявки.</p>";
+        container.innerHTML = `
+            <div class="empty">
+
+                <div class="empty-icon">
+                    📭
+                </div>
+
+                Няма заявки.
+
+            </div>
+        `;
 
         return;
-
     }
 
 
     container.innerHTML =
-        data.map(request => {
+        data.map(
+            request => {
 
-            let buttons = "";
+                const statusClass =
+                    request.status ===
+                    "approved"
+                        ? "status-approved"
+                        : request.status ===
+                          "rejected"
+                            ? "status-rejected"
+                            : "status-pending";
 
-            if (
-                request.status === "pending" &&
-                currentUser.admin
-            ) {
 
-                buttons = `
-                    <div class="request-actions">
+                const statusText =
+                    request.status ===
+                    "approved"
+                        ? "Одобрена"
+                        : request.status ===
+                          "rejected"
+                            ? "Отхвърлена"
+                            : "Чакаща";
 
-                        <button
-                            class="success-btn"
-                            onclick="approveRequest(${request.id})"
+
+                return `
+                    <div class="request">
+
+                        <div class="request-top">
+
+                            <strong>
+                                ${escapeHtml(
+                                    request.from_employee
+                                )}
+                                →
+                                ${escapeHtml(
+                                    request.to_employee
+                                )}
+                            </strong>
+
+                            <span
+                                class="status ${statusClass}"
+                            >
+                                ${statusText}
+                            </span>
+
+                        </div>
+
+                        <p
+                            style="
+                                color:var(--muted);
+                                font-size:13px;
+                            "
                         >
-                            ✓ Одобри
-                        </button>
+                            📅 ${escapeHtml(
+                                request.work_date
+                            )}
+                            ·
+                            ${escapeHtml(
+                                request.shift_type
+                            )}
+                        </p>
 
-                        <button
-                            class="danger-btn"
-                            onclick="rejectRequest(${request.id})"
-                        >
-                            ✕ Откажи
-                        </button>
+                        ${
+                            request.message
+                                ? `
+                                <p>
+                                    ${escapeHtml(
+                                        request.message
+                                    )}
+                                </p>
+                                `
+                                : ""
+                        }
+
+                        ${
+                            currentUser?.admin &&
+                            request.status ===
+                            "pending"
+                                ? `
+                                <div
+                                    style="
+                                        display:flex;
+                                        gap:8px;
+                                    "
+                                >
+
+                                    <button
+                                        class="success-button"
+                                        onclick="approveRequest(${request.id})"
+                                    >
+                                        ✓ Одобри
+                                    </button>
+
+                                    <button
+                                        class="control-button"
+                                        onclick="rejectRequest(${request.id})"
+                                    >
+                                        ✕ Откажи
+                                    </button>
+
+                                </div>
+                                `
+                                : ""
+                        }
 
                     </div>
                 `;
 
             }
-
-
-            return `
-                <div class="request">
-
-                    <strong>
-                        ${escapeHtml(
-                            request.from_employee
-                        )}
-                    </strong>
-
-                    →
-                    
-                    <strong>
-                        ${escapeHtml(
-                            request.to_employee
-                        )}
-                    </strong>
-
-                    <br>
-
-                    Дата:
-                    ${escapeHtml(
-                        request.work_date
-                    )}
-
-                    <br>
-
-                    Смяна:
-                    ${escapeHtml(
-                        request.shift_type || "-"
-                    )}
-
-                    <br>
-
-                    Статус:
-                    <strong>
-                        ${escapeHtml(
-                            request.status
-                        )}
-                    </strong>
-
-                    ${
-                        request.message
-                            ? `<br>Съобщение: ${escapeHtml(request.message)}`
-                            : ""
-                    }
-
-                    ${buttons}
-
-                </div>
-            `;
-
-        })
-        .join("");
+        ).join("");
 
 }
 
 
 /* =========================================================
-   APPROVE REQUEST
+   APPROVE
 ========================================================= */
 
 async function approveRequest(id) {
@@ -2593,7 +4461,7 @@ async function approveRequest(id) {
 
     const {
         data: request,
-        error: requestError
+        error
     } = await supabaseClient
         .from("shift_requests")
         .select("*")
@@ -2601,62 +4469,45 @@ async function approveRequest(id) {
         .single();
 
 
-    if (requestError) {
+    if (error) {
 
         alert(
-            formatSupabaseError(
-                requestError
+            supabaseError(error)
+        );
+
+        return;
+    }
+
+
+    const original =
+        scheduleData[
+            key(
+                request.from_employee,
+                request.work_date
             )
+        ];
+
+
+    if (!original) {
+
+        showToast(
+            "Оригиналната смяна не съществува."
         );
 
         return;
-
     }
 
-
-    const sourceKey =
-        dateKey(
-            request.from_employee,
-            request.work_date
-        );
-
-
-    const targetKey =
-        dateKey(
-            request.to_employee,
-            request.work_date
-        );
-
-
-    const source =
-        scheduleData[sourceKey];
-
-
-    if (!source) {
-
-        alert(
-            "Оригиналната смяна вече не съществува."
-        );
-
-        return;
-
-    }
-
-
-    /*
-        Даваме смяната на получателя.
-    */
 
     try {
 
-        await saveScheduleCell(
+        await saveCell(
             request.to_employee,
             request.work_date,
-            source.shift_type
+            original.shift_type
         );
 
 
-        await saveScheduleCell(
+        await saveCell(
             request.from_employee,
             request.work_date,
             ""
@@ -2664,7 +4515,7 @@ async function approveRequest(id) {
 
 
         const {
-            error
+            error: updateError
         } = await supabaseClient
             .from("shift_requests")
             .update({
@@ -2673,32 +4524,28 @@ async function approveRequest(id) {
             .eq("id", id);
 
 
-        if (error) {
-            throw error;
+        if (updateError) {
+            throw updateError;
         }
-
-
-        alert(
-            "Заявката е одобрена."
-        );
 
 
         await loadSchedule();
 
-        renderSchedule();
-
-        renderMySchedule();
-
-        renderAdminSchedule();
+        renderAll();
 
         await loadRequests();
+
+
+        showToast(
+            "Заявката е одобрена ✓"
+        );
 
 
     } catch (error) {
 
         alert(
-            "Грешка при одобряване:\n\n" +
-            formatSupabaseError(error)
+            "Грешка:\n\n" +
+            supabaseError(error)
         );
 
     }
@@ -2707,7 +4554,7 @@ async function approveRequest(id) {
 
 
 /* =========================================================
-   REJECT REQUEST
+   REJECT
 ========================================================= */
 
 async function rejectRequest(id) {
@@ -2730,85 +4577,183 @@ async function rejectRequest(id) {
     if (error) {
 
         alert(
-            "Грешка:\n\n" +
-            formatSupabaseError(error)
+            supabaseError(error)
         );
 
         return;
-
     }
 
 
     await loadRequests();
 
+
+    showToast(
+        "Заявката е отхвърлена."
+    );
+
 }
 
 
 /* =========================================================
-   TABS
+   STATS
 ========================================================= */
 
-document
-    .querySelectorAll(".tab-button")
-    .forEach(button => {
+async function updateStats() {
 
-        button.addEventListener(
-            "click",
-            async () => {
-
-                const tab =
-                    button.dataset.tab;
+    if (!currentUser) {
+        return;
+    }
 
 
-                document
-                    .querySelectorAll(
-                        ".tab-button"
-                    )
-                    .forEach(
-                        item =>
-                            item.classList.remove(
-                                "active"
-                            )
-                    );
+    const {
+        count
+    } = await supabaseClient
+        .from("shift_requests")
+        .select(
+            "*",
+            {
+                count: "exact",
+                head: true
+            }
+        );
 
 
-                document
-                    .querySelectorAll(
-                        "main section"
-                    )
-                    .forEach(
-                        section =>
-                            section.classList.add(
-                                "hidden"
-                            )
-                    );
+    document.getElementById(
+        "statRequests"
+    ).textContent =
+        count || 0;
+
+}
 
 
-                button.classList.add(
-                    "active"
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function openPage(pageId) {
+
+    const pages = [
+        "schedulePage",
+        "myPage",
+        "adminPage",
+        "requestsPage"
+    ];
+
+
+    pages.forEach(
+        page => {
+
+            document
+                .getElementById(page)
+                .classList.toggle(
+                    "hidden",
+                    page !== pageId
                 );
 
-
-                document
-                    .getElementById(tab)
-                    .classList.remove(
-                        "hidden"
-                    );
+        }
+    );
 
 
-                if (
-                    tab ===
-                    "requestsTab"
-                ) {
+    document
+        .querySelectorAll(
+            ".nav-button"
+        )
+        .forEach(
+            button => {
 
-                    await loadRequests();
-
-                }
+                button.classList.toggle(
+                    "active",
+                    button.dataset.page ===
+                    pageId
+                );
 
             }
         );
 
-    });
+
+    const titles = {
+
+        schedulePage: [
+            "Работен график",
+            "Месечен график на екипа"
+        ],
+
+        myPage: [
+            "Моят график",
+            "Лични работни смени и часове"
+        ],
+
+        adminPage: [
+            "Администрация",
+            "Управление на работния график"
+        ],
+
+        requestsPage: [
+            "Размени на смени",
+            "Заявки между служителите"
+        ]
+
+    };
+
+
+    document.getElementById(
+        "pageTitle"
+    ).textContent =
+        titles[pageId][0];
+
+
+    document.getElementById(
+        "pageSubtitle"
+    ).textContent =
+        titles[pageId][1];
+
+
+    if (
+        pageId ===
+        "requestsPage"
+    ) {
+
+        loadRequests();
+
+    }
+
+}
+
+
+/* =========================================================
+   MONTH CHANGE
+========================================================= */
+
+async function changeMonth(
+    amount
+) {
+
+    currentMonth += amount;
+
+
+    if (currentMonth > 11) {
+
+        currentMonth = 0;
+
+        currentYear++;
+
+    }
+
+
+    if (currentMonth < 0) {
+
+        currentMonth = 11;
+
+        currentYear--;
+
+    }
+
+
+    await loadSchedule();
+
+    renderAll();
+
+}
 
 
 /* =========================================================
@@ -2837,110 +4782,42 @@ loginPassword.addEventListener(
 );
 
 
-logoutButton.addEventListener(
-    "click",
-    logout
-);
+document
+    .getElementById("logoutButton")
+    .addEventListener(
+        "click",
+        logout
+    );
 
 
-themeButton.addEventListener(
-    "click",
-    () => {
+document
+    .getElementById("themeButton")
+    .addEventListener(
+        "click",
+        () => {
 
-        document.body.classList.toggle(
-            "dark"
-        );
-
-        localStorage.setItem(
-            "darkMode",
-            document.body.classList.contains(
+            document.body.classList.toggle(
                 "dark"
-            )
-                ? "1"
-                : "0"
-        );
+            );
 
-    }
-);
+            localStorage.setItem(
+                "workflowDark",
+                document.body.classList.contains(
+                    "dark"
+                )
+                    ? "1"
+                    : "0"
+            );
 
-
-monthSelect.addEventListener(
-    "change",
-    () => {
-
-        changeMonth(
-            monthSelect.value,
-            yearSelect.value
-        );
-
-    }
-);
-
-
-yearSelect.addEventListener(
-    "change",
-    () => {
-
-        changeMonth(
-            monthSelect.value,
-            yearSelect.value
-        );
-
-    }
-);
-
-
-adminMonthSelect.addEventListener(
-    "change",
-    () => {
-
-        changeMonth(
-            adminMonthSelect.value,
-            adminYearSelect.value
-        );
-
-    }
-);
-
-
-adminYearSelect.addEventListener(
-    "change",
-    () => {
-
-        changeMonth(
-            adminMonthSelect.value,
-            adminYearSelect.value
-        );
-
-    }
-);
+        }
+    );
 
 
 document
     .getElementById("previousMonth")
     .addEventListener(
         "click",
-        () => {
-
-            let month =
-                currentMonth - 1;
-
-            let year =
-                currentYear;
-
-            if (month < 0) {
-
-                month = 11;
-                year--;
-
-            }
-
-            changeMonth(
-                month,
-                year
-            );
-
-        }
+        () => changeMonth(-1)
     );
 
 
@@ -2948,27 +4825,7 @@ document
     .getElementById("nextMonth")
     .addEventListener(
         "click",
-        () => {
-
-            let month =
-                currentMonth + 1;
-
-            let year =
-                currentYear;
-
-            if (month > 11) {
-
-                month = 0;
-                year++;
-
-            }
-
-            changeMonth(
-                month,
-                year
-            );
-
-        }
+        () => changeMonth(1)
     );
 
 
@@ -2976,27 +4833,7 @@ document
     .getElementById("adminPreviousMonth")
     .addEventListener(
         "click",
-        () => {
-
-            let month =
-                currentMonth - 1;
-
-            let year =
-                currentYear;
-
-            if (month < 0) {
-
-                month = 11;
-                year--;
-
-            }
-
-            changeMonth(
-                month,
-                year
-            );
-
-        }
+        () => changeMonth(-1)
     );
 
 
@@ -3004,27 +4841,7 @@ document
     .getElementById("adminNextMonth")
     .addEventListener(
         "click",
-        () => {
-
-            let month =
-                currentMonth + 1;
-
-            let year =
-                currentYear;
-
-            if (month > 11) {
-
-                month = 0;
-                year++;
-
-            }
-
-            changeMonth(
-                month,
-                year
-            );
-
-        }
+        () => changeMonth(1)
     );
 
 
@@ -3032,7 +4849,7 @@ document
     .getElementById("saveScheduleButton")
     .addEventListener(
         "click",
-        saveAllScheduleChanges
+        saveChanges
     );
 
 
@@ -3044,13 +4861,35 @@ document
     );
 
 
+document
+    .querySelectorAll(
+        ".nav-button"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    openPage(
+                        button.dataset.page
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
 /* =========================================================
-   DARK MODE LOAD
+   DARK MODE
 ========================================================= */
 
 if (
     localStorage.getItem(
-        "darkMode"
+        "workflowDark"
     ) === "1"
 ) {
 
@@ -3062,51 +4901,61 @@ if (
 
 
 /* =========================================================
-   AUTO LOGIN
+   INIT
 ========================================================= */
 
 async function init() {
 
-    setupMonthSelectors();
+    const loaded =
+        await loadUsers();
 
-    await loadUsers();
+
+    if (!loaded) {
+
+        console.error(
+            "Неуспешно зареждане на app_users."
+        );
+
+        return;
+    }
 
 
-    const savedUser =
+    const saved =
         sessionStorage.getItem(
-            "workScheduleUser"
+            "workflowUser"
         );
 
 
-    if (savedUser) {
+    if (saved) {
 
         try {
 
-            const user =
-                JSON.parse(
-                    savedUser
-                );
+            const savedUser =
+                JSON.parse(saved);
 
 
-            const validUser =
+            const actualUser =
                 users.find(
-                    item =>
-                        item.id === user.id
+                    user =>
+                        user.id ===
+                        savedUser.id
                 );
 
 
-            if (validUser) {
+            if (actualUser) {
 
                 currentUser =
-                    validUser;
+                    actualUser;
 
-                showApp();
+                await showApp();
 
             }
 
         } catch (error) {
 
-            console.error(error);
+            console.error(
+                error
+            );
 
         }
 
