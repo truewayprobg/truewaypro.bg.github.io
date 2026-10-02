@@ -9,43 +9,28 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
-* {
-    box-sizing: border-box;
-}
-
 :root {
-    --bg: #f4f6f8;
+    --bg: #f3f4f6;
     --card: #ffffff;
-    --text: #202124;
+    --text: #111827;
     --muted: #6b7280;
-    --border: #dfe3e8;
+    --border: #d1d5db;
     --primary: #2563eb;
     --primary-dark: #1d4ed8;
     --danger: #dc2626;
     --success: #16a34a;
     --warning: #d97706;
-    --input: #ffffff;
 }
 
-body.dark {
-    --bg: #111827;
-    --card: #1f2937;
-    --text: #f3f4f6;
-    --muted: #9ca3af;
-    --border: #374151;
-    --primary: #3b82f6;
-    --primary-dark: #2563eb;
-    --danger: #ef4444;
-    --success: #22c55e;
-    --warning: #f59e0b;
-    --input: #111827;
+* {
+    box-sizing: border-box;
 }
 
 body {
     margin: 0;
+    font-family: Arial, sans-serif;
     background: var(--bg);
     color: var(--text);
-    font-family: Arial, Helvetica, sans-serif;
 }
 
 button,
@@ -63,32 +48,33 @@ button {
     display: none !important;
 }
 
-/* =========================================================
-   LOGIN
-   ========================================================= */
+/* LOGIN */
 
-#loginScreen {
+#loginPage {
     min-height: 100vh;
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     padding: 20px;
 }
 
 .login-box {
     width: 100%;
-    max-width: 400px;
+    max-width: 420px;
     background: var(--card);
-    border: 1px solid var(--border);
     border-radius: 18px;
-    padding: 30px;
-    box-shadow: 0 10px 35px rgba(0,0,0,.08);
+    padding: 28px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.12);
 }
 
 .login-box h1 {
-    text-align: center;
     margin-top: 0;
-    margin-bottom: 25px;
+    text-align: center;
+}
+
+.login-box p {
+    text-align: center;
+    color: var(--muted);
 }
 
 .form-group {
@@ -101,433 +87,359 @@ button {
     font-weight: bold;
 }
 
-.form-group input,
-.form-group select,
-.form-group textarea {
+input,
+select,
+textarea {
     width: 100%;
-    padding: 12px;
+    padding: 11px 12px;
     border: 1px solid var(--border);
-    border-radius: 10px;
-    background: var(--input);
-    color: var(--text);
+    border-radius: 9px;
+    background: white;
+    color: #111827;
 }
 
-.login-button {
-    width: 100%;
-    padding: 13px;
+textarea {
+    min-height: 80px;
+    resize: vertical;
+}
+
+.primary-btn,
+.secondary-btn,
+.danger-btn,
+.success-btn {
     border: 0;
-    border-radius: 10px;
+    border-radius: 9px;
+    padding: 11px 15px;
+    font-weight: bold;
+}
+
+.primary-btn {
     background: var(--primary);
     color: white;
-    font-weight: bold;
-    margin-top: 5px;
 }
 
-.login-button:hover {
+.primary-btn:hover {
     background: var(--primary-dark);
 }
 
-.login-error {
-    color: var(--danger);
-    text-align: center;
-    margin-top: 12px;
+.secondary-btn {
+    background: #e5e7eb;
+    color: #111827;
 }
 
-/* =========================================================
-   APP
-   ========================================================= */
+.danger-btn {
+    background: var(--danger);
+    color: white;
+}
 
-#app {
+.success-btn {
+    background: var(--success);
+    color: white;
+}
+
+.full {
+    width: 100%;
+}
+
+.login-error {
+    margin-top: 12px;
+    color: var(--danger);
+    font-weight: bold;
+    text-align: center;
+}
+
+/* APP */
+
+#appPage {
     min-height: 100vh;
 }
 
-header {
-    background: var(--card);
-    border-bottom: 1px solid var(--border);
+.topbar {
+    background: #111827;
+    color: white;
+    padding: 13px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
     position: sticky;
     top: 0;
     z-index: 100;
 }
 
-.header-inner {
-    max-width: 1500px;
-    margin: auto;
-    padding: 14px 18px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 15px;
-}
-
-.logo {
-    font-size: 21px;
-    font-weight: bold;
-}
-
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    flex-wrap: wrap;
-    justify-content: flex-end;
-}
-
-.small-button {
-    border: 1px solid var(--border);
-    background: var(--card);
-    color: var(--text);
-    padding: 8px 11px;
-    border-radius: 9px;
-}
-
-.small-button:hover {
-    background: var(--bg);
-}
-
-.tabs {
-    max-width: 1500px;
-    margin: auto;
-    padding: 10px 18px 0;
-    display: flex;
-    gap: 7px;
-    overflow-x: auto;
-}
-
-.tab {
-    border: 1px solid var(--border);
-    background: var(--card);
-    color: var(--text);
-    padding: 10px 14px;
-    border-radius: 10px 10px 0 0;
-    white-space: nowrap;
-}
-
-.tab.active {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: white;
-}
-
-main {
-    max-width: 1500px;
-    margin: auto;
-    padding: 20px 18px 50px;
-}
-
-.panel {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 15px;
-    padding: 18px;
-    margin-bottom: 20px;
-}
-
-.panel h2,
-.panel h3 {
-    margin-top: 0;
-}
-
-.month-controls {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 18px;
-    flex-wrap: wrap;
-}
-
-.month-controls button {
-    padding: 9px 13px;
-    border: 1px solid var(--border);
-    background: var(--card);
-    color: var(--text);
-    border-radius: 9px;
-}
-
-.month-title {
-    min-width: 180px;
-    text-align: center;
+.topbar-title {
     font-size: 20px;
     font-weight: bold;
 }
 
-/* =========================================================
-   SCHEDULE TABLE
-   ========================================================= */
+.topbar-user {
+    font-size: 14px;
+}
 
-.table-wrap {
-    width: 100%;
+.logout-btn {
+    background: #374151;
+    color: white;
+    border: 0;
+    border-radius: 8px;
+    padding: 8px 12px;
+}
+
+.container {
+    max-width: 1500px;
+    margin: auto;
+    padding: 16px;
+}
+
+.tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 16px;
+}
+
+.tab-btn {
+    border: 0;
+    background: #e5e7eb;
+    padding: 10px 15px;
+    border-radius: 9px;
+    font-weight: bold;
+}
+
+.tab-btn.active {
+    background: var(--primary);
+    color: white;
+}
+
+.card {
+    background: white;
+    border-radius: 14px;
+    padding: 16px;
+    margin-bottom: 16px;
+    box-shadow: 0 3px 12px rgba(0,0,0,.06);
+}
+
+.card h2,
+.card h3 {
+    margin-top: 0;
+}
+
+/* MONTH CONTROLS */
+
+.month-controls {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+}
+
+.month-title {
+    font-size: 21px;
+    font-weight: bold;
+}
+
+.month-buttons {
+    display: flex;
+    gap: 7px;
+}
+
+/* TABLE */
+
+.table-wrapper {
     overflow-x: auto;
+    border: 1px solid var(--border);
+    border-radius: 10px;
 }
 
 .schedule-table {
     border-collapse: collapse;
-    width: max-content;
-    min-width: 100%;
+    width: 100%;
+    min-width: 1000px;
 }
 
 .schedule-table th,
 .schedule-table td {
     border: 1px solid var(--border);
+    padding: 5px;
     text-align: center;
 }
 
 .schedule-table th {
-    background: var(--bg);
-    padding: 9px 7px;
-    font-size: 12px;
+    background: #f3f4f6;
     position: sticky;
     top: 0;
-    z-index: 5;
+    z-index: 3;
 }
 
-.schedule-table th.employee-header {
-    position: sticky;
-    left: 0;
-    z-index: 10;
-    min-width: 190px;
-}
-
-.employee-name {
+.employee-cell {
     position: sticky;
     left: 0;
     z-index: 4;
-    background: var(--card);
+    background: white !important;
     text-align: left !important;
-    padding: 9px 10px;
-    font-weight: bold;
     min-width: 190px;
-}
-
-.day-cell {
-    min-width: 75px;
-    height: 70px;
-    vertical-align: top;
-    position: relative;
-}
-
-.day-cell.weekend {
-    background: rgba(255, 180, 0, .08);
-}
-
-.day-number {
-    font-size: 11px;
-    color: var(--muted);
-    padding: 3px;
-}
-
-.shift-text {
-    font-size: 13px;
     font-weight: bold;
-    padding: 5px 2px;
 }
 
-.shift-time {
-    font-size: 10px;
-    color: var(--muted);
-    margin-top: 2px;
+.day-header {
+    min-width: 75px;
+}
+
+.weekend {
+    background: #fff7ed !important;
+}
+
+.today {
+    outline: 3px solid #2563eb;
+    outline-offset: -3px;
 }
 
 .shift-select {
-    width: 100%;
-    min-width: 70px;
-    border: 0;
-    background: transparent;
-    color: var(--text);
-    padding: 5px 2px;
-    font-weight: bold;
-    text-align: center;
+    min-width: 75px;
+    padding: 7px 4px;
+    font-size: 12px;
 }
 
-.shift-select:focus {
-    outline: 2px solid var(--primary);
-    border-radius: 5px;
+.save-row {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 14px;
 }
 
-.shift-select option {
-    background: var(--card);
-    color: var(--text);
-}
-
-/* =========================================================
-   BUTTONS
-   ========================================================= */
-
-.primary-button {
-    border: 0;
-    border-radius: 10px;
-    background: var(--primary);
-    color: white;
-    padding: 11px 15px;
+.status {
+    margin-top: 10px;
     font-weight: bold;
 }
 
-.primary-button:hover {
-    background: var(--primary-dark);
-}
-
-.success-button {
-    border: 0;
-    border-radius: 10px;
-    background: var(--success);
-    color: white;
-    padding: 10px 14px;
-}
-
-.danger-button {
-    border: 0;
-    border-radius: 10px;
-    background: var(--danger);
-    color: white;
-    padding: 10px 14px;
-}
-
-.warning-button {
-    border: 0;
-    border-radius: 10px;
-    background: var(--warning);
-    color: white;
-    padding: 10px 14px;
-}
-
-/* =========================================================
-   ADMIN
-   ========================================================= */
+/* ADMIN */
 
 .admin-user {
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 12px;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
 }
 
 .admin-user-grid {
     display: grid;
     grid-template-columns: 1.5fr 1fr auto auto auto;
-    gap: 10px;
+    gap: 8px;
     align-items: center;
 }
 
-.admin-user input {
-    width: 100%;
-    padding: 9px;
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    background: var(--input);
-    color: var(--text);
-}
-
-.checkbox-row {
+.check-row {
     display: flex;
-    gap: 8px;
+    gap: 6px;
     align-items: center;
     white-space: nowrap;
 }
 
-/* =========================================================
-   SWAPS
-   ========================================================= */
-
-.swap-form {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 14px;
+.check-row input {
+    width: auto;
 }
 
-.swap-form .full {
-    grid-column: 1 / -1;
+/* SWAPS */
+
+.swap-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
 }
 
 .swap-request {
     border: 1px solid var(--border);
-    border-radius: 12px;
-    padding: 15px;
-    margin-bottom: 12px;
+    border-radius: 10px;
+    padding: 12px;
+    margin-bottom: 10px;
 }
 
-.status {
+.badge {
     display: inline-block;
+    padding: 4px 8px;
     border-radius: 20px;
-    padding: 4px 9px;
     font-size: 12px;
     font-weight: bold;
 }
 
-.status.pending {
+.badge-pending {
     background: #fef3c7;
     color: #92400e;
 }
 
-.status.accepted {
+.badge-approved {
     background: #dcfce7;
     color: #166534;
 }
 
-.status.rejected {
+.badge-rejected {
     background: #fee2e2;
     color: #991b1b;
 }
 
-/* =========================================================
-   RESPONSIVE
-   ========================================================= */
+/* SHIFT MANAGEMENT */
 
-@media (max-width: 800px) {
-    .header-inner {
-        align-items: flex-start;
-        flex-direction: column;
+.shift-type-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr auto;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.small-note {
+    color: var(--muted);
+    font-size: 13px;
+}
+
+/* MOBILE */
+
+@media (max-width: 700px) {
+
+    .topbar {
+        flex-wrap: wrap;
     }
 
-    .user-info {
-        justify-content: flex-start;
+    .topbar-title {
+        width: 100%;
+    }
+
+    .swap-grid {
+        grid-template-columns: 1fr;
     }
 
     .admin-user-grid {
         grid-template-columns: 1fr;
     }
 
-    .swap-form {
+    .shift-type-row {
         grid-template-columns: 1fr;
     }
 
-    .swap-form .full {
-        grid-column: auto;
+    .container {
+        padding: 10px;
     }
-
-    main {
-        padding: 12px 8px 40px;
-    }
-
-    .panel {
-        padding: 12px;
-    }
-}
-
-.loading {
-    text-align: center;
-    padding: 30px;
-    color: var(--muted);
 }
 </style>
 </head>
 
 <body>
 
-<!-- =========================================================
-     LOGIN
-     ========================================================= -->
+<!-- LOGIN -->
 
-<div id="loginScreen">
+<div id="loginPage">
 
     <div class="login-box">
 
-        <h1>📅 Работен график</h1>
+        <h1>Работен график</h1>
+
+        <p>Вход в системата</p>
 
         <div class="form-group">
-            <label for="loginName">Име</label>
+            <label for="loginName">Служител</label>
 
             <select id="loginName">
-                <option value="">Избери потребител</option>
+                <option value="">Избери служител</option>
             </select>
         </div>
 
@@ -542,422 +454,369 @@ main {
         </div>
 
         <button
-            class="login-button"
+            class="primary-btn full"
             onclick="login()"
         >
             Вход
         </button>
 
-        <div
-            id="loginError"
-            class="login-error hidden"
-        ></div>
+        <div id="loginError" class="login-error"></div>
 
     </div>
 
 </div>
 
 
-<!-- =========================================================
-     APP
-     ========================================================= -->
+<!-- APP -->
 
-<div id="app" class="hidden">
+<div id="appPage" class="hidden">
 
-<header>
+    <div class="topbar">
 
-    <div class="header-inner">
-
-        <div class="logo">
-            📅 Работен график
+        <div class="topbar-title">
+            Работен график
         </div>
 
-        <div class="user-info">
-
-            <strong id="currentUserName"></strong>
-
-            <button
-                class="small-button"
-                onclick="toggleTheme()"
-            >
-                🌙 / ☀️
-            </button>
+        <div class="topbar-user">
+            <span id="currentUserName"></span>
 
             <button
-                class="small-button"
+                class="logout-btn"
                 onclick="logout()"
             >
                 Изход
             </button>
-
         </div>
 
     </div>
 
 
-    <div class="tabs">
+    <div class="container">
 
-        <button
-            class="tab active"
-            data-tab="mySchedule"
-            onclick="openTab('mySchedule')"
-        >
-            Моят график
-        </button>
+        <!-- TABS -->
 
-        <button
-            class="tab"
-            data-tab="allSchedule"
-            onclick="openTab('allSchedule')"
-        >
-            Общ график
-        </button>
+        <div class="tabs">
 
-        <button
-            class="tab"
-            data-tab="swaps"
-            onclick="openTab('swaps')"
-        >
-            Размени
-        </button>
-
-        <button
-            id="adminTab"
-            class="tab hidden"
-            data-tab="admin"
-            onclick="openTab('admin')"
-        >
-            Администрация
-        </button>
-
-    </div>
-
-</header>
-
-
-<main>
-
-<!-- =========================================================
-     MY SCHEDULE
-     ========================================================= -->
-
-<section
-    id="mySchedule"
-    class="tab-content"
->
-
-    <div class="panel">
-
-        <div class="month-controls">
-
-            <button onclick="changeMonth(-1)">
-                ◀
-            </button>
-
-            <div
-                id="monthTitleMy"
-                class="month-title"
-            ></div>
-
-            <button onclick="changeMonth(1)">
-                ▶
-            </button>
-
-        </div>
-
-        <div id="myScheduleContainer">
-            <div class="loading">
-                Зареждане...
-            </div>
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================================================
-     ALL SCHEDULE
-     ========================================================= -->
-
-<section
-    id="allSchedule"
-    class="tab-content hidden"
->
-
-    <div class="panel">
-
-        <div class="month-controls">
-
-            <button onclick="changeMonth(-1)">
-                ◀
-            </button>
-
-            <div
-                id="monthTitleAll"
-                class="month-title"
-            ></div>
-
-            <button onclick="changeMonth(1)">
-                ▶
-            </button>
-
-        </div>
-
-        <div id="adminSaveArea" class="hidden" style="margin-bottom:15px;">
             <button
-                id="saveAllScheduleButton"
-                class="primary-button"
-                onclick="saveAllScheduleChanges()"
+                class="tab-btn active"
+                id="tabMy"
+                onclick="showTab('my')"
             >
-                💾 Запази промените
+                Моят график
             </button>
+
+            <button
+                class="tab-btn"
+                id="tabAll"
+                onclick="showTab('all')"
+            >
+                Общ график
+            </button>
+
+            <button
+                class="tab-btn"
+                id="tabSwap"
+                onclick="showTab('swap')"
+            >
+                Размени
+            </button>
+
+            <button
+                class="tab-btn hidden"
+                id="tabAdmin"
+                onclick="showTab('admin')"
+            >
+                Администрация
+            </button>
+
         </div>
 
-        <div id="allScheduleContainer">
-            <div class="loading">
-                Зареждане...
+
+        <!-- MY SCHEDULE -->
+
+        <section id="mySection">
+
+            <div class="card">
+
+                <div class="month-controls">
+
+                    <div class="month-title" id="myMonthTitle"></div>
+
+                    <div class="month-buttons">
+
+                        <button
+                            class="secondary-btn"
+                            onclick="changeMonth(-1)"
+                        >
+                            ◀
+                        </button>
+
+                        <button
+                            class="secondary-btn"
+                            onclick="goToday()"
+                        >
+                            Днес
+                        </button>
+
+                        <button
+                            class="secondary-btn"
+                            onclick="changeMonth(1)"
+                        >
+                            ▶
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div id="myScheduleContainer"></div>
+
             </div>
-        </div>
 
-    </div>
-
-</section>
+        </section>
 
 
-<!-- =========================================================
-     SWAPS
-     ========================================================= -->
+        <!-- ALL SCHEDULE -->
 
-<section
-    id="swaps"
-    class="tab-content hidden"
->
+        <section id="allSection" class="hidden">
 
-    <div class="panel">
+            <div class="card">
 
-        <h2>🔄 Изпращане на смяна</h2>
+                <div class="month-controls">
 
-        <div class="swap-form">
+                    <div class="month-title" id="allMonthTitle"></div>
 
-            <div class="form-group">
-                <label>Моята дата</label>
+                    <div class="month-buttons">
 
-                <input
-                    type="date"
-                    id="swapMyDate"
+                        <button
+                            class="secondary-btn"
+                            onclick="changeMonth(-1)"
+                        >
+                            ◀
+                        </button>
+
+                        <button
+                            class="secondary-btn"
+                            onclick="goToday()"
+                        >
+                            Днес
+                        </button>
+
+                        <button
+                            class="secondary-btn"
+                            onclick="changeMonth(1)"
+                        >
+                            ▶
+                        </button>
+
+                    </div>
+
+                </div>
+
+                <div id="allScheduleContainer"></div>
+
+                <div
+                    id="adminScheduleSaveArea"
+                    class="save-row hidden"
                 >
-            </div>
+                    <button
+                        class="success-btn"
+                        onclick="saveAllSchedule()"
+                    >
+                        Запази промените
+                    </button>
+                </div>
 
-
-            <div class="form-group">
-                <label>На кого</label>
-
-                <select id="swapReceiver"></select>
-            </div>
-
-
-            <div class="form-group">
-                <label>Дата на другия служител</label>
-
-                <input
-                    type="date"
-                    id="swapReceiverDate"
-                >
-            </div>
-
-
-            <div class="form-group full">
-
-                <label>
-                    Съобщение
-                </label>
-
-                <textarea
-                    id="swapMessage"
-                    rows="3"
-                    placeholder="Напиши кратко съобщение..."
-                ></textarea>
+                <div
+                    id="scheduleStatus"
+                    class="status"
+                ></div>
 
             </div>
 
-        </div>
+        </section>
 
-        <button
-            class="primary-button"
-            onclick="sendSwapRequest()"
+
+        <!-- SWAPS -->
+
+        <section id="swapSection" class="hidden">
+
+            <div class="card">
+
+                <h2>Заявка за размяна</h2>
+
+                <div class="swap-grid">
+
+                    <div>
+
+                        <div class="form-group">
+
+                            <label>Моята дата</label>
+
+                            <input
+                                type="date"
+                                id="swapMyDate"
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Служител</label>
+
+                            <select id="swapReceiver"></select>
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Дата на другия служител</label>
+
+                            <input
+                                type="date"
+                                id="swapReceiverDate"
+                            >
+
+                        </div>
+
+                        <div class="form-group">
+
+                            <label>Съобщение</label>
+
+                            <textarea
+                                id="swapMessage"
+                                placeholder="Например: Може ли да разменим смените?"
+                            ></textarea>
+
+                        </div>
+
+                        <button
+                            class="primary-btn"
+                            onclick="sendSwapRequest()"
+                        >
+                            Изпрати заявка
+                        </button>
+
+                    </div>
+
+                    <div>
+
+                        <h3>Моите заявки</h3>
+
+                        <div id="mySwapRequests"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="adminSwapCard"
+                class="card hidden"
+            >
+
+                <h2>Заявки за размяна</h2>
+
+                <div id="adminSwapRequests"></div>
+
+            </div>
+
+        </section>
+
+
+        <!-- ADMIN -->
+
+        <section
+            id="adminSection"
+            class="hidden"
         >
-            Изпрати заявка
-        </button>
 
-    </div>
+            <div class="card">
 
+                <h2>Добавяне на служител</h2>
 
-    <div class="panel">
+                <div class="swap-grid">
 
-        <h2>📨 Заявки</h2>
+                    <div class="form-group">
+                        <label>Име</label>
+                        <input id="newUserName">
+                    </div>
 
-        <div id="swapRequestsContainer">
-            <div class="loading">
-                Зареждане...
-            </div>
-        </div>
+                    <div class="form-group">
+                        <label>Парола</label>
+                        <input id="newUserPassword">
+                    </div>
 
-    </div>
+                </div>
 
-</section>
+                <div class="check-row">
+                    <input
+                        type="checkbox"
+                        id="newUserAdmin"
+                    >
+                    <label for="newUserAdmin">Администратор</label>
+                </div>
 
+                <br>
 
-<!-- =========================================================
-     ADMIN
-     ========================================================= -->
+                <div class="check-row">
+                    <input
+                        type="checkbox"
+                        id="newUserSeptember"
+                    >
+                    <label for="newUserSeptember">
+                        Само за септември
+                    </label>
+                </div>
 
-<section
-    id="admin"
-    class="tab-content hidden"
->
+                <br>
 
-    <!-- ADD USER -->
-
-    <div class="panel">
-
-        <h2>👤 Добавяне на потребител</h2>
-
-        <div class="form-group">
-
-            <label>Име</label>
-
-            <input
-                id="newUserName"
-                type="text"
-                placeholder="Например Георги Иванов"
-            >
-
-        </div>
-
-
-        <div class="form-group">
-
-            <label>Парола</label>
-
-            <input
-                id="newUserPassword"
-                type="text"
-                placeholder="Парола"
-            >
-
-        </div>
-
-
-        <div class="checkbox-row">
-
-            <label>
-                <input
-                    type="checkbox"
-                    id="newUserAdmin"
+                <button
+                    class="primary-btn"
+                    onclick="addUser()"
                 >
-                Администратор
-            </label>
+                    Добави служител
+                </button>
 
-            <label>
-                <input
-                    type="checkbox"
-                    id="newUserSeptemberOnly"
-                >
-                Само за септември
-            </label>
-
-        </div>
-
-        <br>
-
-        <button
-            class="primary-button"
-            onclick="addUser()"
-        >
-            ➕ Добави потребител
-        </button>
-
-    </div>
-
-
-    <!-- USERS -->
-
-    <div class="panel">
-
-        <h2>👥 Потребители</h2>
-
-        <div id="adminUsersContainer">
-            <div class="loading">
-                Зареждане...
             </div>
-        </div>
+
+
+            <div class="card">
+
+                <h2>Потребители</h2>
+
+                <div id="adminUsers"></div>
+
+            </div>
+
+
+            <div class="card">
+
+                <h2>Видове смени</h2>
+
+                <p class="small-note">
+                    Почивка се записва като празно поле.
+                    „Ц“ е 09:00–21:00 и се брои за 11 работни часа.
+                </p>
+
+                <div id="shiftTypesAdmin"></div>
+
+                <br>
+
+                <button
+                    class="primary-btn"
+                    onclick="addShiftType()"
+                >
+                    Добави смяна
+                </button>
+
+            </div>
+
+        </section>
 
     </div>
-
-
-    <!-- SHIFT TYPES -->
-
-    <div class="panel">
-
-        <h2>🕐 Видове смени</h2>
-
-        <div id="shiftTypesContainer"></div>
-
-        <hr style="border:0;border-top:1px solid var(--border);margin:20px 0;">
-
-        <h3>Добавяне на смяна</h3>
-
-        <div class="form-group">
-            <label>Име</label>
-
-            <input
-                id="newShiftName"
-                placeholder="Например Нощна"
-            >
-        </div>
-
-        <div class="form-group">
-            <label>Начало</label>
-
-            <input
-                id="newShiftStart"
-                type="time"
-            >
-        </div>
-
-        <div class="form-group">
-            <label>Край</label>
-
-            <input
-                id="newShiftEnd"
-                type="time"
-            >
-        </div>
-
-        <div class="form-group">
-            <label>Почивка в минути</label>
-
-            <input
-                id="newShiftBreak"
-                type="number"
-                value="60"
-                min="0"
-            >
-        </div>
-
-        <button
-            class="primary-button"
-            onclick="addShiftType()"
-        >
-            ➕ Добави смяна
-        </button>
-
-    </div>
-
-</section>
-
-</main>
 
 </div>
 
@@ -966,7 +825,7 @@ main {
 
 /* =========================================================
    SUPABASE
-   ========================================================= */
+========================================================= */
 
 const SUPABASE_URL =
     "https://feahxunujegspmfgicfw.supabase.co";
@@ -975,130 +834,260 @@ const SUPABASE_KEY =
     "sb_publishable_qtFfIY15FcRdBcUzTW56Jg_bGXHiLgR";
 
 const supabaseClient =
-    supabase.createClient(
+    window.supabase.createClient(
         SUPABASE_URL,
         SUPABASE_KEY
     );
 
 
 /* =========================================================
-   VARIABLES
-   ========================================================= */
+   GLOBAL VARIABLES
+========================================================= */
 
 let USERS = [];
 
 let currentUser = null;
 
-let currentDate = new Date();
+let currentMonth =
+    new Date().getMonth();
+
+let currentYear =
+    new Date().getFullYear();
 
 let scheduleData = {};
 
-let shiftTypes = [
+let editingAllSchedule = false;
+
+
+/* =========================================================
+   DEFAULT SHIFT TYPES
+========================================================= */
+
+const DEFAULT_SHIFT_TYPES = [
     {
+        code: "",
+        name: "Почивка",
+        start: "",
+        end: "",
+        paid: 0
+    },
+    {
+        code: "1",
         name: "1-ва смяна",
         start: "09:00",
         end: "16:00",
-        break: 60,
-        active: true
+        paid: 6
     },
     {
+        code: "2",
         name: "2-ра смяна",
         start: "14:00",
         end: "21:00",
-        break: 60,
-        active: true
+        paid: 6
     },
     {
+        code: "Р",
         name: "Р",
         start: "09:00",
         end: "18:00",
-        break: 60,
-        active: true
+        paid: 8
     },
     {
+        code: "У",
         name: "Управител",
         start: "09:00",
         end: "17:00",
-        break: 60,
-        active: true
+        paid: 7
     },
     {
+        code: "Ц",
         name: "Ц",
         start: "09:00",
         end: "21:00",
-        break: 60,
-        active: true
+        paid: 11
     },
     {
+        code: "О",
         name: "Отпуска",
-        start: null,
-        end: null,
-        break: 0,
-        active: true
+        start: "",
+        end: "",
+        paid: 0
     },
     {
+        code: "С",
         name: "Самоотлъчка",
-        start: null,
-        end: null,
-        break: 0,
-        active: true
+        start: "",
+        end: "",
+        paid: 0
     },
     {
+        code: "ПЕР",
         name: "Персонална",
-        start: null,
-        end: null,
-        break: 0,
-        active: true
+        start: "",
+        end: "",
+        paid: 0
     }
 ];
 
 
+function getShiftTypes() {
+
+    const saved =
+        localStorage.getItem("shiftTypes");
+
+    if (!saved) {
+
+        localStorage.setItem(
+            "shiftTypes",
+            JSON.stringify(DEFAULT_SHIFT_TYPES)
+        );
+
+        return DEFAULT_SHIFT_TYPES;
+    }
+
+    try {
+
+        return JSON.parse(saved);
+
+    } catch {
+
+        return DEFAULT_SHIFT_TYPES;
+    }
+}
+
+
+function saveShiftTypesLocal(types) {
+
+    localStorage.setItem(
+        "shiftTypes",
+        JSON.stringify(types)
+    );
+}
+
+
 /* =========================================================
-   MONTHS
-   ========================================================= */
+   LOAD USERS
+========================================================= */
 
-const MONTHS = [
-    "Януари",
-    "Февруари",
-    "Март",
-    "Април",
-    "Май",
-    "Юни",
-    "Юли",
-    "Август",
-    "Септември",
-    "Октомври",
-    "Ноември",
-    "Декември"
-];
+async function loadUsersFromSupabase() {
 
+    console.log("Зареждане на app_users...");
 
-/* =========================================================
-   INITIALIZATION
-   ========================================================= */
+    const {
+        data,
+        error
+    } = await supabaseClient
+        .from("app_users")
+        .select(
+            "id,name,password,admin,active,september_only"
+        )
+        .order(
+            "name",
+            {
+                ascending: true
+            }
+        );
 
-document.addEventListener("DOMContentLoaded", async () => {
+    if (error) {
 
-    loadShiftTypes();
+        console.error(
+            "SUPABASE APP_USERS ERROR:",
+            error
+        );
 
-    await loadUsersFromSupabase();
+        USERS = [];
+
+        document.getElementById(
+            "loginError"
+        ).innerHTML =
+            "Грешка при зареждане на потребителите.<br><br>" +
+            error.message;
+
+        return false;
+    }
+
+    console.log(
+        "APP_USERS:",
+        data
+    );
+
+    USERS =
+        (data || []).map(user => ({
+
+            id: user.id,
+
+            name: user.name,
+
+            password:
+                user.password ?? "",
+
+            admin:
+                user.admin === true,
+
+            active:
+                user.active !== false,
+
+            septemberOnly:
+                user.september_only === true
+
+        }));
 
     populateLoginUsers();
 
-    const savedUser =
-        localStorage.getItem("work_schedule_user");
+    return true;
+}
 
-    if (savedUser) {
 
-        const foundUser =
-            USERS.find(u => u.name === savedUser);
+/* =========================================================
+   LOGIN USERS
+========================================================= */
 
-        if (foundUser && foundUser.active) {
+function populateLoginUsers() {
 
-            currentUser = foundUser;
+    const select =
+        document.getElementById(
+            "loginName"
+        );
 
-            await showApp();
+    select.innerHTML =
+        '<option value="">Избери служител</option>';
 
-        } else {
+    USERS
+        .filter(user => user.active)
+        .sort((a,b) =>
+            a.name.localeCompare(
+                b.name,
+                "bg"
+            )
+        )
+        .forEach(user => {
 
-            localStorage.remov
+            const option =
+                document.createElement("option");
+
+            option.value =
+                user.name;
+
+            option.textContent =
+                user.name;
+
+            select.appendChild(
+                option
+            );
+
+        });
+}
+
+
+/* =========================================================
+   LOGIN
+========================================================= */
+
+async function login() {
+
+    const name =
+        document.getElementById(
+            "loginName"
+        ).value;
+
+    const passwo
