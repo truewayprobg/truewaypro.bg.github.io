@@ -1,3 +1,4 @@
+
 ```html
 <!DOCTYPE html>
 <html lang="bg">
@@ -62,7 +63,9 @@ button{
     cursor:pointer;
 }
 
-/* LOGIN */
+/* =========================
+   LOGIN
+========================= */
 
 #loginScreen{
     min-height:100vh;
@@ -70,9 +73,18 @@ button{
     align-items:center;
     justify-content:center;
     padding:20px;
+
     background:
-        radial-gradient(circle at top left,#2563eb33,transparent 35%),
-        radial-gradient(circle at bottom right,#7c3aed33,transparent 35%),
+        radial-gradient(
+            circle at top left,
+            #2563eb33,
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at bottom right,
+            #7c3aed33,
+            transparent 35%
+        ),
         var(--bg);
 }
 
@@ -91,10 +103,18 @@ button{
     height:64px;
     margin:0 auto 18px;
     border-radius:18px;
+
     display:flex;
     align-items:center;
     justify-content:center;
-    background:linear-gradient(135deg,#2563eb,#7c3aed);
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
     color:white;
     font-size:30px;
 }
@@ -120,27 +140,45 @@ input,
 select{
     width:100%;
     padding:11px 12px;
+
     border:1px solid var(--border);
     border-radius:10px;
+
     background:var(--card2);
     color:var(--text);
+
     outline:none;
 }
 
 input:focus,
 select:focus{
     border-color:var(--primary);
-    box-shadow:0 0 0 3px rgba(37,99,235,.12);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(37,99,235,.12);
 }
 
 .main-btn{
     width:100%;
+
     border:0;
+
     padding:12px 16px;
+
     border-radius:11px;
+
     color:white;
-    background:linear-gradient(135deg,var(--primary),var(--primary2));
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
     font-weight:700;
+
     margin-top:16px;
 }
 
@@ -168,7 +206,9 @@ select:focus{
     color:#166534;
 }
 
-/* APP */
+/* =========================
+   APP
+========================= */
 
 #app{
     display:none;
@@ -178,18 +218,27 @@ select:focus{
     position:sticky;
     top:0;
     z-index:100;
+
     background:var(--card);
-    border-bottom:1px solid var(--border);
-    box-shadow:0 3px 15px rgba(0,0,0,.04);
+
+    border-bottom:
+        1px solid var(--border);
+
+    box-shadow:
+        0 3px 15px
+        rgba(0,0,0,.04);
 }
 
 .topbar-inner{
     max-width:1600px;
     margin:auto;
+
     padding:14px 20px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:15px;
 }
 
@@ -202,11 +251,20 @@ select:focus{
 .brand-icon{
     width:44px;
     height:44px;
+
     border-radius:13px;
-    background:linear-gradient(135deg,#2563eb,#7c3aed);
+
+    background:
+        linear-gradient(
+            135deg,
+            #2563eb,
+            #7c3aed
+        );
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     color:white;
     font-size:21px;
 }
@@ -233,12 +291,14 @@ select:focus{
     border:1px solid var(--border);
     background:var(--card2);
     color:var(--text);
+
     padding:9px 12px;
+
     border-radius:10px;
 }
 
-.small-btn:hover,
-.icon-btn:hover{
+.icon-btn:hover,
+.small-btn:hover{
     border-color:var(--primary);
 }
 
@@ -248,7 +308,9 @@ select:focus{
     border-color:var(--danger);
 }
 
-/* CONTENT */
+/* =========================
+   CONTENT
+========================= */
 
 .container{
     max-width:1600px;
@@ -260,8 +322,11 @@ select:focus{
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     gap:10px;
+
     margin-bottom:18px;
+
     flex-wrap:wrap;
 }
 
@@ -279,21 +344,28 @@ select:focus{
     display:flex;
     gap:8px;
     flex-wrap:wrap;
+
     margin-bottom:18px;
 }
 
 .tab{
     border:1px solid var(--border);
+
     background:var(--card);
     color:var(--text);
+
     border-radius:11px;
+
     padding:10px 15px;
+
     font-weight:700;
 }
 
 .tab.active{
     color:white;
+
     background:var(--primary);
+
     border-color:var(--primary);
 }
 
@@ -305,20 +377,30 @@ select:focus{
     display:block;
 }
 
-/* STATS */
+/* =========================
+   STATS
+========================= */
 
 .stats{
     display:grid;
-    grid-template-columns:repeat(4,1fr);
+
+    grid-template-columns:
+        repeat(4,1fr);
+
     gap:14px;
+
     margin-bottom:18px;
 }
 
 .stat{
     background:var(--card);
+
     border:1px solid var(--border);
+
     border-radius:17px;
+
     padding:17px;
+
     box-shadow:var(--shadow);
 }
 
@@ -333,24 +415,38 @@ select:focus{
     margin-top:6px;
 }
 
-/* CARDS */
+/* =========================
+   CARDS
+========================= */
 
 .card{
     background:var(--card);
+
     border:1px solid var(--border);
+
     border-radius:18px;
+
     box-shadow:var(--shadow);
+
     overflow:hidden;
+
     margin-bottom:18px;
 }
 
 .card-header{
     padding:17px 18px;
-    border-bottom:1px solid var(--border);
+
+    border-bottom:
+        1px solid var(--border);
+
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     gap:10px;
+
     flex-wrap:wrap;
 }
 
@@ -363,7 +459,9 @@ select:focus{
     padding:18px;
 }
 
-/* TABLE */
+/* =========================
+   TABLE
+========================= */
 
 .table-wrap{
     overflow:auto;
@@ -378,18 +476,27 @@ table{
 
 th,
 td{
-    border-bottom:1px solid var(--border);
-    border-right:1px solid var(--border);
+    border-bottom:
+        1px solid var(--border);
+
+    border-right:
+        1px solid var(--border);
+
     padding:8px;
+
     text-align:center;
+
     vertical-align:middle;
 }
 
 th{
     background:var(--card2);
+
     font-size:13px;
+
     position:sticky;
     top:0;
+
     z-index:2;
 }
 
@@ -397,9 +504,13 @@ td:first-child,
 th:first-child{
     position:sticky;
     left:0;
+
     z-index:3;
+
     background:var(--card);
+
     font-weight:700;
+
     min-width:180px;
 }
 
@@ -419,28 +530,41 @@ th:first-child{
 }
 
 .weekend{
-    background:rgba(239,68,68,.055);
+    background:
+        rgba(239,68,68,.055);
 }
 
 .today{
-    box-shadow:inset 0 0 0 2px var(--primary);
+    box-shadow:
+        inset 0 0 0 2px
+        var(--primary);
 }
 
 .schedule-select{
-    min-width:130px;
+    min-width:140px;
+
     padding:7px 8px;
+
     border-radius:8px;
+
     font-size:12px;
 }
 
 .shift-view{
     display:inline-flex;
+
     flex-direction:column;
+
     gap:2px;
+
     min-width:90px;
+
     padding:6px 8px;
+
     border-radius:9px;
+
     font-size:12px;
+
     font-weight:700;
 }
 
@@ -450,7 +574,9 @@ th:first-child{
     opacity:.8;
 }
 
-/* SHIFT COLORS */
+/* =========================
+   SHIFT COLORS
+========================= */
 
 .s1{
     background:#dbeafe;
@@ -532,7 +658,9 @@ body.dark .sp{
     color:#e2e8f0;
 }
 
-/* LEGEND */
+/* =========================
+   LEGEND
+========================= */
 
 .legend{
     display:flex;
@@ -543,24 +671,36 @@ body.dark .sp{
 .legend-item{
     display:flex;
     align-items:center;
+
     gap:6px;
+
     padding:6px 9px;
+
     border-radius:9px;
+
     font-size:12px;
     font-weight:700;
 }
 
-/* ADMIN */
+/* =========================
+   ADMIN
+========================= */
 
 .admin-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:18px;
 }
 
 .admin-form{
     display:grid;
-    grid-template-columns:1fr 1fr;
+
+    grid-template-columns:
+        1fr 1fr;
+
     gap:10px;
 }
 
@@ -570,15 +710,21 @@ body.dark .sp{
 
 .form-actions{
     display:flex;
+
     gap:8px;
+
     flex-wrap:wrap;
+
     margin-top:10px;
 }
 
 .btn{
     border:0;
+
     padding:10px 14px;
+
     border-radius:10px;
+
     font-weight:700;
 }
 
@@ -600,17 +746,25 @@ body.dark .sp{
 .btn-secondary{
     background:var(--card2);
     color:var(--text);
-    border:1px solid var(--border);
+
+    border:
+        1px solid var(--border);
 }
 
 .user-row,
 .shift-row{
     display:flex;
+
     align-items:center;
+
     justify-content:space-between;
+
     gap:12px;
+
     padding:12px 0;
-    border-bottom:1px solid var(--border);
+
+    border-bottom:
+        1px solid var(--border);
 }
 
 .user-row:last-child,
@@ -628,21 +782,30 @@ body.dark .sp{
 
 .row-sub{
     color:var(--muted);
+
     font-size:12px;
+
     margin-top:3px;
 }
 
 .row-actions{
     display:flex;
+
     gap:6px;
+
     flex-wrap:wrap;
+
     justify-content:flex-end;
 }
 
 .admin-shift-form{
     display:grid;
-    grid-template-columns:1.3fr .8fr .8fr .6fr;
+
+    grid-template-columns:
+        1.3fr .8fr .8fr .6fr;
+
     gap:9px;
+
     align-items:end;
 }
 
@@ -652,35 +815,47 @@ body.dark .sp{
 
 .helper{
     color:var(--muted);
+
     font-size:12px;
+
     margin-top:8px;
 }
 
 .empty{
     color:var(--muted);
+
     padding:20px;
+
     text-align:center;
 }
 
 .loading{
     color:var(--muted);
+
     padding:25px;
+
     text-align:center;
 }
 
-/* MOBILE */
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:1000px){
+
     .stats{
-        grid-template-columns:repeat(2,1fr);
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
     .admin-grid{
         grid-template-columns:1fr;
     }
+
 }
 
 @media(max-width:650px){
+
     .topbar-inner{
         align-items:flex-start;
     }
@@ -699,7 +874,9 @@ body.dark .sp{
     }
 
     .stats{
-        grid-template-columns:1fr 1fr;
+        grid-template-columns:
+            1fr 1fr;
+
         gap:9px;
     }
 
@@ -726,30 +903,46 @@ body.dark .sp{
     .admin-shift-form{
         grid-template-columns:1fr;
     }
+
 }
 </style>
 </head>
 
 <body>
 
-<!-- LOGIN -->
+<!-- =====================================================
+     LOGIN
+===================================================== -->
 
 <div id="loginScreen">
 
     <div class="login-card">
 
-        <div class="logo">📅</div>
+        <div class="logo">
+            📅
+        </div>
 
-        <h1>Работен график</h1>
-        <p>Влез в системата</p>
+        <h1>
+            Работен график
+        </h1>
 
-        <label for="loginName">Име</label>
+        <p>
+            Влез в системата
+        </p>
+
+        <label for="loginName">
+            Име
+        </label>
 
         <select id="loginName">
-            <option value="">Зареждане...</option>
+            <option value="">
+                Зареждане...
+            </option>
         </select>
 
-        <label for="loginPassword">Парола</label>
+        <label for="loginPassword">
+            Парола
+        </label>
 
         <input
             id="loginPassword"
@@ -765,470 +958,433 @@ body.dark .sp{
             Вход
         </button>
 
-        <div id="loginMessage" class="message"></div>
+        <div
+            id="loginMessage"
+            class="message"
+        ></div>
 
     </div>
 
 </div>
 
 
-<!-- APP -->
+<!-- =====================================================
+     APP
+===================================================== -->
 
 <div id="app">
 
-    <header class="topbar">
+<header class="topbar">
 
-        <div class="topbar-inner">
+    <div class="topbar-inner">
 
-            <div class="brand">
+        <div class="brand">
 
-                <div class="brand-icon">
-                    📅
-                </div>
-
-                <div>
-                    <div class="brand-title">
-                        Работен график
-                    </div>
-
-                    <div
-                        class="brand-user"
-                        id="currentUserText"
-                    ></div>
-                </div>
-
+            <div class="brand-icon">
+                📅
             </div>
 
-            <div class="top-actions">
+            <div>
 
-                <button
-                    class="icon-btn"
-                    onclick="toggleTheme()"
-                    title="Тема"
-                >
-                    🌓
-                </button>
+                <div class="brand-title">
+                    Работен график
+                </div>
 
-                <button
-                    class="small-btn logout"
-                    onclick="logout()"
-                >
-                    Изход
-                </button>
+                <div
+                    class="brand-user"
+                    id="currentUserText"
+                ></div>
 
             </div>
 
         </div>
 
-    </header>
+        <div class="top-actions">
+
+            <button
+                class="icon-btn"
+                onclick="toggleTheme()"
+                title="Смени тема"
+            >
+                🌓
+            </button>
+
+            <button
+                class="small-btn logout"
+                onclick="logout()"
+            >
+                Изход
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
 
 
-    <main class="container">
+<main class="container">
 
-        <div class="month-bar">
+    <!-- MONTH -->
+
+    <div class="month-bar">
+
+        <div
+            class="month-title"
+            id="monthTitle"
+        ></div>
+
+        <div class="month-controls">
+
+            <button
+                class="small-btn"
+                onclick="changeMonth(-1)"
+            >
+                ◀ Предишен
+            </button>
+
+            <button
+                class="small-btn"
+                onclick="goToday()"
+            >
+                Днес
+            </button>
+
+            <button
+                class="small-btn"
+                onclick="changeMonth(1)"
+            >
+                Следващ ▶
+            </button>
+
+        </div>
+
+    </div>
+
+
+    <!-- TABS -->
+
+    <div class="tabs">
+
+        <button
+            class="tab active"
+            id="tabMine"
+            onclick="openTab('mine')"
+        >
+            👤 Моят график
+        </button>
+
+        <button
+            class="tab"
+            id="tabAll"
+            onclick="openTab('all')"
+        >
+            👥 Общ график
+        </button>
+
+        <button
+            class="tab"
+            id="tabAdmin"
+            onclick="openTab('admin')"
+            style="display:none"
+        >
+            ⚙️ Админ
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         MY SCHEDULE
+    ================================================= -->
+
+    <section
+        id="sectionMine"
+        class="section active"
+    >
+
+        <div class="stats">
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Работни дни
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="statDays"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Работни часове
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="statHours"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Отпуска
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="statLeave"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat">
+
+                <div class="stat-label">
+                    Почивни дни
+                </div>
+
+                <div
+                    class="stat-value"
+                    id="statRest"
+                >
+                    0
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h2>
+                    Моят график
+                </h2>
+
+                <div
+                    class="legend"
+                    id="myLegend"
+                ></div>
+
+            </div>
 
             <div
-                class="month-title"
-                id="monthTitle"
-            ></div>
-
-            <div class="month-controls">
-
-                <button
-                    class="small-btn"
-                    onclick="changeMonth(-1)"
-                >
-                    ◀ Предишен
-                </button>
-
-                <button
-                    class="small-btn"
-                    onclick="goToday()"
-                >
-                    Днес
-                </button>
-
-                <button
-                    class="small-btn"
-                    onclick="changeMonth(1)"
-                >
-                    Следващ ▶
-                </button>
-
+                class="table-wrap"
+                id="mySchedule"
+            >
+                <div class="loading">
+                    Зареждане...
+                </div>
             </div>
 
         </div>
 
+    </section>
 
-        <div class="tabs">
 
-            <button
-                class="tab active"
-                id="tabMine"
-                onclick="openTab('mine')"
+    <!-- =================================================
+         ALL SCHEDULE
+    ================================================= -->
+
+    <section
+        id="sectionAll"
+        class="section"
+    >
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <h2>
+                    Общ график
+                </h2>
+
+                <div
+                    class="legend"
+                    id="allLegend"
+                ></div>
+
+            </div>
+
+            <div
+                class="table-wrap"
+                id="allSchedule"
             >
-                👤 Моят график
-            </button>
-
-            <button
-                class="tab"
-                id="tabAll"
-                onclick="openTab('all')"
-            >
-                👥 Общ график
-            </button>
-
-            <button
-                class="tab"
-                id="tabAdmin"
-                onclick="openTab('admin')"
-                style="display:none"
-            >
-                ⚙️ Админ
-            </button>
+                <div class="loading">
+                    Зареждане...
+                </div>
+            </div>
 
         </div>
 
-
-        <!-- MINE -->
-
-        <section
-            id="sectionMine"
-            class="section active"
-        >
-
-            <div class="stats">
-
-                <div class="stat">
-                    <div class="stat-label">
-                        Работни дни
-                    </div>
-                    <div
-                        class="stat-value"
-                        id="statDays"
-                    >
-                        0
-                    </div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-label">
-                        Работни часове
-                    </div>
-                    <div
-                        class="stat-value"
-                        id="statHours"
-                    >
-                        0
-                    </div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-label">
-                        Отпуска
-                    </div>
-                    <div
-                        class="stat-value"
-                        id="statLeave"
-                    >
-                        0
-                    </div>
-                </div>
-
-                <div class="stat">
-                    <div class="stat-label">
-                        Почивки
-                    </div>
-                    <div
-                        class="stat-value"
-                        id="statRest"
-                    >
-                        0
-                    </div>
-                </div>
-
-            </div>
+    </section>
 
 
-            <div class="card">
+    <!-- =================================================
+         ADMIN
+    ================================================= -->
 
-                <div class="card-header">
+    <section
+        id="sectionAdmin"
+        class="section"
+    >
 
-                    <h2>Моят график</h2>
-
-                    <div
-                        class="legend"
-                        id="myLegend"
-                    ></div>
-
-                </div>
-
-                <div
-                    class="table-wrap"
-                    id="mySchedule"
-                >
-                    <div class="loading">
-                        Зареждане...
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ALL -->
-
-        <section
-            id="sectionAll"
-            class="section"
-        >
-
-            <div class="card">
-
-                <div class="card-header">
-
-                    <h2>Общ график</h2>
-
-                    <div
-                        class="legend"
-                        id="allLegend"
-                    ></div>
-
-                </div>
-
-                <div
-                    class="table-wrap"
-                    id="allSchedule"
-                >
-                    <div class="loading">
-                        Зареждане...
-                    </div>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- ADMIN -->
-
-        <section
-            id="sectionAdmin"
-            class="section"
-        >
+        <div class="admin-grid">
 
             <!-- USERS -->
 
-            <div class="admin-grid">
+            <div class="card">
 
-                <div class="card">
+                <div class="card-header">
 
-                    <div class="card-header">
-
-                        <h2>👥 Служители</h2>
-
-                    </div>
-
-                    <div class="card-body">
-
-                        <div class="admin-form">
-
-                            <div class="full">
-                                <label>Име</label>
-
-                                <input
-                                    id="userName"
-                                    placeholder="Име и фамилия"
-                                >
-                            </div>
-
-                            <div>
-                                <label>Парола</label>
-
-                                <input
-                                    id="userPassword"
-                                    placeholder="Парола"
-                                >
-                            </div>
-
-                            <div>
-                                <label>Опции</label>
-
-                                <label
-                                    style="
-                                        display:flex;
-                                        align-items:center;
-                                        gap:7px;
-                                        margin:11px 0 0;
-                                        font-weight:normal;
-                                    "
-                                >
-                                    <input
-                                        id="userAdmin"
-                                        type="checkbox"
-                                        style="width:auto"
-                                    >
-                                    Администратор
-                                </label>
-                            </div>
-
-                            <div>
-
-                                <label
-                                    style="
-                                        display:flex;
-                                        align-items:center;
-                                        gap:7px;
-                                        margin:11px 0 0;
-                                        font-weight:normal;
-                                    "
-                                >
-                                    <input
-                                        id="userSeptember"
-                                        type="checkbox"
-                                        style="width:auto"
-                                    >
-                                    Само за септември
-                                </label>
-
-                            </div>
-
-                        </div>
-
-                        <div class="form-actions">
-
-                            <button
-                                class="btn btn-primary"
-                                onclick="saveUser()"
-                            >
-                                ➕ Добави служител
-                            </button>
-
-                            <button
-                                class="btn btn-secondary"
-                                onclick="clearUserForm()"
-                            >
-                                Изчисти
-                            </button>
-
-                        </div>
-
-                        <div
-                            class="helper"
-                            id="userEditHint"
-                        ></div>
-
-                        <div
-                            id="usersList"
-                            style="margin-top:15px"
-                        ></div>
-
-                    </div>
+                    <h2>
+                        👥 Служители
+                    </h2>
 
                 </div>
 
+                <div class="card-body">
 
-                <!-- SHIFTS -->
+                    <div class="admin-form">
 
-                <div class="card">
+                        <div class="full">
 
-                    <div class="card-header">
+                            <label>
+                                Име
+                            </label>
+
+                            <input
+                                id="userName"
+                                placeholder="Име и фамилия"
+                            >
+
+                        </div>
+
 
                         <div>
 
-                            <h2>🕐 Видове смени</h2>
+                            <label>
+                                Парола
+                            </label>
 
-                            <div class="helper">
-                                Петя може да добавя нови смени.
-                            </div>
+                            <input
+                                id="userPassword"
+                                placeholder="Парола"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>
+                                Опции
+                            </label>
+
+                            <label
+                                style="
+                                    display:flex;
+                                    align-items:center;
+                                    gap:7px;
+                                    margin:11px 0 0;
+                                    font-weight:normal;
+                                "
+                            >
+
+                                <input
+                                    id="userAdmin"
+                                    type="checkbox"
+                                    style="width:auto"
+                                >
+
+                                Администратор
+
+                            </label>
+
+                        </div>
+
+
+                        <div>
+
+                            <label
+                                style="
+                                    display:flex;
+                                    align-items:center;
+                                    gap:7px;
+                                    margin:11px 0 0;
+                                    font-weight:normal;
+                                "
+                            >
+
+                                <input
+                                    id="userSeptember"
+                                    type="checkbox"
+                                    style="width:auto"
+                                >
+
+                                Само за септември
+
+                            </label>
 
                         </div>
 
                     </div>
 
-                    <div class="card-body">
 
-                        <div class="admin-shift-form">
+                    <div class="form-actions">
 
-                            <div>
-                                <label>Име</label>
+                        <button
+                            class="btn btn-primary"
+                            onclick="saveUser()"
+                        >
+                            ➕ Добави служител
+                        </button>
 
-                                <input
-                                    id="shiftName"
-                                    placeholder="Напр. Управител"
-                                >
-                            </div>
-
-                            <div>
-                                <label>От</label>
-
-                                <input
-                                    id="shiftStart"
-                                    type="time"
-                                    value="09:00"
-                                >
-                            </div>
-
-                            <div>
-                                <label>До</label>
-
-                                <input
-                                    id="shiftEnd"
-                                    type="time"
-                                    value="17:00"
-                                >
-                            </div>
-
-                            <div>
-                                <label>Почивка</label>
-
-                                <input
-                                    id="shiftBreak"
-                                    type="number"
-                                    min="0"
-                                    value="60"
-                                >
-                            </div>
-
-                            <div class="wide">
-
-                                <button
-                                    class="btn btn-primary"
-                                    onclick="saveCustomShift()"
-                                >
-                                    ➕ Добави смяна
-                                </button>
-
-                                <button
-                                    class="btn btn-secondary"
-                                    onclick="clearShiftForm()"
-                                >
-                                    Изчисти
-                                </button>
-
-                            </div>
-
-                        </div>
-
-                        <div
-                            class="helper"
-                            id="shiftEditHint"
-                        ></div>
-
-                        <div
-                            id="shiftsList"
-                            style="margin-top:15px"
-                        ></div>
+                        <button
+                            class="btn btn-secondary"
+                            onclick="clearUserForm()"
+                        >
+                            Изчисти
+                        </button>
 
                     </div>
+
+
+                    <div
+                        class="helper"
+                        id="userEditHint"
+                    ></div>
+
+
+                    <div
+                        id="usersList"
+                        style="margin-top:15px"
+                    ></div>
 
                 </div>
 
             </div>
 
 
-            <!-- ADMIN SCHEDULE -->
+            <!-- SHIFTS -->
 
             <div class="card">
 
@@ -1236,37 +1392,165 @@ body.dark .sp{
 
                     <div>
 
-                        <h2>✏️ Редактиране на графика</h2>
+                        <h2>
+                            🕐 Видове смени
+                        </h2>
 
                         <div class="helper">
-                            Променяй смените и натисни „Запази промените“.
+                            Петя може да добавя нови смени.
                         </div>
 
                     </div>
 
-                    <button
-                        class="btn btn-success"
-                        onclick="saveScheduleChanges()"
-                    >
-                        💾 Запази промените
-                    </button>
-
                 </div>
 
-                <div
-                    class="table-wrap"
-                    id="adminSchedule"
-                >
-                    <div class="loading">
-                        Зареждане...
+
+                <div class="card-body">
+
+                    <div class="admin-shift-form">
+
+                        <div>
+
+                            <label>
+                                Име
+                            </label>
+
+                            <input
+                                id="shiftName"
+                                placeholder="Напр. Нощна"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>
+                                От
+                            </label>
+
+                            <input
+                                id="shiftStart"
+                                type="time"
+                                value="09:00"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>
+                                До
+                            </label>
+
+                            <input
+                                id="shiftEnd"
+                                type="time"
+                                value="17:00"
+                            >
+
+                        </div>
+
+
+                        <div>
+
+                            <label>
+                                Почивка
+                            </label>
+
+                            <input
+                                id="shiftBreak"
+                                type="number"
+                                min="0"
+                                value="60"
+                            >
+
+                        </div>
+
+
+                        <div class="wide">
+
+                            <button
+                                class="btn btn-primary"
+                                onclick="saveCustomShift()"
+                            >
+                                ➕ Добави смяна
+                            </button>
+
+                            <button
+                                class="btn btn-secondary"
+                                onclick="clearShiftForm()"
+                            >
+                                Изчисти
+                            </button>
+
+                        </div>
+
                     </div>
+
+
+                    <div
+                        class="helper"
+                        id="shiftEditHint"
+                    ></div>
+
+
+                    <div
+                        id="shiftsList"
+                        style="margin-top:15px"
+                    ></div>
+
                 </div>
 
             </div>
 
-        </section>
+        </div>
 
-    </main>
+
+        <!-- ADMIN SCHEDULE -->
+
+        <div class="card">
+
+            <div class="card-header">
+
+                <div>
+
+                    <h2>
+                        ✏️ Редактиране на графика
+                    </h2>
+
+                    <div class="helper">
+                        Променяй смените и натисни „Запази промените“.
+                    </div>
+
+                </div>
+
+
+                <button
+                    class="btn btn-success"
+                    onclick="saveScheduleChanges()"
+                >
+                    💾 Запази промените
+                </button>
+
+            </div>
+
+
+            <div
+                class="table-wrap"
+                id="adminSchedule"
+            >
+                <div class="loading">
+                    Зареждане...
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+
+</main>
 
 </div>
 
@@ -1397,14 +1681,16 @@ try{
 
     customShifts =
         JSON.parse(
-            localStorage.getItem("customShifts") || "[]"
+            localStorage.getItem(
+                "customShifts"
+            ) || "[]"
         );
 
     if(!Array.isArray(customShifts)){
         customShifts = [];
     }
 
-}catch(e){
+}catch(error){
 
     customShifts = [];
 
@@ -1434,7 +1720,9 @@ function getAllShifts(){
 function getShiftByName(name){
 
     return getAllShifts().find(
-        s => String(s.name) === String(name)
+        shift =>
+            String(shift.name) ===
+            String(name)
     );
 
 }
@@ -1445,12 +1733,15 @@ function getShiftByName(name){
 ========================================================= */
 
 let currentUser = null;
+
 let users = [];
+
 let schedules = [];
 
 let currentDate = new Date();
 
 let editingUserId = null;
+
 let editingShiftId = null;
 
 let pendingChanges = {};
@@ -1498,21 +1789,27 @@ function detailedError(error){
         "Неизвестна грешка.";
 
     if(error.details){
+
         text +=
             " | Детайли: " +
             error.details;
+
     }
 
     if(error.hint){
+
         text +=
             " | Подсказка: " +
             error.hint;
+
     }
 
     if(error.code){
+
         text +=
             " | Код: " +
             error.code;
+
     }
 
     return text;
@@ -1520,12 +1817,18 @@ function detailedError(error){
 }
 
 
-function showLoginMessage(text,type="error"){
+function showLoginMessage(
+    text,
+    type="error"
+){
 
     const box =
-        document.getElementById("loginMessage");
+        document.getElementById(
+            "loginMessage"
+        );
 
     box.textContent = text;
+
     box.className =
         "message " + type;
 
@@ -1535,10 +1838,14 @@ function showLoginMessage(text,type="error"){
 function clearLoginMessage(){
 
     const box =
-        document.getElementById("loginMessage");
+        document.getElementById(
+            "loginMessage"
+        );
 
     box.textContent = "";
-    box.className = "message";
+
+    box.className =
+        "message";
 
 }
 
@@ -1549,8 +1856,12 @@ function normalizeTimeForDb(value){
         return null;
     }
 
-    if(/^\d{2}:\d{2}$/.test(value)){
+    if(
+        /^\d{2}:\d{2}$/.test(value)
+    ){
+
         return value + ":00";
+
     }
 
     return value;
@@ -1575,28 +1886,16 @@ function dateISO(date){
         date.getFullYear();
 
     const m =
-        String(date.getMonth()+1)
-            .padStart(2,"0");
+        String(
+            date.getMonth()+1
+        ).padStart(2,"0");
 
     const d =
-        String(date.getDate())
-            .padStart(2,"0");
+        String(
+            date.getDate()
+        ).padStart(2,"0");
 
     return `${y}-${m}-${d}`;
-
-}
-
-
-function parseISODate(value){
-
-    const parts =
-        String(value).split("-");
-
-    return new Date(
-        Number(parts[0]),
-        Number(parts[1])-1,
-        Number(parts[2])
-    );
 
 }
 
@@ -1625,18 +1924,35 @@ function getDaysInMonth(date){
     const result = [];
 
     const total =
-        new Date(y,m+1,0).getDate();
+        new Date(
+            y,
+            m+1,
+            0
+        ).getDate();
 
-    for(let d=1; d<=total; d++){
+    for(
+        let d=1;
+        d<=total;
+        d++
+    ){
 
         const x =
-            new Date(y,m,d);
+            new Date(
+                y,
+                m,
+                d
+            );
 
         result.push({
+
             date:dateISO(x),
+
             dateObj:x,
+
             day:d,
+
             weekday:x.getDay()
+
         });
 
     }
@@ -1648,17 +1964,20 @@ function getDaysInMonth(date){
 
 function isWeekend(date){
 
-    return date.getDay() === 0 ||
-           date.getDay() === 6;
+    return (
+        date.getDay() === 0 ||
+        date.getDay() === 6
+    );
 
 }
 
 
 function isToday(date){
 
-    const now = new Date();
-
-    return dateISO(now) === dateISO(date);
+    return (
+        dateISO(new Date()) ===
+        dateISO(date)
+    );
 
 }
 
@@ -1676,12 +1995,18 @@ function monthTitle(){
 }
 
 
-function getSchedule(employee,date){
+function getSchedule(
+    employee,
+    date
+){
 
     return schedules.find(
         x =>
-            String(x.employee) === String(employee) &&
-            String(x.work_date) === String(date)
+            String(x.employee) ===
+            String(employee) &&
+
+            String(x.work_date) ===
+            String(date)
     );
 
 }
@@ -1693,7 +2018,10 @@ function getSchedule(employee,date){
 
 async function loadLoginUsers(){
 
-    const {data,error} =
+    const {
+        data,
+        error
+    } =
         await db
         .from("app_users")
         .select("*")
@@ -1703,8 +2031,14 @@ async function loadLoginUsers(){
 
         console.error(error);
 
-        document.getElementById("loginName").innerHTML =
-            `<option value="">Грешка при зареждане</option>`;
+        document.getElementById(
+            "loginName"
+        ).innerHTML =
+            `
+            <option value="">
+                Грешка при зареждане
+            </option>
+            `;
 
         showLoginMessage(
             detailedError(error),
@@ -1718,29 +2052,59 @@ async function loadLoginUsers(){
     users =
         (data || [])
         .filter(
-            u => u.active !== false
+            user =>
+                user.active !== false
         );
 
+
+    populateLoginUsers();
+
+}
+
+
+function populateLoginUsers(){
+
     const select =
-        document.getElementById("loginName");
+        document.getElementById(
+            "loginName"
+        );
+
+    const current =
+        select.value;
 
     select.innerHTML =
-        `<option value="">Избери име</option>`;
+        `
+        <option value="">
+            Избери име
+        </option>
+        `;
 
-    users.forEach(user => {
 
-        const option =
-            document.createElement("option");
+    users.forEach(
+        user => {
 
-        option.value =
-            user.id;
+            const option =
+                document.createElement(
+                    "option"
+                );
 
-        option.textContent =
-            user.name;
+            option.value =
+                user.id;
 
-        select.appendChild(option);
+            option.textContent =
+                user.name;
 
-    });
+            select.appendChild(
+                option
+            );
+
+        }
+    );
+
+
+    if(current){
+        select.value = current;
+    }
 
 }
 
@@ -1754,10 +2118,15 @@ async function login(){
     clearLoginMessage();
 
     const userId =
-        document.getElementById("loginName").value;
+        document.getElementById(
+            "loginName"
+        ).value;
 
     const password =
-        document.getElementById("loginPassword").value;
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
 
     if(!userId){
 
@@ -1770,6 +2139,7 @@ async function login(){
 
     }
 
+
     if(!password){
 
         showLoginMessage(
@@ -1781,10 +2151,14 @@ async function login(){
 
     }
 
+
     const user =
         users.find(
-            u => String(u.id) === String(userId)
+            u =>
+                String(u.id) ===
+                String(userId)
         );
+
 
     if(!user){
 
@@ -1797,7 +2171,11 @@ async function login(){
 
     }
 
-    if(String(user.password) !== String(password)){
+
+    if(
+        String(user.password) !==
+        String(password)
+    ){
 
         showLoginMessage(
             "Грешна парола.",
@@ -1808,37 +2186,43 @@ async function login(){
 
     }
 
+
     currentUser = user;
+
 
     sessionStorage.setItem(
         "currentUserId",
         String(user.id)
     );
 
-    document.getElementById("loginScreen").style.display =
-        "none";
 
-    document.getElementById("app").style.display =
-        "block";
+    document.getElementById(
+        "loginScreen"
+    ).style.display = "none";
 
-    document.getElementById("currentUserText").textContent =
+
+    document.getElementById(
+        "app"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "currentUserText"
+    ).textContent =
         `${user.name} · ${
             isAdmin(user)
                 ? "Управител"
                 : "Служител"
         }`;
 
-    if(isAdmin(user)){
 
-        document.getElementById("tabAdmin").style.display =
-            "inline-block";
+    document.getElementById(
+        "tabAdmin"
+    ).style.display =
+        isAdmin(user)
+            ? "inline-block"
+            : "none";
 
-    }else{
-
-        document.getElementById("tabAdmin").style.display =
-            "none";
-
-    }
 
     await loadData();
 
@@ -1853,14 +2237,20 @@ function logout(){
         "currentUserId"
     );
 
-    document.getElementById("app").style.display =
-        "none";
 
-    document.getElementById("loginScreen").style.display =
-        "flex";
+    document.getElementById(
+        "app"
+    ).style.display = "none";
 
-    document.getElementById("loginPassword").value =
-        "";
+
+    document.getElementById(
+        "loginScreen"
+    ).style.display = "flex";
+
+
+    document.getElementById(
+        "loginPassword"
+    ).value = "";
 
 }
 
@@ -1880,34 +2270,50 @@ async function tryAutoLogin(){
         return;
     }
 
+
     const user =
         users.find(
-            u => String(u.id) === String(saved)
+            u =>
+                String(u.id) ===
+                String(saved)
         );
+
 
     if(!user){
         return;
     }
 
+
     currentUser = user;
 
-    document.getElementById("loginScreen").style.display =
-        "none";
 
-    document.getElementById("app").style.display =
-        "block";
+    document.getElementById(
+        "loginScreen"
+    ).style.display = "none";
 
-    document.getElementById("currentUserText").textContent =
+
+    document.getElementById(
+        "app"
+    ).style.display = "block";
+
+
+    document.getElementById(
+        "currentUserText"
+    ).textContent =
         `${user.name} · ${
             isAdmin(user)
                 ? "Управител"
                 : "Служител"
         }`;
 
-    if(isAdmin(user)){
-        document.getElementById("tabAdmin").style.display =
-            "inline-block";
-    }
+
+    document.getElementById(
+        "tabAdmin"
+    ).style.display =
+        isAdmin(user)
+            ? "inline-block"
+            : "none";
+
 
     await loadData();
 
@@ -1915,13 +2321,18 @@ async function tryAutoLogin(){
 
 
 /* =========================================================
-   DATA
+   LOAD DATA
 ========================================================= */
 
 async function loadData(){
 
-    document.getElementById("monthTitle").textContent =
-        capitalize(monthTitle());
+    document.getElementById(
+        "monthTitle"
+    ).textContent =
+        capitalize(
+            monthTitle()
+        );
+
 
     await loadUsers();
 
@@ -1934,11 +2345,15 @@ async function loadData(){
 
 async function loadUsers(){
 
-    const {data,error} =
+    const {
+        data,
+        error
+    } =
         await db
         .from("app_users")
         .select("*")
         .order("name");
+
 
     if(error){
 
@@ -1953,10 +2368,12 @@ async function loadUsers(){
 
     }
 
+
     users =
         (data || [])
         .filter(
-            u => u.active !== false
+            user =>
+                user.active !== false
         );
 
 }
@@ -1971,6 +2388,7 @@ async function loadSchedules(){
             1
         );
 
+
     const end =
         new Date(
             currentDate.getFullYear(),
@@ -1978,18 +2396,23 @@ async function loadSchedules(){
             0
         );
 
-    const startDate =
-        dateISO(start);
 
-    const endDate =
-        dateISO(end);
-
-    const {data,error} =
+    const {
+        data,
+        error
+    } =
         await db
         .from("work_schedule")
         .select("*")
-        .gte("work_date",startDate)
-        .lte("work_date",endDate);
+        .gte(
+            "work_date",
+            dateISO(start)
+        )
+        .lte(
+            "work_date",
+            dateISO(end)
+        );
+
 
     if(error){
 
@@ -2006,6 +2429,7 @@ async function loadSchedules(){
 
     }
 
+
     schedules =
         data || [];
 
@@ -2013,13 +2437,18 @@ async function loadSchedules(){
 
 
 /* =========================================================
-   RENDER ALL
+   RENDER
 ========================================================= */
 
 function renderAll(){
 
-    document.getElementById("monthTitle").textContent =
-        capitalize(monthTitle());
+    document.getElementById(
+        "monthTitle"
+    ).textContent =
+        capitalize(
+            monthTitle()
+        );
+
 
     renderMySchedule();
 
@@ -2044,8 +2473,10 @@ function capitalize(text){
         return "";
     }
 
-    return text.charAt(0).toUpperCase() +
-           text.slice(1);
+    return (
+        text.charAt(0).toUpperCase() +
+        text.slice(1)
+    );
 
 }
 
@@ -2054,10 +2485,17 @@ function capitalize(text){
    SHIFT OPTIONS
 ========================================================= */
 
-function shiftOptions(selected=""){
+function shiftOptions(
+    selected=""
+){
 
     let html =
-        `<option value="">—</option>`;
+        `
+        <option value="">
+            —
+        </option>
+        `;
+
 
     getAllShifts().forEach(
         shift => {
@@ -2067,12 +2505,16 @@ function shiftOptions(selected=""){
                     ? ` (${shift.start}–${shift.end})`
                     : "";
 
+
             html += `
                 <option
                     value="${esc(shift.name)}"
-                    ${String(selected) === String(shift.name)
-                        ? "selected"
-                        : ""}
+                    ${
+                        String(selected) ===
+                        String(shift.name)
+                            ? "selected"
+                            : ""
+                    }
                 >
                     ${esc(shift.short)}
                     ${time}
@@ -2082,25 +2524,34 @@ function shiftOptions(selected=""){
         }
     );
 
+
     return html;
 
 }
 
 
 /* =========================================================
-   SHIFT DISPLAY
+   SHIFT VIEW
 ========================================================= */
 
 function shiftView(value){
 
     if(!value){
 
-        return `<span style="color:var(--muted)">—</span>`;
+        return `
+            <span
+                style="color:var(--muted)"
+            >
+                —
+            </span>
+        `;
 
     }
 
+
     const shift =
         getShiftByName(value);
+
 
     if(!shift){
 
@@ -2112,19 +2563,30 @@ function shiftView(value){
 
     }
 
+
     const time =
         shift.start
             ? `${shift.start}–${shift.end}`
             : "";
 
+
     return `
-        <span class="shift-view ${shift.class}">
+        <span
+            class="shift-view ${shift.class}"
+        >
+
             ${esc(shift.short)}
+
             ${
                 time
-                    ? `<span class="shift-time">${time}</span>`
+                    ? `
+                        <span class="shift-time">
+                            ${time}
+                        </span>
+                      `
                     : ""
             }
+
         </span>
     `;
 
@@ -2138,96 +2600,161 @@ function shiftView(value){
 function renderMySchedule(){
 
     const box =
-        document.getElementById("mySchedule");
+        document.getElementById(
+            "mySchedule"
+        );
+
 
     if(!currentUser){
 
         box.innerHTML =
-            `<div class="empty">Няма вход.</div>`;
+            `
+            <div class="empty">
+                Няма вход.
+            </div>
+            `;
 
         return;
 
     }
 
+
     const days =
-        getDaysInMonth(currentDate);
+        getDaysInMonth(
+            currentDate
+        );
+
 
     let html =
-        `<table>
+        `
+        <table>
+
             <thead>
+
                 <tr>
-                    <th>Дата</th>
-                    <th>Смяна</th>
-                    <th>Час</th>
+
+                    <th>
+                        Дата
+                    </th>
+
+                    <th>
+                        Смяна
+                    </th>
+
+                    <th>
+                        Час
+                    </th>
+
                 </tr>
+
             </thead>
-            <tbody>`;
 
-    days.forEach(day => {
-
-        const record =
-            getSchedule(
-                currentUser.name,
-                day.date
-            );
-
-        const value =
-            record?.shift_type || "";
-
-        const shift =
-            getShiftByName(value);
-
-        html += `
-            <tr class="${isWeekend(day.dateObj) ? "weekend" : ""} ${isToday(day.dateObj) ? "today" : ""}">
-
-                <td>
-                    <div class="day-number">
-                        ${formatDateBG(day.dateObj)}
-                    </div>
-
-                    <div class="day-name">
-                        ${
-                            day.dateObj.toLocaleDateString(
-                                "bg-BG",
-                                {weekday:"long"}
-                            )
-                        }
-                    </div>
-                </td>
-
-                <td>
-                    ${shiftView(value)}
-                </td>
-
-                <td>
-                    ${
-                        shift?.start
-                            ? `${shift.start} – ${shift.end}`
-                            : "—"
-                    }
-                </td>
-
-            </tr>
+            <tbody>
         `;
 
-    });
+
+    days.forEach(
+        day => {
+
+            const record =
+                getSchedule(
+                    currentUser.name,
+                    day.date
+                );
+
+
+            const value =
+                record?.shift_type ||
+                "";
+
+
+            const shift =
+                getShiftByName(
+                    value
+                );
+
+
+            html += `
+                <tr
+                    class="
+                        ${
+                            isWeekend(day.dateObj)
+                                ? "weekend"
+                                : ""
+                        }
+                        ${
+                            isToday(day.dateObj)
+                                ? "today"
+                                : ""
+                        }
+                    "
+                >
+
+                    <td>
+
+                        <div class="day-number">
+                            ${formatDateBG(day.dateObj)}
+                        </div>
+
+                        <div class="day-name">
+                            ${
+                                day.dateObj.toLocaleDateString(
+                                    "bg-BG",
+                                    {
+                                        weekday:"long"
+                                    }
+                                )
+                            }
+                        </div>
+
+                    </td>
+
+
+                    <td>
+                        ${shiftView(value)}
+                    </td>
+
+
+                    <td>
+
+                        ${
+                            shift?.start
+                                ? `${shift.start} – ${shift.end}`
+                                : "—"
+                        }
+
+                    </td>
+
+                </tr>
+            `;
+
+        }
+    );
+
 
     html +=
-        `</tbody></table>`;
+        `
+            </tbody>
 
-    box.innerHTML = html;
+        </table>
+        `;
+
+
+    box.innerHTML =
+        html;
 
 }
 
 
 /* =========================================================
-   ALL SCHEDULE
+   VISIBLE USERS
 ========================================================= */
 
 function visibleUsersForMonth(){
 
     const month =
         currentDate.getMonth()+1;
+
 
     return users.filter(
         user => {
@@ -2243,6 +2770,7 @@ function visibleUsersForMonth(){
 
             }
 
+
             return true;
 
         }
@@ -2251,96 +2779,176 @@ function visibleUsersForMonth(){
 }
 
 
+/* =========================================================
+   ALL SCHEDULE
+========================================================= */
+
 function renderAllSchedule(){
 
     const box =
-        document.getElementById("allSchedule");
+        document.getElementById(
+            "allSchedule"
+        );
+
 
     const days =
-        getDaysInMonth(currentDate);
+        getDaysInMonth(
+            currentDate
+        );
+
 
     const visibleUsers =
         visibleUsersForMonth();
 
+
     if(!visibleUsers.length){
 
         box.innerHTML =
-            `<div class="empty">
+            `
+            <div class="empty">
                 Няма служители за този месец.
-            </div>`;
+            </div>
+            `;
 
         return;
 
     }
 
+
     let html =
-        `<table>
+        `
+        <table>
+
             <thead>
+
                 <tr>
-                    <th>Служител</th>`;
 
-    days.forEach(day => {
-
-        html += `
-            <th class="${isWeekend(day.dateObj) ? "weekend" : ""} ${isToday(day.dateObj) ? "today" : ""}">
-                <div class="day-number">
-                    ${day.day}
-                </div>
-                <div class="day-name">
-                    ${
-                        day.dateObj.toLocaleDateString(
-                            "bg-BG",
-                            {weekday:"short"}
-                        )
-                    }
-                </div>
-            </th>
+                    <th>
+                        Служител
+                    </th>
         `;
 
-    });
 
-    html +=
-        `</tr>
-        </thead>
-        <tbody>`;
-
-    visibleUsers.forEach(user => {
-
-        html += `
-            <tr>
-                <td>
-                    ${esc(user.name)}
-                </td>
-        `;
-
-        days.forEach(day => {
-
-            const record =
-                getSchedule(
-                    user.name,
-                    day.date
-                );
-
-            const value =
-                record?.shift_type || "";
+    days.forEach(
+        day => {
 
             html += `
-                <td class="${isWeekend(day.dateObj) ? "weekend" : ""} ${isToday(day.dateObj) ? "today" : ""}">
-                    ${shiftView(value)}
-                </td>
+                <th
+                    class="
+                        ${
+                            isWeekend(day.dateObj)
+                                ? "weekend"
+                                : ""
+                        }
+                        ${
+                            isToday(day.dateObj)
+                                ? "today"
+                                : ""
+                        }
+                    "
+                >
+
+                    <div class="day-number">
+                        ${day.day}
+                    </div>
+
+                    <div class="day-name">
+                        ${
+                            day.dateObj.toLocaleDateString(
+                                "bg-BG",
+                                {
+                                    weekday:"short"
+                                }
+                            )
+                        }
+                    </div>
+
+                </th>
             `;
 
-        });
+        }
+    );
 
-        html +=
-            `</tr>`;
-
-    });
 
     html +=
-        `</tbody></table>`;
+        `
+                </tr>
 
-    box.innerHTML = html;
+            </thead>
+
+            <tbody>
+        `;
+
+
+    visibleUsers.forEach(
+        user => {
+
+            html += `
+                <tr>
+
+                    <td>
+                        ${esc(user.name)}
+                    </td>
+            `;
+
+
+            days.forEach(
+                day => {
+
+                    const record =
+                        getSchedule(
+                            user.name,
+                            day.date
+                        );
+
+
+                    const value =
+                        record?.shift_type ||
+                        "";
+
+
+                    html += `
+                        <td
+                            class="
+                                ${
+                                    isWeekend(day.dateObj)
+                                        ? "weekend"
+                                        : ""
+                                }
+                                ${
+                                    isToday(day.dateObj)
+                                        ? "today"
+                                        : ""
+                                }
+                            "
+                        >
+                            ${shiftView(value)}
+                        </td>
+                    `;
+
+                }
+            );
+
+
+            html +=
+                `
+                </tr>
+                `;
+
+        }
+    );
+
+
+    html +=
+        `
+            </tbody>
+
+        </table>
+        `;
+
+
+    box.innerHTML =
+        html;
 
 }
 
@@ -2352,118 +2960,194 @@ function renderAllSchedule(){
 function renderAdminSchedule(){
 
     const box =
-        document.getElementById("adminSchedule");
+        document.getElementById(
+            "adminSchedule"
+        );
 
-    if(!currentUser || !isAdmin(currentUser)){
+
+    if(
+        !currentUser ||
+        !isAdmin(currentUser)
+    ){
 
         box.innerHTML =
-            `<div class="empty">
+            `
+            <div class="empty">
                 Нямаш достъп до админ панела.
-            </div>`;
+            </div>
+            `;
 
         return;
 
     }
 
+
     const days =
-        getDaysInMonth(currentDate);
+        getDaysInMonth(
+            currentDate
+        );
+
 
     const visibleUsers =
         visibleUsersForMonth();
 
+
     let html =
-        `<table>
+        `
+        <table>
+
             <thead>
+
                 <tr>
-                    <th>Служител</th>`;
 
-    days.forEach(day => {
-
-        html += `
-            <th class="${isWeekend(day.dateObj) ? "weekend" : ""} ${isToday(day.dateObj) ? "today" : ""}">
-                <div class="day-number">
-                    ${day.day}
-                </div>
-                <div class="day-name">
-                    ${
-                        day.dateObj.toLocaleDateString(
-                            "bg-BG",
-                            {weekday:"short"}
-                        )
-                    }
-                </div>
-            </th>
+                    <th>
+                        Служител
+                    </th>
         `;
 
-    });
+
+    days.forEach(
+        day => {
+
+            html += `
+                <th
+                    class="
+                        ${
+                            isWeekend(day.dateObj)
+                                ? "weekend"
+                                : ""
+                        }
+                        ${
+                            isToday(day.dateObj)
+                                ? "today"
+                                : ""
+                        }
+                    "
+                >
+
+                    <div class="day-number">
+                        ${day.day}
+                    </div>
+
+                    <div class="day-name">
+                        ${
+                            day.dateObj.toLocaleDateString(
+                                "bg-BG",
+                                {
+                                    weekday:"short"
+                                }
+                            )
+                        }
+                    </div>
+
+                </th>
+            `;
+
+        }
+    );
+
 
     html +=
-        `</tr>
-        </thead>
-        <tbody>`;
+        `
+                </tr>
 
-    visibleUsers.forEach(user => {
+            </thead>
 
-        html += `
-            <tr>
-                <td>
-                    ${esc(user.name)}
-                </td>
+            <tbody>
         `;
 
-        days.forEach(day => {
 
-            const record =
-                getSchedule(
-                    user.name,
-                    day.date
-                );
+    visibleUsers.forEach(
+        user => {
 
-            const value =
-                pendingChanges[
-                    changeKey(
-                        user.name,
-                        day.date
-                    )
-                ] !== undefined
+            html += `
+                <tr>
 
-                    ? pendingChanges[
+                    <td>
+                        ${esc(user.name)}
+                    </td>
+            `;
+
+
+            days.forEach(
+                day => {
+
+                    const record =
+                        getSchedule(
+                            user.name,
+                            day.date
+                        );
+
+
+                    const key =
                         changeKey(
                             user.name,
                             day.date
-                        )
-                    ]
+                        );
 
-                    : (
-                        record?.shift_type || ""
-                    );
 
-            html += `
-                <td class="${isWeekend(day.dateObj) ? "weekend" : ""} ${isToday(day.dateObj) ? "today" : ""}">
+                    const value =
+                        pendingChanges[key] !== undefined
+                            ? pendingChanges[key]
+                            : (
+                                record?.shift_type ||
+                                ""
+                            );
 
-                    <select
-                        class="schedule-select"
-                        data-employee="${esc(user.name)}"
-                        data-date="${esc(day.date)}"
-                        onchange="changeCell(this)"
-                    >
-                        ${shiftOptions(value)}
-                    </select>
 
-                </td>
-            `;
+                    html += `
+                        <td
+                            class="
+                                ${
+                                    isWeekend(day.dateObj)
+                                        ? "weekend"
+                                        : ""
+                                }
+                                ${
+                                    isToday(day.dateObj)
+                                        ? "today"
+                                        : ""
+                                }
+                            "
+                        >
 
-        });
+                            <select
+                                class="schedule-select"
+                                data-employee="${esc(user.name)}"
+                                data-date="${esc(day.date)}"
+                                onchange="changeCell(this)"
+                            >
 
-        html +=
-            `</tr>`;
+                                ${shiftOptions(value)}
 
-    });
+                            </select>
+
+                        </td>
+                    `;
+
+                }
+            );
+
+
+            html +=
+                `
+                </tr>
+                `;
+
+        }
+    );
+
 
     html +=
-        `</tbody></table>`;
+        `
+            </tbody>
 
-    box.innerHTML = html;
+        </table>
+        `;
+
+
+    box.innerHTML =
+        html;
 
 }
 
@@ -2472,9 +3156,16 @@ function renderAdminSchedule(){
    CHANGE CELL
 ========================================================= */
 
-function changeKey(employee,date){
+function changeKey(
+    employee,
+    date
+){
 
-    return `${employee}__${date}`;
+    return (
+        employee +
+        "__" +
+        date
+    );
 
 }
 
@@ -2486,7 +3177,8 @@ function changeCell(select){
             select.dataset.employee,
             select.dataset.date
         )
-    ] = select.value;
+    ] =
+        select.value;
 
 }
 
@@ -2499,55 +3191,89 @@ async function saveScheduleChanges(){
 
     if(!isAdmin(currentUser)){
 
-        alert("Нямаш администраторски права.");
+        alert(
+            "Нямаш администраторски права."
+        );
 
         return;
 
     }
+
 
     const entries =
         Object.entries(
             pendingChanges
         );
 
+
     if(!entries.length){
 
-        alert("Няма направени промени.");
+        alert(
+            "Няма направени промени."
+        );
 
         return;
 
     }
 
+
     savedScrollTop =
         window.scrollY;
 
+
     let successCount = 0;
 
-    for(const [key,value] of entries){
+
+    for(
+        const [key,value]
+        of entries
+    ){
 
         const split =
             key.lastIndexOf("__");
 
+
         const employee =
-            key.substring(0,split);
+            key.substring(
+                0,
+                split
+            );
+
 
         const work_date =
-            key.substring(split+2);
+            key.substring(
+                split + 2
+            );
+
 
         try{
 
+            /* =========================================
+               ПРАЗНО
+            ========================================= */
+
             if(!value){
 
-                const {error} =
+                const {
+                    error
+                } =
                     await db
                     .from("work_schedule")
                     .delete()
-                    .eq("employee",employee)
-                    .eq("work_date",work_date);
+                    .eq(
+                        "employee",
+                        employee
+                    )
+                    .eq(
+                        "work_date",
+                        work_date
+                    );
+
 
                 if(error){
                     throw error;
                 }
+
 
                 successCount++;
 
@@ -2556,28 +3282,134 @@ async function saveScheduleChanges(){
             }
 
 
+            /* =========================================
+               СПЕЦИАЛНИ СТАТУСИ
+               О / С / П
+               БЕЗ ЧАСОВЕ
+            ========================================= */
+
+            if(
+                value === "О" ||
+                value === "С" ||
+                value === "П"
+            ){
+
+                const payload = {
+
+                    employee:employee,
+
+                    work_date:work_date,
+
+                    shift_type:value,
+
+                    start_time:null,
+
+                    end_time:null,
+
+                    break_time:0
+
+                };
+
+
+                const {
+                    data:existing,
+                    error:selectError
+                } =
+                    await db
+                    .from("work_schedule")
+                    .select("*")
+                    .eq(
+                        "employee",
+                        employee
+                    )
+                    .eq(
+                        "work_date",
+                        work_date
+                    )
+                    .limit(1);
+
+
+                if(selectError){
+                    throw selectError;
+                }
+
+
+                if(
+                    existing &&
+                    existing.length
+                ){
+
+                    const {
+                        error:updateError
+                    } =
+                        await db
+                        .from("work_schedule")
+                        .update(payload)
+                        .eq(
+                            "employee",
+                            employee
+                        )
+                        .eq(
+                            "work_date",
+                            work_date
+                        );
+
+
+                    if(updateError){
+                        throw updateError;
+                    }
+
+                }else{
+
+                    const {
+                        error:insertError
+                    } =
+                        await db
+                        .from("work_schedule")
+                        .insert(payload);
+
+
+                    if(insertError){
+                        throw insertError;
+                    }
+
+                }
+
+
+                successCount++;
+
+                continue;
+
+            }
+
+
+            /* =========================================
+               НОРМАЛНА СМЯНА
+            ========================================= */
+
             const shift =
                 getShiftByName(value);
+
 
             if(!shift){
 
                 throw new Error(
-                    "Невалидна смяна: " + value
+                    "Невалидна смяна: " +
+                    value
                 );
 
             }
 
 
-            const {data:existing,error:selectError} =
-                await db
-                .from("work_schedule")
-                .select("*")
-                .eq("employee",employee)
-                .eq("work_date",work_date)
-                .limit(1);
+            if(
+                !shift.start ||
+                !shift.end
+            ){
 
-            if(selectError){
-                throw selectError;
+                throw new Error(
+                    "Тази смяна няма начален и краен час."
+                );
+
             }
 
 
@@ -2600,19 +3432,56 @@ async function saveScheduleChanges(){
                     ),
 
                 break_time:
-                    shift.break ?? 60
+                    Number(
+                        shift.break || 0
+                    )
 
             };
 
 
-            if(existing && existing.length){
+            const {
+                data:existing,
+                error:selectError
+            } =
+                await db
+                .from("work_schedule")
+                .select("*")
+                .eq(
+                    "employee",
+                    employee
+                )
+                .eq(
+                    "work_date",
+                    work_date
+                )
+                .limit(1);
 
-                const {error:updateError} =
+
+            if(selectError){
+                throw selectError;
+            }
+
+
+            if(
+                existing &&
+                existing.length
+            ){
+
+                const {
+                    error:updateError
+                } =
                     await db
                     .from("work_schedule")
                     .update(payload)
-                    .eq("employee",employee)
-                    .eq("work_date",work_date);
+                    .eq(
+                        "employee",
+                        employee
+                    )
+                    .eq(
+                        "work_date",
+                        work_date
+                    );
+
 
                 if(updateError){
                     throw updateError;
@@ -2620,10 +3489,13 @@ async function saveScheduleChanges(){
 
             }else{
 
-                const {error:insertError} =
+                const {
+                    error:insertError
+                } =
                     await db
                     .from("work_schedule")
                     .insert(payload);
+
 
                 if(insertError){
                     throw insertError;
@@ -2631,16 +3503,19 @@ async function saveScheduleChanges(){
 
             }
 
+
             successCount++;
+
 
         }catch(error){
 
             console.error(
-                "SAVE ERROR",
+                "SAVE ERROR:",
                 employee,
                 work_date,
                 error
             );
+
 
             alert(
                 "Грешка при запазване:\n\n" +
@@ -2651,22 +3526,28 @@ async function saveScheduleChanges(){
                 detailedError(error)
             );
 
+
             return;
 
         }
 
     }
 
+
     pendingChanges = {};
+
 
     await loadSchedules();
 
+
     renderAll();
+
 
     window.scrollTo(
         0,
         savedScrollTop
     );
+
 
     alert(
         "Готово! Запазени промени: " +
@@ -2677,13 +3558,16 @@ async function saveScheduleChanges(){
 
 
 /* =========================================================
-   USERS ADMIN
+   USERS
 ========================================================= */
 
 function renderUsers(){
 
     const box =
-        document.getElementById("usersList");
+        document.getElementById(
+            "usersList"
+        );
+
 
     if(!isAdmin(currentUser)){
 
@@ -2693,82 +3577,97 @@ function renderUsers(){
 
     }
 
+
     if(!users.length){
 
         box.innerHTML =
-            `<div class="empty">
+            `
+            <div class="empty">
                 Няма служители.
-            </div>`;
+            </div>
+            `;
 
         return;
 
     }
 
+
     let html = "";
 
-    users.forEach(user => {
 
-        html += `
-            <div class="user-row">
+    users.forEach(
+        user => {
 
-                <div class="row-main">
+            html += `
+                <div class="user-row">
 
-                    <div class="row-title">
-                        ${esc(user.name)}
+                    <div class="row-main">
+
+                        <div class="row-title">
+                            ${esc(user.name)}
+                        </div>
+
+                        <div class="row-sub">
+
+                            ${
+                                isAdmin(user)
+                                    ? "Управител / Администратор"
+                                    : "Служител"
+                            }
+
+                            ${
+                                user.september_only
+                                    ? " · Само септември"
+                                    : ""
+                            }
+
+                            · Парола:
+                            ${esc(
+                                user.password || ""
+                            )}
+
+                        </div>
+
                     </div>
 
-                    <div class="row-sub">
-                        ${
-                            isAdmin(user)
-                                ? "Управител / Администратор"
-                                : "Служител"
-                        }
+
+                    <div class="row-actions">
+
+                        <button
+                            class="btn btn-secondary"
+                            onclick='editUser(${JSON.stringify(String(user.id))})'
+                        >
+                            Редактирай
+                        </button>
+
 
                         ${
-                            user.september_only
-                                ? " · Само септември"
+                            String(user.id) !==
+                            String(currentUser.id)
+
+                                ? `
+                                    <button
+                                        class="btn btn-danger"
+                                        onclick='deleteUser(${JSON.stringify(String(user.id))})'
+                                    >
+                                        Изтрий
+                                    </button>
+                                  `
+
                                 : ""
                         }
 
-                        · Парола:
-                        ${esc(user.password || "")}
                     </div>
 
                 </div>
+            `;
 
-                <div class="row-actions">
+        }
+    );
 
-                    <button
-                        class="btn btn-secondary"
-                        onclick='editUser(${JSON.stringify(String(user.id))})'
-                    >
-                        Редактирай
-                    </button>
 
-                    ${
-                        String(user.id) !==
-                        String(currentUser.id)
-
-                            ? `
-                                <button
-                                    class="btn btn-danger"
-                                    onclick='deleteUser(${JSON.stringify(String(user.id))})'
-                                >
-                                    Изтрий
-                                </button>
-                            `
-
-                            : ""
-                    }
-
-                </div>
-
-            </div>
-        `;
-
-    });
-
-    box.innerHTML = html;
+    box.innerHTML =
+        html;
 
 }
 
@@ -2777,20 +3676,30 @@ function clearUserForm(){
 
     editingUserId = null;
 
-    document.getElementById("userName").value =
-        "";
 
-    document.getElementById("userPassword").value =
-        "";
+    document.getElementById(
+        "userName"
+    ).value = "";
 
-    document.getElementById("userAdmin").checked =
-        false;
 
-    document.getElementById("userSeptember").checked =
-        false;
+    document.getElementById(
+        "userPassword"
+    ).value = "";
 
-    document.getElementById("userEditHint").textContent =
-        "";
+
+    document.getElementById(
+        "userAdmin"
+    ).checked = false;
+
+
+    document.getElementById(
+        "userSeptember"
+    ).checked = false;
+
+
+    document.getElementById(
+        "userEditHint"
+    ).textContent = "";
 
 }
 
@@ -2799,35 +3708,56 @@ function editUser(id){
 
     const user =
         users.find(
-            u => String(u.id) === String(id)
+            u =>
+                String(u.id) ===
+                String(id)
         );
+
 
     if(!user){
         return;
     }
 
+
     editingUserId =
         id;
 
-    document.getElementById("userName").value =
+
+    document.getElementById(
+        "userName"
+    ).value =
         user.name || "";
 
-    document.getElementById("userPassword").value =
+
+    document.getElementById(
+        "userPassword"
+    ).value =
         user.password || "";
 
-    document.getElementById("userAdmin").checked =
+
+    document.getElementById(
+        "userAdmin"
+    ).checked =
         isAdmin(user);
 
-    document.getElementById("userSeptember").checked =
-        !!(
+
+    document.getElementById(
+        "userSeptember"
+    ).checked =
+        (
             user.september_only === true ||
             user.september_only === "true" ||
             user.september_only === 1 ||
             user.september_only === "1"
         );
 
-    document.getElementById("userEditHint").textContent =
-        "Редактираш: " + user.name;
+
+    document.getElementById(
+        "userEditHint"
+    ).textContent =
+        "Редактираш: " +
+        user.name;
+
 
     window.scrollTo({
         top:0,
@@ -2843,29 +3773,47 @@ async function saveUser(){
         return;
     }
 
+
     const name =
-        document.getElementById("userName").value.trim();
+        document.getElementById(
+            "userName"
+        ).value.trim();
+
 
     const password =
-        document.getElementById("userPassword").value.trim();
+        document.getElementById(
+            "userPassword"
+        ).value.trim();
+
 
     const admin =
-        document.getElementById("userAdmin").checked;
+        document.getElementById(
+            "userAdmin"
+        ).checked;
+
 
     const september =
-        document.getElementById("userSeptember").checked;
+        document.getElementById(
+            "userSeptember"
+        ).checked;
+
 
     if(!name){
 
-        alert("Въведи име.");
+        alert(
+            "Въведи име."
+        );
 
         return;
 
     }
 
+
     if(!password){
 
-        alert("Въведи парола.");
+        alert(
+            "Въведи парола."
+        );
 
         return;
 
@@ -2889,13 +3837,18 @@ async function saveUser(){
 
     let error = null;
 
+
     if(editingUserId){
 
         const result =
             await db
             .from("app_users")
             .update(payload)
-            .eq("id",editingUserId);
+            .eq(
+                "id",
+                editingUserId
+            );
+
 
         error =
             result.error;
@@ -2906,6 +3859,7 @@ async function saveUser(){
             await db
             .from("app_users")
             .insert(payload);
+
 
         error =
             result.error;
@@ -2931,9 +3885,12 @@ async function saveUser(){
             : "Служителят е добавен."
     );
 
+
     clearUserForm();
 
+
     await loadUsers();
+
 
     renderUsers();
 
@@ -2944,72 +3901,47 @@ async function saveUser(){
 }
 
 
-/* =========================================================
-   LOGIN USER LIST
-========================================================= */
-
-function populateLoginUsers(){
-
-    const select =
-        document.getElementById("loginName");
-
-    const current =
-        select.value;
-
-    select.innerHTML =
-        `<option value="">Избери име</option>`;
-
-    users.forEach(user => {
-
-        const option =
-            document.createElement("option");
-
-        option.value =
-            user.id;
-
-        option.textContent =
-            user.name;
-
-        select.appendChild(option);
-
-    });
-
-    if(current){
-        select.value = current;
-    }
-
-}
-
-
 async function deleteUser(id){
 
     if(!isAdmin(currentUser)){
         return;
     }
 
+
     const user =
         users.find(
-            u => String(u.id) === String(id)
+            u =>
+                String(u.id) ===
+                String(id)
         );
+
 
     if(!user){
         return;
     }
+
 
     if(
         !confirm(
             `Сигурен ли си, че искаш да изтриеш ${user.name}?`
         )
     ){
+
         return;
+
     }
 
 
-    const {error} =
+    const {
+        error
+    } =
         await db
         .from("app_users")
         .delete()
-        .eq("id",id);
+        .eq(
+            "id",
+            id
+        );
 
 
     if(error){
@@ -3026,6 +3958,7 @@ async function deleteUser(id){
 
     await loadUsers();
 
+
     renderUsers();
 
     renderAllSchedule();
@@ -3036,13 +3969,16 @@ async function deleteUser(id){
 
 
 /* =========================================================
-   CUSTOM SHIFT ADMIN
+   CUSTOM SHIFTS
 ========================================================= */
 
 function renderCustomShifts(){
 
     const box =
-        document.getElementById("shiftsList");
+        document.getElementById(
+            "shiftsList"
+        );
+
 
     if(!isAdmin(currentUser)){
 
@@ -3052,87 +3988,107 @@ function renderCustomShifts(){
 
     }
 
+
     const all =
         getAllShifts();
 
+
     let html = "";
 
-    all.forEach(shift => {
 
-        html += `
-            <div class="shift-row">
+    all.forEach(
+        shift => {
 
-                <div class="row-main">
+            html += `
+                <div class="shift-row">
 
-                    <div class="row-title">
+                    <div class="row-main">
 
-                        ${esc(shift.name)}
+                        <div class="row-title">
 
-                        ${
-                            shift.locked
-                                ? `<span style="
-                                    color:var(--muted);
-                                    font-size:11px;
-                                    font-weight:normal;
-                                ">
-                                    · стандартна
-                                  </span>`
-                                : ""
-                        }
+                            ${esc(shift.name)}
+
+                            ${
+                                shift.locked
+                                    ? `
+                                        <span
+                                            style="
+                                                color:var(--muted);
+                                                font-size:11px;
+                                                font-weight:normal;
+                                            "
+                                        >
+                                            · стандартна
+                                        </span>
+                                      `
+                                    : ""
+                            }
+
+                        </div>
+
+
+                        <div class="row-sub">
+
+                            ${
+                                shift.start
+                                    ? `
+                                        ${shift.start}
+                                        –
+                                        ${shift.end}
+                                        · Почивка
+                                        ${shift.break}
+                                        мин.
+                                      `
+                                    : "0 часа · без работно време"
+                            }
+
+                        </div>
 
                     </div>
 
-                    <div class="row-sub">
+
+                    <div class="row-actions">
 
                         ${
-                            shift.start
-                                ? `${shift.start} – ${shift.end} · Почивка ${shift.break} мин.`
-                                : "Без работно време"
+                            !shift.locked
+                                ? `
+                                    <button
+                                        class="btn btn-secondary"
+                                        onclick='editCustomShift(${JSON.stringify(String(shift.id))})'
+                                    >
+                                        Редактирай
+                                    </button>
+
+                                    <button
+                                        class="btn btn-danger"
+                                        onclick='deleteCustomShift(${JSON.stringify(String(shift.id))})'
+                                    >
+                                        Изтрий
+                                    </button>
+                                  `
+                                : `
+                                    <span
+                                        style="
+                                            color:var(--muted);
+                                            font-size:12px;
+                                        "
+                                    >
+                                        Защитена
+                                    </span>
+                                  `
                         }
 
                     </div>
 
                 </div>
+            `;
 
-                <div class="row-actions">
+        }
+    );
 
-                    ${
-                        !shift.locked
-                            ? `
-                                <button
-                                    class="btn btn-secondary"
-                                    onclick='editCustomShift(${JSON.stringify(String(shift.id))})'
-                                >
-                                    Редактирай
-                                </button>
 
-                                <button
-                                    class="btn btn-danger"
-                                    onclick='deleteCustomShift(${JSON.stringify(String(shift.id))})'
-                                >
-                                    Изтрий
-                                </button>
-                            `
-                            : `
-                                <span
-                                    style="
-                                        color:var(--muted);
-                                        font-size:12px;
-                                    "
-                                >
-                                    Защитена
-                                </span>
-                            `
-                    }
-
-                </div>
-
-            </div>
-        `;
-
-    });
-
-    box.innerHTML = html;
+    box.innerHTML =
+        html;
 
 }
 
@@ -3141,20 +4097,30 @@ function clearShiftForm(){
 
     editingShiftId = null;
 
-    document.getElementById("shiftName").value =
-        "";
 
-    document.getElementById("shiftStart").value =
-        "09:00";
+    document.getElementById(
+        "shiftName"
+    ).value = "";
 
-    document.getElementById("shiftEnd").value =
-        "17:00";
 
-    document.getElementById("shiftBreak").value =
-        "60";
+    document.getElementById(
+        "shiftStart"
+    ).value = "09:00";
 
-    document.getElementById("shiftEditHint").textContent =
-        "";
+
+    document.getElementById(
+        "shiftEnd"
+    ).value = "17:00";
+
+
+    document.getElementById(
+        "shiftBreak"
+    ).value = "60";
+
+
+    document.getElementById(
+        "shiftEditHint"
+    ).textContent = "";
 
 }
 
@@ -3163,30 +4129,50 @@ function editCustomShift(id){
 
     const shift =
         customShifts.find(
-            s => String(s.id) === String(id)
+            s =>
+                String(s.id) ===
+                String(id)
         );
+
 
     if(!shift){
         return;
     }
 
+
     editingShiftId =
         id;
 
-    document.getElementById("shiftName").value =
+
+    document.getElementById(
+        "shiftName"
+    ).value =
         shift.name || "";
 
-    document.getElementById("shiftStart").value =
+
+    document.getElementById(
+        "shiftStart"
+    ).value =
         shift.start || "";
 
-    document.getElementById("shiftEnd").value =
+
+    document.getElementById(
+        "shiftEnd"
+    ).value =
         shift.end || "";
 
-    document.getElementById("shiftBreak").value =
+
+    document.getElementById(
+        "shiftBreak"
+    ).value =
         shift.break ?? 60;
 
-    document.getElementById("shiftEditHint").textContent =
-        "Редактираш: " + shift.name;
+
+    document.getElementById(
+        "shiftEditHint"
+    ).textContent =
+        "Редактираш: " +
+        shift.name;
 
 }
 
@@ -3217,18 +4203,30 @@ function saveCustomShift(){
 
     }
 
+
     const name =
-        document.getElementById("shiftName").value.trim();
+        document.getElementById(
+            "shiftName"
+        ).value.trim();
+
 
     const start =
-        document.getElementById("shiftStart").value;
+        document.getElementById(
+            "shiftStart"
+        ).value;
+
 
     const end =
-        document.getElementById("shiftEnd").value;
+        document.getElementById(
+            "shiftEnd"
+        ).value;
+
 
     const breakTime =
         Number(
-            document.getElementById("shiftBreak").value
+            document.getElementById(
+                "shiftBreak"
+            ).value
         );
 
 
@@ -3243,10 +4241,7 @@ function saveCustomShift(){
     }
 
 
-    if(
-        !start ||
-        !end
-    ){
+    if(!start || !end){
 
         alert(
             "Въведи начален и краен час."
@@ -3257,14 +4252,27 @@ function saveCustomShift(){
     }
 
 
-    if(
+    const duplicate =
         getAllShifts().some(
-            s =>
-                String(s.name).toLowerCase() ===
-                name.toLowerCase() &&
-                String(s.id) !== String(editingShiftId)
-        )
-    ){
+            shift =>
+
+                String(
+                    shift.name
+                ).toLowerCase() ===
+                name.toLowerCase()
+
+                &&
+
+                String(
+                    shift.id
+                ) !==
+                String(
+                    editingShiftId
+                )
+        );
+
+
+    if(duplicate){
 
         alert(
             "Вече има смяна с това име."
@@ -3290,7 +4298,9 @@ function saveCustomShift(){
         end:end,
 
         break:
-            Number.isFinite(breakTime)
+            Number.isFinite(
+                breakTime
+            )
                 ? breakTime
                 : 60,
 
@@ -3305,10 +4315,11 @@ function saveCustomShift(){
 
         const index =
             customShifts.findIndex(
-                s =>
-                    String(s.id) ===
+                shift =>
+                    String(shift.id) ===
                     String(editingShiftId)
             );
+
 
         if(index >= 0){
 
@@ -3319,14 +4330,22 @@ function saveCustomShift(){
 
     }else{
 
-        customShifts.push(item);
+        customShifts.push(
+            item
+        );
 
     }
 
 
+    const wasEditing =
+        !!editingShiftId;
+
+
     saveCustomShiftsLocal();
 
+
     clearShiftForm();
+
 
     renderCustomShifts();
 
@@ -3336,7 +4355,7 @@ function saveCustomShift(){
 
 
     alert(
-        editingShiftId
+        wasEditing
             ? "Смяната е редактирана."
             : "Новата смяна е добавена."
     );
@@ -3350,12 +4369,14 @@ function deleteCustomShift(id){
         return;
     }
 
+
     const shift =
         customShifts.find(
             s =>
                 String(s.id) ===
                 String(id)
         );
+
 
     if(!shift){
         return;
@@ -3367,7 +4388,9 @@ function deleteCustomShift(id){
             `Да изтрия ли смяната „${shift.name}“?`
         )
     ){
+
         return;
+
     }
 
 
@@ -3381,6 +4404,7 @@ function deleteCustomShift(id){
 
     saveCustomShiftsLocal();
 
+
     renderCustomShifts();
 
     renderAdminSchedule();
@@ -3389,6 +4413,10 @@ function deleteCustomShift(id){
 
 }
 
+
+/* =========================================================
+   LEGEND
+========================================================= */
 
 function renderLegends(){
 
@@ -3400,11 +4428,15 @@ function renderLegends(){
                 const time =
                     shift.start
                         ? ` ${shift.start}–${shift.end}`
-                        : "";
+                        : " · 0 часа";
+
 
                 return `
                     <span
-                        class="legend-item ${shift.class}"
+                        class="
+                            legend-item
+                            ${shift.class}
+                        "
                     >
                         ${esc(shift.short)}
                         ${time}
@@ -3416,43 +4448,80 @@ function renderLegends(){
         .join("");
 
 
-    document.getElementById("myLegend").innerHTML =
+    document.getElementById(
+        "myLegend"
+    ).innerHTML =
         html;
 
-    document.getElementById("allLegend").innerHTML =
+
+    document.getElementById(
+        "allLegend"
+    ).innerHTML =
         html;
 
 }
 
 
 /* =========================================================
-   STATS
+   HOURS
 ========================================================= */
 
-function hoursBetween(start,end){
+function hoursBetween(
+    start,
+    end
+){
 
     if(!start || !end){
         return 0;
     }
 
-    const [sh,sm] =
-        start.split(":").map(Number);
 
-    const [eh,em] =
-        end.split(":").map(Number);
+    const [
+        sh,
+        sm
+    ] =
+        start
+        .split(":")
+        .map(Number);
+
+
+    const [
+        eh,
+        em
+    ] =
+        end
+        .split(":")
+        .map(Number);
+
 
     let minutes =
-        (eh*60+em) -
-        (sh*60+sm);
+        (
+            eh * 60 +
+            em
+        )
+        -
+        (
+            sh * 60 +
+            sm
+        );
+
 
     if(minutes < 0){
-        minutes += 24*60;
+
+        minutes +=
+            24 * 60;
+
     }
+
 
     return minutes;
 
 }
 
+
+/* =========================================================
+   STATISTICS
+========================================================= */
 
 function updateStats(){
 
@@ -3460,94 +4529,147 @@ function updateStats(){
         return;
     }
 
+
     const days =
-        getDaysInMonth(currentDate);
+        getDaysInMonth(
+            currentDate
+        );
+
 
     let workingDays = 0;
+
     let workingMinutes = 0;
+
     let leave = 0;
+
     let rest = 0;
 
-
-    days.forEach(day => {
-
-        const record =
-            getSchedule(
-                currentUser.name,
-                day.date
-            );
-
-        if(!record){
-            return;
-        }
-
-        const value =
-            record.shift_type;
-
-        if(value === "О"){
-
-            leave++;
-
-            return;
-
-        }
-
-        if(value === "П"){
-
-            rest++;
-
-            return;
-
-        }
-
-        if(value === "С"){
-            return;
-        }
+    let absence = 0;
 
 
-        const shift =
-            getShiftByName(value);
+    days.forEach(
+        day => {
 
-        if(
-            shift &&
-            shift.start &&
-            shift.end
-        ){
-
-            workingDays++;
-
-            let minutes =
-                hoursBetween(
-                    shift.start,
-                    shift.end
+            const record =
+                getSchedule(
+                    currentUser.name,
+                    day.date
                 );
 
-            minutes -=
-                Number(
-                    shift.break || 0
+
+            if(!record){
+                return;
+            }
+
+
+            const value =
+                record.shift_type;
+
+
+            /* О = ОТПУСКА */
+
+            if(value === "О"){
+
+                leave++;
+
+                return;
+
+            }
+
+
+            /* П = ПОЧИВКА */
+
+            if(value === "П"){
+
+                rest++;
+
+                return;
+
+            }
+
+
+            /* С = САМОOТЛЪЧКА */
+
+            if(value === "С"){
+
+                absence++;
+
+                return;
+
+            }
+
+
+            /* НОРМАЛНА СМЯНА */
+
+            const shift =
+                getShiftByName(
+                    value
                 );
 
-            if(minutes > 0){
-                workingMinutes += minutes;
+
+            if(
+                shift &&
+                shift.start &&
+                shift.end
+            ){
+
+                workingDays++;
+
+
+                let minutes =
+                    hoursBetween(
+                        shift.start,
+                        shift.end
+                    );
+
+
+                minutes -=
+                    Number(
+                        shift.break || 0
+                    );
+
+
+                if(minutes > 0){
+
+                    workingMinutes +=
+                        minutes;
+
+                }
+
             }
 
         }
+    );
 
-    });
 
-
-    document.getElementById("statDays").textContent =
+    document.getElementById(
+        "statDays"
+    ).textContent =
         workingDays;
 
-    document.getElementById("statHours").textContent =
-        (workingMinutes / 60)
-        .toFixed(2)
-        .replace(".",",");
 
-    document.getElementById("statLeave").textContent =
+    document.getElementById(
+        "statHours"
+    ).textContent =
+        (
+            workingMinutes / 60
+        )
+        .toFixed(2)
+        .replace(
+            ".",
+            ","
+        );
+
+
+    document.getElementById(
+        "statLeave"
+    ).textContent =
         leave;
 
-    document.getElementById("statRest").textContent =
+
+    document.getElementById(
+        "statRest"
+    ).textContent =
         rest;
 
 }
@@ -3562,25 +4684,41 @@ function openTab(tab){
     document
         .querySelectorAll(".tab")
         .forEach(
-            x => x.classList.remove("active")
+            x =>
+                x.classList.remove(
+                    "active"
+                )
         );
+
 
     document
         .querySelectorAll(".section")
         .forEach(
-            x => x.classList.remove("active")
+            x =>
+                x.classList.remove(
+                    "active"
+                )
         );
 
 
     if(tab === "mine"){
 
         document
-            .getElementById("tabMine")
-            .classList.add("active");
+            .getElementById(
+                "tabMine"
+            )
+            .classList.add(
+                "active"
+            );
+
 
         document
-            .getElementById("sectionMine")
-            .classList.add("active");
+            .getElementById(
+                "sectionMine"
+            )
+            .classList.add(
+                "active"
+            );
 
     }
 
@@ -3588,12 +4726,21 @@ function openTab(tab){
     if(tab === "all"){
 
         document
-            .getElementById("tabAll")
-            .classList.add("active");
+            .getElementById(
+                "tabAll"
+            )
+            .classList.add(
+                "active"
+            );
+
 
         document
-            .getElementById("sectionAll")
-            .classList.add("active");
+            .getElementById(
+                "sectionAll"
+            )
+            .classList.add(
+                "active"
+            );
 
     }
 
@@ -3604,13 +4751,23 @@ function openTab(tab){
             return;
         }
 
-        document
-            .getElementById("tabAdmin")
-            .classList.add("active");
 
         document
-            .getElementById("sectionAdmin")
-            .classList.add("active");
+            .getElementById(
+                "tabAdmin"
+            )
+            .classList.add(
+                "active"
+            );
+
+
+        document
+            .getElementById(
+                "sectionAdmin"
+            )
+            .classList.add(
+                "active"
+            );
 
     }
 
@@ -3621,21 +4778,31 @@ function openTab(tab){
    MONTH NAVIGATION
 ========================================================= */
 
-async function changeMonth(delta){
+async function changeMonth(
+    delta
+){
 
     currentDate =
         new Date(
             currentDate.getFullYear(),
-            currentDate.getMonth()+delta,
+            currentDate.getMonth() + delta,
             1
         );
 
+
     pendingChanges = {};
 
-    document.getElementById("monthTitle").textContent =
-        capitalize(monthTitle());
+
+    document.getElementById(
+        "monthTitle"
+    ).textContent =
+        capitalize(
+            monthTitle()
+        );
+
 
     await loadSchedules();
+
 
     renderAll();
 
@@ -3644,19 +4811,23 @@ async function changeMonth(delta){
 
 async function goToday(){
 
-    currentDate =
+    const now =
         new Date();
+
 
     currentDate =
         new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth(),
+            now.getFullYear(),
+            now.getMonth(),
             1
         );
 
+
     pendingChanges = {};
 
+
     await loadSchedules();
+
 
     renderAll();
 
@@ -3670,15 +4841,22 @@ async function goToday(){
 function applyTheme(){
 
     const theme =
-        localStorage.getItem("theme");
+        localStorage.getItem(
+            "theme"
+        );
+
 
     if(theme === "dark"){
 
-        document.body.classList.add("dark");
+        document.body.classList.add(
+            "dark"
+        );
 
     }else{
 
-        document.body.classList.remove("dark");
+        document.body.classList.remove(
+            "dark"
+        );
 
     }
 
@@ -3688,7 +4866,10 @@ function applyTheme(){
 function toggleTheme(){
 
     const isDark =
-        document.body.classList.toggle("dark");
+        document.body.classList.toggle(
+            "dark"
+        );
+
 
     localStorage.setItem(
         "theme",
@@ -3701,17 +4882,21 @@ function toggleTheme(){
 
 
 /* =========================================================
-   ENTER LOGIN
+   ENTER TO LOGIN
 ========================================================= */
 
 document
-    .getElementById("loginPassword")
+    .getElementById(
+        "loginPassword"
+    )
     .addEventListener(
         "keydown",
         function(event){
 
             if(event.key === "Enter"){
+
                 login();
+
             }
 
         }
