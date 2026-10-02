@@ -9,38 +9,99 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
+/* =========================================================
+   ROOT
+========================================================= */
+
 :root{
-    --bg:#f3f4f6;
+    --bg:#f1f5f9;
     --card:#ffffff;
-    --text:#111827;
-    --muted:#6b7280;
-    --border:#d1d5db;
-    --primary:#2563eb;
-    --danger:#dc2626;
+    --card2:#f8fafc;
+    --text:#0f172a;
+    --muted:#64748b;
+    --border:#e2e8f0;
+
+    --primary:#4f46e5;
+    --primary2:#6366f1;
+    --primary-light:#eef2ff;
+
     --success:#16a34a;
-    --shadow:0 5px 20px rgba(0,0,0,.08);
+    --success-bg:#dcfce7;
+
+    --danger:#dc2626;
+    --danger-bg:#fee2e2;
+
+    --warning:#d97706;
+    --warning-bg:#fef3c7;
+
+    --shadow:
+        0 10px 30px rgba(15,23,42,.08);
+
+    --radius:18px;
 }
 
 body.dark{
-    --bg:#111827;
-    --card:#1f2937;
-    --text:#f9fafb;
-    --muted:#9ca3af;
-    --border:#374151;
-    --primary:#60a5fa;
+    --bg:#0b1120;
+    --card:#111827;
+    --card2:#172033;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+    --border:#263247;
+
+    --primary:#818cf8;
+    --primary2:#6366f1;
+    --primary-light:#1e1b4b;
+
+    --success:#22c55e;
+    --success-bg:#052e16;
+
     --danger:#f87171;
-    --success:#4ade80;
+    --danger-bg:#450a0a;
+
+    --warning:#f59e0b;
+    --warning-bg:#451a03;
+
+    --shadow:
+        0 15px 40px rgba(0,0,0,.30);
 }
+
+
+/* =========================================================
+   GLOBAL
+========================================================= */
 
 *{
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     margin:0;
-    background:var(--bg);
+    background:
+        radial-gradient(
+            circle at top left,
+            rgba(99,102,241,.10),
+            transparent 30%
+        ),
+        var(--bg);
+
     color:var(--text);
-    font-family:Arial,Helvetica,sans-serif;
+    font-family:
+        Inter,
+        system-ui,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        sans-serif;
+
+    min-height:100vh;
+    transition:
+        background .25s,
+        color .25s;
 }
 
 button,
@@ -54,8 +115,9 @@ button{
 }
 
 .hidden{
-    display:none!important;
+    display:none !important;
 }
+
 
 /* =========================================================
    LOGIN
@@ -63,61 +125,225 @@ button{
 
 #loginScreen{
     min-height:100vh;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     padding:20px;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(99,102,241,.30),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 80% 80%,
+            rgba(14,165,233,.20),
+            transparent 35%
+        ),
+        var(--bg);
 }
 
 .login-card{
     width:100%;
-    max-width:420px;
-    background:var(--card);
-    padding:30px;
-    border-radius:18px;
-    box-shadow:var(--shadow);
+    max-width:430px;
+
+    background:rgba(255,255,255,.86);
+    backdrop-filter:blur(20px);
+
+    border:1px solid rgba(255,255,255,.35);
+
+    border-radius:28px;
+
+    padding:35px;
+
+    box-shadow:
+        0 30px 80px rgba(15,23,42,.18);
+
+    animation:loginIn .45s ease;
+}
+
+body.dark .login-card{
+    background:rgba(17,24,39,.90);
+    border-color:#263247;
+}
+
+@keyframes loginIn{
+    from{
+        opacity:0;
+        transform:translateY(20px) scale(.98);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+}
+
+.logo{
+    width:68px;
+    height:68px;
+
+    margin:0 auto 18px;
+
+    border-radius:20px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #06b6d4
+        );
+
+    color:white;
+
+    box-shadow:
+        0 15px 35px rgba(79,70,229,.35);
 }
 
 .login-card h1{
-    margin-top:0;
     text-align:center;
+    margin:0;
+
+    font-size:27px;
 }
 
-.login-card label{
+.login-subtitle{
+    text-align:center;
+    color:var(--muted);
+
+    margin:
+        8px
+        0
+        28px;
+}
+
+.form-group{
+    margin-bottom:18px;
+}
+
+.form-group label{
     display:block;
-    margin-top:15px;
-    margin-bottom:6px;
-    font-weight:bold;
+
+    margin-bottom:8px;
+
+    font-weight:600;
+    font-size:14px;
 }
 
-.login-card input,
-.login-card select{
+.form-group input,
+.form-group select{
     width:100%;
-    padding:12px;
-    border:1px solid var(--border);
-    border-radius:10px;
-    background:var(--card);
+
+    padding:
+        13px
+        14px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:12px;
+
+    background:var(--card2);
     color:var(--text);
+
+    outline:none;
+
+    transition:.2s;
 }
 
-#loginBtn{
-    width:100%;
-    margin-top:20px;
-    padding:13px;
+.form-group input:focus,
+.form-group select:focus{
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 4px
+        rgba(99,102,241,.12);
+}
+
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+
+.btn{
     border:0;
-    border-radius:10px;
-    background:var(--primary);
-    color:white;
-    font-weight:bold;
+
+    border-radius:12px;
+
+    padding:
+        11px
+        16px;
+
+    font-weight:700;
+
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+
+    transition:
+        transform .15s,
+        box-shadow .15s,
+        opacity .15s;
 }
 
-.login-error{
-    margin-top:15px;
-    padding:10px;
-    border-radius:8px;
-    background:#fee2e2;
-    color:#991b1b;
+.btn:hover{
+    transform:translateY(-1px);
 }
+
+.btn:active{
+    transform:translateY(0);
+}
+
+.btn-primary{
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    box-shadow:
+        0 8px 20px
+        rgba(79,70,229,.25);
+}
+
+.btn-success{
+    color:white;
+    background:var(--success);
+}
+
+.btn-danger{
+    color:white;
+    background:var(--danger);
+}
+
+.btn-secondary{
+    color:var(--text);
+    background:var(--card2);
+    border:1px solid var(--border);
+}
+
+.btn-small{
+    padding:
+        8px
+        11px;
+
+    font-size:13px;
+}
+
 
 /* =========================================================
    APP
@@ -130,105 +356,217 @@ button{
 .topbar{
     position:sticky;
     top:0;
-    z-index:50;
-    background:var(--card);
-    border-bottom:1px solid var(--border);
-    padding:12px 18px;
+    z-index:100;
+
+    background:
+        rgba(255,255,255,.82);
+
+    backdrop-filter:blur(18px);
+
+    border-bottom:
+        1px solid
+        var(--border);
+}
+
+body.dark .topbar{
+    background:
+        rgba(11,17,32,.82);
+}
+
+.topbar-inner{
+    max-width:1500px;
+
+    margin:auto;
+
+    padding:
+        13px
+        22px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
-    gap:10px;
+
+    gap:15px;
 }
 
-.topbar-left{
+.brand{
     display:flex;
     align-items:center;
     gap:12px;
 }
 
-.topbar-title{
-    font-weight:bold;
-    font-size:20px;
-}
+.brand-icon{
+    width:43px;
+    height:43px;
 
-.topbar-user{
-    color:var(--muted);
-    font-size:14px;
-}
+    border-radius:13px;
 
-.topbar-actions{
     display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #06b6d4
+        );
+}
+
+.brand-text strong{
+    display:block;
+    font-size:16px;
+}
+
+.brand-text span{
+    display:block;
+
+    color:var(--muted);
+
+    font-size:12px;
+}
+
+.top-actions{
+    display:flex;
+    align-items:center;
     gap:8px;
 }
 
-.container{
-    max-width:1600px;
-    margin:0 auto;
-    padding:20px;
-}
+.icon-btn{
+    width:42px;
+    height:42px;
 
-.card{
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:12px;
+
     background:var(--card);
-    border:1px solid var(--border);
-    border-radius:16px;
-    padding:18px;
-    box-shadow:var(--shadow);
-    margin-bottom:20px;
-}
 
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.btn{
-    border:0;
-    border-radius:9px;
-    padding:9px 13px;
-    background:var(--primary);
-    color:white;
-    font-weight:bold;
-}
-
-.btn:hover{
-    opacity:.9;
-}
-
-.btn-secondary{
-    background:#6b7280;
-}
-
-.btn-danger{
-    background:var(--danger);
-}
-
-.btn-success{
-    background:var(--success);
-}
-
-.btn-light{
-    background:var(--bg);
     color:var(--text);
-    border:1px solid var(--border);
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-size:18px;
 }
 
+.user-pill{
+    display:flex;
+    align-items:center;
+    gap:10px;
+
+    padding:
+        7px
+        12px
+        7px
+        7px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:30px;
+
+    background:var(--card);
+}
+
+.avatar{
+    width:34px;
+    height:34px;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+    font-weight:800;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            #06b6d4
+        );
+}
+
+.user-pill span{
+    font-weight:700;
+    font-size:14px;
+}
+
+
 /* =========================================================
-   MONTH
+   MAIN
 ========================================================= */
+
+.container{
+    width:min(1500px, calc(100% - 30px));
+
+    margin:
+        0
+        auto;
+
+    padding:
+        28px
+        0
+        50px;
+}
+
+.hero{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:flex-end;
+
+    gap:20px;
+
+    margin-bottom:22px;
+}
+
+.hero h1{
+    margin:0;
+
+    font-size:
+        clamp(
+            25px,
+            4vw,
+            36px
+        );
+}
+
+.hero p{
+    margin:
+        7px
+        0
+        0;
+
+    color:var(--muted);
+}
 
 .month-controls{
     display:flex;
     align-items:center;
-    justify-content:center;
-    gap:12px;
-    margin-bottom:20px;
+    gap:8px;
 }
 
 .month-title{
-    min-width:220px;
+    min-width:180px;
+
     text-align:center;
-    font-size:21px;
-    font-weight:bold;
+
+    font-size:20px;
+    font-weight:800;
+
+    text-transform:capitalize;
 }
+
 
 /* =========================================================
    STATS
@@ -236,28 +574,68 @@ button{
 
 .stats{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:12px;
-    margin-bottom:20px;
+
+    grid-template-columns:
+        repeat(
+            4,
+            minmax(0,1fr)
+        );
+
+    gap:14px;
+
+    margin-bottom:22px;
 }
 
-.stat{
+.stat-card{
     background:var(--card);
-    border:1px solid var(--border);
-    border-radius:14px;
-    padding:15px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:var(--radius);
+
+    padding:18px;
+
+    box-shadow:var(--shadow);
+
+    position:relative;
+    overflow:hidden;
 }
 
-.stat-title{
+.stat-card::after{
+    content:"";
+
+    position:absolute;
+
+    width:90px;
+    height:90px;
+
+    border-radius:50%;
+
+    background:
+        rgba(99,102,241,.08);
+
+    right:-30px;
+    top:-30px;
+}
+
+.stat-label{
     color:var(--muted);
+
     font-size:13px;
+
+    font-weight:600;
 }
 
 .stat-value{
-    margin-top:5px;
-    font-size:23px;
-    font-weight:bold;
+    margin-top:7px;
+
+    font-size:27px;
+
+    font-weight:850;
 }
+
 
 /* =========================================================
    TABS
@@ -265,275 +643,347 @@ button{
 
 .tabs{
     display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-bottom:20px;
+    gap:7px;
+
+    padding:6px;
+
+    margin-bottom:18px;
+
+    background:var(--card2);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:14px;
+
+    width:max-content;
+
+    max-width:100%;
+
+    overflow:auto;
 }
 
 .tab{
-    border:1px solid var(--border);
-    background:var(--card);
-    color:var(--text);
-    padding:10px 15px;
-    border-radius:9px;
+    border:0;
+
+    background:transparent;
+
+    color:var(--muted);
+
+    padding:
+        10px
+        15px;
+
+    border-radius:10px;
+
+    font-weight:700;
+
+    white-space:nowrap;
 }
 
 .tab.active{
-    background:var(--primary);
     color:white;
-    border-color:var(--primary);
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary),
+            var(--primary2)
+        );
+
+    box-shadow:
+        0 5px 15px
+        rgba(79,70,229,.22);
 }
+
 
 /* =========================================================
-   SCHEDULE
+   CARD
 ========================================================= */
 
-.table-wrap{
-    overflow:auto;
-    border:1px solid var(--border);
-    border-radius:12px;
+.card{
+    background:var(--card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:var(--radius);
+
+    box-shadow:var(--shadow);
+
+    overflow:hidden;
+
+    margin-bottom:20px;
 }
 
-.schedule-table{
-    border-collapse:collapse;
+.card-header{
+    padding:
+        18px
+        20px;
+
+    border-bottom:
+        1px solid
+        var(--border);
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    gap:15px;
+}
+
+.card-header h2{
+    margin:0;
+    font-size:18px;
+}
+
+.card-header p{
+    margin:4px 0 0;
+
+    color:var(--muted);
+
+    font-size:13px;
+}
+
+
+/* =========================================================
+   TABLE
+========================================================= */
+
+.table-wrapper{
+    overflow:auto;
+
+    max-width:100%;
+}
+
+table{
     width:100%;
+
+    border-collapse:separate;
+
+    border-spacing:0;
+
     min-width:900px;
 }
 
-.schedule-table th,
-.schedule-table td{
-    border:1px solid var(--border);
-    padding:5px;
-    text-align:center;
-}
-
-.schedule-table th{
-    background:var(--bg);
+th{
     position:sticky;
     top:0;
     z-index:5;
-}
 
-.schedule-table .employee-cell{
-    position:sticky;
-    left:0;
-    z-index:6;
-    background:var(--card);
-    min-width:190px;
-    text-align:left;
-    font-weight:bold;
-}
+    background:var(--card2);
 
-.day-number{
-    font-weight:bold;
-}
-
-.day-name{
-    font-size:11px;
     color:var(--muted);
+
+    font-size:12px;
+
+    padding:
+        11px
+        7px;
+
+    border-bottom:
+        1px solid
+        var(--border);
 }
 
-.today{
-    outline:3px solid var(--primary);
-    outline-offset:-3px;
-}
-
-.shift-cell{
-    min-width:65px;
-    height:55px;
-    border-radius:7px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-    margin:1px;
-    user-select:none;
-}
-
-.shift-empty{
-    background:var(--bg);
-    color:var(--muted);
-}
-
-.shift-first{
-    background:#dbeafe;
-    color:#1e40af;
-}
-
-.shift-second{
-    background:#dcfce7;
-    color:#166534;
-}
-
-.shift-r{
-    background:#fef3c7;
-    color:#92400e;
-}
-
-.shift-c{
-    background:#ede9fe;
-    color:#5b21b6;
-}
-
-.shift-leave{
-    background:#fce7f3;
-    color:#9d174d;
-}
-
-.shift-absence{
-    background:#fee2e2;
-    color:#991b1b;
-}
-
-.shift-rest{
-    background:#e5e7eb;
-    color:#374151;
-}
-
-body.dark .shift-first{
-    background:#1e3a8a;
-    color:#dbeafe;
-}
-
-body.dark .shift-second{
-    background:#14532d;
-    color:#dcfce7;
-}
-
-body.dark .shift-r{
-    background:#78350f;
-    color:#fef3c7;
-}
-
-body.dark .shift-c{
-    background:#4c1d95;
-    color:#ede9fe;
-}
-
-body.dark .shift-leave{
-    background:#831843;
-    color:#fce7f3;
-}
-
-body.dark .shift-absence{
-    background:#7f1d1d;
-    color:#fee2e2;
-}
-
-body.dark .shift-rest{
-    background:#374151;
-    color:#e5e7eb;
-}
-
-/* =========================================================
-   ADMIN EDIT TABLE
-========================================================= */
-
-.admin-cell select{
-    width:100%;
-    min-width:75px;
+td{
     padding:6px;
-    border:1px solid var(--border);
-    border-radius:6px;
-    background:var(--card);
-    color:var(--text);
-}
 
-.admin-table{
-    border-collapse:collapse;
-    width:100%;
-    min-width:1100px;
-}
+    border-bottom:
+        1px solid
+        var(--border);
 
-.admin-table th,
-.admin-table td{
-    border:1px solid var(--border);
-    padding:5px;
     text-align:center;
 }
 
-.admin-table th{
-    background:var(--bg);
-}
-
-.admin-table .employee-cell{
+th:first-child,
+td:first-child{
     position:sticky;
     left:0;
-    z-index:5;
+    z-index:6;
+
     background:var(--card);
-    min-width:190px;
+
     text-align:left;
 }
 
-/* =========================================================
-   FORMS
-========================================================= */
-
-.form-grid{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:12px;
+th:first-child{
+    z-index:10;
+    background:var(--card2);
 }
 
-.form-group label{
+.employee-cell{
+    min-width:185px;
+
+    font-weight:750;
+
+    white-space:nowrap;
+
+    padding:
+        10px
+        15px;
+}
+
+.day-number{
     display:block;
-    font-size:13px;
-    margin-bottom:5px;
-    color:var(--muted);
-}
 
-.form-group input,
-.form-group select{
-    width:100%;
-    padding:9px;
-    border:1px solid var(--border);
-    border-radius:8px;
-    background:var(--card);
+    font-size:14px;
+
     color:var(--text);
 }
 
-.form-actions{
-    margin-top:15px;
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
+.day-name{
+    display:block;
+
+    font-size:10px;
+
+    color:var(--muted);
+
+    margin-top:2px;
 }
+
+.today{
+    background:
+        rgba(99,102,241,.10) !important;
+}
+
+.admin-cell select{
+    width:100%;
+
+    min-width:115px;
+
+    padding:
+        8px
+        7px;
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:9px;
+
+    background:var(--card2);
+
+    color:var(--text);
+
+    outline:none;
+
+    cursor:pointer;
+}
+
+.admin-cell select:focus{
+    border-color:var(--primary);
+
+    box-shadow:
+        0 0 0 3px
+        rgba(99,102,241,.12);
+}
+
 
 /* =========================================================
-   USER / SHIFT TABLES
+   SHIFT BADGES
 ========================================================= */
 
-.simple-table{
-    width:100%;
-    border-collapse:collapse;
+.shift{
+    min-width:70px;
+
+    padding:
+        8px
+        5px;
+
+    border-radius:9px;
+
+    font-weight:800;
+
+    font-size:12px;
+
+    display:inline-block;
 }
 
-.simple-table th,
-.simple-table td{
-    padding:9px;
-    border-bottom:1px solid var(--border);
-    text-align:left;
+.shift small{
+    display:block;
+
+    margin-top:2px;
+
+    font-weight:600;
+
+    opacity:.75;
+
+    font-size:9px;
 }
 
-.simple-table th{
-    color:var(--muted);
+.shift-first{
+    color:#1d4ed8;
+    background:#dbeafe;
 }
 
-.simple-table input,
-.simple-table select{
-    padding:7px;
-    border:1px solid var(--border);
-    border-radius:7px;
-    background:var(--card);
-    color:var(--text);
-    width:100%;
+.shift-second{
+    color:#7e22ce;
+    background:#f3e8ff;
 }
 
-.actions{
-    display:flex;
-    gap:6px;
-    flex-wrap:wrap;
+.shift-r{
+    color:#047857;
+    background:#d1fae5;
 }
+
+.shift-c{
+    color:#b45309;
+    background:#fef3c7;
+}
+
+.shift-leave{
+    color:#0369a1;
+    background:#e0f2fe;
+}
+
+.shift-absence{
+    color:#b91c1c;
+    background:#fee2e2;
+}
+
+.shift-rest{
+    color:#475569;
+    background:#e2e8f0;
+}
+
+body.dark .shift-first{
+    color:#93c5fd;
+    background:#172554;
+}
+
+body.dark .shift-second{
+    color:#d8b4fe;
+    background:#3b0764;
+}
+
+body.dark .shift-r{
+    color:#86efac;
+    background:#052e16;
+}
+
+body.dark .shift-c{
+    color:#fde68a;
+    background:#451a03;
+}
+
+body.dark .shift-leave{
+    color:#7dd3fc;
+    background:#082f49;
+}
+
+body.dark .shift-absence{
+    color:#fca5a5;
+    background:#450a0a;
+}
+
+body.dark .shift-rest{
+    color:#cbd5e1;
+    background:#1e293b;
+}
+
 
 /* =========================================================
    LEGEND
@@ -541,206 +991,607 @@ body.dark .shift-rest{
 
 .legend{
     display:flex;
+
     flex-wrap:wrap;
-    gap:10px;
-    margin-top:15px;
+
+    gap:8px;
+
+    padding:16px 20px;
+
+    border-top:
+        1px solid
+        var(--border);
 }
 
 .legend-item{
     display:flex;
     align-items:center;
-    gap:6px;
+    gap:7px;
+
+    font-size:12px;
+
+    color:var(--muted);
 }
 
-.legend-box{
-    width:20px;
-    height:20px;
-    border-radius:5px;
-}
 
 /* =========================================================
-   MESSAGE
+   ADMIN
 ========================================================= */
 
-.message{
-    padding:12px;
+.admin-section{
+    margin-top:20px;
+}
+
+.admin-toolbar{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    padding:15px 20px;
+
+    border-bottom:
+        1px solid
+        var(--border);
+}
+
+.admin-actions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+}
+
+.admin-table input,
+.admin-table select{
+    width:100%;
+
+    padding:9px;
+
+    border:
+        1px solid
+        var(--border);
+
     border-radius:9px;
-    margin-bottom:15px;
+
+    background:var(--card2);
+
+    color:var(--text);
 }
 
-.message.success{
-    background:#dcfce7;
-    color:#166534;
+.check{
+    width:18px !important;
+    height:18px;
 }
 
-.message.error{
-    background:#fee2e2;
-    color:#991b1b;
+.user-role{
+    font-size:12px;
+
+    padding:
+        5px
+        9px;
+
+    border-radius:20px;
+
+    background:var(--primary-light);
+
+    color:var(--primary);
+
+    font-weight:700;
 }
 
-.message.info{
-    background:#dbeafe;
-    color:#1e40af;
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    z-index:500;
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+
+    background:
+        rgba(2,6,23,.60);
+
+    backdrop-filter:blur(5px);
 }
 
-body.dark .message.success{
-    background:#14532d;
-    color:#dcfce7;
+.modal.show{
+    display:flex;
 }
 
-body.dark .message.error{
-    background:#7f1d1d;
-    color:#fee2e2;
+.modal-box{
+    width:100%;
+    max-width:500px;
+
+    max-height:
+        calc(100vh - 40px);
+
+    overflow:auto;
+
+    background:var(--card);
+
+    border:
+        1px solid
+        var(--border);
+
+    border-radius:22px;
+
+    box-shadow:
+        0 30px 80px
+        rgba(0,0,0,.30);
 }
 
-body.dark .message.info{
-    background:#1e3a8a;
-    color:#dbeafe;
+.modal-header{
+    display:flex;
+
+    align-items:center;
+    justify-content:space-between;
+
+    padding:
+        18px
+        20px;
+
+    border-bottom:
+        1px solid
+        var(--border);
 }
+
+.modal-header h3{
+    margin:0;
+}
+
+.modal-body{
+    padding:20px;
+}
+
+.modal-footer{
+    padding:
+        15px
+        20px;
+
+    border-top:
+        1px solid
+        var(--border);
+
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+}
+
+
+/* =========================================================
+   TOAST
+========================================================= */
+
+#toast{
+    position:fixed;
+
+    right:20px;
+    bottom:20px;
+
+    z-index:1000;
+
+    min-width:280px;
+    max-width:420px;
+
+    padding:
+        14px
+        16px;
+
+    border-radius:14px;
+
+    background:var(--card);
+
+    border:
+        1px solid
+        var(--border);
+
+    box-shadow:
+        0 15px 40px
+        rgba(0,0,0,.18);
+
+    transform:
+        translateY(30px);
+
+    opacity:0;
+
+    pointer-events:none;
+
+    transition:.25s;
+}
+
+#toast.show{
+    transform:none;
+    opacity:1;
+}
+
+#toast.success{
+    border-left:
+        4px solid
+        var(--success);
+}
+
+#toast.error{
+    border-left:
+        4px solid
+        var(--danger);
+}
+
+
+/* =========================================================
+   LOADING
+========================================================= */
+
+.loading{
+    padding:40px;
+
+    text-align:center;
+
+    color:var(--muted);
+}
+
+.spinner{
+    width:28px;
+    height:28px;
+
+    margin:
+        0
+        auto
+        10px;
+
+    border:
+        3px solid
+        var(--border);
+
+    border-top-color:
+        var(--primary);
+
+    border-radius:50%;
+
+    animation:
+        spin .8s linear infinite;
+}
+
+@keyframes spin{
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+
+/* =========================================================
+   EMPTY
+========================================================= */
+
+.empty{
+    padding:40px 20px;
+
+    text-align:center;
+
+    color:var(--muted);
+}
+
 
 /* =========================================================
    RESPONSIVE
 ========================================================= */
 
 @media(max-width:900px){
+
     .stats{
-        grid-template-columns:1fr;
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
-    .form-grid{
-        grid-template-columns:1fr 1fr;
-    }
-}
-
-@media(max-width:600px){
-    .container{
-        padding:10px;
-    }
-
-    .topbar{
+    .hero{
         flex-direction:column;
         align-items:stretch;
     }
 
-    .topbar-actions{
-        justify-content:flex-end;
-    }
-
-    .form-grid{
-        grid-template-columns:1fr;
+    .month-controls{
+        justify-content:space-between;
     }
 
     .month-title{
-        min-width:auto;
-        font-size:17px;
+        min-width:0;
+    }
+
+    .user-pill span{
+        display:none;
+    }
+
+}
+
+@media(max-width:600px){
+
+    .container{
+        width:
+            calc(100% - 20px);
+
+        padding-top:20px;
+    }
+
+    .topbar-inner{
+        padding:
+            10px
+            12px;
+    }
+
+    .brand-text{
+        display:none;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
+        gap:9px;
+    }
+
+    .stat-card{
+        padding:14px;
+    }
+
+    .stat-value{
+        font-size:21px;
+    }
+
+    .tabs{
+        width:100%;
+    }
+
+    .tab{
+        flex:1;
+        padding:
+            10px
+            8px;
+
+        font-size:12px;
+    }
+
+    .card-header{
+        padding:15px;
+    }
+
+    .login-card{
+        padding:26px 20px;
+    }
+
+}
+
+
+/* =========================================================
+   PRINT
+========================================================= */
+
+@media print{
+
+    .topbar,
+    .tabs,
+    .month-controls,
+    .admin-toolbar,
+    button{
+        display:none !important;
+    }
+
+    body{
+        background:white;
+        color:black;
+    }
+
+    .container{
+        width:100%;
+        max-width:none;
+    }
+
+    .card{
+        box-shadow:none;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================================================
-     LOGIN
-========================================================= -->
 
-<div id="loginScreen">
+<!-- ======================================================
+     LOGIN
+====================================================== -->
+
+<section id="loginScreen">
 
     <div class="login-card">
 
+        <div class="logo">
+            📅
+        </div>
+
         <h1>Работен график</h1>
 
-        <label for="loginName">Име</label>
+        <div class="login-subtitle">
+            Влезте в системата
+        </div>
 
-        <select id="loginName">
-            <option value="">Зареждане...</option>
-        </select>
+        <div class="form-group">
 
-        <label for="loginPassword">Парола</label>
+            <label for="loginName">
+                Име
+            </label>
 
-        <input
-            id="loginPassword"
-            type="password"
-            placeholder="Парола"
+            <select id="loginName">
+                <option value="">
+                    Зареждане...
+                </option>
+            </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <label for="loginPassword">
+                Парола
+            </label>
+
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="Въведете парола"
+            >
+
+        </div>
+
+
+        <button
+            id="loginBtn"
+            class="btn btn-primary"
+            style="width:100%;"
         >
-
-        <button id="loginBtn">
-            Вход
+            🔐 Вход
         </button>
 
-        <div id="loginError" class="login-error hidden"></div>
-
     </div>
 
-</div>
+</section>
 
 
-<!-- =========================================================
+
+<!-- ======================================================
      APP
-========================================================= -->
+====================================================== -->
 
-<div id="app" class="hidden">
+<section id="app" class="hidden">
 
-    <div class="topbar">
 
-        <div class="topbar-left">
+    <!-- TOP BAR -->
 
-            <div class="topbar-title">
-                Работен график
+    <header class="topbar">
+
+        <div class="topbar-inner">
+
+            <div class="brand">
+
+                <div class="brand-icon">
+                    📅
+                </div>
+
+                <div class="brand-text">
+
+                    <strong>
+                        Работен график
+                    </strong>
+
+                    <span>
+                        Управление на смените
+                    </span>
+
+                </div>
+
             </div>
 
-            <div
-                id="topbarUser"
-                class="topbar-user">
+
+            <div class="top-actions">
+
+                <button
+                    class="icon-btn"
+                    onclick="toggleTheme()"
+                    title="Тема"
+                >
+                    🌓
+                </button>
+
+                <div class="user-pill">
+
+                    <div
+                        id="userAvatar"
+                        class="avatar"
+                    >
+                        ?
+                    </div>
+
+                    <span id="currentUserName">
+                        -
+                    </span>
+
+                </div>
+
+                <button
+                    class="icon-btn"
+                    onclick="logout()"
+                    title="Изход"
+                >
+                    ↪
+                </button>
+
             </div>
 
         </div>
 
-        <div class="topbar-actions">
-
-            <button
-                id="themeBtn"
-                class="btn btn-light">
-                🌙
-            </button>
-
-            <button
-                id="logoutBtn"
-                class="btn btn-secondary">
-                Изход
-            </button>
-
-        </div>
-
-    </div>
+    </header>
 
 
-    <div class="container">
 
-        <div id="globalMessage"></div>
+    <!-- MAIN -->
+
+    <main class="container">
 
 
-        <!-- MONTH -->
+        <div class="hero">
 
-        <div class="card">
+            <div>
+
+                <h1 id="pageTitle">
+                    Моят график
+                </h1>
+
+                <p id="pageSubtitle">
+                    Вашият работен график
+                </p>
+
+            </div>
+
 
             <div class="month-controls">
 
                 <button
-                    class="btn btn-light"
-                    onclick="changeMonth(-1)">
-                    ◀
+                    class="btn btn-secondary"
+                    onclick="changeMonth(-1)"
+                >
+                    ←
                 </button>
 
                 <div
                     id="monthTitle"
-                    class="month-title">
+                    class="month-title"
+                >
+                    -
                 </div>
 
                 <button
-                    class="btn btn-light"
-                    onclick="changeMonth(1)">
-                    ▶
+                    class="btn btn-secondary"
+                    onclick="changeMonth(1)"
+                >
+                    →
+                </button>
+
+                <button
+                    class="btn btn-primary"
+                    onclick="goToday()"
+                >
+                    Днес
                 </button>
 
             </div>
@@ -748,53 +1599,79 @@ body.dark .message.info{
         </div>
 
 
+
         <!-- STATS -->
 
-        <div class="stats">
+        <div
+            id="stats"
+            class="stats"
+        >
 
-            <div class="stat">
+            <div class="stat-card">
 
-                <div class="stat-title">
-                    Моите работни смени
-                </div>
-
-                <div
-                    id="statShifts"
-                    class="stat-value">
-                    0
-                </div>
-
-            </div>
-
-            <div class="stat">
-
-                <div class="stat-title">
+                <div class="stat-label">
                     Работни часове
                 </div>
 
                 <div
                     id="statHours"
-                    class="stat-value">
+                    class="stat-value"
+                >
+                    0ч
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Работни дни
+                </div>
+
+                <div
+                    id="statDays"
+                    class="stat-value"
+                >
                     0
                 </div>
 
             </div>
 
-            <div class="stat">
 
-                <div class="stat-title">
-                    Месец
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Почивни
                 </div>
 
                 <div
-                    id="statMonth"
-                    class="stat-value">
-                    -
+                    id="statRest"
+                    class="stat-value"
+                >
+                    0
+                </div>
+
+            </div>
+
+
+            <div class="stat-card">
+
+                <div class="stat-label">
+                    Отпуски
+                </div>
+
+                <div
+                    id="statLeave"
+                    class="stat-value"
+                >
+                    0
                 </div>
 
             </div>
 
         </div>
+
 
 
         <!-- TABS -->
@@ -804,120 +1681,185 @@ body.dark .message.info{
             <button
                 id="tabMy"
                 class="tab active"
-                onclick="showTab('my')">
-                Моят график
+                onclick="showTab('my')"
+            >
+                📅 Моят график
             </button>
 
             <button
                 id="tabAll"
                 class="tab"
-                onclick="showTab('all')">
-                Всички
+                onclick="showTab('all')"
+            >
+                👥 Общ график
             </button>
 
             <button
                 id="tabAdmin"
                 class="tab hidden"
-                onclick="showTab('admin')">
-                Администрация
+                onclick="showTab('admin')"
+            >
+                👑 Администрация
             </button>
 
         </div>
 
 
-        <!-- =================================================
-             MY
-        ================================================= -->
 
-        <section id="sectionMy">
+        <!-- =================================================
+             MY SCHEDULE
+        ================================================== -->
+
+        <section
+            id="viewMy"
+            class="view"
+        >
 
             <div class="card">
 
-                <h2>
-                    Моят график
-                </h2>
+                <div class="card-header">
 
-                <div class="table-wrap">
+                    <div>
 
-                    <table class="schedule-table">
+                        <h2>
+                            Моят месечен график
+                        </h2>
 
-                        <thead id="myHead"></thead>
+                        <p>
+                            Работните дни и смените за избрания месец
+                        </p>
 
-                        <tbody id="myBody"></tbody>
-
-                    </table>
+                    </div>
 
                 </div>
+
+
+                <div
+                    id="mySchedule"
+                    class="table-wrapper"
+                >
+
+                    <div class="loading">
+
+                        <div class="spinner"></div>
+
+                        Зареждане...
+
+                    </div>
+
+                </div>
+
 
                 <div
                     id="myLegend"
-                    class="legend">
-                </div>
+                    class="legend"
+                ></div>
 
             </div>
 
         </section>
+
 
 
         <!-- =================================================
-             ALL
-        ================================================= -->
+             ALL SCHEDULE
+        ================================================== -->
 
         <section
-            id="sectionAll"
-            class="hidden">
+            id="viewAll"
+            class="view hidden"
+        >
 
             <div class="card">
 
-                <h2>
-                    График на всички служители
-                </h2>
+                <div class="card-header">
 
-                <div class="table-wrap">
+                    <div>
 
-                    <table class="schedule-table">
+                        <h2>
+                            Общ график
+                        </h2>
 
-                        <thead id="allHead"></thead>
+                        <p>
+                            График на всички служители
+                        </p>
 
-                        <tbody id="allBody"></tbody>
-
-                    </table>
+                    </div>
 
                 </div>
+
+
+                <div
+                    id="allSchedule"
+                    class="table-wrapper"
+                >
+
+                    <div class="loading">
+
+                        <div class="spinner"></div>
+
+                        Зареждане...
+
+                    </div>
+
+                </div>
+
 
                 <div
                     id="allLegend"
-                    class="legend">
-                </div>
+                    class="legend"
+                ></div>
 
             </div>
 
         </section>
+
 
 
         <!-- =================================================
              ADMIN
-        ================================================= -->
+        ================================================== -->
 
         <section
-            id="sectionAdmin"
-            class="hidden">
+            id="viewAdmin"
+            class="view hidden"
+        >
+
 
             <!-- ADMIN SCHEDULE -->
 
             <div class="card">
 
-                <h2>
-                    Редактиране на графика
-                </h2>
+                <div class="card-header">
 
-                <p style="color:var(--muted);">
-                    Избери смяна от падащото меню. Промените се записват с бутона „Запази промените“.
-                </p>
+                    <div>
 
-                <div class="table-wrap">
+                        <h2>
+                            👑 Управление на графика
+                        </h2>
 
-                    <table class="admin-table">
+                        <p>
+                            Променяйте смените директно от таблицата
+                        </p>
+
+                    </div>
+
+                    <button
+                        class="btn btn-primary"
+                        onclick="saveAllPending()"
+                    >
+                        💾 Запази промените
+                    </button>
+
+                </div>
+
+
+                <div
+                    id="adminBodyWrapper"
+                    class="table-wrapper"
+                >
+
+                    <table>
 
                         <thead id="adminHead"></thead>
 
@@ -927,313 +1869,479 @@ body.dark .message.info{
 
                 </div>
 
-                <div class="form-actions">
+
+                <div class="admin-toolbar">
+
+                    <div
+                        id="pendingInfo"
+                        style="color:var(--muted);font-size:13px;"
+                    >
+                        Няма незапазени промени.
+                    </div>
 
                     <button
                         class="btn btn-success"
-                        onclick="saveAllScheduleChanges()">
-                        💾 Запази промените
-                    </button>
-
-                    <button
-                        class="btn btn-light"
-                        onclick="loadSchedule()">
-                        ↻ Презареди
+                        onclick="saveAllPending()"
+                    >
+                        ✓ Запази
                     </button>
 
                 </div>
 
+
+                <div
+                    id="adminLegend"
+                    class="legend"
+                ></div>
+
             </div>
+
 
 
             <!-- USERS -->
 
             <div class="card">
 
-                <h2>
-                    Потребители
-                </h2>
+                <div class="card-header">
 
-                <div class="form-grid">
+                    <div>
 
-                    <div class="form-group">
+                        <h2>
+                            👥 Служители
+                        </h2>
 
-                        <label>
-                            Име
-                        </label>
-
-                        <input
-                            id="newUserName"
-                            type="text"
-                            placeholder="Име на служител">
+                        <p>
+                            Добавяне, редактиране и управление на достъпа
+                        </p>
 
                     </div>
-
-                    <div class="form-group">
-
-                        <label>
-                            Парола
-                        </label>
-
-                        <input
-                            id="newUserPassword"
-                            type="text"
-                            placeholder="Парола">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>
-                            Администратор
-                        </label>
-
-                        <select id="newUserAdmin">
-
-                            <option value="false">
-                                Не
-                            </option>
-
-                            <option value="true">
-                                Да
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>
-                            Активен
-                        </label>
-
-                        <select id="newUserActive">
-
-                            <option value="true">
-                                Да
-                            </option>
-
-                            <option value="false">
-                                Не
-                            </option>
-
-                        </select>
-
-                    </div>
-
-                </div>
-
-                <div class="form-actions">
 
                     <button
-                        class="btn btn-success"
-                        onclick="addUser()">
-                        + Добави потребител
+                        class="btn btn-primary"
+                        onclick="openUserModal()"
+                    >
+                        + Нов служител
                     </button>
 
                 </div>
 
+
                 <div
-                    id="usersMessage"
-                    style="margin-top:15px;">
-                </div>
-
-                <div style="overflow:auto;margin-top:15px;">
-
-                    <table class="simple-table">
-
-                        <thead>
-
-                            <tr>
-
-                                <th>
-                                    Име
-                                </th>
-
-                                <th>
-                                    Парола
-                                </th>
-
-                                <th>
-                                    Роля
-                                </th>
-
-                                <th>
-                                    Активен
-                                </th>
-
-                                <th>
-                                    Действия
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="usersBody"></tbody>
-
-                    </table>
-
-                </div>
+                    id="usersTable"
+                    class="table-wrapper"
+                ></div>
 
             </div>
+
 
 
             <!-- SHIFT TYPES -->
 
             <div class="card">
 
-                <h2>
-                    Смены
-                </h2>
+                <div class="card-header">
 
-                <p style="color:var(--muted);">
-                    Тези смени се използват директно в графика.
-                </p>
+                    <div>
 
-                <div class="form-grid">
+                        <h2>
+                            ⚙️ Видове смени
+                        </h2>
 
-                    <div class="form-group">
-
-                        <label>
-                            Име на смяната
-                        </label>
-
-                        <input
-                            id="newShiftName"
-                            type="text"
-                            placeholder="Напр. 1-ва смяна">
+                        <p>
+                            Управление на смените и работното време
+                        </p>
 
                     </div>
-
-                    <div class="form-group">
-
-                        <label>
-                            Кратко име
-                        </label>
-
-                        <input
-                            id="newShiftShort"
-                            type="text"
-                            placeholder="Напр. 1-ва">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>
-                            Начало
-                        </label>
-
-                        <input
-                            id="newShiftStart"
-                            type="time">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>
-                            Край
-                        </label>
-
-                        <input
-                            id="newShiftEnd"
-                            type="time">
-
-                    </div>
-
-                    <div class="form-group">
-
-                        <label>
-                            Почивка в минути
-                        </label>
-
-                        <input
-                            id="newShiftBreak"
-                            type="number"
-                            value="60"
-                            min="0">
-
-                    </div>
-
-                </div>
-
-                <div class="form-actions">
 
                     <button
-                        class="btn btn-success"
-                        onclick="addShiftType()">
-                        + Добави смяна
-                    </button>
-
-                    <button
-                        class="btn btn-light"
-                        onclick="loadShiftTypes()">
-                        ↻ Презареди смените
+                        class="btn btn-primary"
+                        onclick="openShiftModal()"
+                    >
+                        + Нова смяна
                     </button>
 
                 </div>
+
 
                 <div
-                    id="shiftsMessage"
-                    style="margin-top:15px;">
+                    id="shiftTypesTable"
+                    class="table-wrapper"
+                ></div>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</section>
+
+
+
+<!-- ======================================================
+     USER MODAL
+====================================================== -->
+
+<div
+    id="userModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h3 id="userModalTitle">
+                Нов служител
+            </h3>
+
+            <button
+                class="icon-btn"
+                onclick="closeModal('userModal')"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <input
+                id="userEditId"
+                type="hidden"
+            >
+
+
+            <div class="form-group">
+
+                <label>
+                    Име
+                </label>
+
+                <input
+                    id="userName"
+                    type="text"
+                    placeholder="Име и фамилия"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Парола
+                </label>
+
+                <input
+                    id="userPassword"
+                    type="text"
+                    placeholder="Парола"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Роля
+                </label>
+
+                <select id="userAdmin">
+
+                    <option value="false">
+                        Служител
+                    </option>
+
+                    <option value="true">
+                        Администратор
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Статус
+                </label>
+
+                <select id="userActive">
+
+                    <option value="true">
+                        Активен
+                    </option>
+
+                    <option value="false">
+                        Неактивен
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Показване само през септември
+                </label>
+
+                <select id="userSeptemberOnly">
+
+                    <option value="false">
+                        Не
+                    </option>
+
+                    <option value="true">
+                        Да
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                class="btn btn-secondary"
+                onclick="closeModal('userModal')"
+            >
+                Отказ
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="saveUser()"
+            >
+                💾 Запази
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ======================================================
+     SHIFT MODAL
+====================================================== -->
+
+<div
+    id="shiftModal"
+    class="modal"
+>
+
+    <div class="modal-box">
+
+        <div class="modal-header">
+
+            <h3 id="shiftModalTitle">
+                Нова смяна
+            </h3>
+
+            <button
+                class="icon-btn"
+                onclick="closeModal('shiftModal')"
+            >
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="modal-body">
+
+            <input
+                id="shiftEditId"
+                type="hidden"
+            >
+
+
+            <div class="form-group">
+
+                <label>
+                    Име
+                </label>
+
+                <input
+                    id="shiftName"
+                    type="text"
+                    placeholder="Напр. 1-ва смяна"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Кратко име
+                </label>
+
+                <input
+                    id="shiftShortName"
+                    type="text"
+                    placeholder="Напр. 1-ва"
+                >
+
+            </div>
+
+
+            <div
+                style="
+                    display:grid;
+                    grid-template-columns:1fr 1fr;
+                    gap:12px;
+                "
+            >
+
+                <div class="form-group">
+
+                    <label>
+                        Начало
+                    </label>
+
+                    <input
+                        id="shiftStart"
+                        type="time"
+                    >
+
                 </div>
 
-                <div style="overflow:auto;margin-top:15px;">
 
-                    <table class="simple-table">
+                <div class="form-group">
 
-                        <thead>
+                    <label>
+                        Край
+                    </label>
 
-                            <tr>
-
-                                <th>
-                                    Име
-                                </th>
-
-                                <th>
-                                    Кратко
-                                </th>
-
-                                <th>
-                                    Начало
-                                </th>
-
-                                <th>
-                                    Край
-                                </th>
-
-                                <th>
-                                    Почивка
-                                </th>
-
-                                <th>
-                                    Активна
-                                </th>
-
-                                <th>
-                                    Действия
-                                </th>
-
-                            </tr>
-
-                        </thead>
-
-                        <tbody id="shiftsBody"></tbody>
-
-                    </table>
+                    <input
+                        id="shiftEnd"
+                        type="time"
+                    >
 
                 </div>
 
             </div>
 
-        </section>
+
+            <div class="form-group">
+
+                <label>
+                    Почивка (минути)
+                </label>
+
+                <input
+                    id="shiftBreak"
+                    type="number"
+                    min="0"
+                    value="60"
+                >
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Цвят
+                </label>
+
+                <select id="shiftColor">
+
+                    <option value="shift-first">
+                        Син
+                    </option>
+
+                    <option value="shift-second">
+                        Лилав
+                    </option>
+
+                    <option value="shift-r">
+                        Зелен
+                    </option>
+
+                    <option value="shift-c">
+                        Жълт
+                    </option>
+
+                    <option value="shift-leave">
+                        Светлосин
+                    </option>
+
+                    <option value="shift-absence">
+                        Червен
+                    </option>
+
+                    <option value="shift-rest">
+                        Сив
+                    </option>
+
+                </select>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <label>
+                    Статус
+                </label>
+
+                <select id="shiftActive">
+
+                    <option value="true">
+                        Активна
+                    </option>
+
+                    <option value="false">
+                        Скритa
+                    </option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+
+        <div class="modal-footer">
+
+            <button
+                class="btn btn-secondary"
+                onclick="closeModal('shiftModal')"
+            >
+                Отказ
+            </button>
+
+            <button
+                class="btn btn-primary"
+                onclick="saveShiftType()"
+            >
+                💾 Запази
+            </button>
+
+        </div>
 
     </div>
 
 </div>
+
+
+
+<div id="toast"></div>
+
 
 
 <script>
@@ -1260,7 +2368,9 @@ const supabaseClient =
 ========================================================= */
 
 let users = [];
+
 let shiftTypes = [];
+
 let schedule = [];
 
 let currentUser = null;
@@ -1271,217 +2381,24 @@ let currentTab = "my";
 
 let pendingChanges = {};
 
-const monthNames = [
-    "Януари",
-    "Февруари",
-    "Март",
-    "Април",
-    "Май",
-    "Юни",
-    "Юли",
-    "Август",
-    "Септември",
-    "Октомври",
-    "Ноември",
-    "Декември"
-];
-
-const dayNames = [
-    "Нед",
-    "Пон",
-    "Вто",
-    "Сря",
-    "Чет",
-    "Пет",
-    "Съб"
-];
-
 
 /* =========================================================
    HELPERS
 ========================================================= */
 
-function isAdmin(user){
-    if(!user) return false;
-
-    return (
-        user.admin === true ||
-        user.admin === "true" ||
-        user.admin === 1 ||
-        user.admin === "1"
-    );
-}
-
-
 function escapeHtml(value){
+
     return String(value ?? "")
-        .replaceAll("&","&amp;")
-        .replaceAll("<","&lt;")
-        .replaceAll(">","&gt;")
-        .replaceAll('"',"&quot;")
-        .replaceAll("'","&#039;");
+        .replace(/&/g,"&amp;")
+        .replace(/</g,"&lt;")
+        .replace(/>/g,"&gt;")
+        .replace(/"/g,"&quot;")
+        .replace(/'/g,"&#039;");
 }
 
 
 function escapeAttr(value){
     return escapeHtml(value);
-}
-
-
-/*
-    PostgreSQL колоните start_time/end_time са:
-
-    time without time zone
-
-    Затова изпращаме HH:MM:SS.
-*/
-function normalizeTimeForDb(value){
-
-    if(!value){
-        return null;
-    }
-
-    value = String(value).trim();
-
-    if(/^\d{2}:\d{2}$/.test(value)){
-        return value + ":00";
-    }
-
-    if(/^\d{2}:\d{2}:\d{2}$/.test(value)){
-        return value;
-    }
-
-    return value;
-}
-
-
-/*
-    За <input type="time">
-*/
-function timeForInput(value){
-
-    if(!value){
-        return "";
-    }
-
-    return String(value).slice(0,5);
-}
-
-
-/*
-    За показване
-*/
-function formatTime(value){
-
-    if(!value){
-        return "";
-    }
-
-    return String(value).slice(0,5);
-}
-
-
-function dateString(date){
-
-    const y = date.getFullYear();
-
-    const m = String(
-        date.getMonth() + 1
-    ).padStart(2,"0");
-
-    const d = String(
-        date.getDate()
-    ).padStart(2,"0");
-
-    return `${y}-${m}-${d}`;
-}
-
-
-function daysInCurrentMonth(){
-
-    return new Date(
-        currentDate.getFullYear(),
-        currentDate.getMonth() + 1,
-        0
-    ).getDate();
-
-}
-
-
-function getMonthPrefix(){
-
-    const y =
-        currentDate.getFullYear();
-
-    const m =
-        String(currentDate.getMonth()+1)
-        .padStart(2,"0");
-
-    return `${y}-${m}`;
-}
-
-
-function getShift(name){
-
-    return shiftTypes.find(
-        s => s.name === name
-    );
-}
-
-
-function isWorkingShift(shift){
-
-    if(!shift) return false;
-
-    return !!(
-        shift.start_time &&
-        shift.end_time
-    );
-}
-
-
-function getRoleText(user){
-
-    if(isAdmin(user)){
-        return "Администратор";
-    }
-
-    if(user.name === "Петя"){
-        return "Управител";
-    }
-
-    if(user.name === "Иван Панов"){
-        return "Шеф смяна";
-    }
-
-    return "Служител";
-}
-
-
-function showMessage(
-    text,
-    type = "info",
-    target = "globalMessage"
-){
-
-    const el =
-        document.getElementById(target);
-
-    if(!el) return;
-
-    el.innerHTML = `
-        <div class="message ${type}">
-            ${escapeHtml(text)}
-        </div>
-    `;
-
-    setTimeout(() => {
-
-        if(el){
-            el.innerHTML = "";
-        }
-
-    },5000);
 }
 
 
@@ -1502,6 +2419,97 @@ function detailedError(error){
 }
 
 
+function isAdmin(user){
+
+    if(!user){
+        return false;
+    }
+
+    return (
+        user.admin === true ||
+        user.admin === "true" ||
+        user.admin === 1 ||
+        user.admin === "1"
+    );
+}
+
+
+function formatTime(value){
+
+    if(!value){
+        return "";
+    }
+
+    return String(value).slice(0,5);
+}
+
+
+function timeForInput(value){
+
+    return formatTime(value);
+}
+
+
+function normalizeTimeForDb(value){
+
+    if(!value){
+        return null;
+    }
+
+    const v =
+        String(value).trim();
+
+    if(/^\d{2}:\d{2}$/.test(v)){
+        return v + ":00";
+    }
+
+    return v;
+}
+
+
+function dateString(date){
+
+    const y =
+        date.getFullYear();
+
+    const m =
+        String(
+            date.getMonth()+1
+        ).padStart(2,"0");
+
+    const d =
+        String(
+            date.getDate()
+        ).padStart(2,"0");
+
+    return `${y}-${m}-${d}`;
+}
+
+
+function showMessage(message,type="success"){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.className =
+        `show ${type}`;
+
+    clearTimeout(
+        showMessage.timer
+    );
+
+    showMessage.timer =
+        setTimeout(
+            ()=>{
+                toast.className="";
+            },
+            4000
+        );
+}
+
+
 /* =========================================================
    THEME
 ========================================================= */
@@ -1509,55 +2517,124 @@ function detailedError(error){
 function loadTheme(){
 
     const theme =
-        localStorage.getItem("theme");
+        localStorage.getItem(
+            "schedule_theme"
+        );
 
     if(theme === "dark"){
         document.body.classList.add("dark");
     }
-
-    updateThemeButton();
 }
 
 
 function toggleTheme(){
 
-    document.body.classList.toggle("dark");
+    document.body.classList.toggle(
+        "dark"
+    );
 
     localStorage.setItem(
-        "theme",
+        "schedule_theme",
         document.body.classList.contains("dark")
             ? "dark"
             : "light"
     );
-
-    updateThemeButton();
 }
-
-
-function updateThemeButton(){
-
-    const btn =
-        document.getElementById("themeBtn");
-
-    if(!btn) return;
-
-    btn.textContent =
-        document.body.classList.contains("dark")
-            ? "☀️"
-            : "🌙";
-}
-
-
-document
-    .getElementById("themeBtn")
-    .addEventListener(
-        "click",
-        toggleTheme
-    );
 
 
 /* =========================================================
-   LOAD USERS
+   MONTH
+========================================================= */
+
+function getDays(){
+
+    const year =
+        currentDate.getFullYear();
+
+    const month =
+        currentDate.getMonth();
+
+    const count =
+        new Date(
+            year,
+            month + 1,
+            0
+        ).getDate();
+
+    const result = [];
+
+    for(
+        let i=1;
+        i<=count;
+        i++
+    ){
+
+        const date =
+            new Date(
+                year,
+                month,
+                i
+            );
+
+        result.push({
+            date:dateString(date),
+            day:i,
+            weekday:date.getDay()
+        });
+
+    }
+
+    return result;
+}
+
+
+function updateMonthTitle(){
+
+    const title =
+        document.getElementById(
+            "monthTitle"
+        );
+
+    title.textContent =
+        currentDate.toLocaleDateString(
+            "bg-BG",
+            {
+                month:"long",
+                year:"numeric"
+            }
+        );
+}
+
+
+function changeMonth(direction){
+
+    currentDate.setMonth(
+        currentDate.getMonth() + direction
+    );
+
+    updateMonthTitle();
+
+    pendingChanges = {};
+
+    renderAllViews();
+}
+
+
+function goToday(){
+
+    currentDate =
+        new Date();
+
+    updateMonthTitle();
+
+    pendingChanges = {};
+
+    renderAllViews();
+}
+
+
+/* =========================================================
+   USERS
 ========================================================= */
 
 async function loadUsers(){
@@ -1573,10 +2650,13 @@ async function loadUsers(){
 
     if(error){
 
-        console.error(error);
+        console.error(
+            "USERS ERROR:",
+            error
+        );
 
         showMessage(
-            "Грешка при зареждане на потребителите: " +
+            "Грешка при зареждане на служителите: " +
             detailedError(error),
             "error"
         );
@@ -1584,11 +2664,15 @@ async function loadUsers(){
         return;
     }
 
-    users = data || [];
+    users =
+        data || [];
 
     renderLoginUsers();
 
-    if(currentUser){
+    if(
+        currentUser &&
+        isAdmin(currentUser)
+    ){
         renderUsersTable();
     }
 }
@@ -1597,44 +2681,29 @@ async function loadUsers(){
 function renderLoginUsers(){
 
     const select =
-        document.getElementById("loginName");
+        document.getElementById(
+            "loginName"
+        );
 
-    if(!select) return;
+    if(!select){
+        return;
+    }
 
-    const activeUsers =
+    const active =
         users.filter(
             u => u.active !== false
         );
 
-    select.innerHTML = "";
-
-    if(!activeUsers.length){
-
-        select.innerHTML =
-            `<option value="">
-                Няма активни потребители
-            </option>`;
-
-        return;
-    }
-
     select.innerHTML =
-        `<option value="">
-            Избери име
-        </option>`;
-
-    activeUsers.forEach(user => {
-
-        const option =
-            document.createElement("option");
-
-        option.value = user.name;
-
-        option.textContent = user.name;
-
-        select.appendChild(option);
-
-    });
+        `<option value="">Изберете име</option>` +
+        active
+        .map(
+            u =>
+                `<option value="${escapeAttr(u.name)}">
+                    ${escapeHtml(u.name)}
+                </option>`
+        )
+        .join("");
 }
 
 
@@ -1645,28 +2714,21 @@ function renderLoginUsers(){
 async function login(){
 
     const name =
-        document
-        .getElementById("loginName")
-        .value;
+        document.getElementById(
+            "loginName"
+        ).value;
 
     const password =
-        document
-        .getElementById("loginPassword")
-        .value;
+        document.getElementById(
+            "loginPassword"
+        ).value;
 
-    const errorBox =
-        document
-        .getElementById("loginError");
+    if(!name){
 
-    errorBox.classList.add("hidden");
-    errorBox.textContent = "";
-
-    if(!name || !password){
-
-        errorBox.textContent =
-            "Моля, въведи име и парола.";
-
-        errorBox.classList.remove("hidden");
+        showMessage(
+            "Изберете име.",
+            "error"
+        );
 
         return;
     }
@@ -1674,108 +2736,114 @@ async function login(){
     const user =
         users.find(
             u =>
-                u.name === name &&
-                String(u.password) ===
-                String(password) &&
-                u.active !== false
+                String(u.name) ===
+                String(name)
         );
 
     if(!user){
 
-        errorBox.textContent =
-            "Грешно име или парола.";
+        showMessage(
+            "Потребителят не е намерен.",
+            "error"
+        );
 
-        errorBox.classList.remove("hidden");
+        return;
+    }
+
+    if(user.active === false){
+
+        showMessage(
+            "Този потребител е неактивен.",
+            "error"
+        );
+
+        return;
+    }
+
+    if(
+        String(user.password ?? "") !==
+        String(password ?? "")
+    ){
+
+        showMessage(
+            "Грешна парола.",
+            "error"
+        );
 
         return;
     }
 
     currentUser = user;
 
-    sessionStorage.setItem(
-        "loggedUser",
-        user.name
+    localStorage.setItem(
+        "schedule_user",
+        String(user.id)
     );
 
     openApp();
-
-    await loadShiftTypes();
-
-    await loadSchedule();
-
 }
 
 
-document
-    .getElementById("loginBtn")
-    .addEventListener(
-        "click",
-        login
+function logout(){
+
+    currentUser = null;
+
+    localStorage.removeItem(
+        "schedule_user"
     );
 
+    document
+        .getElementById("app")
+        .classList.add("hidden");
 
-document
-    .getElementById("loginPassword")
-    .addEventListener(
-        "keydown",
-        e => {
-            if(e.key === "Enter"){
-                login();
-            }
-        }
-    );
+    document
+        .getElementById("loginScreen")
+        .classList.remove("hidden");
 
+    document.getElementById(
+        "loginPassword"
+    ).value = "";
 
-document
-    .getElementById("loginName")
-    .addEventListener(
-        "keydown",
-        e => {
-            if(e.key === "Enter"){
-                login();
-            }
-        }
-    );
+    document.getElementById(
+        "loginName"
+    ).value = "";
 
+    pendingChanges = {};
+}
 
-/* =========================================================
-   RESTORE SESSION
-========================================================= */
 
 async function restoreSession(){
 
     await loadUsers();
 
-    const savedName =
-        sessionStorage.getItem(
-            "loggedUser"
+    const saved =
+        localStorage.getItem(
+            "schedule_user"
         );
 
-    if(!savedName){
+    if(!saved){
         return;
     }
 
     const user =
         users.find(
             u =>
-                u.name === savedName &&
-                u.active !== false
+                String(u.id) ===
+                String(saved)
         );
 
-    if(!user){
-        sessionStorage.removeItem(
-            "loggedUser"
+    if(!user || user.active === false){
+
+        localStorage.removeItem(
+            "schedule_user"
         );
+
         return;
     }
 
     currentUser = user;
 
     openApp();
-
-    await loadShiftTypes();
-
-    await loadSchedule();
 }
 
 
@@ -1783,7 +2851,7 @@ async function restoreSession(){
    OPEN APP
 ========================================================= */
 
-function openApp(){
+async function openApp(){
 
     document
         .getElementById("loginScreen")
@@ -1793,10 +2861,18 @@ function openApp(){
         .getElementById("app")
         .classList.remove("hidden");
 
-    document
-        .getElementById("topbarUser")
-        .textContent =
-        `${currentUser.name} · ${getRoleText(currentUser)}`;
+    document.getElementById(
+        "currentUserName"
+    ).textContent =
+        currentUser.name;
+
+    document.getElementById(
+        "userAvatar"
+    ).textContent =
+        currentUser.name
+            .trim()
+            .charAt(0)
+            .toUpperCase();
 
     if(isAdmin(currentUser)){
 
@@ -1810,48 +2886,16 @@ function openApp(){
             .getElementById("tabAdmin")
             .classList.add("hidden");
 
-        if(currentTab === "admin"){
-            currentTab = "my";
-        }
-
     }
 
     updateMonthTitle();
 
-    showTab(currentTab);
+    await loadShiftTypes();
+
+    await loadSchedule();
+
+    showTab("my");
 }
-
-
-/* =========================================================
-   LOGOUT
-========================================================= */
-
-document
-    .getElementById("logoutBtn")
-    .addEventListener(
-        "click",
-        () => {
-
-            currentUser = null;
-
-            sessionStorage.removeItem(
-                "loggedUser"
-            );
-
-            document
-                .getElementById("app")
-                .classList.add("hidden");
-
-            document
-                .getElementById("loginScreen")
-                .classList.remove("hidden");
-
-            document
-                .getElementById("loginPassword")
-                .value = "";
-
-        }
-    );
 
 
 /* =========================================================
@@ -1859,6 +2903,10 @@ document
 ========================================================= */
 
 async function loadShiftTypes(){
+
+    console.log(
+        "Зареждам видовете смени..."
+    );
 
     const {
         data,
@@ -1876,40 +2924,43 @@ async function loadShiftTypes(){
             error
         );
 
+        shiftTypes = [];
+
         showMessage(
             "Не мога да заредя смените: " +
             detailedError(error),
             "error"
         );
 
-        shiftTypes = [];
-
         return;
     }
 
-    shiftTypes =
-        (data || []).filter(
-            s => s.active !== false
-        );
-
     console.log(
-        "Заредени смени:",
-        shiftTypes
+        "Данни от shift_types:",
+        data
     );
 
+    /*
+       ВАЖНО:
+       Не филтрираме active тук.
+       Така ще видим и стари записи,
+       ако active е NULL или false.
+    */
+
+    shiftTypes =
+        data || [];
+
     renderShiftsTable();
+
     renderLegends();
+
     renderAllViews();
 }
 
 
-/* =========================================================
-   SHIFT OPTIONS
-========================================================= */
-
 function buildShiftOptions(
-    selectedValue = "",
-    includeEmpty = true
+    selectedValue="",
+    includeEmpty=true
 ){
 
     let html = "";
@@ -1921,118 +2972,217 @@ function buildShiftOptions(
                 —
             </option>
         `;
-
     }
 
-    shiftTypes.forEach(shift => {
+    shiftTypes.forEach(
+        shift => {
 
-        const selected =
-            String(shift.name) ===
-            String(selectedValue)
-                ? "selected"
-                : "";
+            const selected =
+                String(shift.name) ===
+                String(selectedValue)
+                    ? "selected"
+                    : "";
 
-        const short =
-            shift.short_name ||
-            shift.name;
+            const short =
+                shift.short_name ||
+                shift.name;
 
-        let time = "";
+            let time = "";
 
-        if(
-            shift.start_time &&
-            shift.end_time
-        ){
+            if(
+                shift.start_time &&
+                shift.end_time
+            ){
 
-            time =
-                ` (${formatTime(shift.start_time)}–${formatTime(shift.end_time)})`;
+                time =
+                    ` (${formatTime(shift.start_time)}–${formatTime(shift.end_time)})`;
 
+            }
+
+            html += `
+                <option
+                    value="${escapeAttr(shift.name)}"
+                    ${selected}
+                >
+                    ${escapeHtml(short)}
+                    ${escapeHtml(time)}
+                </option>
+            `;
         }
-
-        html += `
-            <option
-                value="${escapeAttr(shift.name)}"
-                ${selected}>
-                ${escapeHtml(short)}${escapeHtml(time)}
-            </option>
-        `;
-
-    });
+    );
 
     return html;
 }
 
 
 /* =========================================================
-   ADD SHIFT
+   SHIFT CRUD
 ========================================================= */
 
-async function addShiftType(){
+function openShiftModal(id=null){
+
+    document.getElementById(
+        "shiftEditId"
+    ).value =
+        id || "";
+
+    if(id){
+
+        const shift =
+            shiftTypes.find(
+                s =>
+                    String(s.id) ===
+                    String(id)
+            );
+
+        if(!shift){
+            return;
+        }
+
+        document.getElementById(
+            "shiftModalTitle"
+        ).textContent =
+            "Редактиране на смяна";
+
+        document.getElementById(
+            "shiftName"
+        ).value =
+            shift.name || "";
+
+        document.getElementById(
+            "shiftShortName"
+        ).value =
+            shift.short_name || "";
+
+        document.getElementById(
+            "shiftStart"
+        ).value =
+            timeForInput(
+                shift.start_time
+            );
+
+        document.getElementById(
+            "shiftEnd"
+        ).value =
+            timeForInput(
+                shift.end_time
+            );
+
+        document.getElementById(
+            "shiftBreak"
+        ).value =
+            shift.break_time ?? 60;
+
+        document.getElementById(
+            "shiftColor"
+        ).value =
+            shift.color_class ||
+            "shift-r";
+
+        document.getElementById(
+            "shiftActive"
+        ).value =
+            shift.active === false
+                ? "false"
+                : "true";
+
+    }else{
+
+        document.getElementById(
+            "shiftModalTitle"
+        ).textContent =
+            "Нова смяна";
+
+        document.getElementById(
+            "shiftName"
+        ).value = "";
+
+        document.getElementById(
+            "shiftShortName"
+        ).value = "";
+
+        document.getElementById(
+            "shiftStart"
+        ).value = "";
+
+        document.getElementById(
+            "shiftEnd"
+        ).value = "";
+
+        document.getElementById(
+            "shiftBreak"
+        ).value = 60;
+
+        document.getElementById(
+            "shiftColor"
+        ).value =
+            "shift-r";
+
+        document.getElementById(
+            "shiftActive"
+        ).value =
+            "true";
+    }
+
+    document
+        .getElementById("shiftModal")
+        .classList.add("show");
+}
+
+
+async function saveShiftType(){
+
+    const id =
+        document.getElementById(
+            "shiftEditId"
+        ).value;
 
     const name =
-        document
-        .getElementById("newShiftName")
-        .value
-        .trim();
+        document.getElementById(
+            "shiftName"
+        ).value.trim();
 
     const shortName =
-        document
-        .getElementById("newShiftShort")
-        .value
-        .trim();
+        document.getElementById(
+            "shiftShortName"
+        ).value.trim();
 
-    const startRaw =
-        document
-        .getElementById("newShiftStart")
-        .value;
+    const start =
+        document.getElementById(
+            "shiftStart"
+        ).value;
 
-    const endRaw =
-        document
-        .getElementById("newShiftEnd")
-        .value;
+    const end =
+        document.getElementById(
+            "shiftEnd"
+        ).value;
 
     const breakTime =
         Number(
-            document
-            .getElementById("newShiftBreak")
-            .value
+            document.getElementById(
+                "shiftBreak"
+            ).value || 0
         );
+
+    const color =
+        document.getElementById(
+            "shiftColor"
+        ).value;
+
+    const active =
+        document.getElementById(
+            "shiftActive"
+        ).value === "true";
 
     if(!name){
 
         showMessage(
-            "Въведи име на смяната.",
-            "error",
-            "shiftsMessage"
+            "Въведете име на смяната.",
+            "error"
         );
 
         return;
     }
-
-    if(
-        shiftTypes.some(
-            s => s.name === name
-        )
-    ){
-
-        showMessage(
-            "Вече има смяна с това име.",
-            "error",
-            "shiftsMessage"
-        );
-
-        return;
-    }
-
-    /*
-        Работна смяна трябва да има начало и край.
-        За О/С/П могат да останат празни.
-    */
-
-    const start =
-        normalizeTimeForDb(startRaw);
-
-    const end =
-        normalizeTimeForDb(endRaw);
 
     const payload = {
 
@@ -2041,206 +3191,85 @@ async function addShiftType(){
         short_name:
             shortName || name,
 
-        start_time:start,
+        start_time:
+            normalizeTimeForDb(start),
 
-        end_time:end,
+        end_time:
+            normalizeTimeForDb(end),
 
         break_time:
-            Number.isFinite(breakTime)
-                ? breakTime
-                : 60,
+            breakTime,
 
         color_class:
-            "shift-r",
+            color,
 
-        active:true
-
+        active:
+            active
     };
 
-    console.log(
-        "Добавяне на смяна:",
-        payload
-    );
 
-    const {
-        data,
-        error
-    } =
-        await supabaseClient
-        .from("shift_types")
-        .insert(payload)
-        .select("*");
+    let error;
 
-    if(error){
 
-        console.error(
-            "ADD SHIFT ERROR:",
+    if(id){
+
+        ({
             error
-        );
+        } =
+            await supabaseClient
+            .from("shift_types")
+            .update(payload)
+            .eq("id",id));
 
-        showMessage(
-            "Грешка при добавяне: " +
-            detailedError(error),
-            "error",
-            "shiftsMessage"
-        );
+    }else{
 
-        return;
+        ({
+            error
+        } =
+            await supabaseClient
+            .from("shift_types")
+            .insert(payload));
+
     }
 
-    console.log(
-        "Добавена смяна:",
-        data
-    );
-
-    document
-        .getElementById("newShiftName")
-        .value = "";
-
-    document
-        .getElementById("newShiftShort")
-        .value = "";
-
-    document
-        .getElementById("newShiftStart")
-        .value = "";
-
-    document
-        .getElementById("newShiftEnd")
-        .value = "";
-
-    document
-        .getElementById("newShiftBreak")
-        .value = "60";
-
-    showMessage(
-        "Смяната е добавена успешно.",
-        "success",
-        "shiftsMessage"
-    );
-
-    await loadShiftTypes();
-
-}
-
-
-/* =========================================================
-   SAVE SHIFT
-========================================================= */
-
-async function saveShiftType(id){
-
-    const name =
-        document
-        .getElementById(`shift-name-${id}`)
-        .value
-        .trim();
-
-    const shortName =
-        document
-        .getElementById(`shift-short-${id}`)
-        .value
-        .trim();
-
-    const start =
-        normalizeTimeForDb(
-            document
-            .getElementById(`shift-start-${id}`)
-            .value
-        );
-
-    const end =
-        normalizeTimeForDb(
-            document
-            .getElementById(`shift-end-${id}`)
-            .value
-        );
-
-    const breakTime =
-        Number(
-            document
-            .getElementById(`shift-break-${id}`)
-            .value
-        );
-
-    const active =
-        document
-        .getElementById(`shift-active-${id}`)
-        .value === "true";
-
-    if(!name){
-
-        showMessage(
-            "Името на смяната не може да е празно.",
-            "error",
-            "shiftsMessage"
-        );
-
-        return;
-    }
-
-    const {
-        error
-    } =
-        await supabaseClient
-        .from("shift_types")
-        .update({
-
-            name:name,
-
-            short_name:
-                shortName || name,
-
-            start_time:start,
-
-            end_time:end,
-
-            break_time:
-                Number.isFinite(breakTime)
-                    ? breakTime
-                    : 60,
-
-            active:active
-
-        })
-        .eq("id",id);
 
     if(error){
+
+        showMessage(
+            "Грешка при запазване: " +
+            detailedError(error),
+            "error"
+        );
 
         console.error(error);
 
-        showMessage(
-            "Грешка при запазване на смяната: " +
-            detailedError(error),
-            "error",
-            "shiftsMessage"
-        );
-
         return;
     }
 
+
+    closeModal("shiftModal");
+
     showMessage(
         "Смяната е запазена.",
-        "success",
-        "shiftsMessage"
+        "success"
     );
 
     await loadShiftTypes();
 }
 
-
-/* =========================================================
-   DELETE SHIFT
-========================================================= */
 
 async function deleteShiftType(id){
 
     const shift =
         shiftTypes.find(
-            s => String(s.id) === String(id)
+            s =>
+                String(s.id) ===
+                String(id)
         );
 
-    if(!shift) return;
+    if(!shift){
+        return;
+    }
 
     if(
         !confirm(
@@ -2260,13 +3289,10 @@ async function deleteShiftType(id){
 
     if(error){
 
-        console.error(error);
-
         showMessage(
             "Грешка при изтриване: " +
             detailedError(error),
-            "error",
-            "shiftsMessage"
+            "error"
         );
 
         return;
@@ -2274,130 +3300,152 @@ async function deleteShiftType(id){
 
     showMessage(
         "Смяната е изтрита.",
-        "success",
-        "shiftsMessage"
+        "success"
     );
 
     await loadShiftTypes();
 }
 
 
-/* =========================================================
-   RENDER SHIFTS TABLE
-========================================================= */
-
 function renderShiftsTable(){
 
-    const body =
+    const container =
         document.getElementById(
-            "shiftsBody"
+            "shiftTypesTable"
         );
 
-    if(!body) return;
+    if(!container){
+        return;
+    }
 
     if(!shiftTypes.length){
 
-        body.innerHTML = `
-            <tr>
-                <td colspan="7">
-                    Няма заредени смени.
-                </td>
-            </tr>
+        container.innerHTML = `
+            <div class="empty">
+                Няма въведени видове смени.
+            </div>
         `;
 
         return;
     }
 
-    body.innerHTML =
-        shiftTypes
-        .map(shift => {
+    container.innerHTML = `
 
-            const id =
-                String(shift.id);
+        <table class="admin-table">
 
-            return `
+            <thead>
+
                 <tr>
 
-                    <td>
-                        <input
-                            id="shift-name-${escapeAttr(id)}"
-                            value="${escapeAttr(shift.name || "")}">
-                    </td>
+                    <th>
+                        Име
+                    </th>
 
-                    <td>
-                        <input
-                            id="shift-short-${escapeAttr(id)}"
-                            value="${escapeAttr(shift.short_name || "")}">
-                    </td>
+                    <th>
+                        Кратко
+                    </th>
 
-                    <td>
-                        <input
-                            type="time"
-                            id="shift-start-${escapeAttr(id)}"
-                            value="${escapeAttr(timeForInput(shift.start_time))}">
-                    </td>
+                    <th>
+                        Начало
+                    </th>
 
-                    <td>
-                        <input
-                            type="time"
-                            id="shift-end-${escapeAttr(id)}"
-                            value="${escapeAttr(timeForInput(shift.end_time))}">
-                    </td>
+                    <th>
+                        Край
+                    </th>
 
-                    <td>
-                        <input
-                            type="number"
-                            min="0"
-                            id="shift-break-${escapeAttr(id)}"
-                            value="${escapeAttr(shift.break_time ?? 60)}">
-                    </td>
+                    <th>
+                        Почивка
+                    </th>
 
-                    <td>
+                    <th>
+                        Статус
+                    </th>
 
-                        <select
-                            id="shift-active-${escapeAttr(id)}">
-
-                            <option
-                                value="true"
-                                ${shift.active !== false ? "selected" : ""}>
-                                Да
-                            </option>
-
-                            <option
-                                value="false"
-                                ${shift.active === false ? "selected" : ""}>
-                                Не
-                            </option>
-
-                        </select>
-
-                    </td>
-
-                    <td>
-
-                        <div class="actions">
-
-                            <button
-                                class="btn btn-success"
-                                onclick='saveShiftType(${JSON.stringify(String(shift.id))})'>
-                                Запази
-                            </button>
-
-                            <button
-                                class="btn btn-danger"
-                                onclick='deleteShiftType(${JSON.stringify(String(shift.id))})'>
-                                Изтрий
-                            </button>
-
-                        </div>
-
-                    </td>
+                    <th>
+                        Действия
+                    </th>
 
                 </tr>
-            `;
 
-        })
-        .join("");
+            </thead>
+
+            <tbody>
+
+                ${shiftTypes.map(
+                    shift => `
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                ${escapeHtml(shift.name)}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                shift.short_name ||
+                                shift.name
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                formatTime(
+                                    shift.start_time
+                                )
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                formatTime(
+                                    shift.end_time
+                                )
+                            )}
+                        </td>
+
+                        <td>
+                            ${shift.break_time ?? 60} мин.
+                        </td>
+
+                        <td>
+
+                            ${
+                                shift.active === false
+                                    ? "Скрита"
+                                    : "Активна"
+                            }
+
+                        </td>
+
+                        <td>
+
+                            <button
+                                class="btn btn-secondary btn-small"
+                                onclick='openShiftModal(${JSON.stringify(String(shift.id))})'
+                            >
+                                ✏️
+                            </button>
+
+                            <button
+                                class="btn btn-danger btn-small"
+                                onclick='deleteShiftType(${JSON.stringify(String(shift.id))})'
+                            >
+                                🗑
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                `
+                ).join("")}
+
+            </tbody>
+
+        </table>
+    `;
 }
 
 
@@ -2428,25 +3476,17 @@ async function loadSchedule(){
             "error"
         );
 
+        schedule = [];
+
         return;
     }
 
     schedule =
         data || [];
 
-    pendingChanges = {};
-
-    updateMonthTitle();
-
     renderAllViews();
-
-    updateStats();
 }
 
-
-/* =========================================================
-   SCHEDULE FIND
-========================================================= */
 
 function getSchedule(
     employee,
@@ -2455,168 +3495,73 @@ function getSchedule(
 
     return schedule.find(
         row =>
-            row.employee === employee &&
-            row.work_date === date
+            String(row.employee) ===
+            String(employee)
+            &&
+            String(row.work_date) ===
+            String(date)
     );
 }
 
 
 /* =========================================================
-   MONTH
+   SHIFT CLASS
 ========================================================= */
 
-function updateMonthTitle(){
+function getDefaultShiftClass(name){
 
-    const title =
-        document.getElementById(
-            "monthTitle"
-        );
+    const n =
+        String(name || "")
+            .toLowerCase()
+            .trim();
 
-    if(!title) return;
-
-    title.textContent =
-        `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
-
-    const statMonth =
-        document.getElementById(
-            "statMonth"
-        );
-
-    if(statMonth){
-
-        statMonth.textContent =
-            `${monthNames[currentDate.getMonth()]} ${currentDate.getFullYear()}`;
-
-    }
-}
-
-
-function changeMonth(direction){
-
-    currentDate =
-        new Date(
-            currentDate.getFullYear(),
-            currentDate.getMonth() + direction,
-            1
-        );
-
-    updateMonthTitle();
-
-    renderAllViews();
-
-    updateStats();
-}
-
-
-/* =========================================================
-   DAYS
-========================================================= */
-
-function getDays(){
-
-    const result = [];
-
-    const total =
-        daysInCurrentMonth();
-
-    for(let day=1; day<=total; day++){
-
-        const date =
-            new Date(
-                currentDate.getFullYear(),
-                currentDate.getMonth(),
-                day
-            );
-
-        result.push({
-            day:day,
-            date:dateString(date),
-            dayName:dayNames[date.getDay()]
-        });
-
+    if(
+        n.includes("1-ва") ||
+        n.includes("1ва")
+    ){
+        return "shift-first";
     }
 
-    return result;
-}
-
-
-/* =========================================================
-   HEADER
-========================================================= */
-
-function renderScheduleHeader(
-    elementId
-){
-
-    const head =
-        document.getElementById(
-            elementId
-        );
-
-    if(!head) return;
-
-    const days =
-        getDays();
-
-    head.innerHTML = `
-        <tr>
-
-            <th class="employee-cell">
-                Служител
-            </th>
-
-            ${days.map(d => {
-
-                const today =
-                    d.date ===
-                    dateString(new Date());
-
-                return `
-                    <th
-                        class="${today ? "today" : ""}">
-
-                        <div class="day-number">
-                            ${d.day}
-                        </div>
-
-                        <div class="day-name">
-                            ${d.dayName}
-                        </div>
-
-                    </th>
-                `;
-
-            }).join("")}
-
-        </tr>
-    `;
-}
-
-
-/* =========================================================
-   RENDER ALL VIEWS
-========================================================= */
-
-function renderAllViews(){
-
-    renderScheduleHeader("myHead");
-    renderScheduleHeader("allHead");
-    renderScheduleHeader("adminHead");
-
-    renderMySchedule();
-    renderAllSchedule();
-
-    if(isAdmin(currentUser)){
-        renderAdminSchedule();
+    if(
+        n.includes("2-ра") ||
+        n.includes("2ра")
+    ){
+        return "shift-second";
     }
 
-    renderLegends();
+    if(n === "р"){
+        return "shift-r";
+    }
+
+    if(n === "ц"){
+        return "shift-c";
+    }
+
+    if(n === "о"){
+        return "shift-leave";
+    }
+
+    if(n === "с"){
+        return "shift-absence";
+    }
+
+    if(n === "п"){
+        return "shift-rest";
+    }
+
+    return "shift-r";
 }
 
 
-/* =========================================================
-   SHIFT DISPLAY
-========================================================= */
+function getShiftByName(name){
+
+    return shiftTypes.find(
+        shift =>
+            String(shift.name) ===
+            String(name)
+    );
+}
+
 
 function renderShift(
     shiftName
@@ -2625,244 +3570,318 @@ function renderShift(
     if(!shiftName){
 
         return `
-            <div class="shift-cell shift-empty">
-                —
-            </div>
+            <span
+                style="
+                    color:var(--border);
+                    font-size:18px;
+                "
+            >
+                ·
+            </span>
         `;
-
     }
 
     const shift =
-        getShift(shiftName);
+        getShiftByName(
+            shiftName
+        );
 
-    if(!shift){
+    const short =
+        shift?.short_name ||
+        shiftName;
 
-        return `
-            <div
-                class="shift-cell shift-empty"
-                title="Смяната не е намерена: ${escapeAttr(shiftName)}">
+    const color =
+        shift?.color_class ||
+        getDefaultShiftClass(
+            shiftName
+        );
 
-                ${escapeHtml(shiftName)}
-
-            </div>
-        `;
-
-    }
-
-    const css =
-        shift.color_class ||
-        getDefaultShiftClass(shift);
-
-    let tooltip =
-        shift.name || "";
+    let time = "";
 
     if(
-        shift.start_time &&
-        shift.end_time
+        shift?.start_time &&
+        shift?.end_time
     ){
 
-        tooltip +=
-            ` | ${formatTime(shift.start_time)}–${formatTime(shift.end_time)}`;
-
-        if(shift.break_time != null){
-
-            tooltip +=
-                ` | почивка ${shift.break_time} мин.`;
-
-        }
-
+        time =
+            `${formatTime(shift.start_time)}–${formatTime(shift.end_time)}`;
     }
 
     return `
-        <div
-            class="shift-cell ${escapeAttr(css)}"
-            title="${escapeAttr(tooltip)}">
+        <span
+            class="shift ${escapeAttr(color)}"
+        >
 
-            ${escapeHtml(
-                shift.short_name ||
-                shift.name
-            )}
+            ${escapeHtml(short)}
 
-        </div>
+            ${
+                time
+                    ? `<small>${escapeHtml(time)}</small>`
+                    : ""
+            }
+
+        </span>
     `;
 }
 
 
-function getDefaultShiftClass(
-    shift
+/* =========================================================
+   SCHEDULE TABLE
+========================================================= */
+
+function buildScheduleTable(
+    employeeNames,
+    editable=false
 ){
 
-    const name =
-        String(
-            shift.name || ""
-        ).toLowerCase();
-
-    if(
-        name.includes("1-ва") ||
-        name.includes("1ва")
-    ){
-        return "shift-first";
-    }
-
-    if(
-        name.includes("2-ра") ||
-        name.includes("2ра")
-    ){
-        return "shift-second";
-    }
-
-    if(name === "р"){
-        return "shift-r";
-    }
-
-    if(name === "ц"){
-        return "shift-c";
-    }
-
-    if(name === "о"){
-        return "shift-leave";
-    }
-
-    if(name === "с"){
-        return "shift-absence";
-    }
-
-    if(name === "п"){
-        return "shift-rest";
-    }
-
-    return "shift-r";
-}
-
-
-/* =========================================================
-   MY SCHEDULE
-========================================================= */
-
-function renderMySchedule(){
-
-    const body =
-        document.getElementById(
-            "myBody"
-        );
-
-    if(!body || !currentUser) return;
-
     const days =
         getDays();
 
-    body.innerHTML = `
-        <tr>
+    if(!employeeNames.length){
 
-            <td class="employee-cell">
-                ${escapeHtml(currentUser.name)}
-            </td>
-
-            ${days.map(d => {
-
-                const row =
-                    getSchedule(
-                        currentUser.name,
-                        d.date
-                    );
-
-                const today =
-                    d.date ===
-                    dateString(new Date());
-
-                return `
-                    <td
-                        class="${today ? "today" : ""}">
-
-                        ${renderShift(
-                            row?.shift_type || ""
-                        )}
-
-                    </td>
-                `;
-
-            }).join("")}
-
-        </tr>
-    `;
-}
-
-
-/* =========================================================
-   ALL SCHEDULE
-========================================================= */
-
-function renderAllSchedule(){
-
-    const body =
-        document.getElementById(
-            "allBody"
-        );
-
-    if(!body) return;
-
-    const days =
-        getDays();
-
-    const activeUsers =
-        users.filter(
-            u => u.active !== false
-        );
-
-    if(!activeUsers.length){
-
-        body.innerHTML = `
-            <tr>
-                <td colspan="${days.length + 1}">
-                    Няма служители.
-                </td>
-            </tr>
+        return `
+            <div class="empty">
+                Няма служители.
+            </div>
         `;
-
-        return;
     }
 
-    body.innerHTML =
-        activeUsers
-        .map(user => {
+    const head = `
 
-            return `
-                <tr>
+        <thead>
 
-                    <td class="employee-cell">
-                        ${escapeHtml(user.name)}
-                    </td>
+            <tr>
 
-                    ${days.map(d => {
+                <th>
+                    Служител
+                </th>
 
-                        const row =
-                            getSchedule(
-                                user.name,
-                                d.date
+                ${days.map(
+                    d => {
+
+                        const date =
+                            new Date(
+                                d.date +
+                                "T00:00:00"
+                            );
+
+                        const weekday =
+                            date.toLocaleDateString(
+                                "bg-BG",
+                                {
+                                    weekday:"short"
+                                }
                             );
 
                         const today =
                             d.date ===
-                            dateString(new Date());
+                            dateString(
+                                new Date()
+                            );
 
                         return `
-                            <td
-                                class="${today ? "today" : ""}">
 
-                                ${renderShift(
-                                    row?.shift_type || ""
-                                )}
+                            <th
+                                class="${today ? "today" : ""}"
+                            >
 
-                            </td>
+                                <span class="day-number">
+                                    ${d.day}
+                                </span>
+
+                                <span class="day-name">
+                                    ${escapeHtml(weekday)}
+                                </span>
+
+                            </th>
+
                         `;
+                    }
+                ).join("")}
 
-                    }).join("")}
+            </tr>
+
+        </thead>
+    `;
+
+
+    const body = employeeNames.map(
+        employee => {
+
+            return `
+
+                <tr>
+
+                    <td class="employee-cell">
+                        ${escapeHtml(employee)}
+                    </td>
+
+                    ${days.map(
+                        d => {
+
+                            const original =
+                                getSchedule(
+                                    employee,
+                                    d.date
+                                );
+
+                            const key =
+                                `${employee}|${d.date}`;
+
+                            const currentValue =
+                                Object.prototype.hasOwnProperty.call(
+                                    pendingChanges,
+                                    key
+                                )
+                                ? pendingChanges[key]
+                                : (
+                                    original?.shift_type ||
+                                    ""
+                                );
+
+                            const today =
+                                d.date ===
+                                dateString(
+                                    new Date()
+                                );
+
+                            if(editable){
+
+                                return `
+
+                                    <td
+                                        class="admin-cell ${today ? "today" : ""}"
+                                    >
+
+                                        <select
+                                            data-employee="${escapeAttr(employee)}"
+                                            data-date="${escapeAttr(d.date)}"
+                                            onchange="setPendingChange(this)"
+                                        >
+
+                                            ${buildShiftOptions(
+                                                currentValue,
+                                                true
+                                            )}
+
+                                        </select>
+
+                                    </td>
+                                `;
+                            }
+
+                            return `
+
+                                <td
+                                    class="${today ? "today" : ""}"
+                                >
+                                    ${renderShift(
+                                        currentValue
+                                    )}
+                                </td>
+                            `;
+
+                        }
+                    ).join("")}
 
                 </tr>
             `;
 
-        })
-        .join("");
+        }
+    ).join("");
+
+
+    return `
+        <table>
+
+            ${head}
+
+            <tbody>
+                ${body}
+            </tbody>
+
+        </table>
+    `;
+}
+
+
+/* =========================================================
+   MY VIEW
+========================================================= */
+
+function renderMySchedule(){
+
+    const container =
+        document.getElementById(
+            "mySchedule"
+        );
+
+    if(!container || !currentUser){
+        return;
+    }
+
+    container.innerHTML =
+        buildScheduleTable(
+            [currentUser.name],
+            false
+        );
+
+    updateStats();
+}
+
+
+/* =========================================================
+   ALL VIEW
+========================================================= */
+
+function getVisibleUsers(){
+
+    const month =
+        currentDate.getMonth() + 1;
+
+    return users
+        .filter(
+            u => {
+
+                if(u.active === false){
+                    return false;
+                }
+
+                if(
+                    u.september_only === true ||
+                    u.september_only === "true" ||
+                    u.september_only === 1 ||
+                    u.september_only === "1"
+                ){
+
+                    return month === 9;
+                }
+
+                return true;
+            }
+        )
+        .map(
+            u => u.name
+        );
+}
+
+
+function renderAllSchedule(){
+
+    const container =
+        document.getElementById(
+            "allSchedule"
+        );
+
+    if(!container){
+        return;
+    }
+
+    container.innerHTML =
+        buildScheduleTable(
+            getVisibleUsers(),
+            false
+        );
 }
 
 
@@ -2872,101 +3891,181 @@ function renderAllSchedule(){
 
 function renderAdminSchedule(){
 
+    const head =
+        document.getElementById(
+            "adminHead"
+        );
+
     const body =
         document.getElementById(
             "adminBody"
         );
 
-    if(!body) return;
+    if(!head || !body){
+        return;
+    }
 
     const days =
         getDays();
 
     const activeUsers =
-        users.filter(
-            u => u.active !== false
-        );
+        getVisibleUsers();
+
+    head.innerHTML = `
+
+        <tr>
+
+            <th>
+                Служител
+            </th>
+
+            ${days.map(
+                d => {
+
+                    const date =
+                        new Date(
+                            d.date +
+                            "T00:00:00"
+                        );
+
+                    const weekday =
+                        date.toLocaleDateString(
+                            "bg-BG",
+                            {
+                                weekday:"short"
+                            }
+                        );
+
+                    const today =
+                        d.date ===
+                        dateString(
+                            new Date()
+                        );
+
+                    return `
+
+                        <th
+                            class="${today ? "today" : ""}"
+                        >
+
+                            <span class="day-number">
+                                ${d.day}
+                            </span>
+
+                            <span class="day-name">
+                                ${escapeHtml(weekday)}
+                            </span>
+
+                        </th>
+                    `;
+                }
+            ).join("")}
+
+        </tr>
+    `;
+
 
     if(!activeUsers.length){
 
         body.innerHTML = `
+
             <tr>
-                <td colspan="${days.length + 1}">
+
+                <td
+                    colspan="${days.length + 1}"
+                >
                     Няма служители.
                 </td>
+
             </tr>
+
         `;
 
         return;
     }
 
+
     body.innerHTML =
         activeUsers
-        .map(user => {
+        .map(
+            employee => {
 
-            return `
-                <tr>
+                return `
 
-                    <td class="employee-cell">
-                        ${escapeHtml(user.name)}
-                    </td>
+                    <tr>
 
-                    ${days.map(d => {
+                        <td class="employee-cell">
+                            ${escapeHtml(employee)}
+                        </td>
 
-                        const original =
-                            getSchedule(
-                                user.name,
-                                d.date
-                            );
+                        ${days.map(
+                            d => {
 
-                        const key =
-                            `${user.name}|${d.date}`;
+                                const original =
+                                    getSchedule(
+                                        employee,
+                                        d.date
+                                    );
 
-                        const currentValue =
-                            Object.prototype.hasOwnProperty.call(
-                                pendingChanges,
-                                key
-                            )
-                            ? pendingChanges[key]
-                            : (
-                                original?.shift_type || ""
-                            );
+                                const key =
+                                    `${employee}|${d.date}`;
 
-                        const today =
-                            d.date ===
-                            dateString(new Date());
+                                const currentValue =
+                                    Object.prototype.hasOwnProperty.call(
+                                        pendingChanges,
+                                        key
+                                    )
+                                    ? pendingChanges[key]
+                                    : (
+                                        original?.shift_type ||
+                                        ""
+                                    );
 
-                        return `
-                            <td
-                                class="admin-cell ${today ? "today" : ""}">
+                                const today =
+                                    d.date ===
+                                    dateString(
+                                        new Date()
+                                    );
 
-                                <select
-                                    data-employee="${escapeAttr(user.name)}"
-                                    data-date="${escapeAttr(d.date)}"
-                                    onchange="setPendingChange(this)">
+                                return `
 
-                                    ${buildShiftOptions(
-                                        currentValue,
-                                        true
-                                    )}
+                                    <td
+                                        class="${today ? "today" : ""}"
+                                    >
 
-                                </select>
+                                        <select
+                                            data-employee="${escapeAttr(employee)}"
+                                            data-date="${escapeAttr(d.date)}"
+                                            onchange="setPendingChange(this)"
+                                        >
 
-                            </td>
-                        `;
+                                            ${buildShiftOptions(
+                                                currentValue,
+                                                true
+                                            )}
 
-                    }).join("")}
+                                        </select>
 
-                </tr>
-            `;
+                                    </td>
+                                `;
 
-        })
+                            }
+                        ).join("")}
+
+                    </tr>
+
+                `;
+            }
+        )
         .join("");
+
+
+    updatePendingInfo();
 }
 
 
 /* =========================================================
-   PENDING SCHEDULE CHANGE
+   PENDING CHANGES
 ========================================================= */
 
 function setPendingChange(select){
@@ -2982,6 +4081,37 @@ function setPendingChange(select){
 
     pendingChanges[key] =
         select.value;
+
+    updatePendingInfo();
+}
+
+
+function updatePendingInfo(){
+
+    const element =
+        document.getElementById(
+            "pendingInfo"
+        );
+
+    if(!element){
+        return;
+    }
+
+    const count =
+        Object.keys(
+            pendingChanges
+        ).length;
+
+    if(!count){
+
+        element.textContent =
+            "Няма незапазени промени.";
+
+        return;
+    }
+
+    element.textContent =
+        `Има ${count} незапазени промени.`;
 }
 
 
@@ -2991,12 +4121,12 @@ function setPendingChange(select){
 
 async function saveOneCell(
     employee,
-    date,
+    workDate,
     shiftName
 ){
 
     /*
-        Празно = изтриване
+       Празно поле = изтриване
     */
 
     if(!shiftName){
@@ -3008,7 +4138,7 @@ async function saveOneCell(
             .from("work_schedule")
             .delete()
             .eq("employee",employee)
-            .eq("work_date",date);
+            .eq("work_date",workDate);
 
         if(error){
             throw error;
@@ -3019,24 +4149,28 @@ async function saveOneCell(
 
 
     const shift =
-        getShift(shiftName);
+        getShiftByName(
+            shiftName
+        );
 
     if(!shift){
 
         throw new Error(
-            `Смяната "${shiftName}" не съществува в shift_types.`
+            `Смяната "${shiftName}" не съществува.`
         );
-
     }
 
 
     const payload = {
 
-        employee:employee,
+        employee:
+            employee,
 
-        work_date:date,
+        work_date:
+            workDate,
 
-        shift_type:shiftName,
+        shift_type:
+            shift.name,
 
         start_time:
             normalizeTimeForDb(
@@ -3050,82 +4184,83 @@ async function saveOneCell(
 
         break_time:
             shift.break_time ?? 60
-
     };
 
 
-    /*
-        Не използваме upsert,
-        защото може да няма unique constraint.
-    */
-
     const {
         data:existing,
-        error:findError
+        error:selectError
     } =
         await supabaseClient
         .from("work_schedule")
-        .select("employee,work_date")
+        .select("*")
         .eq("employee",employee)
-        .eq("work_date",date)
+        .eq("work_date",workDate)
         .limit(1);
 
-    if(findError){
-        throw findError;
+
+    if(selectError){
+        throw selectError;
     }
 
 
-    if(existing && existing.length > 0){
+    if(
+        existing &&
+        existing.length
+    ){
 
         const {
-            error:updateError
+            error
         } =
             await supabaseClient
             .from("work_schedule")
             .update(payload)
-            .eq("employee",employee)
-            .eq("work_date",date);
+            .eq(
+                "id",
+                existing[0].id
+            );
 
-        if(updateError){
-            throw updateError;
+        if(error){
+            throw error;
         }
 
     }else{
 
         const {
-            error:insertError
+            error
         } =
             await supabaseClient
             .from("work_schedule")
             .insert(payload);
 
-        if(insertError){
-            throw insertError;
+        if(error){
+            throw error;
         }
-
     }
-
 }
 
 
 /* =========================================================
-   SAVE ALL CHANGES
+   SAVE ALL
 ========================================================= */
 
-async function saveAllScheduleChanges(){
+async function saveAllPending(){
 
-    const keys =
-        Object.keys(pendingChanges);
+    const entries =
+        Object.entries(
+            pendingChanges
+        );
 
-    if(!keys.length){
+    if(!entries.length){
 
         showMessage(
-            "Няма промени за записване.",
-            "info"
+            "Няма промени за запис.",
+            "error"
         );
 
         return;
     }
+
 
     const scrollX =
         window.scrollX;
@@ -3133,68 +4268,75 @@ async function saveAllScheduleChanges(){
     const scrollY =
         window.scrollY;
 
+
+    showMessage(
+        "Запазвам промените...",
+        "success"
+    );
+
+
     try{
 
-        for(const key of keys){
+        for(
+            const [
+                key,
+                value
+            ]
+            of entries
+        ){
 
             const separator =
                 key.lastIndexOf("|");
 
             const employee =
-                key.substring(
+                key.slice(
                     0,
                     separator
                 );
 
             const date =
-                key.substring(
+                key.slice(
                     separator + 1
                 );
-
-            const shiftName =
-                pendingChanges[key];
 
             await saveOneCell(
                 employee,
                 date,
-                shiftName
+                value
             );
-
         }
 
-        showMessage(
-            `Записани са ${keys.length} промени.`,
-            "success"
-        );
 
         pendingChanges = {};
 
         await loadSchedule();
 
+        renderAdminSchedule();
+
         window.scrollTo(
             scrollX,
             scrollY
+        );
+
+        showMessage(
+            "Всички промени са запазени успешно.",
+            "success"
         );
 
     }catch(error){
 
         console.error(
-            "SAVE SCHEDULE ERROR:",
+            "SAVE ERROR:",
             error
         );
 
         showMessage(
-            "Грешка при записване: " +
+            "Грешка при запазване: " +
             detailedError(error),
             "error"
         );
 
-        window.scrollTo(
-            scrollX,
-            scrollY
-        );
     }
-
 }
 
 
@@ -3205,352 +4347,437 @@ async function saveAllScheduleChanges(){
 function updateStats(){
 
     if(!currentUser){
-
         return;
     }
 
-    const prefix =
-        getMonthPrefix();
+    const days =
+        getDays();
 
-    const myRows =
-        schedule.filter(
-            row =>
-                row.employee === currentUser.name &&
-                String(row.work_date).startsWith(prefix)
-        );
+    let hours = 0;
 
-    const workingRows =
-        myRows.filter(
-            row =>
-                isWorkingShift(
-                    getShift(row.shift_type)
-                )
-        );
+    let workDays = 0;
 
-    document
-        .getElementById("statShifts")
-        .textContent =
-        workingRows.length;
+    let restDays = 0;
+
+    let leaveDays = 0;
 
 
-    let minutes = 0;
+    days.forEach(
+        d => {
 
-    workingRows.forEach(row => {
+            const row =
+                getSchedule(
+                    currentUser.name,
+                    d.date
+                );
 
-        const shift =
-            getShift(row.shift_type);
+            if(!row){
+                return;
+            }
 
-        if(!shift) return;
+            const shift =
+                getShiftByName(
+                    row.shift_type
+                );
 
-        const start =
-            timeToMinutes(
-                shift.start_time
-            );
+            if(!shift){
+                return;
+            }
 
-        const end =
-            timeToMinutes(
+
+            const name =
+                String(
+                    shift.name
+                ).toLowerCase();
+
+
+            if(
+                name === "п"
+            ){
+
+                restDays++;
+
+                return;
+            }
+
+
+            if(
+                name === "о"
+            ){
+
+                leaveDays++;
+
+                return;
+            }
+
+
+            if(
+                name === "с"
+            ){
+                return;
+            }
+
+
+            if(
+                shift.start_time &&
                 shift.end_time
-            );
+            ){
 
-        if(
-            start == null ||
-            end == null
-        ){
-            return;
+                const start =
+                    parseMinutes(
+                        shift.start_time
+                    );
+
+                const end =
+                    parseMinutes(
+                        shift.end_time
+                    );
+
+                let total =
+                    end - start;
+
+                if(
+                    total < 0
+                ){
+                    total += 24*60;
+                }
+
+                total -=
+                    Number(
+                        shift.break_time || 0
+                    );
+
+                if(total < 0){
+                    total = 0;
+                }
+
+                hours +=
+                    total / 60;
+
+                workDays++;
+            }
+
         }
-
-        let diff =
-            end - start;
-
-        if(diff < 0){
-            diff += 24 * 60;
-        }
-
-        diff -=
-            Number(
-                shift.break_time || 0
-            );
-
-        if(diff > 0){
-            minutes += diff;
-        }
-
-    });
+    );
 
 
-    document
-        .getElementById("statHours")
-        .textContent =
-        formatMinutes(
-            minutes
-        );
+    document.getElementById(
+        "statHours"
+    ).textContent =
+        formatHours(hours);
+
+    document.getElementById(
+        "statDays"
+    ).textContent =
+        workDays;
+
+    document.getElementById(
+        "statRest"
+    ).textContent =
+        restDays;
+
+    document.getElementById(
+        "statLeave"
+    ).textContent =
+        leaveDays;
 }
 
 
-function timeToMinutes(value){
+function parseMinutes(value){
 
-    if(!value){
-        return null;
+    const str =
+        formatTime(value);
+
+    if(!str){
+        return 0;
     }
 
-    const parts =
-        String(value)
+    const [
+        h,
+        m
+    ] =
+        str
         .split(":")
         .map(Number);
 
-    if(parts.length < 2){
-        return null;
-    }
-
-    return (
-        parts[0] * 60 +
-        parts[1]
-    );
+    return h*60+m;
 }
 
 
-function formatMinutes(minutes){
+function formatHours(value){
 
-    const hours =
-        Math.floor(minutes / 60);
-
-    const mins =
-        minutes % 60;
-
-    if(!hours && !mins){
-        return "0 ч";
-    }
-
-    if(!mins){
-        return `${hours} ч`;
-    }
-
-    return `${hours} ч ${mins} мин`;
-}
-
-
-/* =========================================================
-   USERS ADMIN
-========================================================= */
-
-async function addUser(){
-
-    const name =
-        document
-        .getElementById("newUserName")
-        .value
-        .trim();
-
-    const password =
-        document
-        .getElementById("newUserPassword")
-        .value;
-
-    const admin =
-        document
-        .getElementById("newUserAdmin")
-        .value === "true";
-
-    const active =
-        document
-        .getElementById("newUserActive")
-        .value === "true";
-
-    if(!name || !password){
-
-        showMessage(
-            "Въведи име и парола.",
-            "error",
-            "usersMessage"
-        );
-
-        return;
-    }
+    const rounded =
+        Math.round(
+            value * 100
+        ) / 100;
 
     if(
-        users.some(
-            u => u.name === name
-        )
+        Number.isInteger(rounded)
     ){
 
-        showMessage(
-            "Вече има потребител с това име.",
-            "error",
-            "usersMessage"
-        );
+        return `${rounded}ч`;
 
-        return;
     }
 
-    const {
-        error
-    } =
-        await supabaseClient
-        .from("app_users")
-        .insert({
-
-            name:name,
-
-            password:password,
-
-            admin:admin,
-
-            active:active,
-
-            september_only:false
-
-        });
-
-    if(error){
-
-        console.error(error);
-
-        showMessage(
-            "Грешка при добавяне на потребителя: " +
-            detailedError(error),
-            "error",
-            "usersMessage"
-        );
-
-        return;
-    }
-
-    showMessage(
-        "Потребителят е добавен.",
-        "success",
-        "usersMessage"
-    );
-
-    document
-        .getElementById("newUserName")
-        .value = "";
-
-    document
-        .getElementById("newUserPassword")
-        .value = "";
-
-    await loadUsers();
-
-    renderAllViews();
+    return `${rounded.toFixed(2)}ч`;
 }
 
 
 /* =========================================================
-   SAVE USER
+   USERS CRUD
 ========================================================= */
 
-async function saveUser(id){
+function openUserModal(id=null){
+
+    document.getElementById(
+        "userEditId"
+    ).value =
+        id || "";
+
+
+    if(id){
+
+        const user =
+            users.find(
+                u =>
+                    String(u.id) ===
+                    String(id)
+            );
+
+        if(!user){
+            return;
+        }
+
+        document.getElementById(
+            "userModalTitle"
+        ).textContent =
+            "Редактиране на служител";
+
+        document.getElementById(
+            "userName"
+        ).value =
+            user.name || "";
+
+        document.getElementById(
+            "userPassword"
+        ).value =
+            user.password || "";
+
+        document.getElementById(
+            "userAdmin"
+        ).value =
+            isAdmin(user)
+                ? "true"
+                : "false";
+
+        document.getElementById(
+            "userActive"
+        ).value =
+            user.active === false
+                ? "false"
+                : "true";
+
+        document.getElementById(
+            "userSeptemberOnly"
+        ).value =
+            (
+                user.september_only === true ||
+                user.september_only === "true" ||
+                user.september_only === 1 ||
+                user.september_only === "1"
+            )
+                ? "true"
+                : "false";
+
+    }else{
+
+        document.getElementById(
+            "userModalTitle"
+        ).textContent =
+            "Нов служител";
+
+        document.getElementById(
+            "userName"
+        ).value = "";
+
+        document.getElementById(
+            "userPassword"
+        ).value = "";
+
+        document.getElementById(
+            "userAdmin"
+        ).value = "false";
+
+        document.getElementById(
+            "userActive"
+        ).value = "true";
+
+        document.getElementById(
+            "userSeptemberOnly"
+        ).value = "false";
+    }
+
+
+    document
+        .getElementById("userModal")
+        .classList.add("show");
+}
+
+
+async function saveUser(){
+
+    const id =
+        document.getElementById(
+            "userEditId"
+        ).value;
 
     const name =
-        document
-        .getElementById(`user-name-${id}`)
-        .value
-        .trim();
+        document.getElementById(
+            "userName"
+        ).value.trim();
 
     const password =
-        document
-        .getElementById(`user-password-${id}`)
-        .value;
+        document.getElementById(
+            "userPassword"
+        ).value;
 
     const admin =
-        document
-        .getElementById(`user-admin-${id}`)
-        .value === "true";
+        document.getElementById(
+            "userAdmin"
+        ).value === "true";
 
     const active =
-        document
-        .getElementById(`user-active-${id}`)
-        .value === "true";
+        document.getElementById(
+            "userActive"
+        ).value === "true";
+
+    const septemberOnly =
+        document.getElementById(
+            "userSeptemberOnly"
+        ).value === "true";
 
 
     if(!name){
 
         showMessage(
-            "Името не може да е празно.",
-            "error",
-            "usersMessage"
+            "Въведете име.",
+            "error"
         );
 
         return;
     }
 
 
-    const {
-        error
-    } =
-        await supabaseClient
-        .from("app_users")
-        .update({
+    if(!password){
 
-            name:name,
+        showMessage(
+            "Въведете парола.",
+            "error"
+        );
 
-            password:password,
+        return;
+    }
 
-            admin:admin,
 
-            active:active
+    const payload = {
 
-        })
-        .eq("id",id);
+        name:name,
+
+        password:password,
+
+        admin:admin,
+
+        active:active,
+
+        september_only:
+            septemberOnly
+    };
+
+
+    let error;
+
+
+    if(id){
+
+        ({
+            error
+        } =
+            await supabaseClient
+            .from("app_users")
+            .update(payload)
+            .eq("id",id));
+
+    }else{
+
+        ({
+            error
+        } =
+            await supabaseClient
+            .from("app_users")
+            .insert(payload));
+    }
 
 
     if(error){
 
-        console.error(error);
-
         showMessage(
-            "Грешка при запазване на потребителя: " +
+            "Грешка: " +
             detailedError(error),
-            "error",
-            "usersMessage"
+            "error"
         );
+
+        console.error(error);
 
         return;
     }
 
 
+    closeModal(
+        "userModal"
+    );
+
     showMessage(
-        "Потребителят е запазен.",
-        "success",
-        "usersMessage"
+        "Служителят е запазен.",
+        "success"
     );
 
     await loadUsers();
 
-    renderAllViews();
+    if(currentUser){
+
+        const updated =
+            users.find(
+                u =>
+                    String(u.id) ===
+                    String(currentUser.id)
+            );
+
+        if(updated){
+            currentUser = updated;
+        }
+    }
+
+    renderUsersTable();
 }
 
-
-/* =========================================================
-   DELETE USER
-========================================================= */
 
 async function deleteUser(id){
 
     const user =
         users.find(
-            u => String(u.id) === String(id)
+            u =>
+                String(u.id) ===
+                String(id)
         );
 
     if(!user){
         return;
     }
 
-    if(
-        String(user.id) ===
-        String(currentUser.id)
-    ){
-
-        alert(
-            "Не можеш да изтриеш собствения си профил."
-        );
-
-        return;
-    }
 
     if(
         !confirm(
-            `Да изтрия ли потребителя "${user.name}"?`
+            `Да изтрия ли "${user.name}"?`
         )
     ){
         return;
@@ -3568,13 +4795,10 @@ async function deleteUser(id){
 
     if(error){
 
-        console.error(error);
-
         showMessage(
             "Грешка при изтриване: " +
             detailedError(error),
-            "error",
-            "usersMessage"
+            "error"
         );
 
         return;
@@ -3582,135 +4806,159 @@ async function deleteUser(id){
 
 
     showMessage(
-        "Потребителят е изтрит.",
-        "success",
-        "usersMessage"
+        "Служителят е изтрит.",
+        "success"
     );
+
 
     await loadUsers();
 
-    renderAllViews();
+    renderUsersTable();
 }
 
 
-/* =========================================================
-   RENDER USERS
-========================================================= */
-
 function renderUsersTable(){
 
-    const body =
+    const container =
         document.getElementById(
-            "usersBody"
+            "usersTable"
         );
 
-    if(!body) return;
+    if(!container){
+        return;
+    }
+
 
     if(!users.length){
 
-        body.innerHTML = `
-            <tr>
-                <td colspan="5">
-                    Няма потребители.
-                </td>
-            </tr>
+        container.innerHTML = `
+            <div class="empty">
+                Няма служители.
+            </div>
         `;
 
         return;
     }
 
-    body.innerHTML =
-        users.map(user => {
 
-            const id =
-                String(user.id);
+    container.innerHTML = `
 
-            return `
+        <table class="admin-table">
+
+            <thead>
+
                 <tr>
 
-                    <td>
+                    <th>
+                        Име
+                    </th>
 
-                        <input
-                            id="user-name-${escapeAttr(id)}"
-                            value="${escapeAttr(user.name || "")}">
+                    <th>
+                        Роля
+                    </th>
 
-                    </td>
+                    <th>
+                        Статус
+                    </th>
 
-                    <td>
+                    <th>
+                        Септември
+                    </th>
 
-                        <input
-                            id="user-password-${escapeAttr(id)}"
-                            value="${escapeAttr(user.password || "")}">
-
-                    </td>
-
-                    <td>
-
-                        <select
-                            id="user-admin-${escapeAttr(id)}">
-
-                            <option
-                                value="false"
-                                ${!isAdmin(user) ? "selected" : ""}>
-                                ${escapeHtml(getRoleText(user))}
-                            </option>
-
-                            <option
-                                value="true"
-                                ${isAdmin(user) ? "selected" : ""}>
-                                Администратор
-                            </option>
-
-                        </select>
-
-                    </td>
-
-                    <td>
-
-                        <select
-                            id="user-active-${escapeAttr(id)}">
-
-                            <option
-                                value="true"
-                                ${user.active !== false ? "selected" : ""}>
-                                Да
-                            </option>
-
-                            <option
-                                value="false"
-                                ${user.active === false ? "selected" : ""}>
-                                Не
-                            </option>
-
-                        </select>
-
-                    </td>
-
-                    <td>
-
-                        <div class="actions">
-
-                            <button
-                                class="btn btn-success"
-                                onclick='saveUser(${JSON.stringify(id)})'>
-                                Запази
-                            </button>
-
-                            <button
-                                class="btn btn-danger"
-                                onclick='deleteUser(${JSON.stringify(id)})'>
-                                Изтрий
-                            </button>
-
-                        </div>
-
-                    </td>
+                    <th>
+                        Действия
+                    </th>
 
                 </tr>
-            `;
 
-        })
-        .join("");
+            </thead>
+
+
+            <tbody>
+
+                ${users.map(
+                    user => `
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                ${escapeHtml(user.name)}
+                            </strong>
+                        </td>
+
+
+                        <td>
+
+                            <span class="user-role">
+
+                                ${
+                                    isAdmin(user)
+                                        ? "Администратор"
+                                        : "Служител"
+                                }
+
+                            </span>
+
+                        </td>
+
+
+                        <td>
+
+                            ${
+                                user.active === false
+                                    ? "Неактивен"
+                                    : "Активен"
+                            }
+
+                        </td>
+
+
+                        <td>
+
+                            ${
+                                (
+                                    user.september_only === true ||
+                                    user.september_only === "true" ||
+                                    user.september_only === 1 ||
+                                    user.september_only === "1"
+                                )
+                                    ? "Само септември"
+                                    : "Всички месеци"
+                            }
+
+                        </td>
+
+
+                        <td>
+
+                            <button
+                                class="btn btn-secondary btn-small"
+                                onclick='openUserModal(${JSON.stringify(String(user.id))})'
+                            >
+                                ✏️
+                            </button>
+
+
+                            <button
+                                class="btn btn-danger btn-small"
+                                onclick='deleteUser(${JSON.stringify(String(user.id))})'
+                            >
+                                🗑
+                            </button>
+
+                        </td>
+
+                    </tr>
+
+                `
+                ).join("")}
+
+            </tbody>
+
+        </table>
+
+    `;
 }
 
 
@@ -3720,68 +4968,64 @@ function renderUsersTable(){
 
 function renderLegends(){
 
-    renderLegend(
-        "myLegend"
-    );
-
-    renderLegend(
-        "allLegend"
-    );
-}
-
-
-function renderLegend(
-    elementId
-){
-
-    const element =
-        document.getElementById(
-            elementId
-        );
-
-    if(!element) return;
-
-    if(!shiftTypes.length){
-
-        element.innerHTML =
-            "Няма заредени смени.";
-
-        return;
-    }
-
-    element.innerHTML =
+    const html =
         shiftTypes
-        .map(shift => {
+        .map(
+            shift => {
 
-            const css =
-                shift.color_class ||
-                getDefaultShiftClass(shift);
+                const color =
+                    shift.color_class ||
+                    getDefaultShiftClass(
+                        shift.name
+                    );
 
-            return `
-                <div class="legend-item">
+                const text =
+                    shift.short_name ||
+                    shift.name;
 
-                    <div
-                        class="legend-box ${escapeAttr(css)}">
+                return `
+
+                    <div class="legend-item">
+
+                        <span
+                            class="shift ${escapeAttr(color)}"
+                            style="
+                                min-width:38px;
+                                padding:5px 8px;
+                                text-align:center;
+                            "
+                        >
+                            ${escapeHtml(text)}
+                        </span>
+
+                        <span>
+                            ${escapeHtml(shift.name)}
+                        </span>
+
                     </div>
-
-                    <span>
-                        ${escapeHtml(
-                            shift.short_name ||
-                            shift.name
-                        )}
-                        ${
-                            shift.start_time &&
-                            shift.end_time
-                                ? ` (${formatTime(shift.start_time)}–${formatTime(shift.end_time)})`
-                                : ""
-                        }
-                    </span>
-
-                </div>
-            `;
-
-        })
+                `;
+            }
+        )
         .join("");
+
+
+    [
+        "myLegend",
+        "allLegend",
+        "adminLegend"
+    ]
+    .forEach(
+        id => {
+
+            const el =
+                document.getElementById(id);
+
+            if(el){
+                el.innerHTML = html;
+            }
+
+        }
+    );
 }
 
 
@@ -3791,68 +5035,216 @@ function renderLegend(
 
 function showTab(tab){
 
-    if(
-        tab === "admin" &&
-        !isAdmin(currentUser)
-    ){
-        tab = "my";
-    }
-
     currentTab = tab;
 
-    document
-        .getElementById("sectionMy")
-        .classList.toggle(
-            "hidden",
-            tab !== "my"
-        );
 
     document
-        .getElementById("sectionAll")
-        .classList.toggle(
-            "hidden",
-            tab !== "all"
+        .querySelectorAll(".tab")
+        .forEach(
+            button =>
+                button.classList.remove(
+                    "active"
+                )
         );
+
 
     document
-        .getElementById("sectionAdmin")
-        .classList.toggle(
-            "hidden",
-            tab !== "admin"
+        .querySelectorAll(".view")
+        .forEach(
+            view =>
+                view.classList.add(
+                    "hidden"
+                )
         );
 
-    document
-        .getElementById("tabMy")
-        .classList.toggle(
-            "active",
-            tab === "my"
-        );
 
-    document
-        .getElementById("tabAll")
-        .classList.toggle(
-            "active",
-            tab === "all"
-        );
+    if(tab === "my"){
 
-    document
-        .getElementById("tabAdmin")
-        .classList.toggle(
-            "active",
-            tab === "admin"
-        );
+        document
+            .getElementById("tabMy")
+            .classList.add("active");
 
-    if(tab === "admin"){
+        document
+            .getElementById("viewMy")
+            .classList.remove("hidden");
+
+        document.getElementById(
+            "pageTitle"
+        ).textContent =
+            "Моят график";
+
+        document.getElementById(
+            "pageSubtitle"
+        ).textContent =
+            "Вашият работен график";
+
+    }
+
+
+    if(tab === "all"){
+
+        document
+            .getElementById("tabAll")
+            .classList.add("active");
+
+        document
+            .getElementById("viewAll")
+            .classList.remove("hidden");
+
+        document.getElementById(
+            "pageTitle"
+        ).textContent =
+            "Общ график";
+
+        document.getElementById(
+            "pageSubtitle"
+        ).textContent =
+            "График на всички служители";
+
+    }
+
+
+    if(
+        tab === "admin" &&
+        isAdmin(currentUser)
+    ){
+
+        document
+            .getElementById("tabAdmin")
+            .classList.add("active");
+
+        document
+            .getElementById("viewAdmin")
+            .classList.remove("hidden");
+
+        document.getElementById(
+            "pageTitle"
+        ).textContent =
+            "Администрация";
+
+        document.getElementById(
+            "pageSubtitle"
+        ).textContent =
+            "Управление на служители и графици";
+
+    }
+
+
+    renderAllViews();
+}
+
+
+/* =========================================================
+   RENDER EVERYTHING
+========================================================= */
+
+function renderAllViews(){
+
+    if(!currentUser){
+        return;
+    }
+
+    updateMonthTitle();
+
+    renderMySchedule();
+
+    renderAllSchedule();
+
+    if(isAdmin(currentUser)){
+
+        renderAdminSchedule();
 
         renderUsersTable();
 
         renderShiftsTable();
 
-        renderAdminSchedule();
-
     }
 
+    renderLegends();
+
+    updateStats();
 }
+
+
+/* =========================================================
+   MODAL
+========================================================= */
+
+function closeModal(id){
+
+    document
+        .getElementById(id)
+        .classList.remove("show");
+}
+
+
+document
+    .querySelectorAll(".modal")
+    .forEach(
+        modal => {
+
+            modal.addEventListener(
+                "click",
+                event => {
+
+                    if(
+                        event.target ===
+                        modal
+                    ){
+                        modal.classList.remove(
+                            "show"
+                        );
+                    }
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   KEYBOARD
+========================================================= */
+
+document
+    .getElementById("loginPassword")
+    .addEventListener(
+        "keydown",
+        event => {
+
+            if(
+                event.key === "Enter"
+            ){
+                login();
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("loginName")
+    .addEventListener(
+        "keydown",
+        event => {
+
+            if(
+                event.key === "Enter"
+            ){
+                login();
+            }
+
+        }
+    );
+
+
+document
+    .getElementById("loginBtn")
+    .addEventListener(
+        "click",
+        login
+    );
 
 
 /* =========================================================
