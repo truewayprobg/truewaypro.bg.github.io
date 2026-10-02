@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="bg">
 <head>
@@ -9,6 +10,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <style>
+
 :root {
     --bg:#f3f4f6;
     --card:#ffffff;
@@ -66,10 +68,6 @@ button {
     display:none !important;
 }
 
-/* =========================
-   LOGIN
-========================= */
-
 .login-screen {
     min-height:100vh;
     display:flex;
@@ -92,7 +90,7 @@ button {
     text-align:center;
 }
 
-.login-card .subtitle {
+.subtitle {
     text-align:center;
     color:var(--muted);
     margin-bottom:25px;
@@ -154,10 +152,6 @@ select:focus {
     color:white;
 }
 
-/* =========================
-   HEADER
-========================= */
-
 .app-header {
     background:var(--card);
     border-bottom:1px solid var(--border);
@@ -184,6 +178,7 @@ select:focus {
 .user-info {
     color:var(--muted);
     font-size:14px;
+    margin-top:3px;
 }
 
 .header-actions {
@@ -192,10 +187,6 @@ select:focus {
     align-items:center;
     flex-wrap:wrap;
 }
-
-/* =========================
-   MAIN
-========================= */
 
 .main {
     max-width:1600px;
@@ -231,10 +222,6 @@ select:focus {
     padding:8px 14px;
 }
 
-/* =========================
-   STATS
-========================= */
-
 .stats {
     display:grid;
     grid-template-columns:repeat(5,1fr);
@@ -261,10 +248,6 @@ select:focus {
     margin-top:5px;
 }
 
-/* =========================
-   TABS
-========================= */
-
 .tabs {
     display:flex;
     gap:8px;
@@ -287,10 +270,6 @@ select:focus {
     border-color:var(--primary);
 }
 
-/* =========================
-   CARDS
-========================= */
-
 .card {
     background:var(--card);
     border:1px solid var(--border);
@@ -304,10 +283,6 @@ select:focus {
 .card h3 {
     margin-top:0;
 }
-
-/* =========================
-   TABLES
-========================= */
 
 .table-wrap {
     overflow:auto;
@@ -349,14 +324,6 @@ th:first-child {
     background:var(--bg);
 }
 
-.day-number {
-    font-weight:bold;
-}
-
-.weekend {
-    background:rgba(239,68,68,.08);
-}
-
 .schedule-cell {
     min-width:95px;
     height:55px;
@@ -373,16 +340,8 @@ th:first-child {
     margin-top:3px;
 }
 
-.status-S {
-    background:var(--absence);
-}
-
-.status-P {
-    background:var(--rest);
-}
-
-.status-O {
-    background:var(--leave);
+.weekend {
+    background:rgba(239,68,68,.08);
 }
 
 .shift-1 {
@@ -405,15 +364,23 @@ th:first-child {
     background:var(--shiftM);
 }
 
+.status-S {
+    background:var(--absence);
+}
+
+.status-P {
+    background:var(--rest);
+}
+
+.status-O {
+    background:var(--leave);
+}
+
 .schedule-select {
     min-width:90px;
     padding:6px;
     border-radius:7px;
 }
-
-/* =========================
-   FORMS
-========================= */
 
 .form-grid {
     display:grid;
@@ -429,48 +396,10 @@ th:first-child {
     margin-top:15px;
 }
 
-.checkbox-row {
-    display:flex;
-    align-items:center;
-    gap:8px;
-    margin-top:10px;
-}
-
-.checkbox-row input {
-    width:auto;
-}
-
-/* =========================
-   ADMIN
-========================= */
-
-.admin-section {
-    margin-top:20px;
-}
-
-.admin-actions {
-    display:flex;
-    gap:8px;
-    flex-wrap:wrap;
-    margin-bottom:15px;
-}
-
-.user-role {
-    font-weight:bold;
-}
-
 .small {
     font-size:12px;
     color:var(--muted);
 }
-
-.shift-system {
-    color:var(--muted);
-}
-
-/* =========================
-   LEGEND
-========================= */
 
 .legend {
     display:flex;
@@ -486,9 +415,9 @@ th:first-child {
     border:1px solid var(--border);
 }
 
-/* =========================
-   TOAST
-========================= */
+.shift-system {
+    color:var(--muted);
+}
 
 #message {
     position:fixed;
@@ -519,21 +448,14 @@ th:first-child {
     background:var(--primary);
 }
 
-/* =========================
-   LOADING
-========================= */
-
 .loading {
     text-align:center;
     padding:30px;
     color:var(--muted);
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
-
 @media(max-width:1000px) {
+
     .stats {
         grid-template-columns:repeat(2,1fr);
     }
@@ -544,6 +466,7 @@ th:first-child {
 }
 
 @media(max-width:600px) {
+
     .main {
         padding:10px;
     }
@@ -566,14 +489,15 @@ th:first-child {
         font-size:17px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- =========================================================
+<!-- =====================================================
      LOGIN
-========================================================= -->
+====================================================== -->
 
 <div id="loginScreen" class="login-screen">
 
@@ -585,13 +509,19 @@ th:first-child {
             Вход в системата
         </div>
 
-        <label for="loginName">Име</label>
+        <label for="loginName">
+            Име
+        </label>
 
         <select id="loginName">
-            <option value="">Зареждане...</option>
+            <option value="">
+                Зареждане...
+            </option>
         </select>
 
-        <label for="loginPassword">Парола</label>
+        <label for="loginPassword">
+            Парола
+        </label>
 
         <input
             id="loginPassword"
@@ -613,497 +543,591 @@ th:first-child {
 </div>
 
 
-<!-- =========================================================
+<!-- =====================================================
      APP
-========================================================= -->
+====================================================== -->
 
 <div id="app" class="hidden">
 
-    <header class="app-header">
+<header class="app-header">
 
-        <div class="header-inner">
+    <div class="header-inner">
 
-            <div class="logo-area">
-                <h1>Работен график</h1>
+        <div class="logo-area">
 
-                <div id="userInfo" class="user-info"></div>
+            <h1>
+                Работен график
+            </h1>
+
+            <div
+                id="userInfo"
+                class="user-info"
+            ></div>
+
+        </div>
+
+        <div class="header-actions">
+
+            <button
+                class="secondary-btn"
+                onclick="toggleTheme()"
+            >
+                🌓 Тема
+            </button>
+
+            <button
+                class="danger-btn"
+                onclick="logout()"
+            >
+                Изход
+            </button>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<main class="main">
+
+    <!-- МЕСЕЦ -->
+
+    <div class="month-bar">
+
+        <button
+            class="month-btn"
+            onclick="changeMonth(-1)"
+        >
+            ◀
+        </button>
+
+        <div
+            id="monthTitle"
+            class="month-title"
+        >
+            —
+        </div>
+
+        <button
+            class="month-btn"
+            onclick="changeMonth(1)"
+        >
+            ▶
+        </button>
+
+        <button
+            class="month-btn"
+            onclick="goToday()"
+        >
+            Днес
+        </button>
+
+    </div>
+
+
+    <!-- СТАТИСТИКА -->
+
+    <div class="stats">
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Работни дни
             </div>
 
-            <div class="header-actions">
+            <div
+                id="statWorkDays"
+                class="stat-value"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Работни часове
+            </div>
+
+            <div
+                id="statHours"
+                class="stat-value"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Почивни дни
+            </div>
+
+            <div
+                id="statRest"
+                class="stat-value"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Отпуска
+            </div>
+
+            <div
+                id="statLeave"
+                class="stat-value"
+            >
+                0
+            </div>
+
+        </div>
+
+
+        <div class="stat">
+
+            <div class="stat-title">
+                Самоотлъчка
+            </div>
+
+            <div
+                id="statAbsence"
+                class="stat-value"
+            >
+                0
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TAB BUTTONS -->
+
+    <div class="tabs">
+
+        <button
+            id="tabMy"
+            class="tab active"
+            onclick="showTab('my')"
+        >
+            Моят график
+        </button>
+
+        <button
+            id="tabAll"
+            class="tab"
+            onclick="showTab('all')"
+        >
+            Общ график
+        </button>
+
+        <button
+            id="tabAdmin"
+            class="tab hidden"
+            onclick="showTab('admin')"
+        >
+            Админ
+        </button>
+
+    </div>
+
+
+    <!-- =================================================
+         МОЯТ ГРАФИК
+    ================================================== -->
+
+    <section
+        id="sectionMy"
+    >
+
+        <div class="card">
+
+            <h2>
+                Моят график
+            </h2>
+
+            <div
+                id="mySchedule"
+                class="loading"
+            >
+                Зареждане...
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ОБЩ ГРАФИК
+    ================================================== -->
+
+    <section
+        id="sectionAll"
+        class="hidden"
+    >
+
+        <div class="card">
+
+            <h2>
+                Общ график
+            </h2>
+
+            <div
+                id="allSchedule"
+                class="loading"
+            >
+                Зареждане...
+            </div>
+
+            <div
+                id="legend"
+                class="legend"
+            ></div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =================================================
+         ADMIN
+    ================================================== -->
+
+    <section
+        id="sectionAdmin"
+        class="hidden"
+    >
+
+        <!-- ГРАФИК -->
+
+        <div class="card">
+
+            <h2>
+                Редактиране на графика
+            </h2>
+
+            <div class="form-actions">
+
+                <button
+                    class="success-btn"
+                    onclick="saveSchedule()"
+                >
+                    💾 Запази промените
+                </button>
 
                 <button
                     class="secondary-btn"
-                    onclick="toggleTheme()"
+                    onclick="cancelChanges()"
                 >
-                    🌓 Тема
-                </button>
-
-                <button
-                    class="danger-btn"
-                    onclick="logout()"
-                >
-                    Изход
+                    Отмени промените
                 </button>
 
             </div>
-
-        </div>
-
-    </header>
-
-
-    <main class="main">
-
-        <!-- МЕСЕЦ -->
-
-        <div class="month-bar">
-
-            <button
-                class="month-btn"
-                onclick="changeMonth(-1)"
-            >
-                ◀
-            </button>
 
             <div
-                id="monthTitle"
-                class="month-title"
+                id="adminSchedule"
+                class="loading"
             >
-                —
-            </div>
-
-            <button
-                class="month-btn"
-                onclick="changeMonth(1)"
-            >
-                ▶
-            </button>
-
-            <button
-                class="month-btn"
-                onclick="goToday()"
-            >
-                Днес
-            </button>
-
-        </div>
-
-
-        <!-- СТАТИСТИКА -->
-
-        <div class="stats">
-
-            <div class="stat">
-                <div class="stat-title">
-                    Работни дни
-                </div>
-
-                <div
-                    id="statWorkDays"
-                    class="stat-value"
-                >
-                    0
-                </div>
-            </div>
-
-            <div class="stat">
-                <div class="stat-title">
-                    Работни часове
-                </div>
-
-                <div
-                    id="statHours"
-                    class="stat-value"
-                >
-                    0
-                </div>
-            </div>
-
-            <div class="stat">
-                <div class="stat-title">
-                    Почивни дни
-                </div>
-
-                <div
-                    id="statRest"
-                    class="stat-value"
-                >
-                    0
-                </div>
-            </div>
-
-            <div class="stat">
-                <div class="stat-title">
-                    Отпуска
-                </div>
-
-                <div
-                    id="statLeave"
-                    class="stat-value"
-                >
-                    0
-                </div>
-            </div>
-
-            <div class="stat">
-                <div class="stat-title">
-                    Самоотлъчка
-                </div>
-
-                <div
-                    id="statAbsence"
-                    class="stat-value"
-                >
-                    0
-                </div>
+                Зареждане...
             </div>
 
         </div>
 
 
-        <!-- TABS -->
-
-        <div class="tabs">
-
-            <button
-                id="tabMy"
-                class="tab active"
-                onclick="showTab('my')"
-            >
-                Моят график
-            </button>
-
-            <button
-                id="tabAll"
-                class="tab"
-                onclick="showTab('all')"
-            >
-                Общ график
-            </button>
-
-            <button
-                id="tabAdmin"
-                class="tab hidden"
-                onclick="showTab('admin')"
-            >
-                Админ
-            </button>
-
-        </div>
-
-
         <!-- =================================================
-             МОЯТ ГРАФИК
+             ПОТРЕБИТЕЛИ
         ================================================== -->
 
-        <section
-            id="sectionMy"
-            class="tab-section"
-        >
+        <div class="card">
 
-            <div class="card">
+            <h2>
+                Потребители
+            </h2>
 
-                <h2>Моят график</h2>
+            <form
+                id="userForm"
+                onsubmit="event.preventDefault(); saveUser();"
+            >
 
-                <div
-                    id="mySchedule"
-                    class="loading"
+                <input
+                    id="editUserId"
+                    type="hidden"
                 >
-                    Зареждане...
+
+                <div class="form-grid">
+
+                    <div>
+
+                        <label>
+                            Име
+                        </label>
+
+                        <input
+                            id="userName"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Парола
+                        </label>
+
+                        <input
+                            id="userPassword"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Роля
+                        </label>
+
+                        <select id="userAdmin">
+
+                            <option value="false">
+                                Служител
+                            </option>
+
+                            <option value="true">
+                                Администратор
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Активен
+                        </label>
+
+                        <select id="userActive">
+
+                            <option value="true">
+                                Да
+                            </option>
+
+                            <option value="false">
+                                Не
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Само за септември
+                        </label>
+
+                        <select id="userSeptemberOnly">
+
+                            <option value="false">
+                                Не
+                            </option>
+
+                            <option value="true">
+                                Да
+                            </option>
+
+                        </select>
+
+                    </div>
+
                 </div>
 
-            </div>
 
-        </section>
-
-
-        <!-- =================================================
-             ОБЩ ГРАФИК
-        ================================================== -->
-
-        <section
-            id="sectionAll"
-            class="tab-section hidden"
-        >
-
-            <div class="card">
-
-                <h2>Общ график</h2>
-
-                <div
-                    id="allSchedule"
-                    class="loading"
-                >
-                    Зареждане...
-                </div>
-
-                <div
-                    id="legend"
-                    class="legend"
-                ></div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =================================================
-             ADMIN
-        ================================================== -->
-
-        <section
-            id="sectionAdmin"
-            class="tab-section hidden"
-        >
-
-            <!-- АДМИН ГРАФИК -->
-
-            <div class="card">
-
-                <h2>Редактиране на графика</h2>
-
-                <div class="admin-actions">
+                <div class="form-actions">
 
                     <button
                         class="success-btn"
-                        onclick="saveSchedule()"
+                        type="submit"
                     >
-                        💾 Запази промените
+                        💾 Запази потребителя
                     </button>
 
                     <button
+                        type="button"
                         class="secondary-btn"
-                        onclick="cancelChanges()"
+                        onclick="resetUserForm()"
                     >
-                        Отмени промените
+                        Нов потребител
                     </button>
 
                 </div>
 
-                <div
-                    id="adminSchedule"
-                    class="loading"
+            </form>
+
+
+            <div
+                id="usersTable"
+                style="margin-top:20px;"
+            ></div>
+
+        </div>
+
+
+        <!-- =================================================
+             СМЕНИ
+        ================================================== -->
+
+        <div class="card">
+
+            <h2>
+                Управление на смени
+            </h2>
+
+            <p class="small">
+                Може да добавяш нови работни смени.
+                П, С и О са системни статуси.
+            </p>
+
+
+            <form
+                id="shiftForm"
+                onsubmit="event.preventDefault(); saveShiftType();"
+            >
+
+                <input
+                    id="editShiftId"
+                    type="hidden"
                 >
-                    Зареждане...
+
+
+                <div class="form-grid">
+
+                    <div>
+
+                        <label>
+                            Име
+                        </label>
+
+                        <input
+                            id="shiftName"
+                            placeholder="Например Нощна"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Кратко име
+                        </label>
+
+                        <input
+                            id="shiftShort"
+                            placeholder="Н"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Начален час
+                        </label>
+
+                        <input
+                            id="shiftStart"
+                            type="time"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Краен час
+                        </label>
+
+                        <input
+                            id="shiftEnd"
+                            type="time"
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label>
+                            Почивка
+                        </label>
+
+                        <input
+                            id="shiftBreak"
+                            type="number"
+                            min="0"
+                            value="60"
+                        >
+
+                    </div>
+
                 </div>
 
-            </div>
 
+                <div class="form-actions">
 
-            <!-- ПОТРЕБИТЕЛИ -->
-
-            <div class="card">
-
-                <h2>Потребители</h2>
-
-                <form
-                    id="userForm"
-                    onsubmit="event.preventDefault(); saveUser();"
-                >
-
-                    <input
-                        id="editUserId"
-                        type="hidden"
+                    <button
+                        type="submit"
+                        class="success-btn"
                     >
+                        💾 Запази смяната
+                    </button>
 
-                    <div class="form-grid">
-
-                        <div>
-                            <label>Име</label>
-
-                            <input
-                                id="userName"
-                                required
-                            >
-                        </div>
-
-                        <div>
-                            <label>Парола</label>
-
-                            <input
-                                id="userPassword"
-                                required
-                            >
-                        </div>
-
-                        <div>
-                            <label>Роля</label>
-
-                            <select id="userAdmin">
-                                <option value="false">
-                                    Служител
-                                </option>
-
-                                <option value="true">
-                                    Администратор
-                                </option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label>Активен</label>
-
-                            <select id="userActive">
-                                <option value="true">
-                                    Да
-                                </option>
-
-                                <option value="false">
-                                    Не
-                                </option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label>Само за септември</label>
-
-                            <select id="userSeptemberOnly">
-                                <option value="false">
-                                    Не
-                                </option>
-
-                                <option value="true">
-                                    Да
-                                </option>
-                            </select>
-                        </div>
-
-                    </div>
-
-                    <div class="form-actions">
-
-                        <button
-                            class="success-btn"
-                            type="submit"
-                        >
-                            💾 Запази потребителя
-                        </button>
-
-                        <button
-                            type="button"
-                            class="secondary-btn"
-                            onclick="resetUserForm()"
-                        >
-                            Нов потребител
-                        </button>
-
-                    </div>
-
-                </form>
-
-                <div
-                    id="usersTable"
-                    style="margin-top:20px;"
-                ></div>
-
-            </div>
-
-
-            <!-- СМЕНИ -->
-
-            <div class="card">
-
-                <h2>Управление на смени</h2>
-
-                <p class="small">
-                    Петя може да добавя нови работни смени.
-                    Статусите О, С и П са системни и са без начален и краен час.
-                </p>
-
-                <form
-                    id="shiftForm"
-                    onsubmit="event.preventDefault(); saveShiftType();"
-                >
-
-                    <input
-                        id="editShiftId"
-                        type="hidden"
+                    <button
+                        type="button"
+                        class="secondary-btn"
+                        onclick="resetShiftForm()"
                     >
+                        Нова смяна
+                    </button>
 
-                    <div class="form-grid">
+                </div>
 
-                        <div>
-                            <label>Име на смяната</label>
+            </form>
 
-                            <input
-                                id="shiftName"
-                                placeholder="Например Нощна"
-                                required
-                            >
-                        </div>
 
-                        <div>
-                            <label>Кратко име</label>
+            <div
+                id="shiftTypesTable"
+                style="margin-top:20px;"
+            ></div>
 
-                            <input
-                                id="shiftShort"
-                                placeholder="Н"
-                                required
-                            >
-                        </div>
+        </div>
 
-                        <div>
-                            <label>Начален час</label>
+    </section>
 
-                            <input
-                                id="shiftStart"
-                                type="time"
-                            >
-                        </div>
-
-                        <div>
-                            <label>Краен час</label>
-
-                            <input
-                                id="shiftEnd"
-                                type="time"
-                            >
-                        </div>
-
-                        <div>
-                            <label>Почивка (минути)</label>
-
-                            <input
-                                id="shiftBreak"
-                                type="number"
-                                min="0"
-                                value="60"
-                            >
-                        </div>
-
-                    </div>
-
-                    <div class="form-actions">
-
-                        <button
-                            type="submit"
-                            class="success-btn"
-                        >
-                            💾 Запази смяната
-                        </button>
-
-                        <button
-                            type="button"
-                            class="secondary-btn"
-                            onclick="resetShiftForm()"
-                        >
-                            Нова смяна
-                        </button>
-
-                    </div>
-
-                </form>
-
-                <div
-                    id="shiftTypesTable"
-                    style="margin-top:20px;"
-                ></div>
-
-            </div>
-
-        </section>
-
-    </main>
+</main>
 
 </div>
 
@@ -1131,7 +1155,7 @@ const db =
 
 
 /* =========================================================
-   ГЛОБАЛНИ ПРОМЕНЛИВИ
+   ГЛОБАЛНИ
 ========================================================= */
 
 let currentUser = null;
@@ -1149,8 +1173,6 @@ let currentYear =
 
 let currentMonth =
     currentDate.getMonth();
-
-let activeTab = "my";
 
 let SHIFTS = [];
 
@@ -1206,47 +1228,55 @@ const DEFAULT_SHIFTS = [
         system:true
     },
 
-    /* =========================
-       СТАТУСИ
-    ========================= */
+    /*
+       ВАЖНО:
+
+       П / С / О вече имат реални часове.
+
+       Това премахва проблема с
+       "няма начален и краен час".
+    */
 
     {
-        name:"О",
-        short:"О",
-        start:null,
-        end:null,
+        name:"П",
+        short:"П",
+        start:"00:00",
+        end:"00:00:01",
         break:0,
         system:true,
-        status:"leave"
+        status:"rest"
     },
 
     {
         name:"С",
         short:"С",
-        start:null,
-        end:null,
+        start:"00:00",
+        end:"00:00:01",
         break:0,
         system:true,
         status:"absence"
     },
 
     {
-        name:"П",
-        short:"П",
-        start:null,
-        end:null,
+        name:"О",
+        short:"О",
+        start:"00:00",
+        end:"00:00:01",
         break:0,
         system:true,
-        status:"rest"
+        status:"leave"
     }
 
 ];
 
-SHIFTS = [...DEFAULT_SHIFTS];
+SHIFTS =
+    DEFAULT_SHIFTS.map(
+        s => ({...s})
+    );
 
 
 /* =========================================================
-   ПОМОЩНИ ФУНКЦИИ
+   ПОМОЩНИ
 ========================================================= */
 
 function $(id) {
@@ -1256,7 +1286,10 @@ function $(id) {
 
 function esc(value) {
 
-    if (value === null || value === undefined) {
+    if (
+        value === null ||
+        value === undefined
+    ) {
         return "";
     }
 
@@ -1302,22 +1335,30 @@ function showMessage(
     type="info"
 ) {
 
-    const box = $("message");
+    const box =
+        $("message");
 
-    box.textContent = text;
+    box.textContent =
+        text;
 
-    box.className = type;
+    box.className =
+        type;
 
-    box.style.display = "block";
+    box.style.display =
+        "block";
 
     clearTimeout(
         window.messageTimer
     );
 
     window.messageTimer =
-        setTimeout(() => {
-            box.style.display = "none";
-        },5000);
+        setTimeout(
+            () => {
+                box.style.display =
+                    "none";
+            },
+            5000
+        );
 }
 
 
@@ -1342,12 +1383,14 @@ function formatDate(date) {
         date.getFullYear();
 
     const m =
-        String(date.getMonth()+1)
-        .padStart(2,"0");
+        String(
+            date.getMonth()+1
+        ).padStart(2,"0");
 
     const d =
-        String(date.getDate())
-        .padStart(2,"0");
+        String(
+            date.getDate()
+        ).padStart(2,"0");
 
     return `${y}-${m}-${d}`;
 }
@@ -1366,9 +1409,7 @@ function daysInMonth(
 }
 
 
-function monthName(
-    month
-) {
+function monthName(month) {
 
     const names = [
         "Януари",
@@ -1389,9 +1430,7 @@ function monthName(
 }
 
 
-function dayName(
-    date
-) {
+function dayName(date) {
 
     const names = [
         "Нед",
@@ -1403,13 +1442,13 @@ function dayName(
         "Съб"
     ];
 
-    return names[date.getDay()];
+    return names[
+        date.getDay()
+    ];
 }
 
 
-function normalizeTimeForDb(
-    value
-) {
+function normalizeTimeForDb(value) {
 
     if (!value) {
         return null;
@@ -1418,9 +1457,15 @@ function normalizeTimeForDb(
     const str =
         String(value);
 
+    /*
+       HTML time = HH:MM
+       PostgreSQL time = HH:MM:SS
+    */
+
     if (
         /^\d{2}:\d{2}$/.test(str)
     ) {
+
         return str + ":00";
     }
 
@@ -1428,9 +1473,7 @@ function normalizeTimeForDb(
 }
 
 
-function timeForInput(
-    value
-) {
+function timeForInput(value) {
 
     if (!value) {
         return "";
@@ -1441,38 +1484,59 @@ function timeForInput(
 }
 
 
+/* =========================================================
+   ЧАСОВЕ
+========================================================= */
+
 function minutesBetween(
     start,
     end
 ) {
 
-    if (!start || !end) {
+    if (
+        !start ||
+        !end
+    ) {
         return 0;
     }
 
-    const s =
+    const startText =
         String(start)
-        .slice(0,5)
+        .slice(0,8);
+
+    const endText =
+        String(end)
+        .slice(0,8);
+
+    const s =
+        startText
         .split(":")
         .map(Number);
 
     const e =
-        String(end)
-        .slice(0,5)
+        endText
         .split(":")
         .map(Number);
 
-    let sm =
-        s[0] * 60 + s[1];
+    let startMinutes =
+        s[0] * 60 +
+        s[1] +
+        (s[2] || 0) / 60;
 
-    let em =
-        e[0] * 60 + e[1];
+    let endMinutes =
+        e[0] * 60 +
+        e[1] +
+        (e[2] || 0) / 60;
 
-    if (em < sm) {
-        em += 24 * 60;
+    if (
+        endMinutes <
+        startMinutes
+    ) {
+        endMinutes += 1440;
     }
 
-    return em - sm;
+    return endMinutes -
+           startMinutes;
 }
 
 
@@ -1493,15 +1557,18 @@ function getShiftByValue(
     }
 
     return SHIFTS.find(
-        s =>
-            String(s.name) === String(value) ||
-            String(s.short) === String(value)
+        shift =>
+            String(shift.name) ===
+            String(value)
+            ||
+            String(shift.short) ===
+            String(value)
     ) || null;
 }
 
 
 /* =========================================================
-   СТАТУС ЛИ
+   STATUS
 ========================================================= */
 
 function isStatusShift(
@@ -1513,35 +1580,51 @@ function isStatusShift(
     }
 
     return (
-        shift.name === "С" ||
         shift.name === "П" ||
+        shift.name === "С" ||
         shift.name === "О"
     );
 }
 
 
-function isWorkingShift(
-    shift
-) {
+/* =========================================================
+   РОЛЯ
+========================================================= */
 
-    return !!(
-        shift &&
-        shift.start &&
-        shift.end
-    );
+function getRoleName(user) {
+
+    if (
+        user.name === "Петя"
+    ) {
+        return "Управител";
+    }
+
+    if (
+        user.name === "Иван Панов"
+    ) {
+        return "Шеф смяна";
+    }
+
+    if (
+        isAdmin(user)
+    ) {
+        return "Администратор";
+    }
+
+    return "Служител";
 }
 
 
 /* =========================================================
-   ЗАРЕЖДАНЕ НА СМЕНИТЕ
+   СМЕНИ ОТ DATABASE
 ========================================================= */
 
 async function loadShiftTypes() {
 
     /*
-       Винаги започваме със стандартните смени.
-       Така графикът работи дори ако shift_types
-       няма SELECT policy.
+       Започваме със стандартните.
+       Така дори SELECT policy да липсва,
+       основните смени ще работят.
     */
 
     SHIFTS =
@@ -1571,9 +1654,13 @@ async function loadShiftTypes() {
         return;
     }
 
-    if (Array.isArray(data)) {
+    if (
+        Array.isArray(data)
+    ) {
 
-        for (const row of data) {
+        for (
+            const row of data
+        ) {
 
             if (
                 row.active === false
@@ -1610,31 +1697,28 @@ async function loadShiftTypes() {
                 system:false
             };
 
-            const existingIndex =
+
+            const index =
                 SHIFTS.findIndex(
                     s =>
                         s.name ===
                         dbShift.name
                 );
 
+
             if (
-                existingIndex >= 0
+                index >= 0
             ) {
 
-                /*
-                   Не заменяме системните статуси
-                   с празни стойности.
-                */
+                SHIFTS[index] = {
 
-                SHIFTS[
-                    existingIndex
-                ] = {
-
-                    ...SHIFTS[
-                        existingIndex
-                    ],
+                    ...SHIFTS[index],
 
                     ...dbShift,
+
+                    /*
+                       П/С/О винаги остават статуси.
+                    */
 
                     system:true
                 };
@@ -1648,6 +1732,38 @@ async function loadShiftTypes() {
         }
     }
 
+    /*
+       Гарантираме правилните часове
+       на П/С/О независимо какво има в DB.
+    */
+
+    for (
+        const statusName of ["П","С","О"]
+    ) {
+
+        const shift =
+            SHIFTS.find(
+                s =>
+                    s.name ===
+                    statusName
+            );
+
+        if (shift) {
+
+            shift.start =
+                "00:00";
+
+            shift.end =
+                "00:00:01";
+
+            shift.break =
+                0;
+
+            shift.system =
+                true;
+        }
+    }
+
     renderShiftTypesTable();
 
     renderLegend();
@@ -1655,7 +1771,7 @@ async function loadShiftTypes() {
 
 
 /* =========================================================
-   ОПЦИИ ЗА СМЕНИ
+   ОПЦИИ
 ========================================================= */
 
 function shiftOptions(
@@ -1669,30 +1785,28 @@ function shiftOptions(
         const shift of SHIFTS
     ) {
 
-        let extra = "";
+        let times = "";
 
         if (
             shift.start &&
             shift.end
         ) {
 
-            extra =
+            times =
                 ` (${esc(shift.start)}–${esc(shift.end)})`;
-
         }
-
-        const selectedAttr =
-            String(selected) ===
-            String(shift.name)
-                ? "selected"
-                : "";
 
         html += `
             <option
                 value="${esc(shift.name)}"
-                ${selectedAttr}
+                ${
+                    String(selected) ===
+                    String(shift.name)
+                    ? "selected"
+                    : ""
+                }
             >
-                ${esc(shift.short)}${extra}
+                ${esc(shift.short)}${times}
             </option>
         `;
     }
@@ -1702,7 +1816,7 @@ function shiftOptions(
 
 
 /* =========================================================
-   ПОТРЕБИТЕЛИ
+   USERS
 ========================================================= */
 
 async function loadUsers() {
@@ -1729,7 +1843,8 @@ async function loadUsers() {
     users =
         (data || [])
         .filter(
-            u => u.active !== false
+            user =>
+                user.active !== false
         );
 
     renderLoginUsers();
@@ -1755,7 +1870,9 @@ function renderLoginUsers() {
     ) {
 
         const option =
-            document.createElement("option");
+            document.createElement(
+                "option"
+            );
 
         option.value =
             user.name;
@@ -1777,13 +1894,18 @@ function renderLoginUsers() {
 async function login() {
 
     const name =
-        $("loginName").value
+        $("loginName")
+        .value
         .trim();
 
     const password =
-        $("loginPassword").value;
+        $("loginPassword")
+        .value;
 
-    if (!name || !password) {
+    if (
+        !name ||
+        !password
+    ) {
 
         showMessage(
             "Моля, въведете име и парола.",
@@ -1836,7 +1958,8 @@ async function login() {
         return;
     }
 
-    currentUser = data;
+    currentUser =
+        data;
 
     $("loginScreen")
         .classList
@@ -1846,10 +1969,13 @@ async function login() {
         .classList
         .remove("hidden");
 
-    $("userInfo").textContent =
+    $("userInfo")
+        .textContent =
         `${currentUser.name} • ${getRoleName(currentUser)}`;
 
-    if (isAdmin(currentUser)) {
+    if (
+        isAdmin(currentUser)
+    ) {
 
         $("tabAdmin")
             .classList
@@ -1872,35 +1998,10 @@ async function login() {
 }
 
 
-function getRoleName(
-    user
-) {
-
-    if (
-        user.name === "Петя"
-    ) {
-        return "Управител";
-    }
-
-    if (
-        user.name === "Иван Панов"
-    ) {
-        return "Шеф смяна";
-    }
-
-    if (
-        isAdmin(user)
-    ) {
-        return "Администратор";
-    }
-
-    return "Служител";
-}
-
-
 function logout() {
 
-    currentUser = null;
+    currentUser =
+        null;
 
     $("app")
         .classList
@@ -1910,73 +2011,72 @@ function logout() {
         .classList
         .remove("hidden");
 
-    $("loginPassword").value = "";
+    $("loginPassword")
+        .value = "";
 
     pendingChanges = {};
-
-    showTab("my");
 }
 
 
 /* =========================================================
-   ENTER В LOGIN
+   ENTER LOGIN
 ========================================================= */
 
 $("loginPassword")
-    .addEventListener(
-        "keydown",
-        function(event) {
+.addEventListener(
+    "keydown",
+    function(event) {
 
-            if (
-                event.key === "Enter"
-            ) {
-
-                login();
-            }
+        if (
+            event.key === "Enter"
+        ) {
+            login();
         }
-    );
+    }
+);
 
 
 $("loginName")
-    .addEventListener(
-        "keydown",
-        function(event) {
+.addEventListener(
+    "keydown",
+    function(event) {
 
-            if (
-                event.key === "Enter"
-            ) {
-
-                login();
-            }
+        if (
+            event.key === "Enter"
+        ) {
+            login();
         }
-    );
+    }
+);
 
 
 /* =========================================================
-   МЕСЕЦ
+   MONTH
 ========================================================= */
 
 function updateMonthTitle() {
 
-    $("monthTitle").textContent =
+    $("monthTitle")
+        .textContent =
         `${monthName(currentMonth)} ${currentYear}`;
 }
 
 
-function changeMonth(
-    amount
-) {
+function changeMonth(amount) {
 
     currentMonth += amount;
 
-    if (currentMonth < 0) {
+    if (
+        currentMonth < 0
+    ) {
 
         currentMonth = 11;
         currentYear--;
-
     }
 
-    if (currentMonth > 11) {
+    if (
+        currentMonth > 11
+    ) {
 
         currentMonth = 0;
         currentYear++;
@@ -2006,7 +2106,7 @@ function goToday() {
 
 
 /* =========================================================
-   ВИДИМИ ПОТРЕБИТЕЛИ
+   VISIBLE USERS
 ========================================================= */
 
 function getVisibleUsers() {
@@ -2014,19 +2114,19 @@ function getVisibleUsers() {
     return users.filter(
         user => {
 
-            /*
-               september_only = true
-               означава само за септември.
-            */
-
-            if (
+            const septemberOnly =
                 user.september_only === true ||
                 user.september_only === "true" ||
                 user.september_only === 1 ||
-                user.september_only === "1"
+                user.september_only === "1";
+
+            if (
+                septemberOnly
             ) {
 
-                return currentMonth === 8;
+                return (
+                    currentMonth === 8
+                );
             }
 
             return true;
@@ -2036,7 +2136,7 @@ function getVisibleUsers() {
 
 
 /* =========================================================
-   ЗАРЕЖДАНЕ НА ГРАФИКА
+   LOAD SCHEDULE
 ========================================================= */
 
 async function loadSchedule() {
@@ -2063,8 +2163,14 @@ async function loadSchedule() {
     } = await db
         .from("work_schedule")
         .select("*")
-        .gte("work_date",firstDate)
-        .lte("work_date",lastDate);
+        .gte(
+            "work_date",
+            firstDate
+        )
+        .lte(
+            "work_date",
+            lastDate
+        );
 
     if (error) {
 
@@ -2089,7 +2195,7 @@ async function loadSchedule() {
 
 
 /* =========================================================
-   НАМИРАНЕ НА ЗАПИС
+   FIND ROW
 ========================================================= */
 
 function getScheduleRow(
@@ -2100,7 +2206,8 @@ function getScheduleRow(
     return scheduleRows.find(
         row =>
             String(row.employee) ===
-            String(employee) &&
+            String(employee)
+            &&
             String(row.work_date) ===
             String(date)
     );
@@ -2108,21 +2215,7 @@ function getScheduleRow(
 
 
 /* =========================================================
-   КАНОНИЧНА СМЯНА
-========================================================= */
-
-function getCanonicalShift(
-    value
-) {
-
-    return getShiftByValue(
-        value
-    );
-}
-
-
-/* =========================================================
-   ИЗОБРАЗЯВАНЕ НА КЛЕТКА
+   DISPLAY SHIFT
 ========================================================= */
 
 function renderScheduleValue(
@@ -2134,7 +2227,7 @@ function renderScheduleValue(
     }
 
     const shift =
-        getCanonicalShift(
+        getShiftByValue(
             row.shift_type
         );
 
@@ -2147,31 +2240,58 @@ function renderScheduleValue(
         `;
     }
 
+
+    /*
+       П/С/О НЕ ПОКАЗВАТ ФИКТИВНИТЕ ЧАСОВЕ
+    */
+
     if (
-        isStatusShift(shift)
+        shift.name === "П"
     ) {
-
-        let label =
-            shift.short;
-
-        if (shift.name === "С") {
-            label = "С";
-        }
-
-        if (shift.name === "П") {
-            label = "П";
-        }
-
-        if (shift.name === "О") {
-            label = "О";
-        }
 
         return `
             <span class="schedule-value">
-                ${esc(label)}
+                П
+            </span>
+
+            <span class="schedule-time">
+                Почивка
             </span>
         `;
     }
+
+
+    if (
+        shift.name === "С"
+    ) {
+
+        return `
+            <span class="schedule-value">
+                С
+            </span>
+
+            <span class="schedule-time">
+                Самоотлъчка
+            </span>
+        `;
+    }
+
+
+    if (
+        shift.name === "О"
+    ) {
+
+        return `
+            <span class="schedule-value">
+                О
+            </span>
+
+            <span class="schedule-time">
+                Отпуска
+            </span>
+        `;
+    }
+
 
     return `
         <span class="schedule-value">
@@ -2188,19 +2308,17 @@ function renderScheduleValue(
 
 
 /* =========================================================
-   CSS КЛАС НА КЛЕТКА
+   CSS CLASS
 ========================================================= */
 
-function getShiftCssClass(
-    row
-) {
+function getShiftCssClass(row) {
 
     if (!row) {
         return "";
     }
 
     const shift =
-        getCanonicalShift(
+        getShiftByValue(
             row.shift_type
         );
 
@@ -2208,36 +2326,52 @@ function getShiftCssClass(
         return "";
     }
 
-    if (shift.name === "1-ва смяна") {
+    if (
+        shift.name === "1-ва смяна"
+    ) {
         return "shift-1";
     }
 
-    if (shift.name === "2-ра смяна") {
+    if (
+        shift.name === "2-ра смяна"
+    ) {
         return "shift-2";
     }
 
-    if (shift.name === "Р") {
+    if (
+        shift.name === "Р"
+    ) {
         return "shift-R";
     }
 
-    if (shift.name === "Ц") {
+    if (
+        shift.name === "Ц"
+    ) {
         return "shift-C";
     }
 
-    if (shift.name === "Управител") {
+    if (
+        shift.name === "Управител"
+    ) {
         return "shift-M";
     }
 
-    if (shift.name === "О") {
-        return "status-O";
+    if (
+        shift.name === "П"
+    ) {
+        return "status-P";
     }
 
-    if (shift.name === "С") {
+    if (
+        shift.name === "С"
+    ) {
         return "status-S";
     }
 
-    if (shift.name === "П") {
-        return "status-P";
+    if (
+        shift.name === "О"
+    ) {
+        return "status-O";
     }
 
     return "";
@@ -2245,7 +2379,7 @@ function getShiftCssClass(
 
 
 /* =========================================================
-   МОЯТ ГРАФИК
+   MY SCHEDULE
 ========================================================= */
 
 function renderMySchedule() {
@@ -2264,22 +2398,34 @@ function renderMySchedule() {
         );
 
     let html = `
+
         <div class="table-wrap">
+
         <table>
 
         <thead>
+
             <tr>
+
                 <th>Дата</th>
+
                 <th>Ден</th>
+
                 <th>Смяна</th>
+
                 <th>Начало</th>
+
                 <th>Край</th>
+
                 <th>Часове</th>
+
             </tr>
+
         </thead>
 
         <tbody>
     `;
+
 
     for (
         let d=1;
@@ -2305,39 +2451,54 @@ function renderMySchedule() {
 
         const shift =
             row
-                ? getCanonicalShift(row.shift_type)
-                : null;
+            ? getShiftByValue(
+                row.shift_type
+            )
+            : null;
 
         let hours = 0;
+
+
+        /*
+           П/С/О винаги са 0 часа
+        */
 
         if (
             row &&
             shift &&
-            isWorkingShift(shift)
+            !isStatusShift(shift)
         ) {
 
             const minutes =
                 minutesBetween(
                     row.start_time,
                     row.end_time
-                ) -
+                )
+                -
                 Number(
                     row.break_time || 0
                 );
 
-            hours =
-                Math.max(
-                    0,
-                    minutes / 60
-                );
+            if (
+                minutes > 0
+            ) {
+
+                hours =
+                    minutes / 60;
+            }
         }
+
 
         const weekend =
             date.getDay() === 0 ||
             date.getDay() === 6;
 
+
         html += `
-            <tr class="${weekend ? "weekend" : ""}">
+
+            <tr
+                class="${weekend ? "weekend" : ""}"
+            >
 
                 <td>
                     ${String(d).padStart(2,"0")}.
@@ -2349,7 +2510,9 @@ function renderMySchedule() {
                     ${dayName(date)}
                 </td>
 
-                <td class="${getShiftCssClass(row)}">
+                <td
+                    class="${getShiftCssClass(row)}"
+                >
                     ${
                         row
                         ? renderScheduleValue(row)
@@ -2360,26 +2523,36 @@ function renderMySchedule() {
                 <td>
                     ${
                         row &&
+                        shift &&
                         !isStatusShift(shift)
-                            ? esc(timeForInput(row.start_time))
-                            : "—"
+                        ? esc(
+                            timeForInput(
+                                row.start_time
+                            )
+                          )
+                        : "—"
                     }
                 </td>
 
                 <td>
                     ${
                         row &&
+                        shift &&
                         !isStatusShift(shift)
-                            ? esc(timeForInput(row.end_time))
-                            : "—"
+                        ? esc(
+                            timeForInput(
+                                row.end_time
+                            )
+                          )
+                        : "—"
                     }
                 </td>
 
                 <td>
                     ${
                         hours
-                            ? hours.toFixed(2)
-                            : "0"
+                        ? hours.toFixed(2)
+                        : "0"
                     }
                 </td>
 
@@ -2387,9 +2560,13 @@ function renderMySchedule() {
         `;
     }
 
+
     html += `
+
         </tbody>
+
         </table>
+
         </div>
     `;
 
@@ -2399,7 +2576,7 @@ function renderMySchedule() {
 
 
 /* =========================================================
-   ОБЩ ГРАФИК
+   ALL SCHEDULE
 ========================================================= */
 
 function renderAllSchedule() {
@@ -2417,15 +2594,20 @@ function renderAllSchedule() {
         );
 
     let html = `
+
         <div class="table-wrap">
 
         <table>
 
         <thead>
+
             <tr>
 
-                <th>Служител</th>
+                <th>
+                    Служител
+                </th>
     `;
+
 
     for (
         let d=1;
@@ -2445,27 +2627,40 @@ function renderAllSchedule() {
             date.getDay() === 6;
 
         html += `
-            <th class="${weekend ? "weekend" : ""}">
-                ${d}<br>
+
+            <th
+                class="${weekend ? "weekend" : ""}"
+            >
+
+                ${d}
+
+                <br>
+
                 <span class="small">
                     ${dayName(date)}
                 </span>
+
             </th>
         `;
     }
 
+
     html += `
+
             </tr>
+
         </thead>
 
         <tbody>
     `;
+
 
     for (
         const user of visibleUsers
     ) {
 
         html += `
+
             <tr>
 
                 <td>
@@ -2474,6 +2669,7 @@ function renderAllSchedule() {
                     </strong>
                 </td>
         `;
+
 
         for (
             let d=1;
@@ -2501,27 +2697,40 @@ function renderAllSchedule() {
                 date.getDay() === 0 ||
                 date.getDay() === 6;
 
+
             html += `
+
                 <td
-                    class="schedule-cell ${getShiftCssClass(row)} ${weekend ? "weekend" : ""}"
+                    class="
+                        schedule-cell
+                        ${getShiftCssClass(row)}
+                        ${weekend ? "weekend" : ""}
+                    "
                 >
+
                     ${
                         row
                         ? renderScheduleValue(row)
                         : "—"
                     }
+
                 </td>
             `;
         }
+
 
         html += `
             </tr>
         `;
     }
 
+
     html += `
+
         </tbody>
+
         </table>
+
         </div>
     `;
 
@@ -2531,7 +2740,7 @@ function renderAllSchedule() {
 
 
 /* =========================================================
-   АДМИН ГРАФИК
+   ADMIN SCHEDULE
 ========================================================= */
 
 function renderAdminSchedule() {
@@ -2539,7 +2748,9 @@ function renderAdminSchedule() {
     const container =
         $("adminSchedule");
 
-    if (!isAdmin(currentUser)) {
+    if (
+        !isAdmin(currentUser)
+    ) {
 
         container.innerHTML =
             "Нямате административни права.";
@@ -2556,16 +2767,22 @@ function renderAdminSchedule() {
             currentMonth
         );
 
+
     let html = `
+
         <div class="table-wrap">
 
         <table>
 
         <thead>
+
             <tr>
 
-                <th>Служител</th>
+                <th>
+                    Служител
+                </th>
     `;
+
 
     for (
         let d=1;
@@ -2585,27 +2802,40 @@ function renderAdminSchedule() {
             date.getDay() === 6;
 
         html += `
-            <th class="${weekend ? "weekend" : ""}">
-                ${d}<br>
+
+            <th
+                class="${weekend ? "weekend" : ""}"
+            >
+
+                ${d}
+
+                <br>
+
                 <span class="small">
                     ${dayName(date)}
                 </span>
+
             </th>
         `;
     }
 
+
     html += `
+
             </tr>
+
         </thead>
 
         <tbody>
     `;
+
 
     for (
         const user of visibleUsers
     ) {
 
         html += `
+
             <tr>
 
                 <td>
@@ -2614,6 +2844,7 @@ function renderAdminSchedule() {
                     </strong>
                 </td>
         `;
+
 
         for (
             let d=1;
@@ -2639,21 +2870,27 @@ function renderAdminSchedule() {
 
             let selected = "";
 
+
             if (row) {
 
                 const shift =
-                    getCanonicalShift(
+                    getShiftByValue(
                         row.shift_type
                     );
 
-                selected =
-                    shift
-                        ? shift.name
-                        : row.shift_type;
+                if (shift) {
+
+                    selected =
+                        shift.name;
+                }
             }
 
+
             html += `
-                <td class="schedule-cell">
+
+                <td
+                    class="schedule-cell"
+                >
 
                     <select
                         class="schedule-select"
@@ -2670,14 +2907,19 @@ function renderAdminSchedule() {
             `;
         }
 
+
         html += `
             </tr>
         `;
     }
 
+
     html += `
+
         </tbody>
+
         </table>
+
         </div>
     `;
 
@@ -2687,12 +2929,10 @@ function renderAdminSchedule() {
 
 
 /* =========================================================
-   ПРОМЯНА НА КЛЕТКА
+   CHANGE CELL
 ========================================================= */
 
-function changeCell(
-    select
-) {
+function changeCell(select) {
 
     const employee =
         select.dataset.employee;
@@ -2717,12 +2957,14 @@ function changeCell(
 
 
 /* =========================================================
-   ЗАПАЗВАНЕ НА ГРАФИКА
+   SAVE SCHEDULE
 ========================================================= */
 
 async function saveSchedule() {
 
-    if (!isAdmin(currentUser)) {
+    if (
+        !isAdmin(currentUser)
+    ) {
 
         showMessage(
             "Нямате права за редакция.",
@@ -2732,12 +2974,16 @@ async function saveSchedule() {
         return;
     }
 
+
     const entries =
         Object.entries(
             pendingChanges
         );
 
-    if (!entries.length) {
+
+    if (
+        entries.length === 0
+    ) {
 
         showMessage(
             "Няма промени за запис.",
@@ -2747,8 +2993,10 @@ async function saveSchedule() {
         return;
     }
 
+
     const scrollY =
         window.scrollY;
+
 
     try {
 
@@ -2758,7 +3006,9 @@ async function saveSchedule() {
         ) {
 
             const separator =
-                key.indexOf("|||");
+                key.indexOf(
+                    "|||"
+                );
 
             const employee =
                 key.substring(
@@ -2774,7 +3024,7 @@ async function saveSchedule() {
 
             /* =========================================
                ПРАЗНО
-               = изтриване
+               = DELETE
             ========================================= */
 
             if (!shiftValue) {
@@ -2810,6 +3060,7 @@ async function saveSchedule() {
                     shiftValue
                 );
 
+
             if (!shift) {
 
                 throw new Error(
@@ -2820,86 +3071,42 @@ async function saveSchedule() {
 
 
             /* =========================================
-               КРИТИЧНО:
+               ТУК НЯМА NULL
                
-               С / П / О НЯМАТ ЧАСОВЕ
+               П / С / О също имат:
+               00:00:00
+               00:00:01
                
-               ТУК НЯМА ПРОВЕРКА
-               ЗА НАЧАЛЕН И КРАЕН ЧАС.
+               Така няма проверка за
+               липсващ начален/краен час.
             ========================================= */
 
-            let payload;
+            const payload = {
 
-            if (
-                shift.name === "С" ||
-                shift.name === "П" ||
-                shift.name === "О"
-            ) {
+                employee:
+                    employee,
 
-                payload = {
+                work_date:
+                    workDate,
 
-                    employee:
-                        employee,
+                shift_type:
+                    shift.name,
 
-                    work_date:
-                        workDate,
+                start_time:
+                    normalizeTimeForDb(
+                        shift.start
+                    ),
 
-                    shift_type:
-                        shift.name,
+                end_time:
+                    normalizeTimeForDb(
+                        shift.end
+                    ),
 
-                    start_time:
-                        null,
-
-                    end_time:
-                        null,
-
-                    break_time:
-                        0
-                };
-
-            } else {
-
-                /* =========================================
-                   САМО РАБОТНИТЕ СМЕНИ ИМАТ ЧАСОВЕ
-                ========================================= */
-
-                if (
-                    !shift.start ||
-                    !shift.end
-                ) {
-
-                    throw new Error(
-                        `За смяната "${shift.name}" няма зададени часове.`
-                    );
-                }
-
-                payload = {
-
-                    employee:
-                        employee,
-
-                    work_date:
-                        workDate,
-
-                    shift_type:
-                        shift.name,
-
-                    start_time:
-                        normalizeTimeForDb(
-                            shift.start
-                        ),
-
-                    end_time:
-                        normalizeTimeForDb(
-                            shift.end
-                        ),
-
-                    break_time:
-                        Number(
-                            shift.break ?? 60
-                        )
-                };
-            }
+                break_time:
+                    Number(
+                        shift.break ?? 0
+                    )
+            };
 
 
             /* =========================================
@@ -2907,8 +3114,8 @@ async function saveSchedule() {
             ========================================= */
 
             const {
-                data: existing,
-                error: findError
+                data:existing,
+                error:findError
             } = await db
                 .from("work_schedule")
                 .select("id")
@@ -2921,6 +3128,7 @@ async function saveSchedule() {
                     workDate
                 )
                 .limit(1);
+
 
             if (findError) {
                 throw findError;
@@ -2960,11 +3168,13 @@ async function saveSchedule() {
                         existing[0].id
                     );
 
+
                 if (error) {
                     throw error;
                 }
 
             }
+
 
             /* =========================================
                INSERT
@@ -2980,6 +3190,7 @@ async function saveSchedule() {
                         payload
                     );
 
+
                 if (error) {
                     throw error;
                 }
@@ -2989,19 +3200,24 @@ async function saveSchedule() {
 
         pendingChanges = {};
 
+
         await loadSchedule();
 
+
         renderAll();
+
 
         window.scrollTo(
             0,
             scrollY
         );
 
+
         showMessage(
             "Графикът е запазен успешно.",
             "success"
         );
+
 
     } catch(error) {
 
@@ -3010,10 +3226,12 @@ async function saveSchedule() {
             error
         );
 
+
         window.scrollTo(
             0,
             scrollY
         );
+
 
         showMessage(
             "Грешка при запис: " +
@@ -3025,7 +3243,7 @@ async function saveSchedule() {
 
 
 /* =========================================================
-   ОТМЕНЯНЕ НА ПРОМЕНИ
+   CANCEL
 ========================================================= */
 
 function cancelChanges() {
@@ -3042,7 +3260,7 @@ function cancelChanges() {
 
 
 /* =========================================================
-   СТАТИСТИКА
+   STATISTICS
 ========================================================= */
 
 function updateStats() {
@@ -3051,11 +3269,17 @@ function updateStats() {
         return;
     }
 
+
     let workDays = 0;
+
     let hours = 0;
+
     let restDays = 0;
+
     let leaveDays = 0;
+
     let absenceDays = 0;
+
 
     for (
         const row of scheduleRows
@@ -3068,17 +3292,24 @@ function updateStats() {
             continue;
         }
 
+
         const shift =
-            getCanonicalShift(
+            getShiftByValue(
                 row.shift_type
             );
+
 
         if (!shift) {
             continue;
         }
 
 
-        /* П = почивен ден */
+        /* =========================================
+           П = ПОЧИВКА
+           
+           НЯМА работни часове.
+           Брои се в почивни дни.
+        ========================================= */
 
         if (
             shift.name === "П"
@@ -3090,7 +3321,11 @@ function updateStats() {
         }
 
 
-        /* О = отпуска */
+        /* =========================================
+           О = ОТПУСКА
+           
+           НЯМА работни часове.
+        ========================================= */
 
         if (
             shift.name === "О"
@@ -3102,7 +3337,11 @@ function updateStats() {
         }
 
 
-        /* С = самоотлъчка */
+        /* =========================================
+           С = САМООТЛЪЧКА
+           
+           НЯМА работни часове.
+        ========================================= */
 
         if (
             shift.name === "С"
@@ -3114,48 +3353,52 @@ function updateStats() {
         }
 
 
-        /* Работна смяна */
+        /* =========================================
+           ВСИЧКО ОСТАНАЛО Е РАБОТНА СМЯНА
+        ========================================= */
+
+        const minutes =
+            minutesBetween(
+                row.start_time,
+                row.end_time
+            )
+            -
+            Number(
+                row.break_time || 0
+            );
+
 
         if (
-            isWorkingShift(shift)
+            minutes > 0
         ) {
 
-            const minutes =
-                minutesBetween(
-                    row.start_time,
-                    row.end_time
-                ) -
-                Number(
-                    row.break_time || 0
-                );
+            workDays++;
 
-            if (
-                minutes > 0
-            ) {
-
-                workDays++;
-
-                hours +=
-                    minutes / 60;
-            }
+            hours +=
+                minutes / 60;
         }
     }
+
 
     $("statWorkDays")
         .textContent =
         workDays;
 
+
     $("statHours")
         .textContent =
         hours.toFixed(2);
+
 
     $("statRest")
         .textContent =
         restDays;
 
+
     $("statLeave")
         .textContent =
         leaveDays;
+
 
     $("statAbsence")
         .textContent =
@@ -3164,7 +3407,7 @@ function updateStats() {
 
 
 /* =========================================================
-   ЛЕГЕНДА
+   LEGEND
 ========================================================= */
 
 function renderLegend() {
@@ -3175,6 +3418,7 @@ function renderLegend() {
     if (!box) {
         return;
     }
+
 
     box.innerHTML = `
 
@@ -3198,16 +3442,16 @@ function renderLegend() {
             Управител = 09:00–17:00
         </div>
 
-        <div class="legend-item status-O">
-            О = Отпуска
+        <div class="legend-item status-P">
+            П = Почивка
         </div>
 
         <div class="legend-item status-S">
-            С = Самоотлъчка — 0 ч.
+            С = Самоотлъчка
         </div>
 
-        <div class="legend-item status-P">
-            П = Почивка — 0 ч.
+        <div class="legend-item status-O">
+            О = Отпуска
         </div>
 
     `;
@@ -3215,15 +3459,10 @@ function renderLegend() {
 
 
 /* =========================================================
-   ПОКАЗВАНЕ НА TAB
+   TABS
 ========================================================= */
 
-function showTab(
-    tab
-) {
-
-    activeTab =
-        tab;
+function showTab(tab) {
 
     $("sectionMy")
         .classList
@@ -3232,12 +3471,14 @@ function showTab(
             tab !== "my"
         );
 
+
     $("sectionAll")
         .classList
         .toggle(
             "hidden",
             tab !== "all"
         );
+
 
     $("sectionAdmin")
         .classList
@@ -3246,12 +3487,14 @@ function showTab(
             tab !== "admin"
         );
 
+
     $("tabMy")
         .classList
         .toggle(
             "active",
             tab === "my"
         );
+
 
     $("tabAll")
         .classList
@@ -3260,12 +3503,14 @@ function showTab(
             tab === "all"
         );
 
+
     $("tabAdmin")
         .classList
         .toggle(
             "active",
             tab === "admin"
         );
+
 
     if (
         tab === "admin" &&
@@ -3282,7 +3527,7 @@ function showTab(
 
 
 /* =========================================================
-   ОБЩО РЕНДЕРИРАНЕ
+   RENDER ALL
 ========================================================= */
 
 function renderAll() {
@@ -3296,6 +3541,7 @@ function renderAll() {
     renderAllSchedule();
 
     renderLegend();
+
 
     if (
         isAdmin(currentUser)
@@ -3311,7 +3557,7 @@ function renderAll() {
 
 
 /* =========================================================
-   ПОТРЕБИТЕЛИ — ТАБЛИЦА
+   USERS TABLE
 ========================================================= */
 
 function renderUsersTable() {
@@ -3323,30 +3569,55 @@ function renderUsersTable() {
         return;
     }
 
+
     let html = `
+
         <div class="table-wrap">
 
         <table>
 
         <thead>
+
             <tr>
-                <th>Име</th>
-                <th>Парола</th>
-                <th>Роля</th>
-                <th>Активен</th>
-                <th>Само септември</th>
-                <th>Действия</th>
+
+                <th>
+                    Име
+                </th>
+
+                <th>
+                    Парола
+                </th>
+
+                <th>
+                    Роля
+                </th>
+
+                <th>
+                    Активен
+                </th>
+
+                <th>
+                    Само септември
+                </th>
+
+                <th>
+                    Действия
+                </th>
+
             </tr>
+
         </thead>
 
         <tbody>
     `;
+
 
     for (
         const user of users
     ) {
 
         html += `
+
             <tr>
 
                 <td>
@@ -3357,7 +3628,7 @@ function renderUsersTable() {
                     ${esc(user.password || "")}
                 </td>
 
-                <td class="user-role">
+                <td>
                     ${
                         isAdmin(user)
                         ? "Администратор"
@@ -3403,11 +3674,16 @@ function renderUsersTable() {
         `;
     }
 
+
     html += `
+
         </tbody>
+
         </table>
+
         </div>
     `;
+
 
     box.innerHTML =
         html;
@@ -3415,12 +3691,10 @@ function renderUsersTable() {
 
 
 /* =========================================================
-   РЕДАКЦИЯ НА ПОТРЕБИТЕЛ
+   EDIT USER
 ========================================================= */
 
-function editUser(
-    id
-) {
+function editUser(id) {
 
     const user =
         users.find(
@@ -3429,74 +3703,112 @@ function editUser(
                 String(id)
         );
 
+
     if (!user) {
         return;
     }
 
-    $("editUserId").value =
+
+    $("editUserId")
+        .value =
         user.id;
 
-    $("userName").value =
+
+    $("userName")
+        .value =
         user.name || "";
 
-    $("userPassword").value =
+
+    $("userPassword")
+        .value =
         user.password || "";
 
-    $("userAdmin").value =
+
+    $("userAdmin")
+        .value =
         isAdmin(user)
-            ? "true"
-            : "false";
+        ? "true"
+        : "false";
 
-    $("userActive").value =
+
+    $("userActive")
+        .value =
         user.active === false
-            ? "false"
-            : "true";
+        ? "false"
+        : "true";
 
-    $("userSeptemberOnly").value =
+
+    $("userSeptemberOnly")
+        .value =
         user.september_only
-            ? "true"
-            : "false";
+        ? "true"
+        : "false";
+
 
     window.scrollTo({
-        top: $("userForm")
+
+        top:
+            $("userForm")
             .getBoundingClientRect()
-            .top +
-            window.scrollY -
+            .top
+            +
+            window.scrollY
+            -
             100,
+
         behavior:"smooth"
     });
 }
 
 
 /* =========================================================
-   ЗАПАЗВАНЕ НА ПОТРЕБИТЕЛ
+   SAVE USER
 ========================================================= */
 
 async function saveUser() {
 
-    if (!isAdmin(currentUser)) {
+    if (
+        !isAdmin(currentUser)
+    ) {
         return;
     }
 
+
     const id =
-        $("editUserId").value;
+        $("editUserId")
+        .value;
+
 
     const name =
-        $("userName").value.trim();
+        $("userName")
+        .value
+        .trim();
+
 
     const password =
-        $("userPassword").value;
+        $("userPassword")
+        .value;
+
 
     const admin =
-        $("userAdmin").value === "true";
+        $("userAdmin")
+        .value === "true";
+
 
     const active =
-        $("userActive").value === "true";
+        $("userActive")
+        .value === "true";
+
 
     const septemberOnly =
-        $("userSeptemberOnly").value === "true";
+        $("userSeptemberOnly")
+        .value === "true";
 
-    if (!name || !password) {
+
+    if (
+        !name ||
+        !password
+    ) {
 
         showMessage(
             "Името и паролата са задължителни.",
@@ -3506,14 +3818,21 @@ async function saveUser() {
         return;
     }
 
+
     const payload = {
 
-        name,
-        password,
-        admin,
-        active,
-        september_only:septemberOnly
+        name:name,
+
+        password:password,
+
+        admin:admin,
+
+        active:active,
+
+        september_only:
+            septemberOnly
     };
+
 
     try {
 
@@ -3543,14 +3862,17 @@ async function saveUser() {
             }
         }
 
+
         resetUserForm();
 
         await loadUsers();
+
 
         showMessage(
             "Потребителят е запазен.",
             "success"
         );
+
 
     } catch(error) {
 
@@ -3564,36 +3886,43 @@ async function saveUser() {
 
 
 /* =========================================================
-   НОВ ПОТРЕБИТЕЛ
+   RESET USER
 ========================================================= */
 
 function resetUserForm() {
 
-    $("editUserId").value = "";
+    $("editUserId")
+        .value = "";
 
-    $("userName").value = "";
+    $("userName")
+        .value = "";
 
-    $("userPassword").value = "";
+    $("userPassword")
+        .value = "";
 
-    $("userAdmin").value = "false";
+    $("userAdmin")
+        .value = "false";
 
-    $("userActive").value = "true";
+    $("userActive")
+        .value = "true";
 
-    $("userSeptemberOnly").value = "false";
+    $("userSeptemberOnly")
+        .value = "false";
 }
 
 
 /* =========================================================
-   ИЗТРИВАНЕ НА ПОТРЕБИТЕЛ
+   DELETE USER
 ========================================================= */
 
-async function deleteUser(
-    id
-) {
+async function deleteUser(id) {
 
-    if (!isAdmin(currentUser)) {
+    if (
+        !isAdmin(currentUser)
+    ) {
         return;
     }
+
 
     const user =
         users.find(
@@ -3602,9 +3931,11 @@ async function deleteUser(
                 String(id)
         );
 
+
     if (!user) {
         return;
     }
+
 
     if (
         !confirm(
@@ -3613,6 +3944,7 @@ async function deleteUser(
     ) {
         return;
     }
+
 
     try {
 
@@ -3623,16 +3955,20 @@ async function deleteUser(
             .delete()
             .eq("id",id);
 
+
         if (error) {
             throw error;
         }
 
+
         await loadUsers();
+
 
         showMessage(
             "Потребителят е изтрит.",
             "success"
         );
+
 
     } catch(error) {
 
@@ -3646,7 +3982,7 @@ async function deleteUser(
 
 
 /* =========================================================
-   ТАБЛИЦА СЪС СМЕНИ
+   SHIFT TYPES TABLE
 ========================================================= */
 
 function renderShiftTypesTable() {
@@ -3658,25 +3994,52 @@ function renderShiftTypesTable() {
         return;
     }
 
+
     let html = `
+
         <div class="table-wrap">
 
         <table>
 
         <thead>
+
             <tr>
-                <th>Име</th>
-                <th>Кратко</th>
-                <th>Начало</th>
-                <th>Край</th>
-                <th>Почивка</th>
-                <th>Тип</th>
-                <th>Действия</th>
+
+                <th>
+                    Име
+                </th>
+
+                <th>
+                    Кратко
+                </th>
+
+                <th>
+                    Начало
+                </th>
+
+                <th>
+                    Край
+                </th>
+
+                <th>
+                    Почивка
+                </th>
+
+                <th>
+                    Тип
+                </th>
+
+                <th>
+                    Действия
+                </th>
+
             </tr>
+
         </thead>
 
         <tbody>
     `;
+
 
     for (
         const shift of SHIFTS
@@ -3685,7 +4048,9 @@ function renderShiftTypesTable() {
         const system =
             shift.system === true;
 
+
         html += `
+
             <tr>
 
                 <td>
@@ -3716,13 +4081,16 @@ function renderShiftTypesTable() {
 
                 <td>
                     ${
-                        shift.start
-                        ? Number(shift.break || 0) + " мин."
-                        : "0"
+                        isStatusShift(shift)
+                        ? "0"
+                        : Number(
+                            shift.break || 0
+                          ) +
+                          " мин."
                     }
                 </td>
 
-                <td class="${system ? "shift-system" : ""}">
+                <td>
                     ${
                         system
                         ? "Системна"
@@ -3734,12 +4102,15 @@ function renderShiftTypesTable() {
 
                     ${
                         system
+
                         ? `
                             <span class="small">
-                                Не може да се изтрие
+                                Системна
                             </span>
-                        `
+                          `
+
                         : `
+
                             <button
                                 class="primary-btn"
                                 onclick='editShiftType(${JSON.stringify(String(shift.id))})'
@@ -3753,7 +4124,8 @@ function renderShiftTypesTable() {
                             >
                                 Изтрий
                             </button>
-                        `
+
+                          `
                     }
 
                 </td>
@@ -3762,11 +4134,16 @@ function renderShiftTypesTable() {
         `;
     }
 
+
     html += `
+
         </tbody>
+
         </table>
+
         </div>
     `;
+
 
     box.innerHTML =
         html;
@@ -3774,12 +4151,10 @@ function renderShiftTypesTable() {
 
 
 /* =========================================================
-   РЕДАКЦИЯ НА СМЯНА
+   EDIT SHIFT
 ========================================================= */
 
-function editShiftType(
-    id
-) {
+function editShiftType(id) {
 
     const shift =
         SHIFTS.find(
@@ -3788,11 +4163,15 @@ function editShiftType(
                 String(id)
         );
 
+
     if (!shift) {
         return;
     }
 
-    if (shift.system) {
+
+    if (
+        shift.system
+    ) {
 
         showMessage(
             "Системните смени не могат да се редактират.",
@@ -3802,71 +4181,99 @@ function editShiftType(
         return;
     }
 
-    $("editShiftId").value =
+
+    $("editShiftId")
+        .value =
         shift.id;
 
-    $("shiftName").value =
+
+    $("shiftName")
+        .value =
         shift.name || "";
 
-    $("shiftShort").value =
+
+    $("shiftShort")
+        .value =
         shift.short || "";
 
-    $("shiftStart").value =
+
+    $("shiftStart")
+        .value =
         shift.start || "";
 
-    $("shiftEnd").value =
+
+    $("shiftEnd")
+        .value =
         shift.end || "";
 
-    $("shiftBreak").value =
+
+    $("shiftBreak")
+        .value =
         shift.break ?? 60;
 
+
     window.scrollTo({
+
         top:
             $("shiftForm")
             .getBoundingClientRect()
-            .top +
-            window.scrollY -
+            .top
+            +
+            window.scrollY
+            -
             100,
+
         behavior:"smooth"
     });
 }
 
 
 /* =========================================================
-   ЗАПАЗВАНЕ НА СМЯНА
+   SAVE SHIFT
 ========================================================= */
 
 async function saveShiftType() {
 
-    if (!isAdmin(currentUser)) {
+    if (
+        !isAdmin(currentUser)
+    ) {
         return;
     }
 
+
     const id =
-        $("editShiftId").value;
+        $("editShiftId")
+        .value;
+
 
     const name =
         $("shiftName")
         .value
         .trim();
 
+
     const short =
         $("shiftShort")
         .value
         .trim();
 
+
     const start =
         $("shiftStart")
         .value;
+
 
     const end =
         $("shiftEnd")
         .value;
 
+
     const breakTime =
         Number(
-            $("shiftBreak").value || 0
+            $("shiftBreak")
+            .value || 0
         );
+
 
     if (!name) {
 
@@ -3878,6 +4285,7 @@ async function saveShiftType() {
         return;
     }
 
+
     if (!short) {
 
         showMessage(
@@ -3888,12 +4296,11 @@ async function saveShiftType() {
         return;
     }
 
-    /*
-       За нова работна смяна часовете
-       са задължителни.
-    */
 
-    if (!start || !end) {
+    if (
+        !start ||
+        !end
+    ) {
 
         showMessage(
             "За нова работна смяна трябва да има начален и краен час.",
@@ -3903,25 +4310,20 @@ async function saveShiftType() {
         return;
     }
 
-    /*
-       Не позволяваме да се създават дублирани
-       системни статуси.
-    */
-
-    const reserved =
-        ["О","С","П"];
 
     if (
-        reserved.includes(name)
+        ["П","С","О"]
+        .includes(name)
     ) {
 
         showMessage(
-            "О, С и П са системни статуси.",
+            "П, С и О са системни статуси.",
             "warning"
         );
 
         return;
     }
+
 
     const payload = {
 
@@ -3930,14 +4332,19 @@ async function saveShiftType() {
         short_name:short,
 
         start_time:
-            normalizeTimeForDb(start),
+            normalizeTimeForDb(
+                start
+            ),
 
         end_time:
-            normalizeTimeForDb(end),
+            normalizeTimeForDb(
+                end
+            ),
 
         break_time:
             breakTime
     };
+
 
     try {
 
@@ -3967,16 +4374,19 @@ async function saveShiftType() {
             }
         }
 
+
         resetShiftForm();
 
         await loadShiftTypes();
 
         renderAll();
 
+
         showMessage(
             "Смяната е запазена.",
             "success"
         );
+
 
     } catch(error) {
 
@@ -3984,6 +4394,7 @@ async function saveShiftType() {
             "SHIFT SAVE ERROR:",
             error
         );
+
 
         showMessage(
             "Грешка при запис на смяната: " +
@@ -3995,36 +4406,43 @@ async function saveShiftType() {
 
 
 /* =========================================================
-   НОВА СМЯНА
+   RESET SHIFT FORM
 ========================================================= */
 
 function resetShiftForm() {
 
-    $("editShiftId").value = "";
+    $("editShiftId")
+        .value = "";
 
-    $("shiftName").value = "";
+    $("shiftName")
+        .value = "";
 
-    $("shiftShort").value = "";
+    $("shiftShort")
+        .value = "";
 
-    $("shiftStart").value = "";
+    $("shiftStart")
+        .value = "";
 
-    $("shiftEnd").value = "";
+    $("shiftEnd")
+        .value = "";
 
-    $("shiftBreak").value = "60";
+    $("shiftBreak")
+        .value = "60";
 }
 
 
 /* =========================================================
-   ИЗТРИВАНЕ НА СМЯНА
+   DELETE SHIFT
 ========================================================= */
 
-async function deleteShiftType(
-    id
-) {
+async function deleteShiftType(id) {
 
-    if (!isAdmin(currentUser)) {
+    if (
+        !isAdmin(currentUser)
+    ) {
         return;
     }
+
 
     const shift =
         SHIFTS.find(
@@ -4033,11 +4451,15 @@ async function deleteShiftType(
                 String(id)
         );
 
+
     if (!shift) {
         return;
     }
 
-    if (shift.system) {
+
+    if (
+        shift.system
+    ) {
 
         showMessage(
             "Системните смени не могат да се изтриват.",
@@ -4047,6 +4469,7 @@ async function deleteShiftType(
         return;
     }
 
+
     if (
         !confirm(
             `Изтриване на смяната "${shift.name}"?`
@@ -4054,6 +4477,7 @@ async function deleteShiftType(
     ) {
         return;
     }
+
 
     try {
 
@@ -4064,18 +4488,22 @@ async function deleteShiftType(
             .delete()
             .eq("id",id);
 
+
         if (error) {
             throw error;
         }
+
 
         await loadShiftTypes();
 
         renderAll();
 
+
         showMessage(
             "Смяната е изтрита.",
             "success"
         );
+
 
     } catch(error) {
 
@@ -4089,7 +4517,7 @@ async function deleteShiftType(
 
 
 /* =========================================================
-   DARK / LIGHT
+   THEME
 ========================================================= */
 
 function toggleTheme() {
@@ -4098,8 +4526,10 @@ function toggleTheme() {
         .classList
         .toggle("dark");
 
+
     localStorage.setItem(
         "schedule_theme",
+
         document.body
             .classList
             .contains("dark")
@@ -4116,7 +4546,10 @@ function loadTheme() {
             "schedule_theme"
         );
 
-    if (theme === "dark") {
+
+    if (
+        theme === "dark"
+    ) {
 
         document.body
             .classList
@@ -4132,7 +4565,7 @@ function loadTheme() {
 
 
 /* =========================================================
-   НАЧАЛНО ЗАРЕЖДАНЕ
+   INIT
 ========================================================= */
 
 async function init() {
@@ -4141,24 +4574,14 @@ async function init() {
 
     updateMonthTitle();
 
-    /*
-       Зареждаме потребителите,
-       за да се появят в login select.
-    */
-
-    await loadUsers();
-
-    /*
-       Базовите смени са налични
-       дори без shift_types.
-    */
-
     SHIFTS =
         DEFAULT_SHIFTS.map(
             s => ({...s})
         );
 
     renderLegend();
+
+    await loadUsers();
 }
 
 
