@@ -102,8 +102,7 @@ select option{
 input:focus,
 select:focus{
     border-color:var(--primary);
-    box-shadow:
-        0 0 0 3px rgba(99,102,241,.15);
+    box-shadow:0 0 0 3px rgba(99,102,241,.15);
 }
 
 label{
@@ -114,10 +113,12 @@ label{
     font-weight:bold;
 }
 
+button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
 
-/* =========================================================
-THEME BUTTON
-========================================================= */
+/* THEME */
 
 .theme-btn{
     width:42px;
@@ -130,16 +131,14 @@ THEME BUTTON
     display:flex;
     align-items:center;
     justify-content:center;
+    transition:.2s;
 }
 
 .theme-btn:hover{
     transform:translateY(-1px);
 }
 
-
-/* =========================================================
-LOGIN
-========================================================= */
+/* LOGIN */
 
 #loginPage{
     min-height:100vh;
@@ -153,16 +152,11 @@ LOGIN
     width:100%;
     max-width:430px;
     padding:38px;
-
     border:1px solid var(--border);
     border-radius:26px;
-
     background:var(--card);
-
     backdrop-filter:blur(20px);
-
-    box-shadow:
-        0 30px 90px var(--shadow);
+    box-shadow:0 30px 90px var(--shadow);
 }
 
 .login-theme{
@@ -175,13 +169,10 @@ LOGIN
     width:76px;
     height:76px;
     margin:0 auto 20px;
-
     border-radius:22px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     font-size:35px;
 
     background:
@@ -207,10 +198,8 @@ LOGIN
     width:100%;
     margin-top:20px;
     padding:14px;
-
     border:0;
     border-radius:12px;
-
     color:white;
     font-weight:bold;
 
@@ -226,40 +215,25 @@ LOGIN
 
 .login-btn:hover{
     transform:translateY(-1px);
-
-    box-shadow:
-        0 12px 30px rgba(99,102,241,.3);
-}
-
-.login-btn:disabled{
-    opacity:.65;
-    cursor:not-allowed;
+    box-shadow:0 12px 30px rgba(99,102,241,.3);
 }
 
 #errorBox{
     margin-top:15px;
     padding:12px;
-
     white-space:pre-line;
-
     border-radius:10px;
-
     background:rgba(239,68,68,.12);
     border:1px solid rgba(239,68,68,.3);
-
     color:#fca5a5;
 }
 
-
-/* =========================================================
-HEADER
-========================================================= */
+/* HEADER */
 
 .topbar{
     position:sticky;
     top:0;
     z-index:50;
-
     padding:13px 20px;
 
     background:color-mix(
@@ -269,18 +243,15 @@ HEADER
     );
 
     border-bottom:1px solid var(--border);
-
     backdrop-filter:blur(18px);
 }
 
 .topbar-inner{
     max-width:1600px;
     margin:auto;
-
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     gap:15px;
 }
 
@@ -293,9 +264,7 @@ HEADER
 .brand-icon{
     width:44px;
     height:44px;
-
     border-radius:13px;
-
     display:flex;
     align-items:center;
     justify-content:center;
@@ -332,10 +301,8 @@ HEADER
 
 .logout{
     padding:9px 13px;
-
     border-radius:9px;
     border:1px solid var(--border);
-
     background:transparent;
     color:var(--text);
 }
@@ -344,10 +311,7 @@ HEADER
     background:rgba(128,128,128,.12);
 }
 
-
-/* =========================================================
-MAIN
-========================================================= */
+/* MAIN */
 
 .container{
     width:min(1600px,calc(100% - 30px));
@@ -358,7 +322,6 @@ MAIN
     display:flex;
     align-items:center;
     justify-content:space-between;
-
     gap:20px;
     margin-bottom:20px;
 }
@@ -382,13 +345,10 @@ MAIN
 .month-controls button{
     width:42px;
     height:42px;
-
     border-radius:10px;
     border:1px solid var(--border);
-
     background:var(--card);
     color:var(--text);
-
     font-size:22px;
 }
 
@@ -398,10 +358,7 @@ MAIN
     font-weight:bold;
 }
 
-
-/* =========================================================
-STATS
-========================================================= */
+/* STATS */
 
 .stats{
     display:grid;
@@ -412,10 +369,8 @@ STATS
 
 .stat{
     padding:18px;
-
     border:1px solid var(--border);
     border-radius:17px;
-
     background:var(--card);
 }
 
@@ -430,10 +385,7 @@ STATS
     font-weight:bold;
 }
 
-
-/* =========================================================
-TABS
-========================================================= */
+/* TABS */
 
 .tabs{
     display:flex;
@@ -444,10 +396,8 @@ TABS
 
 .tab{
     padding:10px 16px;
-
     border:1px solid var(--border);
     border-radius:10px;
-
     background:var(--card);
     color:var(--muted);
 }
@@ -464,24 +414,16 @@ TABS
         );
 }
 
-
-/* =========================================================
-CARD
-========================================================= */
+/* CARD */
 
 .card{
     overflow:hidden;
-
     border:1px solid var(--border);
     border-radius:18px;
-
     background:var(--card);
 }
 
-
-/* =========================================================
-CALENDAR
-========================================================= */
+/* CALENDAR */
 
 .calendar-wrap{
     overflow-x:auto;
@@ -512,22 +454,17 @@ CALENDAR
 
 .employee-name{
     padding:12px;
-
     position:sticky;
     left:0;
     z-index:5;
-
     background:var(--card2);
-
     font-weight:bold;
 }
 
 .day-header{
     min-height:55px;
     padding:7px 2px;
-
     text-align:center;
-
     color:var(--muted);
     font-size:11px;
 }
@@ -535,7 +472,6 @@ CALENDAR
 .day-number{
     display:block;
     margin-bottom:3px;
-
     color:var(--text);
     font-size:14px;
     font-weight:bold;
@@ -548,21 +484,16 @@ CALENDAR
 .shift-cell{
     min-height:65px;
     padding:4px;
-
     display:flex;
     align-items:center;
     justify-content:center;
-
     text-align:center;
 }
 
 .shift{
     width:100%;
-
     padding:8px 2px;
-
     border-radius:8px;
-
     font-size:10px;
     font-weight:bold;
 }
@@ -582,7 +513,8 @@ CALENDAR
     color:#86efac;
 }
 
-.shift-c{
+.shift-c,
+.shift-full{
     background:rgba(245,158,11,.18);
     color:#fcd34d;
 }
@@ -602,19 +534,16 @@ CALENDAR
     color:#fca5a5;
 }
 
-.shift-personal{
-    background:rgba(236,72,153,.18);
-    color:#f9a8d4;
+.shift-rest{
+    background:rgba(100,116,139,.18);
+    color:#cbd5e1;
 }
 
 .shift-empty{
     color:#64748b;
 }
 
-
-/* =========================================================
-ADMIN
-========================================================= */
+/* ADMIN */
 
 .admin-panel{
     padding:20px;
@@ -639,10 +568,8 @@ ADMIN
 
 .action-btn{
     padding:11px 15px;
-
     border:1px solid var(--border);
     border-radius:10px;
-
     color:var(--text);
     background:var(--card2);
 }
@@ -660,10 +587,8 @@ ADMIN
 
 .save-btn{
     padding:12px 18px;
-
     border:0;
     border-radius:10px;
-
     color:white;
     font-weight:bold;
 
@@ -677,14 +602,7 @@ ADMIN
     margin-bottom:15px;
 }
 
-.save-btn:disabled{
-    opacity:.5;
-}
-
-
-/* =========================================================
-ADMIN TABLE
-========================================================= */
+/* ADMIN TABLE */
 
 .admin-calendar{
     overflow-x:auto;
@@ -703,7 +621,6 @@ ADMIN TABLE
 
 .admin-row>div{
     padding:6px;
-
     border-right:1px solid var(--border);
     border-bottom:1px solid var(--border);
 }
@@ -712,12 +629,9 @@ ADMIN TABLE
     position:sticky;
     left:0;
     z-index:5;
-
     background:var(--card2);
-
     display:flex;
     align-items:center;
-
     font-weight:bold;
 }
 
@@ -742,16 +656,12 @@ ADMIN TABLE
 
 .admin-row select.changed{
     border-color:var(--yellow);
-
     box-shadow:
         0 0 0 2px
         rgba(245,158,11,.1);
 }
 
-
-/* =========================================================
-FORMS
-========================================================= */
+/* FORMS */
 
 .form-card{
     padding:20px;
@@ -770,7 +680,6 @@ FORMS
 
 .form-actions{
     margin-top:15px;
-
     display:flex;
     gap:8px;
     flex-wrap:wrap;
@@ -778,10 +687,8 @@ FORMS
 
 .primary-btn{
     padding:11px 17px;
-
     border:0;
     border-radius:10px;
-
     color:white;
     font-weight:bold;
 
@@ -795,20 +702,16 @@ FORMS
 
 .danger-btn{
     padding:8px 11px;
-
     border:1px solid rgba(239,68,68,.3);
     border-radius:8px;
-
     background:rgba(239,68,68,.1);
     color:#fca5a5;
 }
 
 .secondary-btn{
     padding:8px 11px;
-
     border:1px solid var(--border);
     border-radius:8px;
-
     background:var(--card2);
     color:var(--text);
 }
@@ -821,10 +724,7 @@ FORMS
     background:rgba(239,68,68,.2);
 }
 
-
-/* =========================================================
-MANAGEMENT TABLE
-========================================================= */
+/* MANAGEMENT */
 
 .manage-table-wrap{
     overflow-x:auto;
@@ -839,9 +739,7 @@ MANAGEMENT TABLE
 .manage-table th,
 .manage-table td{
     padding:11px;
-
     text-align:left;
-
     border-bottom:1px solid var(--border);
 }
 
@@ -860,41 +758,19 @@ MANAGEMENT TABLE
     min-width:110px;
 }
 
+.manage-table td:last-child{
+    white-space:nowrap;
+}
+
 .badge{
     display:inline-block;
-
     padding:5px 9px;
-
     border-radius:20px;
-
     font-size:11px;
     font-weight:bold;
 }
 
-.badge-green{
-    background:rgba(34,197,94,.15);
-    color:#86efac;
-}
-
-.badge-red{
-    background:rgba(239,68,68,.15);
-    color:#fca5a5;
-}
-
-.badge-purple{
-    background:rgba(139,92,246,.15);
-    color:#c4b5fd;
-}
-
-.badge-blue{
-    background:rgba(59,130,246,.15);
-    color:#93c5fd;
-}
-
-
-/* =========================================================
-LEGEND
-========================================================= */
+/* LEGEND */
 
 .legend{
     display:flex;
@@ -907,7 +783,6 @@ LEGEND
     display:flex;
     align-items:center;
     gap:6px;
-
     color:var(--muted);
     font-size:12px;
 }
@@ -918,10 +793,35 @@ LEGEND
     border-radius:4px;
 }
 
+.legend-dot.shift-first{
+    background:#3b82f6;
+}
 
-/* =========================================================
-LOADING
-========================================================= */
+.legend-dot.shift-second{
+    background:#a855f7;
+}
+
+.legend-dot.shift-r{
+    background:#22c55e;
+}
+
+.legend-dot.shift-c{
+    background:#f59e0b;
+}
+
+.legend-dot.shift-leave{
+    background:#0ea5e9;
+}
+
+.legend-dot.shift-absence{
+    background:#ef4444;
+}
+
+.legend-dot.shift-rest{
+    background:#64748b;
+}
+
+/* LOADING */
 
 .loading{
     padding:50px;
@@ -932,14 +832,10 @@ LOADING
 .spinner{
     width:34px;
     height:34px;
-
     margin:0 auto 15px;
-
     border:3px solid rgba(128,128,128,.15);
     border-top-color:var(--primary);
-
     border-radius:50%;
-
     animation:spin .8s linear infinite;
 }
 
@@ -949,10 +845,7 @@ LOADING
     }
 }
 
-
-/* =========================================================
-MOBILE
-========================================================= */
+/* MOBILE */
 
 @media(max-width:800px){
 
@@ -973,7 +866,6 @@ MOBILE
     .user-name{
         display:none;
     }
-
 }
 
 @media(max-width:500px){
@@ -989,7 +881,6 @@ MOBILE
     .stat{
         padding:13px;
     }
-
 }
 
 </style>
@@ -997,10 +888,7 @@ MOBILE
 
 <body>
 
-
-<!-- =========================================================
-LOGIN
-========================================================= -->
+<!-- LOGIN -->
 
 <section id="loginPage">
 
@@ -1021,27 +909,17 @@ title="Смени тема"
 📅
 </div>
 
-<h1>
-Работен график
-</h1>
+<h1>Работен график</h1>
 
-<p>
-Влезте, за да видите своя график
-</p>
+<p>Влезте, за да видите своя график</p>
 
-<label>
-Служител
-</label>
+<label>Служител</label>
 
 <select id="loginName">
-<option value="">
-Зареждане...
-</option>
+<option value="">Зареждане...</option>
 </select>
 
-<label>
-Парола
-</label>
+<label>Парола</label>
 
 <input
 id="loginPassword"
@@ -1068,9 +946,7 @@ class="hidden"
 </section>
 
 
-<!-- =========================================================
-APP
-========================================================= -->
+<!-- APP -->
 
 <section
 id="appPage"
@@ -1083,22 +959,14 @@ class="hidden"
 
 <div class="brand">
 
-<div class="brand-icon">
-📅
-</div>
+<div class="brand-icon">📅</div>
 
 <div>
-<strong>
-Работен график
-</strong>
-
-<small>
-График на служителите
-</small>
+<strong>Работен график</strong>
+<small>График на служителите</small>
 </div>
 
 </div>
-
 
 <div class="user-area">
 
@@ -1132,35 +1000,26 @@ onclick="logout()"
 
 <main class="container">
 
-
 <div class="hero">
 
 <div>
 
-<h2 id="pageTitle">
-График
-</h2>
+<h2 id="pageTitle">График</h2>
 
-<p id="pageSubtitle">
-Работен график
-</p>
+<p id="pageSubtitle">Работен график</p>
 
 </div>
 
 <div class="month-controls">
 
-<button onclick="changeMonth(-1)">
-‹
-</button>
+<button onclick="changeMonth(-1)">‹</button>
 
 <div
 id="monthTitle"
 class="month-title"
 ></div>
 
-<button onclick="changeMonth(1)">
-›
-</button>
+<button onclick="changeMonth(1)">›</button>
 
 </div>
 
@@ -1170,66 +1029,23 @@ class="month-title"
 <div class="stats">
 
 <div class="stat">
-
-<div class="stat-title">
-Служители
+<div class="stat-title">Служители</div>
+<div id="statEmployees" class="stat-value">0</div>
 </div>
-
-<div
-id="statEmployees"
-class="stat-value"
->
-0
-</div>
-
-</div>
-
 
 <div class="stat">
-
-<div class="stat-title">
-Дни в месеца
+<div class="stat-title">Дни в месеца</div>
+<div id="statWorkDays" class="stat-value">0</div>
 </div>
-
-<div
-id="statWorkDays"
-class="stat-value"
->
-0
-</div>
-
-</div>
-
 
 <div class="stat">
-
-<div class="stat-title">
-Мои смени
+<div class="stat-title">Мои смени</div>
+<div id="statMyDays" class="stat-value">0</div>
 </div>
-
-<div
-id="statMyDays"
-class="stat-value"
->
-0
-</div>
-
-</div>
-
 
 <div class="stat">
-
-<div class="stat-title">
-Статус
-</div>
-
-<div
-id="statStatus"
-class="stat-value"
->
-—
-</div>
-
+<div class="stat-title">Статус</div>
+<div id="statStatus" class="stat-value">—</div>
 </div>
 
 </div>
@@ -1264,9 +1080,7 @@ onclick="showTab('admin')"
 </div>
 
 
-<!-- =========================================================
-MY
-========================================================= -->
+<!-- MY -->
 
 <section id="mySection">
 
@@ -1294,9 +1108,7 @@ id="myCalendar"
 </section>
 
 
-<!-- =========================================================
-ALL
-========================================================= -->
+<!-- ALL -->
 
 <section
 id="allSection"
@@ -1327,9 +1139,7 @@ id="allCalendar"
 </section>
 
 
-<!-- =========================================================
-ADMIN
-========================================================= -->
+<!-- ADMIN -->
 
 <section
 id="adminSection"
@@ -1338,15 +1148,12 @@ class="hidden"
 
 <div class="card admin-panel">
 
-<h3>
-⚙️ Управление
-</h3>
+<h3>⚙️ Управление</h3>
 
 <p class="description">
 Оттук Петя може да управлява служителите,
 паролите, правата и видовете смени.
 </p>
-
 
 <div class="admin-actions">
 
@@ -1401,9 +1208,7 @@ class="admin-table"
 </div>
 
 
-<!-- =========================================================
-USERS
-========================================================= -->
+<!-- USERS -->
 
 <div
 id="adminUsersPanel"
@@ -1412,17 +1217,13 @@ class="hidden"
 
 <div class="card form-card">
 
-<h3>
-➕ Добавяне на потребител
-</h3>
+<h3>➕ Добавяне на потребител</h3>
 
 <div class="form-grid">
 
 <div>
 
-<label>
-Име
-</label>
+<label>Име</label>
 
 <input
 id="newUserName"
@@ -1433,9 +1234,7 @@ placeholder="Напр. Георги Петров"
 
 <div>
 
-<label>
-Парола
-</label>
+<label>Парола</label>
 
 <input
 id="newUserPassword"
@@ -1451,19 +1250,12 @@ placeholder="Парола"
 
 <div>
 
-<label>
-Администратор
-</label>
+<label>Администратор</label>
 
 <select id="newUserAdmin">
 
-<option value="false">
-Не
-</option>
-
-<option value="true">
-Да
-</option>
+<option value="false">Не</option>
+<option value="true">Да</option>
 
 </select>
 
@@ -1472,19 +1264,12 @@ placeholder="Парола"
 
 <div>
 
-<label>
-Активен
-</label>
+<label>Активен</label>
 
 <select id="newUserActive">
 
-<option value="true">
-Да
-</option>
-
-<option value="false">
-Не
-</option>
+<option value="true">Да</option>
+<option value="false">Не</option>
 
 </select>
 
@@ -1493,19 +1278,12 @@ placeholder="Парола"
 
 <div>
 
-<label>
-Само септември
-</label>
+<label>Само септември</label>
 
 <select id="newUserSeptember">
 
-<option value="false">
-Не
-</option>
-
-<option value="true">
-Да
-</option>
+<option value="false">Не</option>
+<option value="true">Да</option>
 
 </select>
 
@@ -1530,9 +1308,7 @@ onclick="addUser()"
 
 <div class="card form-card">
 
-<h3>
-👤 Съществуващи потребители
-</h3>
+<h3>👤 Съществуващи потребители</h3>
 
 <div
 id="usersTable"
@@ -1544,9 +1320,7 @@ class="manage-table-wrap"
 </div>
 
 
-<!-- =========================================================
-SHIFTS
-========================================================= -->
+<!-- SHIFTS -->
 
 <div
 id="adminShiftsPanel"
@@ -1555,17 +1329,13 @@ class="hidden"
 
 <div class="card form-card">
 
-<h3>
-➕ Добавяне на нов вид смяна
-</h3>
+<h3>➕ Добавяне на нов вид смяна</h3>
 
 <div class="form-grid">
 
 <div>
 
-<label>
-Име на смяната
-</label>
+<label>Име на смяната</label>
 
 <input
 id="newShiftName"
@@ -1576,9 +1346,7 @@ placeholder="Напр. Нощна"
 
 <div>
 
-<label>
-Кратко име
-</label>
+<label>Кратко име</label>
 
 <input
 id="newShiftShort"
@@ -1594,9 +1362,7 @@ placeholder="Напр. Нощ"
 
 <div>
 
-<label>
-Начало
-</label>
+<label>Начало</label>
 
 <input
 id="newShiftStart"
@@ -1607,9 +1373,7 @@ type="time"
 
 <div>
 
-<label>
-Край
-</label>
+<label>Край</label>
 
 <input
 id="newShiftEnd"
@@ -1620,9 +1384,7 @@ type="time"
 
 <div>
 
-<label>
-Почивка в минути
-</label>
+<label>Почивка в минути</label>
 
 <input
 id="newShiftBreak"
@@ -1652,9 +1414,7 @@ onclick="addShiftType()"
 
 <div class="card form-card">
 
-<h3>
-🕐 Съществуващи видове смени
-</h3>
+<h3>🕐 Съществуващи видове смени</h3>
 
 <div
 id="shiftsTable"
@@ -1693,22 +1453,21 @@ class="manage-table-wrap"
 </div>
 
 <div class="legend-item">
-<span class="legend-dot shift-manager"></span>
-Управител
-</div>
-
-<div class="legend-item">
 <span class="legend-dot shift-leave"></span>
-Отпуска
+О — Отпуска
 </div>
 
 <div class="legend-item">
 <span class="legend-dot shift-absence"></span>
-Самоотлъчка
+С — Самоотлъчка
+</div>
+
+<div class="legend-item">
+<span class="legend-dot shift-rest"></span>
+П — Почивка
 </div>
 
 </div>
-
 
 </main>
 
@@ -1729,8 +1488,8 @@ const SUPABASE_KEY =
 
 const supabaseClient =
 window.supabase.createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
@@ -1751,28 +1510,28 @@ MONTHS
 ========================================================= */
 
 const MONTHS = [
-"Януари",
-"Февруари",
-"Март",
-"Април",
-"Май",
-"Юни",
-"Юли",
-"Август",
-"Септември",
-"Октомври",
-"Ноември",
-"Декември"
+    "Януари",
+    "Февруари",
+    "Март",
+    "Април",
+    "Май",
+    "Юни",
+    "Юли",
+    "Август",
+    "Септември",
+    "Октомври",
+    "Ноември",
+    "Декември"
 ];
 
 const DAYS = [
-"Нд",
-"Пн",
-"Вт",
-"Ср",
-"Чт",
-"Пт",
-"Сб"
+    "Нд",
+    "Пн",
+    "Вт",
+    "Ср",
+    "Чт",
+    "Пт",
+    "Сб"
 ];
 
 
@@ -1781,62 +1540,64 @@ START
 ========================================================= */
 
 document.addEventListener(
-"DOMContentLoaded",
-async () => {
+    "DOMContentLoaded",
+    async () => {
 
-loadTheme();
+        loadTheme();
 
-setupEnterLogin();
+        setupEnterLogin();
 
-await loadUsers();
+        await loadUsers();
 
-await loadShiftTypes();
+        await loadShiftTypes();
 
-restoreSession();
+        restoreSession();
 
-}
+    }
 );
 
 
 /* =========================================================
-ENTER = LOGIN
+ENTER LOGIN
 ========================================================= */
 
 function setupEnterLogin(){
 
-const passwordInput =
-document.getElementById("loginPassword");
+    const passwordInput =
+        document.getElementById("loginPassword");
 
-const nameSelect =
-document.getElementById("loginName");
+    const nameSelect =
+        document.getElementById("loginName");
 
-passwordInput.addEventListener(
-"keydown",
-function(event){
+    passwordInput.addEventListener(
+        "keydown",
+        event => {
 
-if(event.key === "Enter"){
+            if(event.key === "Enter"){
 
-event.preventDefault();
+                event.preventDefault();
 
-login();
+                login();
 
-}
+            }
 
-});
+        }
+    );
 
-nameSelect.addEventListener(
-"keydown",
-function(event){
+    nameSelect.addEventListener(
+        "keydown",
+        event => {
 
-if(event.key === "Enter"){
+            if(event.key === "Enter"){
 
-event.preventDefault();
+                event.preventDefault();
 
-login();
+                login();
 
-}
+            }
 
-});
+        }
+    );
 
 }
 
@@ -1847,62 +1608,64 @@ THEME
 
 function loadTheme(){
 
-const savedTheme =
-localStorage.getItem("workScheduleTheme");
+    const savedTheme =
+        localStorage.getItem(
+            "workScheduleTheme"
+        );
 
-if(savedTheme === "light"){
+    if(savedTheme === "light"){
 
-document.body.classList.add("light");
+        document.body.classList.add("light");
 
-}
+    }
 
-updateThemeButtons();
+    updateThemeButtons();
 
 }
 
 
 function toggleTheme(){
 
-document.body.classList.toggle("light");
+    document.body.classList.toggle("light");
 
-const isLight =
-document.body.classList.contains("light");
+    const isLight =
+        document.body.classList.contains("light");
 
-localStorage.setItem(
-"workScheduleTheme",
-isLight
-? "light"
-: "dark"
-);
+    localStorage.setItem(
+        "workScheduleTheme",
+        isLight ? "light" : "dark"
+    );
 
-updateThemeButtons();
+    updateThemeButtons();
 
 }
 
 
 function updateThemeButtons(){
 
-const isLight =
-document.body.classList.contains("light");
+    const isLight =
+        document.body.classList.contains("light");
 
-const icon =
-isLight
-? "🌙"
-: "☀️";
+    const icon =
+        isLight ? "🌙" : "☀️";
 
-const loginButton =
-document.getElementById("loginThemeBtn");
+    const loginButton =
+        document.getElementById(
+            "loginThemeBtn"
+        );
 
-const appButton =
-document.getElementById("appThemeBtn");
+    const appButton =
+        document.getElementById(
+            "appThemeBtn"
+        );
 
-if(loginButton){
-loginButton.textContent = icon;
-}
+    if(loginButton){
+        loginButton.textContent = icon;
+    }
 
-if(appButton){
-appButton.textContent = icon;
-}
+    if(appButton){
+        appButton.textContent = icon;
+    }
 
 }
 
@@ -1913,54 +1676,71 @@ ERROR
 
 function showError(message){
 
-const box =
-document.getElementById("errorBox");
+    const box =
+        document.getElementById(
+            "errorBox"
+        );
 
-box.textContent = message;
+    box.textContent = message;
 
-box.classList.remove("hidden");
+    box.classList.remove("hidden");
 
 }
+
 
 function hideError(){
 
-document
-.getElementById("errorBox")
-.classList.add("hidden");
+    document
+        .getElementById("errorBox")
+        .classList.add("hidden");
 
 }
+
 
 function errorText(error){
 
-if(!error){
-return "Неизвестна грешка.";
-}
+    if(!error){
+        return "Неизвестна грешка.";
+    }
 
-return [
-error.message,
-error.details,
-error.hint,
-error.code
-]
-.filter(Boolean)
-.join("\n");
+    return [
+        error.message,
+        error.details,
+        error.hint,
+        error.code
+    ]
+    .filter(Boolean)
+    .join("\n");
 
 }
 
 
 /* =========================================================
-ADMIN CHECK
+ADMIN
 ========================================================= */
 
 function isAdmin(user = currentUser){
 
-return Boolean(
-user &&
-(
-user.admin === true ||
-String(user.admin).toLowerCase() === "true"
-)
-);
+    return Boolean(
+        user &&
+        (
+            user.admin === true ||
+            String(user.admin).toLowerCase() === "true"
+        )
+    );
+
+}
+
+
+function isAdminUser(user){
+
+    return Boolean(
+        user &&
+        (
+            user.admin === true ||
+            String(user.admin).toLowerCase() === "true"
+        )
+    );
 
 }
 
@@ -1971,83 +1751,90 @@ USERS
 
 async function loadUsers(){
 
-const select =
-document.getElementById("loginName");
+    const select =
+        document.getElementById(
+            "loginName"
+        );
 
-try{
+    try{
 
-const {
-data,
-error
-} =
-await supabaseClient
-.from("app_users")
-.select(
-"id,name,password,admin,active,september_only"
-)
-.order("name");
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .from("app_users")
+            .select(
+                "id,name,password,admin,active,september_only"
+            )
+            .order("name");
 
-if(error){
-throw error;
-}
+        if(error){
+            throw error;
+        }
 
-users = data || [];
+        users = data || [];
 
-select.innerHTML =
-`
-<option value="">
-Изберете служител
-</option>
-`;
+        select.innerHTML =
+        `
+            <option value="">
+                Изберете служител
+            </option>
+        `;
 
-users
-.filter(
-u => u.active !== false
-)
-.forEach(user => {
+        const activeUsers =
+            users.filter(
+                u => u.active !== false
+            );
 
-const option =
-document.createElement("option");
+        activeUsers.forEach(
+            user => {
 
-option.value =
-String(user.id);
+                const option =
+                    document.createElement(
+                        "option"
+                    );
 
-option.textContent =
-user.name;
+                option.value =
+                    String(user.id);
 
-select.appendChild(option);
+                option.textContent =
+                    user.name;
 
-});
+                select.appendChild(option);
 
-if(!users.length){
+            }
+        );
 
-select.innerHTML =
-`
-<option value="">
-Няма намерени потребители
-</option>
-`;
+        if(!activeUsers.length){
 
-}
+            select.innerHTML =
+            `
+                <option value="">
+                    Няма активни потребители
+                </option>
+            `;
 
-}
-catch(error){
+        }
 
-console.error(error);
+    }
+    catch(error){
 
-select.innerHTML =
-`
-<option value="">
-Грешка
-</option>
-`;
+        console.error(error);
 
-showError(
-"Грешка при зареждане на потребителите:\n\n" +
-errorText(error)
-);
+        select.innerHTML =
+        `
+            <option value="">
+                Грешка
+            </option>
+        `;
 
-}
+        showError(
+            "Грешка при зареждане на потребителите:\n\n" +
+            errorText(error)
+        );
+
+    }
 
 }
 
@@ -2058,44 +1845,54 @@ SHIFT TYPES
 
 async function loadShiftTypes(){
 
-try{
+    try{
 
-const {
-data,
-error
-} =
-await supabaseClient
-.from("shift_types")
-.select("*")
-.order("id");
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .from("shift_types")
+            .select("*")
+            .order("id");
 
-if(error){
+        if(error){
+            throw error;
+        }
 
-console.warn(
-"shift_types:",
-errorText(error)
-);
+        shiftTypes =
+            (data || [])
+            .filter(
+                s => s.active !== false
+            );
 
-shiftTypes = [];
+    }
+    catch(error){
 
-return;
+        console.error(
+            "Грешка shift_types:",
+            error
+        );
 
-}
+        shiftTypes = [];
 
-shiftTypes =
-(data || [])
-.filter(
-s => s.active !== false
-);
-
-}
-catch(error){
-
-console.error(error);
-
-shiftTypes = [];
+    }
 
 }
+
+
+/* =========================================================
+TIME NORMALIZATION
+========================================================= */
+
+function normalizeTime(value){
+
+    if(!value){
+        return "";
+    }
+
+    return String(value)
+        .substring(0,5);
 
 }
 
@@ -2106,98 +1903,109 @@ LOGIN
 
 async function login(){
 
-hideError();
+    hideError();
 
-const id =
-document
-.getElementById("loginName")
-.value;
+    const id =
+        document
+            .getElementById("loginName")
+            .value;
 
-const password =
-document
-.getElementById("loginPassword")
-.value;
+    const password =
+        document
+            .getElementById("loginPassword")
+            .value;
 
-if(!id){
+    if(!id){
 
-showError(
-"Моля, изберете служител."
-);
+        showError(
+            "Моля, изберете служител."
+        );
 
-return;
+        return;
 
-}
+    }
 
-if(!password){
+    if(!password){
 
-showError(
-"Моля, въведете парола."
-);
+        showError(
+            "Моля, въведете парола."
+        );
 
-return;
+        return;
 
-}
+    }
 
-const button =
-document.getElementById("loginBtn");
+    const button =
+        document.getElementById(
+            "loginBtn"
+        );
 
-button.disabled = true;
-button.textContent = "Влизане...";
+    button.disabled = true;
+    button.textContent = "Влизане...";
 
-try{
+    try{
 
-const user =
-users.find(
-u =>
-String(u.id) === String(id)
-);
+        const user =
+            users.find(
+                u =>
+                    String(u.id) ===
+                    String(id)
+            );
 
-if(!user){
+        if(!user){
 
-throw new Error(
-"Потребителят не е намерен."
-);
+            throw new Error(
+                "Потребителят не е намерен."
+            );
 
-}
+        }
 
-if(
-String(user.password) !==
-String(password)
-){
+        if(user.active === false){
 
-throw new Error(
-"Грешна парола."
-);
+            throw new Error(
+                "Този потребител е неактивен."
+            );
 
-}
+        }
 
-currentUser = user;
+        if(
+            String(user.password) !==
+            String(password)
+        ){
 
-sessionStorage.setItem(
-"workScheduleUser",
-JSON.stringify(user)
-);
+            throw new Error(
+                "Грешна парола."
+            );
 
-openApp();
+        }
 
-await loadSchedule();
+        currentUser = user;
 
-}
-catch(error){
+        sessionStorage.setItem(
+            "workScheduleUser",
+            JSON.stringify(user)
+        );
 
-console.error(error);
+        openApp();
 
-showError(
-errorText(error)
-);
+        await loadSchedule();
 
-}
-finally{
+    }
+    catch(error){
 
-button.disabled = false;
-button.textContent = "Вход";
+        console.error(error);
 
-}
+        showError(
+            errorText(error)
+        );
+
+    }
+    finally{
+
+        button.disabled = false;
+        button.textContent = "Вход";
+
+    }
 
 }
 
@@ -2208,35 +2016,27 @@ OPEN APP
 
 function openApp(){
 
-document
-.getElementById("loginPage")
-.classList.add("hidden");
+    document
+        .getElementById("loginPage")
+        .classList.add("hidden");
 
-document
-.getElementById("appPage")
-.classList.remove("hidden");
+    document
+        .getElementById("appPage")
+        .classList.remove("hidden");
 
-document
-.getElementById("currentUserName")
-.textContent =
-currentUser.name;
+    document
+        .getElementById("currentUserName")
+        .textContent =
+        currentUser.name;
 
-if(isAdmin()){
+    document
+        .getElementById("adminTab")
+        .classList.toggle(
+            "hidden",
+            !isAdmin()
+        );
 
-document
-.getElementById("adminTab")
-.classList.remove("hidden");
-
-}
-else{
-
-document
-.getElementById("adminTab")
-.classList.add("hidden");
-
-}
-
-setStatus();
+    setStatus();
 
 }
 
@@ -2247,32 +2047,29 @@ STATUS
 
 function setStatus(){
 
-let status =
-"Служител";
+    let status = "Служител";
 
-if(
-currentUser &&
-currentUser.name === "Петя"
-){
+    if(
+        currentUser &&
+        currentUser.name === "Петя"
+    ){
 
-status =
-"Управител";
+        status = "Управител";
 
-}
-else if(
-currentUser &&
-currentUser.name === "Иван Панов"
-){
+    }
+    else if(
+        currentUser &&
+        currentUser.name === "Иван Панов"
+    ){
 
-status =
-"Шеф смяна";
+        status = "Шеф смяна";
 
-}
+    }
 
-document
-.getElementById("statStatus")
-.textContent =
-status;
+    document
+        .getElementById("statStatus")
+        .textContent =
+        status;
 
 }
 
@@ -2283,64 +2080,56 @@ RESTORE
 
 function restoreSession(){
 
-const saved =
-sessionStorage.getItem(
-"workScheduleUser"
-);
+    const saved =
+        sessionStorage.getItem(
+            "workScheduleUser"
+        );
 
-if(!saved){
-return;
-}
+    if(!saved){
+        return;
+    }
 
-try{
+    try{
 
-const savedUser =
-JSON.parse(saved);
+        const savedUser =
+            JSON.parse(saved);
 
-const actualUser =
-users.find(
-u =>
-String(u.id) ===
-String(savedUser.id)
-);
+        const actualUser =
+            users.find(
+                u =>
+                    String(u.id) ===
+                    String(savedUser.id)
+            );
 
-if(!actualUser){
+        if(
+            !actualUser ||
+            actualUser.active === false
+        ){
 
-sessionStorage.removeItem(
-"workScheduleUser"
-);
+            sessionStorage.removeItem(
+                "workScheduleUser"
+            );
 
-return;
+            return;
 
-}
+        }
 
-if(actualUser.active === false){
+        currentUser = actualUser;
 
-sessionStorage.removeItem(
-"workScheduleUser"
-);
+        openApp();
 
-return;
+        loadSchedule();
 
-}
+    }
+    catch(error){
 
-currentUser =
-actualUser;
+        console.error(error);
 
-openApp();
+        sessionStorage.removeItem(
+            "workScheduleUser"
+        );
 
-loadSchedule();
-
-}
-catch(error){
-
-console.error(error);
-
-sessionStorage.removeItem(
-"workScheduleUser"
-);
-
-}
+    }
 
 }
 
@@ -2351,11 +2140,11 @@ LOGOUT
 
 function logout(){
 
-sessionStorage.removeItem(
-"workScheduleUser"
-);
+    sessionStorage.removeItem(
+        "workScheduleUser"
+    );
 
-location.reload();
+    location.reload();
 
 }
 
@@ -2366,48 +2155,49 @@ SCHEDULE
 
 async function loadSchedule(){
 
-try{
+    try{
 
-const {
-data,
-error
-} =
-await supabaseClient
-.from("work_schedule")
-.select(
-"employee,work_date,shift_type,start_time,end_time,break_time"
-);
+        const {
+            data,
+            error
+        } =
+        await supabaseClient
+            .from("work_schedule")
+            .select(
+                "employee,work_date,shift_type,start_time,end_time,break_time"
+            );
 
-if(error){
-throw error;
-}
+        if(error){
+            throw error;
+        }
 
-schedule =
-data || [];
+        schedule = data || [];
 
-renderAll();
+        renderAll();
 
-}
-catch(error){
+    }
+    catch(error){
 
-console.error(error);
+        console.error(error);
 
-document
-.getElementById("myCalendar")
-.innerHTML =
-`
-<div class="loading">
+        document
+            .getElementById("myCalendar")
+            .innerHTML =
+            `
+            <div class="loading">
 
-Грешка при зареждане на графика
+                Грешка при зареждане на графика
 
-<br><br>
+                <br><br>
 
-${escapeHtml(errorText(error))}
+                ${escapeHtml(
+                    errorText(error)
+                )}
 
-</div>
-`;
+            </div>
+            `;
 
-}
+    }
 
 }
 
@@ -2418,39 +2208,39 @@ DATES
 
 function daysInMonth(){
 
-return new Date(
-currentDate.getFullYear(),
-currentDate.getMonth() + 1,
-0
-).getDate();
+    return new Date(
+        currentDate.getFullYear(),
+        currentDate.getMonth() + 1,
+        0
+    ).getDate();
 
 }
 
 
 function dateKey(
-year,
-month,
-day
+    year,
+    month,
+    day
 ){
 
-return (
-year +
-"-" +
-String(month + 1).padStart(2,"0") +
-"-" +
-String(day).padStart(2,"0")
-);
+    return (
+        year +
+        "-" +
+        String(month + 1).padStart(2,"0") +
+        "-" +
+        String(day).padStart(2,"0")
+    );
 
 }
 
 
 function changeMonth(amount){
 
-currentDate.setMonth(
-currentDate.getMonth() + amount
-);
+    currentDate.setMonth(
+        currentDate.getMonth() + amount
+    );
 
-renderAll();
+    renderAll();
 
 }
 
@@ -2461,31 +2251,32 @@ GET SHIFT
 
 function getShift(name){
 
-return shiftTypes.find(
-s =>
-s.name === name
-);
+    return shiftTypes.find(
+        s =>
+            String(s.name) ===
+            String(name)
+    );
 
 }
 
 
 /* =========================================================
-GET ROW
+GET SCHEDULE
 ========================================================= */
 
 function getSchedule(
-employee,
-date
+    employee,
+    date
 ){
 
-return schedule.find(
-row =>
-String(row.employee) ===
-String(employee)
-&&
-String(row.work_date) ===
-String(date)
-);
+    return schedule.find(
+        row =>
+            String(row.employee) ===
+            String(employee)
+            &&
+            String(row.work_date) ===
+            String(date)
+    );
 
 }
 
@@ -2496,22 +2287,22 @@ RENDER ALL
 
 function renderAll(){
 
-updateMonth();
+    updateMonth();
 
-renderMyCalendar();
+    renderMyCalendar();
 
-renderAllCalendar();
+    renderAllCalendar();
 
-if(
-currentUser &&
-isAdmin()
-){
+    if(
+        currentUser &&
+        isAdmin()
+    ){
 
-renderAdminCalendar();
+        renderAdminCalendar();
 
-}
+    }
 
-updateStats();
+    updateStats();
 
 }
 
@@ -2522,32 +2313,36 @@ MONTH
 
 function updateMonth(){
 
-const month =
-currentDate.getMonth();
+    const month =
+        currentDate.getMonth();
 
-const year =
-currentDate.getFullYear();
+    const year =
+        currentDate.getFullYear();
 
-document
-.getElementById("monthTitle")
-.textContent =
-MONTHS[month] +
-" " +
-year;
+    document
+        .getElementById("monthTitle")
+        .textContent =
+        MONTHS[month] +
+        " " +
+        year;
 
-document
-.getElementById("pageTitle")
-.textContent =
-"Здравей, " +
-currentUser.name;
+    if(currentUser){
 
-document
-.getElementById("pageSubtitle")
-.textContent =
-"Работен график за " +
-MONTHS[month].toLowerCase() +
-" " +
-year;
+        document
+            .getElementById("pageTitle")
+            .textContent =
+            "Здравей, " +
+            currentUser.name;
+
+    }
+
+    document
+        .getElementById("pageSubtitle")
+        .textContent =
+        "Работен график за " +
+        MONTHS[month].toLowerCase() +
+        " " +
+        year;
 
 }
 
@@ -2558,238 +2353,250 @@ HEADER
 
 function buildHeader(id){
 
-const element =
-document.getElementById(id);
+    const element =
+        document.getElementById(id);
 
-const days =
-daysInMonth();
+    const days =
+        daysInMonth();
 
-let html =
-`
-<div class="employee-name">
-Служител
-</div>
-`;
+    let html =
+    `
+        <div class="employee-name">
+            Служител
+        </div>
+    `;
 
-for(
-let day = 1;
-day <= 31;
-day++
-){
+    for(
+        let day = 1;
+        day <= 31;
+        day++
+    ){
 
-if(day > days){
+        if(day > days){
 
-html +=
-`<div class="day-header"></div>`;
+            html +=
+                `<div class="day-header"></div>`;
 
-continue;
+            continue;
 
-}
+        }
 
-const date =
-new Date(
-currentDate.getFullYear(),
-currentDate.getMonth(),
-day
-);
+        const date =
+            new Date(
+                currentDate.getFullYear(),
+                currentDate.getMonth(),
+                day
+            );
 
-html +=
-`
-<div class="day-header ${
-isToday(date)
-? "today"
-: ""
-}">
+        html +=
+        `
+            <div class="day-header ${
+                isToday(date)
+                    ? "today"
+                    : ""
+            }">
 
-<span class="day-number">
-${day}
-</span>
+                <span class="day-number">
+                    ${day}
+                </span>
 
-${DAYS[date.getDay()]}
+                ${DAYS[date.getDay()]}
 
-</div>
-`;
+            </div>
+        `;
 
-}
+    }
 
-element.innerHTML =
-html;
+    element.innerHTML = html;
 
 }
 
 
 function isToday(date){
 
-const now =
-new Date();
+    const now = new Date();
 
-return (
-date.getFullYear() ===
-now.getFullYear()
-&&
-date.getMonth() ===
-now.getMonth()
-&&
-date.getDate() ===
-now.getDate()
-);
+    return (
+        date.getFullYear() ===
+        now.getFullYear()
+        &&
+        date.getMonth() ===
+        now.getMonth()
+        &&
+        date.getDate() ===
+        now.getDate()
+    );
 
 }
 
 
 /* =========================================================
-MY
+MY CALENDAR
 ========================================================= */
 
 function renderMyCalendar(){
 
-buildHeader("myHeader");
+    buildHeader("myHeader");
 
-const container =
-document.getElementById("myCalendar");
+    const container =
+        document.getElementById(
+            "myCalendar"
+        );
 
-if(!currentUser){
-return;
-}
+    if(!currentUser){
+        return;
+    }
 
-const days =
-daysInMonth();
+    const days =
+        daysInMonth();
 
-let html =
-`
-<div class="employee-row">
-`;
+    let html =
+        `<div class="employee-row">`;
 
-html +=
-`
-<div class="employee-name">
-${escapeHtml(currentUser.name)}
-</div>
-`;
+    html +=
+    `
+        <div class="employee-name">
+            ${escapeHtml(
+                currentUser.name
+            )}
+        </div>
+    `;
 
-for(
-let day = 1;
-day <= 31;
-day++
-){
+    for(
+        let day = 1;
+        day <= 31;
+        day++
+    ){
 
-if(day > days){
+        if(day > days){
 
-html +=
-`<div class="shift-cell"></div>`;
+            html +=
+                `<div class="shift-cell"></div>`;
 
-continue;
+            continue;
 
-}
+        }
 
-const date =
-dateKey(
-currentDate.getFullYear(),
-currentDate.getMonth(),
-day
-);
+        const date =
+            dateKey(
+                currentDate.getFullYear(),
+                currentDate.getMonth(),
+                day
+            );
 
-const row =
-getSchedule(
-currentUser.name,
-date
-);
+        const row =
+            getSchedule(
+                currentUser.name,
+                date
+            );
 
-html +=
-`
-<div class="shift-cell">
-${renderShift(row)}
-</div>
-`;
+        html +=
+        `
+            <div class="shift-cell">
+                ${renderShift(row)}
+            </div>
+        `;
 
-}
+    }
 
-html +=
-"</div>";
+    html += "</div>";
 
-container.innerHTML =
-html;
+    container.innerHTML = html;
 
 }
 
 
 /* =========================================================
-ALL
+ALL CALENDAR
 ========================================================= */
 
 function renderAllCalendar(){
 
-buildHeader("allHeader");
+    buildHeader("allHeader");
 
-const container =
-document.getElementById("allCalendar");
+    const container =
+        document.getElementById(
+            "allCalendar"
+        );
 
-const activeUsers =
-users.filter(
-u =>
-u.active !== false
-);
+    const activeUsers =
+        users.filter(
+            u => u.active !== false
+        );
 
-let html = "";
+    let html = "";
 
-activeUsers.forEach(user => {
+    activeUsers.forEach(
+        user => {
 
-const days =
-daysInMonth();
+            const days =
+                daysInMonth();
 
-html +=
-`
-<div class="employee-row">
+            html +=
+            `
+                <div class="employee-row">
 
-<div class="employee-name">
-${escapeHtml(user.name)}
-</div>
-`;
+                    <div class="employee-name">
+                        ${escapeHtml(
+                            user.name
+                        )}
+                    </div>
+            `;
 
-for(
-let day = 1;
-day <= 31;
-day++
-){
+            for(
+                let day = 1;
+                day <= 31;
+                day++
+            ){
 
-if(day > days){
+                if(day > days){
 
-html +=
-`<div class="shift-cell"></div>`;
+                    html +=
+                        `<div class="shift-cell"></div>`;
 
-continue;
+                    continue;
 
-}
+                }
 
-const date =
-dateKey(
-currentDate.getFullYear(),
-currentDate.getMonth(),
-day
-);
+                const date =
+                    dateKey(
+                        currentDate.getFullYear(),
+                        currentDate.getMonth(),
+                        day
+                    );
 
-const row =
-getSchedule(
-user.name,
-date
-);
+                const row =
+                    getSchedule(
+                        user.name,
+                        date
+                    );
 
-html +=
-`
-<div class="shift-cell">
-${renderShift(row)}
-</div>
-`;
+                html +=
+                `
+                    <div class="shift-cell">
+                        ${renderShift(row)}
+                    </div>
+                `;
 
-}
+            }
 
-html +=
-"</div>";
+            html += "</div>";
 
-});
+        }
+    );
 
-container.innerHTML =
-html;
+    if(!activeUsers.length){
+
+        html =
+        `
+            <div class="loading">
+                Няма активни потребители.
+            </div>
+        `;
+
+    }
+
+    container.innerHTML = html;
 
 }
 
@@ -2800,266 +2607,298 @@ SHIFT RENDER
 
 function renderShift(row){
 
-if(
-!row ||
-!row.shift_type
-){
+    if(
+        !row ||
+        !row.shift_type
+    ){
 
-return `
-<div class="shift shift-empty">
-—
-</div>
-`;
+        return `
+            <div class="shift shift-empty">
+                —
+            </div>
+        `;
 
-}
+    }
 
-const shift =
-getShift(row.shift_type);
+    const shift =
+        getShift(row.shift_type);
 
-let className =
-shift?.color_class ||
-"shift-r";
+    const className =
+        shift?.color_class ||
+        "shift-r";
 
-let text =
-shift?.short_name ||
-row.shift_type;
+    const text =
+        shift?.short_name ||
+        row.shift_type;
 
-return `
-<div
-class="shift ${escapeAttr(className)}"
-title="${escapeAttr(
-getShiftTooltip(row)
-)}"
->
-${escapeHtml(text)}
-</div>
-`;
+    return `
+        <div
+            class="shift ${escapeAttr(
+                className
+            )}"
+            title="${escapeAttr(
+                getShiftTooltip(row)
+            )}"
+        >
+            ${escapeHtml(text)}
+        </div>
+    `;
 
 }
 
 
 function getShiftTooltip(row){
 
-if(
-row.start_time &&
-row.end_time
-){
+    const start =
+        normalizeTime(row.start_time);
 
-return (
-row.shift_type +
-" | " +
-row.start_time +
-" - " +
-row.end_time +
-" | почивка: " +
-(row.break_time ?? 60) +
-" мин."
-);
+    const end =
+        normalizeTime(row.end_time);
 
-}
+    if(start && end){
 
-return row.shift_type;
+        return (
+            row.shift_type +
+            " | " +
+            start +
+            " - " +
+            end +
+            " | почивка: " +
+            (row.break_time ?? 60) +
+            " мин."
+        );
+
+    }
+
+    return row.shift_type;
 
 }
 
 
 /* =========================================================
-ADMIN SCHEDULE
+ADMIN CALENDAR
 ========================================================= */
 
 function renderAdminCalendar(){
 
-const container =
-document.getElementById("adminCalendar");
+    const container =
+        document.getElementById(
+            "adminCalendar"
+        );
 
-const activeUsers =
-users.filter(
-u =>
-u.active !== false
-);
+    if(!container){
+        return;
+    }
 
-const days =
-daysInMonth();
+    const activeUsers =
+        users.filter(
+            u => u.active !== false
+        );
 
-let html =
-`
-<div class="admin-row admin-header">
+    const days =
+        daysInMonth();
 
-<div class="admin-name">
-Служител
-</div>
-`;
+    let html =
+    `
+        <div class="admin-row admin-header">
 
-for(
-let day = 1;
-day <= 31;
-day++
-){
+            <div class="admin-name">
+                Служител
+            </div>
+    `;
 
-if(day <= days){
+    for(
+        let day = 1;
+        day <= 31;
+        day++
+    ){
 
-const date =
-new Date(
-currentDate.getFullYear(),
-currentDate.getMonth(),
-day
-);
+        if(day <= days){
 
-html +=
-`
-<div>
+            const date =
+                new Date(
+                    currentDate.getFullYear(),
+                    currentDate.getMonth(),
+                    day
+                );
 
-<strong>
-${day}
-</strong>
+            html +=
+            `
+                <div>
+                    <strong>${day}</strong>
+                    <small>
+                        ${DAYS[date.getDay()]}
+                    </small>
+                </div>
+            `;
 
-<small>
-${DAYS[date.getDay()]}
-</small>
+        }
+        else{
 
-</div>
-`;
+            html += "<div></div>";
+
+        }
+
+    }
+
+    html += "</div>";
+
+
+    activeUsers.forEach(
+        user => {
+
+            html +=
+            `
+                <div class="admin-row">
+
+                    <div class="admin-name">
+                        ${escapeHtml(
+                            user.name
+                        )}
+                    </div>
+            `;
+
+            for(
+                let day = 1;
+                day <= 31;
+                day++
+            ){
+
+                if(day > days){
+
+                    html += "<div></div>";
+
+                    continue;
+
+                }
+
+                const date =
+                    dateKey(
+                        currentDate.getFullYear(),
+                        currentDate.getMonth(),
+                        day
+                    );
+
+                const row =
+                    getSchedule(
+                        user.name,
+                        date
+                    );
+
+                const currentValue =
+                    row?.shift_type || "";
+
+                html +=
+                `
+                    <div>
+
+                        <select
+                            class="admin-shift-select"
+                            data-employee="${escapeAttr(
+                                user.name
+                            )}"
+                            data-date="${date}"
+                            data-original="${escapeAttr(
+                                currentValue
+                            )}"
+                        >
+                            ${buildShiftOptions(
+                                currentValue
+                            )}
+                        </select>
+
+                    </div>
+                `;
+
+            }
+
+            html += "</div>";
+
+        }
+    );
+
+    container.innerHTML = html;
+
+    container
+        .querySelectorAll(
+            ".admin-shift-select"
+        )
+        .forEach(
+            select => {
+
+                select.addEventListener(
+                    "change",
+                    () => markChanged(select)
+                );
+
+            }
+        );
 
 }
-else{
-
-html +=
-"<div></div>";
-
-}
-
-}
-
-html +=
-"</div>";
 
 
-activeUsers.forEach(user => {
-
-html +=
-`
-<div class="admin-row">
-
-<div class="admin-name">
-${escapeHtml(user.name)}
-</div>
-`;
-
-for(
-let day = 1;
-day <= 31;
-day++
-){
-
-if(day > days){
-
-html +=
-"<div></div>";
-
-continue;
-
-}
-
-const date =
-dateKey(
-currentDate.getFullYear(),
-currentDate.getMonth(),
-day
-);
-
-const row =
-getSchedule(
-user.name,
-date
-);
-
-const currentValue =
-row?.shift_type || "";
-
-html +=
-`
-<div>
-
-<select
-class="admin-shift-select"
-data-employee="${escapeAttr(user.name)}"
-data-date="${date}"
-data-original="${escapeAttr(currentValue)}"
-onchange="markChanged(this)"
->
-${buildShiftOptions(currentValue)}
-</select>
-
-</div>
-`;
-
-}
-
-html +=
-"</div>";
-
-});
-
-container.innerHTML =
-html;
-
-}
-
+/* =========================================================
+SHIFT OPTIONS
+========================================================= */
 
 function buildShiftOptions(selected){
 
-let html =
-`
-<option value="">
-—
-</option>
-`;
+    let html =
+    `
+        <option value="">
+            —
+        </option>
+    `;
 
-shiftTypes
-.filter(
-s => s.active !== false
-)
-.forEach(shift => {
+    shiftTypes
+        .filter(
+            s => s.active !== false
+        )
+        .forEach(
+            shift => {
 
-html +=
-`
-<option
-value="${escapeAttr(shift.name)}"
-${
-selected === shift.name
-? "selected"
-: ""
-}
->
-${escapeHtml(
-shift.short_name ||
-shift.name
-)}
-</option>
-`;
+                html +=
+                `
+                    <option
+                        value="${escapeAttr(
+                            shift.name
+                        )}"
+                        ${
+                            selected === shift.name
+                                ? "selected"
+                                : ""
+                        }
+                    >
+                        ${escapeHtml(
+                            shift.short_name ||
+                            shift.name
+                        )}
+                    </option>
+                `;
 
-});
+            }
+        );
 
-return html;
+    return html;
 
 }
 
 
 function markChanged(select){
 
-if(
-select.value !==
-(select.dataset.original || "")
-){
+    if(
+        select.value !==
+        (select.dataset.original || "")
+    ){
 
-select.classList.add("changed");
+        select.classList.add("changed");
 
-}
-else{
+    }
+    else{
 
-select.classList.remove("changed");
+        select.classList.remove("changed");
 
-}
+    }
 
 }
 
@@ -3070,96 +2909,112 @@ SAVE SCHEDULE
 
 async function saveChanges(){
 
-const selects =
-Array.from(
-document.querySelectorAll(
-".admin-shift-select"
-)
-);
+    const scrollY =
+        window.scrollY;
 
-const changed =
-selects.filter(
-s =>
-s.value !==
-(s.dataset.original || "")
-);
+    const selects =
+        Array.from(
+            document.querySelectorAll(
+                ".admin-shift-select"
+            )
+        );
 
-if(!changed.length){
+    const changed =
+        selects.filter(
+            select =>
+                select.value !==
+                (select.dataset.original || "")
+        );
 
-alert(
-"Няма промени за записване."
-);
+    if(!changed.length){
 
-return;
+        alert(
+            "Няма промени за записване."
+        );
 
-}
+        return;
 
-const button =
-document.getElementById("saveBtn");
+    }
 
-button.disabled = true;
-button.textContent =
-"💾 Записване...";
+    const button =
+        document.getElementById(
+            "saveBtn"
+        );
 
-try{
+    button.disabled = true;
+    button.textContent =
+        "💾 Записване...";
 
-for(
-const select of changed
-){
+    try{
 
-await saveOneCell(
-select.dataset.employee,
-select.dataset.date,
-select.value
-);
+        for(
+            const select of changed
+        ){
 
-}
+            await saveOneCell(
+                select.dataset.employee,
+                select.dataset.date,
+                select.value
+            );
 
-changed.forEach(
-select => {
+        }
 
-updateLocalSchedule(
-select.dataset.employee,
-select.dataset.date,
-select.value
-);
+        changed.forEach(
+            select => {
 
-select.dataset.original =
-select.value;
+                updateLocalSchedule(
+                    select.dataset.employee,
+                    select.dataset.date,
+                    select.value
+                );
 
-select.classList.remove(
-"changed"
-);
+                select.dataset.original =
+                    select.value;
 
-}
-);
+                select.classList.remove(
+                    "changed"
+                );
 
-renderMyCalendar();
-renderAllCalendar();
-updateStats();
+            }
+        );
 
-alert(
-"Промените са записани успешно."
-);
+        renderMyCalendar();
+        renderAllCalendar();
+        updateStats();
 
-}
-catch(error){
+        window.scrollTo(
+            0,
+            scrollY
+        );
 
-console.error(error);
+        alert(
+            "Промените са записани успешно."
+        );
 
-alert(
-"Грешка при запис:\n\n" +
-errorText(error)
-);
+    }
+    catch(error){
 
-}
-finally{
+        console.error(error);
 
-button.disabled = false;
-button.textContent =
-"💾 Запази промените";
+        window.scrollTo(
+            0,
+            scrollY
+        );
 
-}
+        alert(
+            "Грешка при запис:\n\n" +
+            errorText(error)
+        );
+
+    }
+    finally{
+
+        button.disabled = false;
+
+        button.textContent =
+            "💾 Запази промените";
+
+    }
 
 }
 
@@ -3169,100 +3024,104 @@ SAVE ONE CELL
 ========================================================= */
 
 async function saveOneCell(
-employee,
-date,
-shiftName
+    employee,
+    date,
+    shiftName
 ){
 
-if(!shiftName){
+    if(!shiftName){
 
-const {
-error
-} =
-await supabaseClient
-.from("work_schedule")
-.delete()
-.eq("employee",employee)
-.eq("work_date",date);
+        const {
+            error
+        } =
+        await supabaseClient
+            .from("work_schedule")
+            .delete()
+            .eq("employee", employee)
+            .eq("work_date", date);
 
-if(error){
-throw error;
-}
+        if(error){
+            throw error;
+        }
 
-return;
+        return;
 
-}
+    }
 
-const shift =
-getShift(shiftName);
+    const shift =
+        getShift(shiftName);
 
-const payload = {
+    const payload = {
 
-employee:employee,
+        employee: employee,
 
-work_date:date,
+        work_date: date,
 
-shift_type:shiftName,
+        shift_type: shiftName,
 
-start_time:
-shift?.start_time || null,
+        start_time:
+            shift?.start_time || null,
 
-end_time:
-shift?.end_time || null,
+        end_time:
+            shift?.end_time || null,
 
-break_time:
-shift?.break_time ?? 60
+        break_time:
+            shift?.break_time ?? 60
 
-};
+    };
 
-const {
-data:existing,
-error:findError
-} =
-await supabaseClient
-.from("work_schedule")
-.select("employee,work_date")
-.eq("employee",employee)
-.eq("work_date",date)
-.limit(1);
 
-if(findError){
-throw findError;
-}
+    const {
+        data: existing,
+        error: findError
+    } =
+    await supabaseClient
+        .from("work_schedule")
+        .select(
+            "employee,work_date"
+        )
+        .eq("employee", employee)
+        .eq("work_date", date)
+        .limit(1);
 
-if(
-existing &&
-existing.length
-){
+    if(findError){
+        throw findError;
+    }
 
-const {
-error
-} =
-await supabaseClient
-.from("work_schedule")
-.update(payload)
-.eq("employee",employee)
-.eq("work_date",date);
 
-if(error){
-throw error;
-}
+    if(
+        existing &&
+        existing.length
+    ){
 
-}
-else{
+        const {
+            error
+        } =
+        await supabaseClient
+            .from("work_schedule")
+            .update(payload)
+            .eq("employee", employee)
+            .eq("work_date", date);
 
-const {
-error
-} =
-await supabaseClient
-.from("work_schedule")
-.insert(payload);
+        if(error){
+            throw error;
+        }
 
-if(error){
-throw error;
-}
+    }
+    else{
 
-}
+        const {
+            error
+        } =
+        await supabaseClient
+            .from("work_schedule")
+            .insert(payload);
+
+        if(error){
+            throw error;
+        }
+
+    }
 
 }
 
@@ -3272,69 +3131,68 @@ LOCAL SCHEDULE
 ========================================================= */
 
 function updateLocalSchedule(
-employee,
-date,
-shiftName
+    employee,
+    date,
+    shiftName
 ){
 
-const index =
-schedule.findIndex(
-row =>
-String(row.employee) ===
-String(employee)
-&&
-String(row.work_date) ===
-String(date)
-);
+    const index =
+        schedule.findIndex(
+            row =>
+                String(row.employee) ===
+                String(employee)
+                &&
+                String(row.work_date) ===
+                String(date)
+        );
 
-if(!shiftName){
+    if(!shiftName){
 
-if(index !== -1){
+        if(index !== -1){
 
-schedule.splice(
-index,
-1
-);
+            schedule.splice(
+                index,
+                1
+            );
 
-}
+        }
 
-return;
+        return;
 
-}
+    }
 
-const shift =
-getShift(shiftName);
+    const shift =
+        getShift(shiftName);
 
-const updated = {
+    const updated = {
 
-employee:employee,
+        employee: employee,
 
-work_date:date,
+        work_date: date,
 
-shift_type:shiftName,
+        shift_type: shiftName,
 
-start_time:
-shift?.start_time || null,
+        start_time:
+            shift?.start_time || null,
 
-end_time:
-shift?.end_time || null,
+        end_time:
+            shift?.end_time || null,
 
-break_time:
-shift?.break_time ?? 60
+        break_time:
+            shift?.break_time ?? 60
 
-};
+    };
 
-if(index === -1){
+    if(index === -1){
 
-schedule.push(updated);
+        schedule.push(updated);
 
-}
-else{
+    }
+    else{
 
-schedule[index] =
-updated;
+        schedule[index] = updated;
 
-}
+    }
 
 }
 
@@ -3345,69 +3203,81 @@ ADMIN PANELS
 
 function showAdminPanel(panel){
 
-if(!isAdmin()){
+    if(!isAdmin()){
 
-alert(
-"Нямате администраторски права."
-);
+        alert(
+            "Нямате администраторски права."
+        );
 
-return;
+        return;
 
-}
+    }
 
-document
-.getElementById("adminSchedulePanel")
-.classList.toggle(
-"hidden",
-panel !== "schedule"
-);
+    document
+        .getElementById(
+            "adminSchedulePanel"
+        )
+        .classList.toggle(
+            "hidden",
+            panel !== "schedule"
+        );
 
-document
-.getElementById("adminUsersPanel")
-.classList.toggle(
-"hidden",
-panel !== "users"
-);
+    document
+        .getElementById(
+            "adminUsersPanel"
+        )
+        .classList.toggle(
+            "hidden",
+            panel !== "users"
+        );
 
-document
-.getElementById("adminShiftsPanel")
-.classList.toggle(
-"hidden",
-panel !== "shifts"
-);
+    document
+        .getElementById(
+            "adminShiftsPanel"
+        )
+        .classList.toggle(
+            "hidden",
+            panel !== "shifts"
+        );
 
-document
-.getElementById("adminScheduleBtn")
-.classList.toggle(
-"active",
-panel === "schedule"
-);
+    document
+        .getElementById(
+            "adminScheduleBtn"
+        )
+        .classList.toggle(
+            "active",
+            panel === "schedule"
+        );
 
-document
-.getElementById("adminUsersBtn")
-.classList.toggle(
-"active",
-panel === "users"
-);
+    document
+        .getElementById(
+            "adminUsersBtn"
+        )
+        .classList.toggle(
+            "active",
+            panel === "users"
+        );
 
-document
-.getElementById("adminShiftsBtn")
-.classList.toggle(
-"active",
-panel === "shifts"
-);
+    document
+        .getElementById(
+            "adminShiftsBtn"
+        )
+        .classList.toggle(
+            "active",
+            panel === "shifts"
+        );
 
-if(panel === "users"){
+    if(panel === "users"){
 
-renderUsersTable();
+        renderUsersTable();
 
-}
+    }
 
-if(panel === "shifts"){
+    if(panel === "shifts"){
 
-renderShiftsTable();
+        renderShiftsTable();
 
-}
+    }
 
 }
 
@@ -3418,124 +3288,114 @@ ADD USER
 
 async function addUser(){
 
-if(!isAdmin()){
+    if(!isAdmin()){
 
-alert(
-"Нямате права."
-);
+        alert("Нямате права.");
 
-return;
+        return;
 
-}
+    }
 
-const name =
-document
-.getElementById("newUserName")
-.value
-.trim();
+    const name =
+        document
+            .getElementById("newUserName")
+            .value
+            .trim();
 
-const password =
-document
-.getElementById("newUserPassword")
-.value;
+    const password =
+        document
+            .getElementById("newUserPassword")
+            .value;
 
-const admin =
-document
-.getElementById("newUserAdmin")
-.value === "true";
+    const admin =
+        document
+            .getElementById("newUserAdmin")
+            .value === "true";
 
-const active =
-document
-.getElementById("newUserActive")
-.value === "true";
+    const active =
+        document
+            .getElementById("newUserActive")
+            .value === "true";
 
-const september =
-document
-.getElementById("newUserSeptember")
-.value === "true";
+    const september =
+        document
+            .getElementById(
+                "newUserSeptember"
+            )
+            .value === "true";
 
-if(!name){
 
-alert(
-"Въведете име."
-);
+    if(!name){
 
-return;
+        alert("Въведете име.");
 
-}
+        return;
 
-if(!password){
+    }
 
-alert(
-"Въведете парола."
-);
+    if(!password){
 
-return;
+        alert("Въведете парола.");
 
-}
+        return;
 
-try{
+    }
 
-const {
-data,
-error
-} =
-await supabaseClient
-.from("app_users")
-.insert({
 
-name:name,
+    try{
 
-password:password,
+        const {
+            error
+        } =
+        await supabaseClient
+            .from("app_users")
+            .insert({
 
-admin:admin,
+                name: name,
+                password: password,
+                admin: admin,
+                active: active,
+                september_only: september
 
-active:active,
+            });
 
-september_only:september
+        if(error){
+            throw error;
+        }
 
-})
-.select()
-.single();
+        alert(
+            "Потребителят е добавен успешно."
+        );
 
-if(error){
-throw error;
-}
+        document
+            .getElementById(
+                "newUserName"
+            )
+            .value = "";
 
-console.log(
-"Добавен потребител:",
-data
-);
+        document
+            .getElementById(
+                "newUserPassword"
+            )
+            .value = "";
 
-alert(
-"Потребителят е добавен успешно."
-);
+        await loadUsers();
 
-document
-.getElementById("newUserName")
-.value = "";
+        renderUsersTable();
 
-document
-.getElementById("newUserPassword")
-.value = "";
+        renderAll();
 
-await loadUsers();
+    }
+    catch(error){
 
-renderUsersTable();
+        console.error(error);
 
-renderAll();
+        alert(
+            "Грешка при добавяне:\n\n" +
+            errorText(error)
+        );
 
-}
-catch(error){
-
-console.error(error);
-
-alert(
-"Грешка при добавяне:\n\n" +
-errorText(error)
-);
-
-}
+    }
 
 }
 
@@ -3546,240 +3406,289 @@ USERS TABLE
 
 function renderUsersTable(){
 
-const container =
-document.getElementById("usersTable");
+    const container =
+        document.getElementById(
+            "usersTable"
+        );
 
-if(!users.length){
+    if(!users.length){
 
-container.innerHTML =
-"<p>Няма потребители.</p>";
+        container.innerHTML =
+            "<p>Няма потребители.</p>";
 
-return;
+        return;
 
-}
+    }
 
-let html =
-`
-<table class="manage-table">
+    let html =
+    `
+        <table class="manage-table">
 
-<thead>
+            <thead>
 
-<tr>
+                <tr>
+                    <th>Име</th>
+                    <th>Парола</th>
+                    <th>Роля</th>
+                    <th>Активен</th>
+                    <th>Септември</th>
+                    <th>Действия</th>
+                </tr>
 
-<th>Име</th>
-<th>Парола</th>
-<th>Роля</th>
-<th>Активен</th>
-<th>Септември</th>
-<th>Действия</th>
+            </thead>
 
-</tr>
-
-</thead>
-
-<tbody>
-`;
-
-
-users.forEach(user => {
-
-let role =
-"Sлужител";
-
-if(
-user.name === "Петя"
-){
-
-role =
-"Управител";
-
-}
-else if(
-user.name === "Иван Панов"
-){
-
-role =
-"Шеф смяна";
-
-}
-
-const safeId =
-encodeURIComponent(
-String(user.id)
-);
-
-html +=
-`
-<tr>
-
-<td>
-
-<input
-id="user-name-${safeId}"
-value="${escapeAttr(user.name)}"
->
-
-</td>
+            <tbody>
+    `;
 
 
-<td>
+    users.forEach(
+        user => {
 
-<input
-id="user-password-${safeId}"
-type="text"
-value="${escapeAttr(user.password ?? "")}"
->
+            let role =
+                "Служител";
 
-</td>
+            if(
+                user.name === "Петя"
+            ){
 
+                role =
+                    "Управител";
 
-<td>
+            }
+            else if(
+                user.name === "Иван Панов"
+            ){
 
-<select
-id="user-admin-${safeId}"
->
+                role =
+                    "Шеф смяна";
 
-<option
-value="false"
-${
-!isAdminUser(user)
-? "selected"
-: ""
-}
->
-${escapeHtml(role)}
-</option>
-
-<option
-value="true"
-${
-isAdminUser(user)
-? "selected"
-: ""
-}
->
-Администратор
-</option>
-
-</select>
-
-</td>
+            }
 
 
-<td>
-
-<select
-id="user-active-${safeId}"
->
-
-<option
-value="true"
-${
-user.active !== false
-? "selected"
-: ""
-}
->
-Да
-</option>
-
-<option
-value="false"
-${
-user.active === false
-? "selected"
-: ""
-}
->
-Не
-</option>
-
-</select>
-
-</td>
+            const safeId =
+                encodeURIComponent(
+                    String(user.id)
+                );
 
 
-<td>
+            html +=
+            `
+                <tr>
 
-<select
-id="user-september-${safeId}"
->
+                    <td>
 
-<option
-value="false"
-${
-!user.september_only
-? "selected"
-: ""
-}
->
-Не
-</option>
+                        <input
+                            id="user-name-${safeId}"
+                            value="${escapeAttr(
+                                user.name
+                            )}"
+                        >
 
-<option
-value="true"
-${
-user.september_only
-? "selected"
-: ""
-}
->
-Да
-</option>
-
-</select>
-
-</td>
+                    </td>
 
 
-<td>
+                    <td>
 
-<button
-class="secondary-btn"
-onclick='saveUser(${JSON.stringify(String(user.id))})'
->
-💾 Запази
-</button>
+                        <input
+                            id="user-password-${safeId}"
+                            type="text"
+                            value="${escapeAttr(
+                                user.password ?? ""
+                            )}"
+                        >
 
-<button
-class="danger-btn"
-onclick='deleteUser(${JSON.stringify(String(user.id))})'
->
-🗑️ Премахни
-</button>
-
-</td>
-
-</tr>
-`;
-
-});
-
-html +=
-`
-</tbody>
-</table>
-`;
-
-container.innerHTML =
-html;
-
-}
+                    </td>
 
 
-/* =========================================================
-ADMIN USER VALUE
-========================================================= */
+                    <td>
 
-function isAdminUser(user){
+                        <select
+                            id="user-admin-${safeId}"
+                        >
 
-return Boolean(
-user &&
-(
-user.admin === true ||
-String(user.admin).toLowerCase() === "true"
-)
-);
+                            <option
+                                value="false"
+                                ${
+                                    !isAdminUser(user)
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                ${escapeHtml(role)}
+                            </option>
+
+                            <option
+                                value="true"
+                                ${
+                                    isAdminUser(user)
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                Администратор
+                            </option>
+
+                        </select>
+
+                    </td>
+
+
+                    <td>
+
+                        <select
+                            id="user-active-${safeId}"
+                        >
+
+                            <option
+                                value="true"
+                                ${
+                                    user.active !== false
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                Да
+                            </option>
+
+                            <option
+                                value="false"
+                                ${
+                                    user.active === false
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                Не
+                            </option>
+
+                        </select>
+
+                    </td>
+
+
+                    <td>
+
+                        <select
+                            id="user-september-${safeId}"
+                        >
+
+                            <option
+                                value="false"
+                                ${
+                                    !user.september_only
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                Не
+                            </option>
+
+                            <option
+                                value="true"
+                                ${
+                                    user.september_only
+                                        ? "selected"
+                                        : ""
+                                }
+                            >
+                                Да
+                            </option>
+
+                        </select>
+
+                    </td>
+
+
+                    <td>
+
+                        <button
+                            class="secondary-btn"
+                            data-action="save-user"
+                            data-id="${escapeAttr(
+                                String(user.id)
+                            )}"
+                        >
+                            💾 Запази
+                        </button>
+
+                        <button
+                            class="danger-btn"
+                            data-action="delete-user"
+                            data-id="${escapeAttr(
+                                String(user.id)
+                            )}"
+                        >
+                            🗑️ Премахни
+                        </button>
+
+                    </td>
+
+                </tr>
+            `;
+
+        }
+    );
+
+
+    html +=
+    `
+            </tbody>
+
+        </table>
+    `;
+
+    container.innerHTML = html;
+
+
+    /*
+    Използваме event listeners вместо
+    onclick в HTML.
+
+    Това избягва проблеми с UUID id.
+    */
+
+    container
+        .querySelectorAll(
+            '[data-action="save-user"]'
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        saveUser(
+                            button.dataset.id
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    container
+        .querySelectorAll(
+            '[data-action="delete-user"]'
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        deleteUser(
+                            button.dataset.id
+                        );
+
+                    }
+                );
+
+            }
+        );
 
 }
 
@@ -3790,208 +3699,188 @@ SAVE USER
 
 async function saveUser(id){
 
-if(!isAdmin()){
+    if(!isAdmin()){
 
-alert(
-"Нямате администраторски права."
-);
+        alert(
+            "Нямате администраторски права."
+        );
 
-return;
+        return;
 
-}
+    }
 
-const safeId =
-encodeURIComponent(
-String(id)
-);
+    const safeId =
+        encodeURIComponent(
+            String(id)
+        );
 
-const nameElement =
-document.getElementById(
-"user-name-" + safeId
-);
+    const nameElement =
+        document.getElementById(
+            "user-name-" + safeId
+        );
 
-const passwordElement =
-document.getElementById(
-"user-password-" + safeId
-);
+    const passwordElement =
+        document.getElementById(
+            "user-password-" + safeId
+        );
 
-const adminElement =
-document.getElementById(
-"user-admin-" + safeId
-);
+    const adminElement =
+        document.getElementById(
+            "user-admin-" + safeId
+        );
 
-const activeElement =
-document.getElementById(
-"user-active-" + safeId
-);
+    const activeElement =
+        document.getElementById(
+            "user-active-" + safeId
+        );
 
-const septemberElement =
-document.getElementById(
-"user-september-" + safeId
-);
-
-if(
-!nameElement ||
-!passwordElement ||
-!adminElement ||
-!activeElement ||
-!septemberElement
-){
-
-alert(
-"Не могат да бъдат намерени полетата за този потребител."
-);
-
-return;
-
-}
-
-const name =
-nameElement.value.trim();
-
-const password =
-passwordElement.value;
-
-const admin =
-adminElement.value === "true";
-
-const active =
-activeElement.value === "true";
-
-const september =
-septemberElement.value === "true";
-
-if(!name){
-
-alert(
-"Името не може да е празно."
-);
-
-return;
-
-}
-
-if(!password){
-
-alert(
-"Паролата не може да е празна."
-);
-
-return;
-
-}
+    const septemberElement =
+        document.getElementById(
+            "user-september-" + safeId
+        );
 
 
-/*
-ВАЖНО:
-id се подава като String.
-Това работи както с числов ID,
-така и с UUID.
-*/
+    if(
+        !nameElement ||
+        !passwordElement ||
+        !adminElement ||
+        !activeElement ||
+        !septemberElement
+    ){
 
-try{
+        alert(
+            "Не могат да бъдат намерени полетата за този потребител."
+        );
 
-const {
-data,
-error
-} =
-await supabaseClient
-.from("app_users")
-.update({
+        return;
 
-name:name,
-
-password:password,
-
-admin:admin,
-
-active:active,
-
-september_only:september
-
-})
-.eq("id",id)
-.select()
-.single();
-
-if(error){
-throw error;
-}
+    }
 
 
-/*
-Проверяваме дали Supabase
-реално е върнал обновен ред.
-*/
+    const name =
+        nameElement.value.trim();
 
-if(!data){
+    const password =
+        passwordElement.value;
 
-throw new Error(
-"Supabase не върна обновения потребител. " +
-"Възможно е UPDATE да е блокиран от RLS."
-);
+    const admin =
+        adminElement.value === "true";
 
-}
+    const active =
+        activeElement.value === "true";
 
-console.log(
-"Обновен потребител:",
-data
-);
-
-alert(
-"Потребителят е запазен успешно."
-);
+    const september =
+        septemberElement.value === "true";
 
 
-/*
-Ако Петя промени собствения си профил,
-обновяваме и текущата сесия.
-*/
+    if(!name){
 
-if(
-currentUser &&
-String(currentUser.id) ===
-String(id)
-){
+        alert(
+            "Името не може да е празно."
+        );
 
-currentUser =
-data;
+        return;
 
-sessionStorage.setItem(
-"workScheduleUser",
-JSON.stringify(data)
-);
+    }
 
-openApp();
+    if(!password){
 
-}
+        alert(
+            "Паролата не може да е празна."
+        );
+
+        return;
+
+    }
 
 
-/*
-Зареждаме отново директно от Supabase.
-*/
+    try{
 
-await loadUsers();
+        const {
+            error
+        } =
+        await supabaseClient
+            .from("app_users")
+            .update({
 
-renderUsersTable();
+                name: name,
+                password: password,
+                admin: admin,
+                active: active,
+                september_only: september
 
-renderAll();
+            })
+            .eq(
+                "id",
+                id
+            );
 
-}
-catch(error){
+        if(error){
+            throw error;
+        }
 
-console.error(
-"saveUser ERROR:",
-error
-);
 
-alert(
-"ГРЕШКА ПРИ ЗАПАЗВАНЕ:\n\n" +
-errorText(error) +
-"\n\nАко пише RLS / permission denied, проблемът е в Row Level Security на Supabase."
-);
+        /*
+        Зареждаме реално записаното
+        от Supabase.
+        */
 
-}
+        await loadUsers();
+
+
+        const updatedUser =
+            users.find(
+                u =>
+                    String(u.id) ===
+                    String(id)
+            );
+
+
+        if(
+            currentUser &&
+            String(currentUser.id) ===
+            String(id) &&
+            updatedUser
+        ){
+
+            currentUser =
+                updatedUser;
+
+            sessionStorage.setItem(
+                "workScheduleUser",
+                JSON.stringify(
+                    updatedUser
+                )
+            );
+
+            openApp();
+
+        }
+
+
+        renderUsersTable();
+
+        renderAll();
+
+
+        alert(
+            "Потребителят е запазен успешно."
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "saveUser ERROR:",
+            error
+        );
+
+        alert(
+            "ГРЕШКА ПРИ ЗАПАЗВАНЕ:\n\n" +
+            errorText(error)
+        );
+
+    }
 
 }
 
@@ -4002,127 +3891,104 @@ DELETE USER
 
 async function deleteUser(id){
 
-if(!isAdmin()){
+    if(!isAdmin()){
 
-alert(
-"Нямате администраторски права."
-);
+        alert(
+            "Нямате администраторски права."
+        );
 
-return;
+        return;
 
-}
+    }
 
-const user =
-users.find(
-u =>
-String(u.id) ===
-String(id)
-);
+    const user =
+        users.find(
+            u =>
+                String(u.id) ===
+                String(id)
+        );
 
-if(!user){
+    if(!user){
 
-alert(
-"Потребителят не е намерен."
-);
+        alert(
+            "Потребителят не е намерен."
+        );
 
-return;
+        return;
 
-}
-
-
-/*
-Не позволяваме Петя да изтрие
-собствения си акаунт.
-*/
-
-if(
-currentUser &&
-String(currentUser.id) ===
-String(id)
-){
-
-alert(
-"Не можете да изтриете собствения си акаунт."
-);
-
-return;
-
-}
-
-const ok =
-confirm(
-"Сигурни ли сте, че искате да изтриете:\n\n" +
-user.name +
-"\n\nТова действие ще премахне потребителя от app_users."
-);
-
-if(!ok){
-return;
-}
-
-try{
-
-const {
-data,
-error
-} =
-await supabaseClient
-.from("app_users")
-.delete()
-.eq("id",id)
-.select();
-
-if(error){
-throw error;
-}
+    }
 
 
-/*
-Ако data е празен масив,
-DELETE може да е блокиран от RLS
-или редът да не е намерен.
-*/
+    if(
+        currentUser &&
+        String(currentUser.id) ===
+        String(id)
+    ){
 
-if(!data || data.length === 0){
+        alert(
+            "Не можете да изтриете собствения си акаунт."
+        );
 
-throw new Error(
-"Потребителят не беше изтрит. " +
-"Supabase не върна изтрит ред. " +
-"Провери RLS политиките на app_users."
-);
+        return;
 
-}
+    }
 
-console.log(
-"Изтрит потребител:",
-data
-);
 
-alert(
-"Потребителят е премахнат успешно."
-);
+    const ok =
+        confirm(
+            "Сигурни ли сте, че искате да изтриете:\n\n" +
+            user.name +
+            "\n\nТова действие не може да бъде отменено."
+        );
 
-await loadUsers();
+    if(!ok){
+        return;
+    }
 
-renderUsersTable();
 
-renderAll();
+    try{
 
-}
-catch(error){
+        const {
+            error
+        } =
+        await supabaseClient
+            .from("app_users")
+            .delete()
+            .eq(
+                "id",
+                id
+            );
 
-console.error(
-"deleteUser ERROR:",
-error
-);
+        if(error){
+            throw error;
+        }
 
-alert(
-"ГРЕШКА ПРИ ПРЕМАХВАНЕ:\n\n" +
-errorText(error) +
-"\n\nАко пише RLS / permission denied, проблемът е в Row Level Security на Supabase."
-);
 
-}
+        await loadUsers();
+
+        renderUsersTable();
+
+        renderAll();
+
+
+        alert(
+            "Потребителят е премахнат успешно."
+        );
+
+    }
+    catch(error){
+
+        console.error(
+            "deleteUser ERROR:",
+            error
+        );
+
+        alert(
+            "ГРЕШКА ПРИ ПРЕМАХВАНЕ:\n\n" +
+            errorText(error)
+        );
+
+    }
 
 }
 
@@ -4133,148 +3999,167 @@ ADD SHIFT TYPE
 
 async function addShiftType(){
 
-if(!isAdmin()){
+    if(!isAdmin()){
 
-alert(
-"Нямате права."
-);
+        alert("Нямате права.");
 
-return;
+        return;
 
-}
+    }
 
-const name =
-document
-.getElementById("newShiftName")
-.value
-.trim();
 
-const shortName =
-document
-.getElementById("newShiftShort")
-.value
-.trim();
+    const name =
+        document
+            .getElementById(
+                "newShiftName"
+            )
+            .value
+            .trim();
 
-const start =
-document
-.getElementById("newShiftStart")
-.value ||
-null;
+    const shortName =
+        document
+            .getElementById(
+                "newShiftShort"
+            )
+            .value
+            .trim();
 
-const end =
-document
-.getElementById("newShiftEnd")
-.value ||
-null;
+    const start =
+        document
+            .getElementById(
+                "newShiftStart"
+            )
+            .value ||
+            null;
 
-const breakTime =
-Number(
-document
-.getElementById("newShiftBreak")
-.value
-);
+    const end =
+        document
+            .getElementById(
+                "newShiftEnd"
+            )
+            .value ||
+            null;
 
-if(!name){
+    const breakTime =
+        Number(
+            document
+                .getElementById(
+                    "newShiftBreak"
+                )
+                .value
+        );
 
-alert(
-"Въведете име на смяната."
-);
 
-return;
+    if(!name){
 
-}
+        alert(
+            "Въведете име на смяната."
+        );
 
-if(!shortName){
+        return;
 
-alert(
-"Въведете кратко име."
-);
+    }
 
-return;
+    if(!shortName){
 
-}
+        alert(
+            "Въведете кратко име."
+        );
 
-try{
+        return;
 
-const {
-data,
-error
-} =
-await supabaseClient
-.from("shift_types")
-.insert({
+    }
 
-name:name,
 
-short_name:shortName,
+    try{
 
-start_time:start,
+        const {
+            error
+        } =
+        await supabaseClient
+            .from("shift_types")
+            .insert({
 
-end_time:end,
+                name: name,
 
-break_time:
-Number.isFinite(breakTime)
-? breakTime
-: 60,
+                short_name: shortName,
 
-color_class:"shift-r",
+                start_time: start,
 
-active:true
+                end_time: end,
 
-})
-.select()
-.single();
+                break_time:
+                    Number.isFinite(
+                        breakTime
+                    )
+                    ? breakTime
+                    : 60,
 
-if(error){
-throw error;
-}
+                color_class:
+                    "shift-r",
 
-console.log(
-"Добавена смяна:",
-data
-);
+                active: true
 
-alert(
-"Новият вид смяна е добавен."
-);
+            });
 
-document
-.getElementById("newShiftName")
-.value = "";
+        if(error){
+            throw error;
+        }
 
-document
-.getElementById("newShiftShort")
-.value = "";
 
-document
-.getElementById("newShiftStart")
-.value = "";
+        alert(
+            "Новият вид смяна е добавен."
+        );
 
-document
-.getElementById("newShiftEnd")
-.value = "";
 
-document
-.getElementById("newShiftBreak")
-.value = "60";
+        document
+            .getElementById(
+                "newShiftName"
+            )
+            .value = "";
 
-await loadShiftTypes();
+        document
+            .getElementById(
+                "newShiftShort"
+            )
+            .value = "";
 
-renderShiftsTable();
+        document
+            .getElementById(
+                "newShiftStart"
+            )
+            .value = "";
 
-renderAdminCalendar();
+        document
+            .getElementById(
+                "newShiftEnd"
+            )
+            .value = "";
 
-}
-catch(error){
+        document
+            .getElementById(
+                "newShiftBreak"
+            )
+            .value = "60";
 
-console.error(error);
 
-alert(
-"Грешка при добавяне на смяната:\n\n" +
-errorText(error)
-);
+        await loadShiftTypes();
 
-}
+        renderShiftsTable();
+
+        renderAdminCalendar();
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Грешка при добавяне на смяната:\n\n" +
+            errorText(error)
+        );
+
+    }
 
 }
 
@@ -4285,150 +4170,211 @@ SHIFT TABLE
 
 function renderShiftsTable(){
 
-const container =
-document.getElementById("shiftsTable");
+    const container =
+        document.getElementById(
+            "shiftsTable"
+        );
 
-if(!shiftTypes.length){
+    if(!shiftTypes.length){
 
-container.innerHTML =
-`
-<p>
-Няма заредени видове смени.
-Провери таблицата
-<strong>shift_types</strong>
-в Supabase.
-</p>
-`;
+        container.innerHTML =
+        `
+            <p>
+                Няма заредени видове смени.
+            </p>
+        `;
 
-return;
+        return;
 
-}
-
-let html =
-`
-<table class="manage-table">
-
-<thead>
-
-<tr>
-
-<th>Име</th>
-<th>Кратко име</th>
-<th>Начало</th>
-<th>Край</th>
-<th>Почивка</th>
-<th>Действия</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-`;
+    }
 
 
-shiftTypes.forEach(shift => {
+    let html =
+    `
+        <table class="manage-table">
 
-const safeId =
-encodeURIComponent(
-String(shift.id)
-);
+            <thead>
 
-html +=
-`
-<tr>
+                <tr>
+                    <th>Име</th>
+                    <th>Кратко име</th>
+                    <th>Начало</th>
+                    <th>Край</th>
+                    <th>Почивка</th>
+                    <th>Действия</th>
+                </tr>
 
-<td>
+            </thead>
 
-<input
-id="shift-name-${safeId}"
-value="${escapeAttr(shift.name)}"
->
-
-</td>
-
-
-<td>
-
-<input
-id="shift-short-${safeId}"
-value="${escapeAttr(
-shift.short_name || ""
-)}"
->
-
-</td>
+            <tbody>
+    `;
 
 
-<td>
+    shiftTypes.forEach(
+        shift => {
 
-<input
-id="shift-start-${safeId}"
-type="time"
-value="${escapeAttr(
-shift.start_time || ""
-)}"
->
-
-</td>
+            const safeId =
+                encodeURIComponent(
+                    String(shift.id)
+                );
 
 
-<td>
+            html +=
+            `
+                <tr>
 
-<input
-id="shift-end-${safeId}"
-type="time"
-value="${escapeAttr(
-shift.end_time || ""
-)}"
->
+                    <td>
 
-</td>
+                        <input
+                            id="shift-name-${safeId}"
+                            value="${escapeAttr(
+                                shift.name
+                            )}"
+                        >
 
-
-<td>
-
-<input
-id="shift-break-${safeId}"
-type="number"
-min="0"
-value="${shift.break_time ?? 60}"
->
-
-</td>
+                    </td>
 
 
-<td>
+                    <td>
 
-<button
-class="secondary-btn"
-onclick='saveShiftType(${JSON.stringify(String(shift.id))})'
->
-💾 Запази
-</button>
+                        <input
+                            id="shift-short-${safeId}"
+                            value="${escapeAttr(
+                                shift.short_name || ""
+                            )}"
+                        >
 
-<button
-class="danger-btn"
-onclick='deleteShiftType(${JSON.stringify(String(shift.id))})'
->
-🗑️ Премахни
-</button>
+                    </td>
 
-</td>
 
-</tr>
-`;
+                    <td>
 
-});
+                        <input
+                            id="shift-start-${safeId}"
+                            type="time"
+                            value="${escapeAttr(
+                                normalizeTime(
+                                    shift.start_time
+                                )
+                            )}"
+                        >
 
-html +=
-`
-</tbody>
-</table>
-`;
+                    </td>
 
-container.innerHTML =
-html;
+
+                    <td>
+
+                        <input
+                            id="shift-end-${safeId}"
+                            type="time"
+                            value="${escapeAttr(
+                                normalizeTime(
+                                    shift.end_time
+                                )
+                            )}"
+                        >
+
+                    </td>
+
+
+                    <td>
+
+                        <input
+                            id="shift-break-${safeId}"
+                            type="number"
+                            min="0"
+                            value="${escapeAttr(
+                                shift.break_time ?? 60
+                            )}"
+                        >
+
+                    </td>
+
+
+                    <td>
+
+                        <button
+                            class="secondary-btn"
+                            data-action="save-shift"
+                            data-id="${escapeAttr(
+                                String(shift.id)
+                            )}"
+                        >
+                            💾 Запази
+                        </button>
+
+                        <button
+                            class="danger-btn"
+                            data-action="delete-shift"
+                            data-id="${escapeAttr(
+                                String(shift.id)
+                            )}"
+                        >
+                            🗑️ Премахни
+                        </button>
+
+                    </td>
+
+                </tr>
+            `;
+
+        }
+    );
+
+
+    html +=
+    `
+            </tbody>
+
+        </table>
+    `;
+
+
+    container.innerHTML = html;
+
+
+    container
+        .querySelectorAll(
+            '[data-action="save-shift"]'
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        saveShiftType(
+                            button.dataset.id
+                        );
+
+                    }
+                );
+
+            }
+        );
+
+
+    container
+        .querySelectorAll(
+            '[data-action="delete-shift"]'
+        )
+        .forEach(
+            button => {
+
+                button.addEventListener(
+                    "click",
+                    () => {
+
+                        deleteShiftType(
+                            button.dataset.id
+                        );
+
+                    }
+                );
+
+            }
+        );
 
 }
 
@@ -4439,152 +4385,153 @@ SAVE SHIFT TYPE
 
 async function saveShiftType(id){
 
-if(!isAdmin()){
+    if(!isAdmin()){
 
-alert(
-"Нямате права."
-);
+        alert("Нямате права.");
 
-return;
+        return;
 
-}
+    }
 
-const safeId =
-encodeURIComponent(
-String(id)
-);
 
-const nameElement =
-document.getElementById(
-"shift-name-" + safeId
-);
+    const safeId =
+        encodeURIComponent(
+            String(id)
+        );
 
-const shortElement =
-document.getElementById(
-"shift-short-" + safeId
-);
 
-const startElement =
-document.getElementById(
-"shift-start-" + safeId
-);
+    const nameElement =
+        document.getElementById(
+            "shift-name-" + safeId
+        );
 
-const endElement =
-document.getElementById(
-"shift-end-" + safeId
-);
+    const shortElement =
+        document.getElementById(
+            "shift-short-" + safeId
+        );
 
-const breakElement =
-document.getElementById(
-"shift-break-" + safeId
-);
+    const startElement =
+        document.getElementById(
+            "shift-start-" + safeId
+        );
 
-if(
-!nameElement ||
-!shortElement ||
-!startElement ||
-!endElement ||
-!breakElement
-){
+    const endElement =
+        document.getElementById(
+            "shift-end-" + safeId
+        );
 
-alert(
-"Не могат да бъдат намерени полетата за тази смяна."
-);
+    const breakElement =
+        document.getElementById(
+            "shift-break-" + safeId
+        );
 
-return;
 
-}
+    if(
+        !nameElement ||
+        !shortElement ||
+        !startElement ||
+        !endElement ||
+        !breakElement
+    ){
 
-const name =
-nameElement.value.trim();
+        alert(
+            "Не могат да бъдат намерени полетата за тази смяна."
+        );
 
-const shortName =
-shortElement.value.trim();
+        return;
 
-const start =
-startElement.value ||
-null;
+    }
 
-const end =
-endElement.value ||
-null;
 
-const breakTime =
-Number(
-breakElement.value
-);
+    const name =
+        nameElement.value.trim();
 
-if(!name || !shortName){
+    const shortName =
+        shortElement.value.trim();
 
-alert(
-"Името и краткото име са задължителни."
-);
+    const start =
+        startElement.value || null;
 
-return;
+    const end =
+        endElement.value || null;
 
-}
+    const breakTime =
+        Number(
+            breakElement.value
+        );
 
-try{
 
-const {
-data,
-error
-} =
-await supabaseClient
-.from("shift_types")
-.update({
+    if(
+        !name ||
+        !shortName
+    ){
 
-name:name,
+        alert(
+            "Името и краткото име са задължителни."
+        );
 
-short_name:shortName,
+        return;
 
-start_time:start,
+    }
 
-end_time:end,
 
-break_time:
-Number.isFinite(breakTime)
-? breakTime
-: 60
+    try{
 
-})
-.eq("id",id)
-.select()
-.single();
+        const {
+            error
+        } =
+        await supabaseClient
+            .from("shift_types")
+            .update({
 
-if(error){
-throw error;
-}
+                name: name,
 
-if(!data){
+                short_name: shortName,
 
-throw new Error(
-"Supabase не върна обновената смяна."
-);
+                start_time: start,
 
-}
+                end_time: end,
 
-alert(
-"Смяната е обновена успешно."
-);
+                break_time:
+                    Number.isFinite(
+                        breakTime
+                    )
+                    ? breakTime
+                    : 60
 
-await loadShiftTypes();
+            })
+            .eq(
+                "id",
+                id
+            );
 
-renderShiftsTable();
+        if(error){
+            throw error;
+        }
 
-renderAdminCalendar();
 
-}
-catch(error){
+        await loadShiftTypes();
 
-console.error(error);
+        renderShiftsTable();
 
-alert(
-"Грешка при запазване:\n\n" +
-errorText(error)
-);
+        renderAdminCalendar();
 
-}
+
+        alert(
+            "Смяната е обновена успешно."
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Грешка при запазване:\n\n" +
+            errorText(error)
+        );
+
+    }
 
 }
 
@@ -4595,85 +4542,86 @@ DELETE SHIFT
 
 async function deleteShiftType(id){
 
-if(!isAdmin()){
+    if(!isAdmin()){
 
-alert(
-"Нямате права."
-);
+        alert("Нямате права.");
 
-return;
+        return;
 
-}
+    }
 
-const shift =
-shiftTypes.find(
-s =>
-String(s.id) ===
-String(id)
-);
 
-if(!shift){
-return;
-}
+    const shift =
+        shiftTypes.find(
+            s =>
+                String(s.id) ===
+                String(id)
+        );
 
-const ok =
-confirm(
-"Сигурни ли сте, че искате да изтриете смяната:\n\n" +
-shift.name +
-"?"
-);
 
-if(!ok){
-return;
-}
+    if(!shift){
 
-try{
+        alert(
+            "Смяната не е намерена."
+        );
 
-const {
-data,
-error
-} =
-await supabaseClient
-.from("shift_types")
-.delete()
-.eq("id",id)
-.select();
+        return;
 
-if(error){
-throw error;
-}
+    }
 
-if(!data || !data.length){
 
-throw new Error(
-"Смяната не беше изтрита. " +
-"Supabase не върна изтрит ред. " +
-"Провери RLS на shift_types."
-);
+    const ok =
+        confirm(
+            "Сигурни ли сте, че искате да изтриете смяната:\n\n" +
+            shift.name +
+            "?"
+        );
 
-}
+    if(!ok){
+        return;
+    }
 
-alert(
-"Смяната е изтрита успешно."
-);
 
-await loadShiftTypes();
+    try{
 
-renderShiftsTable();
+        const {
+            error
+        } =
+        await supabaseClient
+            .from("shift_types")
+            .delete()
+            .eq(
+                "id",
+                id
+            );
 
-renderAdminCalendar();
+        if(error){
+            throw error;
+        }
 
-}
-catch(error){
 
-console.error(error);
+        await loadShiftTypes();
 
-alert(
-"Грешка при изтриване:\n\n" +
-errorText(error)
-);
+        renderShiftsTable();
 
-}
+        renderAdminCalendar();
+
+
+        alert(
+            "Смяната е изтрита успешно."
+        );
+
+    }
+    catch(error){
+
+        console.error(error);
+
+        alert(
+            "Грешка при изтриване:\n\n" +
+            errorText(error)
+        );
+
+    }
 
 }
 
@@ -4684,47 +4632,98 @@ STATS
 
 function updateStats(){
 
-document
-.getElementById("statEmployees")
-.textContent =
-users.filter(
-u => u.active !== false
-).length;
+    document
+        .getElementById(
+            "statEmployees"
+        )
+        .textContent =
+        users.filter(
+            u => u.active !== false
+        ).length;
 
-document
-.getElementById("statWorkDays")
-.textContent =
-daysInMonth();
 
-if(currentUser){
+    document
+        .getElementById(
+            "statWorkDays"
+        )
+        .textContent =
+        daysInMonth();
 
-const prefix =
-currentDate.getFullYear() +
-"-" +
-String(
-currentDate.getMonth() + 1
-).padStart(2,"0");
 
-const count =
-schedule.filter(
-row =>
-String(row.employee) ===
-String(currentUser.name)
-&&
-String(row.work_date)
-.startsWith(prefix)
-&&
-row.shift_type
-).length;
+    if(currentUser){
 
-document
-.getElementById("statMyDays")
-.textContent =
-count;
+        const prefix =
+            currentDate.getFullYear() +
+            "-" +
+            String(
+                currentDate.getMonth() + 1
+            ).padStart(2,"0");
 
-}
 
-setStatus();
+        const nonWorking =
+            [
+                "О",
+                "С",
+                "П",
+                "Отпуска",
+                "Самоотлъчка",
+                "Почивка"
+            ];
+
+
+        const count =
+            schedule.filter(
+                row => {
+
+                    if(
+                        String(row.employee) !==
+                        String(currentUser.name)
+                    ){
+                        return false;
+                    }
+
+                    if(
+                        !String(row.work_date)
+                            .startsWith(prefix)
+                    ){
+                        return false;
+                    }
+
+                    if(!row.shift_type){
+                        return false;
+                    }
+
+                    const shift =
+                        getShift(
+                            row.shift_type
+                        );
+
+                    const short =
+                        shift?.short_name;
+
+                    return !nonWorking.includes(
+                        row.shift_type
+                    )
+                    &&
+                    !nonWorking.includes(
+                        short
+                    );
+
+                }
+            ).length;
+
+
+        document
+            .getElementById(
+                "statMyDays"
+            )
+            .textContent =
+            count;
+
+    }
+
+
+    setStatus();
 
 }
 
@@ -4735,18 +4734,34 @@ ESCAPE
 
 function escapeHtml(value){
 
-return String(value ?? "")
-.replace(/&/g,"&amp;")
-.replace(/</g,"&lt;")
-.replace(/>/g,"&gt;")
-.replace(/"/g,"&quot;")
-.replace(/'/g,"&#039;");
+    return String(value ?? "")
+        .replace(
+            /&/g,
+            "&amp;"
+        )
+        .replace(
+            /</g,
+            "&lt;"
+        )
+        .replace(
+            />/g,
+            "&gt;"
+        )
+        .replace(
+            /"/g,
+            "&quot;"
+        )
+        .replace(
+            /'/g,
+            "&#039;"
+        );
 
 }
 
+
 function escapeAttr(value){
 
-return escapeHtml(value);
+    return escapeHtml(value);
 
 }
 
@@ -4757,69 +4772,76 @@ TAB
 
 function showTab(tab){
 
-if(
-tab === "admin" &&
-!isAdmin()
-){
+    if(
+        tab === "admin" &&
+        !isAdmin()
+    ){
 
-alert(
-"Нямате администраторски права."
-);
+        alert(
+            "Нямате администраторски права."
+        );
 
-return;
+        return;
 
-}
+    }
 
-activeTab =
-tab;
 
-document
-.getElementById("mySection")
-.classList.toggle(
-"hidden",
-tab !== "my"
-);
+    activeTab = tab;
 
-document
-.getElementById("allSection")
-.classList.toggle(
-"hidden",
-tab !== "all"
-);
 
-document
-.getElementById("adminSection")
-.classList.toggle(
-"hidden",
-tab !== "admin"
-);
+    document
+        .getElementById("mySection")
+        .classList.toggle(
+            "hidden",
+            tab !== "my"
+        );
 
-document
-.getElementById("myTab")
-.classList.toggle(
-"active",
-tab === "my"
-);
 
-document
-.getElementById("allTab")
-.classList.toggle(
-"active",
-tab === "all"
-);
+    document
+        .getElementById("allSection")
+        .classList.toggle(
+            "hidden",
+            tab !== "all"
+        );
 
-document
-.getElementById("adminTab")
-.classList.toggle(
-"active",
-tab === "admin"
-);
 
-if(tab === "admin"){
+    document
+        .getElementById("adminSection")
+        .classList.toggle(
+            "hidden",
+            tab !== "admin"
+        );
 
-renderAdminCalendar();
 
-}
+    document
+        .getElementById("myTab")
+        .classList.toggle(
+            "active",
+            tab === "my"
+        );
+
+
+    document
+        .getElementById("allTab")
+        .classList.toggle(
+            "active",
+            tab === "all"
+        );
+
+
+    document
+        .getElementById("adminTab")
+        .classList.toggle(
+            "active",
+            tab === "admin"
+        );
+
+
+    if(tab === "admin"){
+
+        renderAdminCalendar();
+
+    }
 
 }
 
